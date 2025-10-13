@@ -32,7 +32,7 @@
             <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
           </span>
         </h-count>
-        {% if type == 'header_mega' %}
+        {% comment %} {% if type == 'header_mega' %}
           <header-total-price>
             <span class="text-icons  d-inline-flex fs-11 fw-500 ml-15 text-left d-none-mb">
               <span class="text-icons-top">{{ 'general.cart.label' | t }}</span>
@@ -45,7 +45,7 @@
               </span>
             </span>
           </header-total-price>
-        {% endif %}
+        {% endif %} {% endcomment %}
       </a>
     </div>
   </div>
