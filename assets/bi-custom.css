@@ -7,6 +7,10 @@
   color: #002E5E !important;
 }
 
+.search__button svg path {
+  color: #002E5E !important;
+}
+
 .header_search-mega .search__input {
   background-color: #f3f3f3 !important;
 }
