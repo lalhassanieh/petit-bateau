@@ -39,7 +39,6 @@
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     {{ 'judgeme-reviews.css' | asset_url | stylesheet_tag }}
     {% render 'font-variables' %}
-    {{ 'bi-custom.css' | asset_url | stylesheet_tag }}
     {% if request.design_mode %}
       {{ 'design-mode.css' | asset_url | stylesheet_tag: preload: true }}
     {% endif %}
