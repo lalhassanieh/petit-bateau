@@ -24,6 +24,18 @@
      font-display: swap;
  }
 
+ @font-face {
+     font-family: 'Oswald-Bold';
+     src: url('./Oswald-Bold.eot');
+     src: url('./Oswald-Bold.eot?#iefix') format('embedded-opentype'),
+         url('./Oswald-Bold.woff2') format('woff2'),
+         url('./Oswald-Bold.woff') format('woff'),
+         url('./Oswald-Bold.ttf') format('truetype'),
+         url('./Oswald-Bold.svg#Oswald-Bold') format('svg');
+     font-weight: bold;
+     font-style: normal;
+     font-display: swap;
+ }
 
  .header-color>a:not(:hover),
  :where(input, textarea)::placeholder,
@@ -44,6 +56,12 @@
 
      .sec__content-heading {
          font-family: 'Oswald-Light' !important;
+     }
+
+     .sec__content-btn {
+         a {
+             font-family: 'Oswald-Bold' !important;
+         }
      }
  }
 
