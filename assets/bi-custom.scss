@@ -73,9 +73,10 @@
      width: 24px !important;
      border-radius: 5px !important;
  }
-#shopify-section-main-password-footer {
+#shopify-section-main-password-footer,.password__footer {
   display: none !important;
 }
+
  @media (min-width: 1024px) {
      #topbar {
          .text-slide {
