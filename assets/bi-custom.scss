@@ -4,9 +4,9 @@
 
  @media (min-width: 1024px) {
      #topbar .text-slide {
-         width: auto;
-         max-width: 100%;
+         width: auto !important;
+         max-width: 100% !important;
          text-align: center;
-         margin: auto;
+         margin: auto !important;
      }
  }
