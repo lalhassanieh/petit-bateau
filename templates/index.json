@@ -109,7 +109,7 @@
         "slide_effect": "fade",
         "reveal_slideshow": false,
         "show_arrow": false,
-        "carousel_pagination": "disable",
+        "carousel_pagination": "show_dots",
         "pagination_position": "center",
         "autoplay": false,
         "autorotate_speed": 5,
