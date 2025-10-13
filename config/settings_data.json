@@ -193,6 +193,12 @@
       "top-search": {
         "type": "top-search",
         "settings": {}
+      },
+      "main-password-footer": {
+        "type": "main-password-footer",
+        "settings": {
+          "color_scheme": ""
+        }
       }
     },
     "content_for_index": [],
@@ -209,7 +215,7 @@
           "btn_primary_background": "#002e5e",
           "btn_primary_gradient": "",
           "btn_primary_hover_color": "#002e5e",
-          "btn_primary_hover_background": "#fff",
+          "btn_primary_hover_background": "#ffffff",
           "btn_primary_hover_background_gradient": "",
           "btn_outline_color": "#111111",
           "btn_outline_border_color": "#111111",
