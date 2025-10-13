@@ -1,6 +1,14 @@
- .header-color>a:not(:hover) {
-     color: #002E5E;
+ .header-color>a:not(:hover),
+ :where(input, textarea)::placeholder {
+     color: #002E5E !important;
  }
+
+ .header_search-mega {
+     .search__input {
+         background-color: #f3f3f3;
+     }
+ }
+
 
  @media (min-width: 1024px) {
      #topbar {
