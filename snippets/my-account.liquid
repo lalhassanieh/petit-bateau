@@ -8,7 +8,7 @@
   endif
 -%}
 {% # theme-check-disable UnclosedHTMLElement %}
-{% if type != 'header_mega' %}
+{% comment %} {% if type != 'header_mega' %} {% endcomment %}
   <div class="header_account hidden block-1025">
     {% if customer %}
       <div
@@ -45,8 +45,8 @@
       {%- if enable_login_popup and login_one_time == false -%}</button>{%- else -%}</a>{%- endif -%}
     {%- endif -%}
   </div>
-{% else %}
-  <div class="header_account header-account__mega hidden block-1025">
+{% comment %} {% else %} {% endcomment %}
+  {% comment %} <div class="header_account header-account__mega hidden block-1025">
     {% if customer %}
       <div
         aria-label="header icon account"
@@ -103,6 +103,6 @@
     {%- else -%}
       {%- if enable_login_popup and login_one_time == false -%}</button>{%- else -%}</a>{%- endif -%}
     {%- endif -%}
-  </div>
-{% endif %}
+  </div> {% endcomment %}
+{% comment %} {% endif %} {% endcomment %}
 {% # theme-check-disable UnclosedHTMLElement %}
