@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Oswald-Medium";
-  src: url("./fonts/Oswald-Medium/Oswald-Medium.eot");
-  src: url("./fonts/Oswald-Medium/Oswald-Medium.eot?#iefix") format("embedded-opentype"), url("./fonts/Oswald-Medium/Oswald-Medium.woff2") format("woff2"), url("./fonts/Oswald-Medium/Oswald-Medium.woff") format("woff"), url("./fonts/Oswald-Medium/Oswald-Medium.ttf") format("truetype"), url("./fonts/Oswald-Medium/Oswald-Medium.svg#Oswald-Medium") format("svg");
+  src: url("./Oswald-Medium.eot");
+  src: url("./Oswald-Medium.eot?#iefix") format("embedded-opentype"), url("./Oswald-Medium.woff2") format("woff2"), url("./Oswald-Medium.woff") format("woff"), url("./Oswald-Medium.ttf") format("truetype"), url("./Oswald-Medium.svg#Oswald-Medium") format("svg");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
