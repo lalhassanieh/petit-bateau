@@ -15,7 +15,7 @@
         "slider_item_8mcJBj": {
           "type": "slider_item",
           "settings": {
-            "image": "shopify://shop_images/Component_3.jpg",
+            "image": "shopify://shop_images/image_11.jpg",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeindown",
             "subheading": "AU CHAUD",
@@ -115,11 +115,11 @@
         "subheading_font_size": 60,
         "subheading_font_weight": "body_weight",
         "subheading_spacing_bottom": 10,
-        "heading_font_size": 70,
+        "heading_font_size": 51,
         "heading_font_weight": "heading_weight",
-        "heading_uppercase": false,
+        "heading_uppercase": true,
         "heading_spacing_bottom": 10,
-        "des_font_size": 14,
+        "des_font_size": 17,
         "des_font_weight": "body_weight",
         "des_spacing_bottom": 40,
         "content_below_image": false,
