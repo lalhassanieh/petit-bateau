@@ -1,7 +1,14 @@
+@font-face {
+  font-family: "Oswald-Medium";
+  src: url("./fonts/Oswald-Medium/Oswald-Medium.eot");
+  src: url("./fonts/Oswald-Medium/Oswald-Medium.eot?#iefix") format("embedded-opentype"), url("./fonts/Oswald-Medium/Oswald-Medium.woff2") format("woff2"), url("./fonts/Oswald-Medium/Oswald-Medium.woff") format("woff"), url("./fonts/Oswald-Medium/Oswald-Medium.ttf") format("truetype"), url("./fonts/Oswald-Medium/Oswald-Medium.svg#Oswald-Medium") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 :where(input, textarea)::-moz-placeholder {
   color: #002E5E !important;
 }
-
 .header-color > a:not(:hover),
 :where(input, textarea)::placeholder,
 .search__button {
@@ -10,6 +17,10 @@
 
 .header_search-mega .search__input {
   background-color: #f3f3f3 !important;
+}
+
+.slideshow .sec__content-subheading {
+  font-family: "Oswald-Medium" !important;
 }
 
 @media (min-width: 1024px) {
