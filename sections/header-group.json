@@ -57,7 +57,7 @@
         "menu_promotion_hBEmkU": {
           "type": "menu_promotion",
           "settings": {
-            "text": "Home",
+            "text": "La campagne",
             "open-link-newtab": true,
             "item_label": "unset",
             "promotion_menu_column": 2,
@@ -75,7 +75,7 @@
         "menu_promotion_4ytFzi": {
           "type": "menu_promotion",
           "settings": {
-            "text": "Sale",
+            "text": "Nouveau-né (0-12 mois)",
             "open-link-newtab": true,
             "item_label": "unset",
             "promotion_menu_column": 4,
@@ -93,7 +93,7 @@
         "menu_collection_at6Dkq": {
           "type": "menu_collection",
           "settings": {
-            "text": "Shop",
+            "text": "Bébé fille (6-24 mois)",
             "open-link-newtab": true,
             "item_label": "unset",
             "collection_menu_column": 2,
@@ -171,7 +171,7 @@
         "show_shopping_cart": true,
         "show_currency": true,
         "show_language": true,
-        "show_recently_viewed": true,
+        "show_recently_viewed": false,
         "padding_top": 25,
         "padding_bottom": 25
       }
@@ -255,6 +255,7 @@
         "menu_promotion_9mcbBa",
         "menu_promotion_cG8mrL"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "categories_menu": "",
