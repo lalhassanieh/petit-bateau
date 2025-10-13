@@ -1,3 +1,10 @@
+{% unless template == 'password' %}
+  <script>
+    window.location.href = "/password";
+  </script>
+{% endunless %}
+
+
 {% liquid
   assign enable_rtl = settings.rtl
   assign iso_code = request.locale.iso_code
