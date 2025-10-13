@@ -1,0 +1,11 @@
+{% comment %} Coming Soon Page Template {% endcomment %}
+
+<div class="coming-soon-page" style="text-align:center; padding: 50px;">
+ 
+  <h1>We’re Launching Soon!</h1>
+  <p>Sign up to get notified when we go live:</p>
+  {% form 'customer' %}
+    <input type="email" name="contact[email]" placeholder="Your email" required>
+    <button type="submit">Notify Me</button>
+  {% endform %}
+</div>
