@@ -54,6 +54,10 @@
   border-radius: 5px !important;
 }
 
+#shopify-section-main-password-footer {
+  display: none;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
