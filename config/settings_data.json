@@ -26,6 +26,7 @@
     "heading_letter_spacing": "negative",
     "menu_font": "body_font",
     "btn_text_transform": "uppercase",
+    "button_radius": 1,
     "enable_browser_tab_notifications": false,
     "sale_color": "#002e5e",
     "sale_background": "#e14a5c",
