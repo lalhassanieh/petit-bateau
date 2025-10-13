@@ -41,7 +41,7 @@
       ],
       "settings": {
         "section_width": "fluid_container",
-        "color_scheme": "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9",
+        "color_scheme": "default",
         "show_mobile": true,
         "show_separator_line": true,
         "uppercase": false,
