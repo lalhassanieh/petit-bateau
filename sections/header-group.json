@@ -57,7 +57,7 @@
         "menu_promotion_hBEmkU": {
           "type": "menu_promotion",
           "settings": {
-            "text": "Home",
+            "text": "La campagne",
             "open-link-newtab": true,
             "item_label": "unset",
             "promotion_menu_column": 2,
@@ -75,7 +75,7 @@
         "menu_promotion_4ytFzi": {
           "type": "menu_promotion",
           "settings": {
-            "text": "Sale",
+            "text": "Nouveau-né (0-12 mois)",
             "open-link-newtab": true,
             "item_label": "unset",
             "promotion_menu_column": 4,
