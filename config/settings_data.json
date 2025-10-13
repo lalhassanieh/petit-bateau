@@ -24,7 +24,7 @@
     "font_heading_system": "work_sans_n4",
     "heading_text_transform": "unset",
     "heading_letter_spacing": "negative",
-    "menu_font": "heading_font",
+    "menu_font": "body_font",
     "enable_browser_tab_notifications": false,
     "sale_color": "#002e5e",
     "sale_background": "#e14a5c",
