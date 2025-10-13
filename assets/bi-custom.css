@@ -49,6 +49,11 @@
   padding: 9px 20px !important;
 }
 
+.swiper-pagination-bullet-active::after {
+  width: 24px !important;
+  border-radius: 5px !important;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;

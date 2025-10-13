@@ -2748,9 +2748,9 @@ body .swiper-pagination {
   margin: auto;
 }
 .swiper-pagination-bullet:before {
-  border: 1px solid var(--tns-nav-border, var(--color-dark));
+  /* border: 1px solid var(--tns-nav-border, var(--color-dark));
   opacity: 0;
-  transform: scale(0.3);
+  transform: scale(0.3); */
 }
 .swiper-pagination-bullet-active::after,
 .swiper-pagination-bullet-active:before {
