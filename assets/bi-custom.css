@@ -46,6 +46,7 @@
 .slideshow .sec__content-btn a {
   font-family: "Oswald-Bold" !important;
   letter-spacing: 0.21px;
+  padding: 9px 20px !important;
 }
 
 @media (min-width: 1024px) {
