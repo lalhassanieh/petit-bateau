@@ -15,7 +15,7 @@
         "slider_item_8mcJBj": {
           "type": "slider_item",
           "settings": {
-            "image": "shopify://shop_images/image_11.jpg",
+            "image": "shopify://shop_images/Component_3.jpg",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeindown",
             "subheading": "AU CHAUD",
@@ -69,6 +69,7 @@
         "slider_item_QGDKFa": {
           "type": "slider_item",
           "settings": {
+            "image": "shopify://shop_images/image_11.jpg",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeindown",
             "subheading": "Subheading",
