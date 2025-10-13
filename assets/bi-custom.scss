@@ -1,14 +1,7 @@
  .header-color>a:not(:hover),
- :where(input, textarea)::placeholder {
-     color: #002E5E !important;
- }
-
+ :where(input, textarea)::placeholder,
  .search__button {
-     svg {
-         path {
-             fill: #002E5E !important;
-         }
-     }
+     color: #002E5E !important;
  }
 
  .header_search-mega {

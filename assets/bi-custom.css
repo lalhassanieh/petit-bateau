@@ -3,12 +3,9 @@
 }
 
 .header-color > a:not(:hover),
-:where(input, textarea)::placeholder {
+:where(input, textarea)::placeholder,
+.search__button {
   color: #002E5E !important;
-}
-
-.search__button svg path {
-  fill: #002E5E !important;
 }
 
 .header_search-mega .search__input {
