@@ -171,7 +171,7 @@
         "show_shopping_cart": true,
         "show_currency": true,
         "show_language": true,
-        "show_recently_viewed": true,
+        "show_recently_viewed": false,
         "padding_top": 25,
         "padding_bottom": 25
       }
