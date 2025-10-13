@@ -28,14 +28,7 @@
     },
     "mobile_navigation_bar_GG8UWc": {
       "type": "mobile-navigation-bar",
-      "settings": {
-        "eb_mobile_navbar": true,
-        "show_homepage": true,
-        "show_shop": true,
-        "show_account": true,
-        "show_cart": true,
-        "show_wishlist": true
-      }
+      "settings": {}
     }
   },
   "order": [
