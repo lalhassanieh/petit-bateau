@@ -17,9 +17,9 @@
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
-            "text1": "Sign up for 10% off your first order. <a href=\"/account/\" title=\"/account/\"><strong>Sign Up</strong></a>",
-            "text2": "Summer sale discount off 50%. <a href=\"/collections/activewear\" title=\"Activewear\"><strong>Shop Sale</strong></a>",
-            "text3": "Coats—every friday 75% Off . <a href=\"/collections/blazers\" title=\"Blazers\"><strong>Shop Sale</strong></a>",
+            "text1": "JOURNÉES PRIVILÈGES : jusqu'à -50% dès 2 articles achetés*",
+            "text2": "",
+            "text3": "",
             "change_every": 3,
             "hidden_on_mobile": false
           }
@@ -41,12 +41,12 @@
       ],
       "settings": {
         "section_width": "fluid_container",
-        "color_scheme": "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9",
+        "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
         "show_mobile": true,
         "show_separator_line": true,
         "uppercase": false,
-        "font_size": 13,
-        "font_weight": "body_weight",
+        "font_size": 14,
+        "font_weight": "heading_weight",
         "padding_top": 9,
         "padding_bottom": 9
       }
