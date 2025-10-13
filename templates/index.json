@@ -9,6 +9,125 @@
  */
 {
   "sections": {
+    "slideshow_WUADqE": {
+      "type": "slideshow",
+      "blocks": {
+        "slider_item_8mcJBj": {
+          "type": "slider_item",
+          "settings": {
+            "image": "shopify://shop_images/image_11.jpg",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeindown",
+            "subheading": "AU CHAUD",
+            "heading": "En Petit Bateau",
+            "description": "",
+            "first_button_label": "decouvrir",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "bottom-center",
+            "content_width": "container",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 30,
+            "show_content_background": false,
+            "content_background": "#fff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_fRcjwc": {
+          "type": "slider_item",
+          "settings": {
+            "local_video": "shopify://files/videos/Vidéo.mov",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeindown",
+            "subheading": "Subheading",
+            "heading": "Image slide",
+            "description": "<p>Tell your brand's story through images</p>",
+            "first_button_label": "Button label",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "left",
+            "content_position": "bottom-left",
+            "content_width": "container",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 30,
+            "show_content_background": false,
+            "content_background": "#fff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "left"
+          }
+        },
+        "slider_item_QGDKFa": {
+          "type": "slider_item",
+          "settings": {
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeindown",
+            "subheading": "Subheading",
+            "heading": "Image slide",
+            "description": "<p>Tell your brand's story through images</p>",
+            "first_button_label": "Button label",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "left",
+            "content_position": "bottom-left",
+            "content_width": "container",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 30,
+            "show_content_background": false,
+            "content_background": "#fff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "left"
+          }
+        }
+      },
+      "block_order": [
+        "slider_item_8mcJBj",
+        "slider_item_fRcjwc",
+        "slider_item_QGDKFa"
+      ],
+      "name": "t:sections.slideshow.name",
+      "settings": {
+        "section_width": "full_width",
+        "slide_height": "full_screen",
+        "desktop_height": 800,
+        "mobile_height": 360,
+        "color_scheme": "",
+        "slide_effect": "fade",
+        "reveal_slideshow": false,
+        "show_arrow": false,
+        "carousel_pagination": "disable",
+        "pagination_position": "center",
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "subheading_font_size": 14,
+        "subheading_font_weight": "body_weight",
+        "subheading_spacing_bottom": 10,
+        "heading_font_size": 70,
+        "heading_font_weight": "heading_weight",
+        "heading_uppercase": false,
+        "heading_spacing_bottom": 10,
+        "des_font_size": 14,
+        "des_font_weight": "body_weight",
+        "des_spacing_bottom": 40,
+        "content_below_image": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
     "slideshow_with_banner_KEfjPq": {
       "type": "slideshow-with-banner",
       "blocks": {
@@ -31,7 +150,7 @@
                 "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
                 "content_width": "50%",
                 "media_type": "image",
-                "image": "shopify://shop_images/digital-slide1.jpg",
+                "image": "shopify://shop_images/image_11.jpg",
                 "image_link": "",
                 "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
                 "autoplay": true,
@@ -103,7 +222,7 @@
                 "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
                 "content_width": "50%",
                 "media_type": "image",
-                "image": "shopify://shop_images/digital-slide1.jpg",
+                "image": "shopify://shop_images/logo-petit-bateau_svg.svg",
                 "image_link": "",
                 "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
                 "autoplay": true,
@@ -175,7 +294,6 @@
                 "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
                 "content_width": "50%",
                 "media_type": "image",
-                "image": "shopify://shop_images/digital-slide1.jpg",
                 "image_link": "",
                 "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
                 "autoplay": true,
@@ -258,7 +376,6 @@
                 "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
                 "content_width": "50%",
                 "media_type": "image",
-                "image": "shopify://shop_images/digital-banner1-min.png",
                 "image_link": "shopify://collections/daily-deals",
                 "autoplay": true,
                 "video_ratio": "16/9",
@@ -318,7 +435,6 @@
                 "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
                 "content_width": "50%",
                 "media_type": "image",
-                "image": "shopify://shop_images/digital-banner2-min.png",
                 "image_link": "shopify://collections/camera-photo",
                 "autoplay": true,
                 "video_ratio": "16/9",
@@ -376,7 +492,6 @@
                 "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
                 "content_width": "50%",
                 "media_type": "image",
-                "image": "shopify://shop_images/digital-banner3-min.png",
                 "image_link": "shopify://collections/macbook-pcs",
                 "autoplay": true,
                 "video_ratio": "16/9",
@@ -439,6 +554,7 @@
         "slide_parent_ie3hb9",
         "banner_parent_Rx78VF"
       ],
+      "disabled": true,
       "custom_css": [
         ".slide__wrapper .sec__content-heading {line-height: 1;}",
         ".slide__wrapper .sec__content-heading {color: var(--color-primary);}",
@@ -464,7 +580,6 @@
           "type": "collection",
           "settings": {
             "collection": "daily-deals",
-            "collection_image": "shopify://shop_images/digital-cate-1.png",
             "collection_title": ""
           }
         },
@@ -472,7 +587,6 @@
           "type": "collection",
           "settings": {
             "collection": "macbook-pcs",
-            "collection_image": "shopify://shop_images/digital-cate-2.png",
             "collection_title": ""
           }
         },
@@ -480,7 +594,6 @@
           "type": "collection",
           "settings": {
             "collection": "phone-mobile",
-            "collection_image": "shopify://shop_images/digital-cate-3.png",
             "collection_title": ""
           }
         },
@@ -488,7 +601,6 @@
           "type": "collection",
           "settings": {
             "collection": "tablets-ipad-pro",
-            "collection_image": "shopify://shop_images/digital-cate-4.png",
             "collection_title": ""
           }
         },
@@ -496,7 +608,6 @@
           "type": "collection",
           "settings": {
             "collection": "camera-photo",
-            "collection_image": "shopify://shop_images/digital-cate-5.png",
             "collection_title": ""
           }
         },
@@ -504,7 +615,6 @@
           "type": "collection",
           "settings": {
             "collection": "home-electronics",
-            "collection_image": "shopify://shop_images/digital-cate-6.png",
             "collection_title": ""
           }
         },
@@ -512,7 +622,6 @@
           "type": "collection",
           "settings": {
             "collection": "clearance-sale",
-            "collection_image": "shopify://shop_images/digital-cate-7.png",
             "collection_title": ""
           }
         },
@@ -520,7 +629,6 @@
           "type": "collection",
           "settings": {
             "collection": "sale-50-off",
-            "collection_image": "shopify://shop_images/digital-cate-8.png",
             "collection_title": ""
           }
         }
@@ -675,7 +783,6 @@
       "settings": {
         "section_width": "container",
         "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
-        "background_image": "shopify://shop_images/digital-probanner1.jpg",
         "background_rounded": 100,
         "content_alignment_mobile": "left",
         "padding_top": 0,
@@ -700,7 +807,6 @@
           "settings": {
             "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
             "media_type": "image",
-            "image": "shopify://shop_images/digital-banner9.jpg",
             "image_link": "",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "autoplay": true,
@@ -809,7 +915,6 @@
           "type": "_group-image-overlay",
           "settings": {
             "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
-            "image": "shopify://shop_images/digital-banner4-min.png",
             "image_link": "",
             "overlay_opacity": 0,
             "content_alignment": "start",
@@ -877,7 +982,6 @@
           "type": "_group-image-overlay",
           "settings": {
             "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
-            "image": "shopify://shop_images/digital-banner5-min.png",
             "image_link": "",
             "overlay_opacity": 0,
             "content_alignment": "center",
@@ -933,7 +1037,6 @@
           "type": "_group-image-overlay",
           "settings": {
             "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
-            "image": "shopify://shop_images/digital-banner6.jpg",
             "image_link": "",
             "overlay_opacity": 0,
             "content_alignment": "start",
@@ -990,7 +1093,6 @@
           "name": "t:blocks.names.image_with_text_overlay",
           "settings": {
             "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
-            "image": "shopify://shop_images/digital-banner7.jpg",
             "image_link": "",
             "overlay_opacity": 0,
             "content_alignment": "center",
@@ -1128,42 +1230,36 @@
         "brand_items_qULHTU": {
           "type": "brand_items",
           "settings": {
-            "image": "shopify://shop_images/digital-brand2.jpg",
             "link": "shopify://collections/daily-deals"
           }
         },
         "brand_items_qy934M": {
           "type": "brand_items",
           "settings": {
-            "image": "shopify://shop_images/digital-brand3.jpg",
             "link": "shopify://collections/camera-photo"
           }
         },
         "brand_items_VXTNpe": {
           "type": "brand_items",
           "settings": {
-            "image": "shopify://shop_images/digital-brand4.jpg",
             "link": "shopify://collections/daily-deals"
           }
         },
         "brand_items_igWf3K": {
           "type": "brand_items",
           "settings": {
-            "image": "shopify://shop_images/digital-brand5.jpg",
             "link": "shopify://collections/clearance-sale"
           }
         },
         "brand_items_zjQb7m": {
           "type": "brand_items",
           "settings": {
-            "image": "shopify://shop_images/digital-brand6.jpg",
             "link": "shopify://collections/home-electronics"
           }
         },
         "brand_items_xM7B8j": {
           "type": "brand_items",
           "settings": {
-            "image": "shopify://shop_images/digital-brand4.jpg",
             "link": "shopify://collections/tablets-ipad-pro"
           }
         }
@@ -1211,7 +1307,6 @@
         "product_banner_pBryNz": {
           "type": "product_banner",
           "settings": {
-            "image": "shopify://shop_images/digital-banner8-min.jpg",
             "content_background_color": "#f1f3f7",
             "subheading": "SAVE 30—50% ELECTRONICS",
             "subheading_font_size": 12,
@@ -1234,7 +1329,6 @@
         "product_banner_AYpkmm": {
           "type": "product_banner",
           "settings": {
-            "image": "shopify://shop_images/digital-banner11.jpg",
             "content_background_color": "#f1f3f7",
             "subheading": "SAVE 30—50% ELECTRONICS",
             "subheading_font_size": 12,
@@ -1257,7 +1351,6 @@
         "product_banner_RcAWqT": {
           "type": "product_banner",
           "settings": {
-            "image": "shopify://shop_images/digital-banner10.jpg",
             "content_background_color": "#f1f3f7",
             "subheading": "SAVE 30—50% ELECTRONICS",
             "subheading_font_size": 12,
@@ -1464,6 +1557,7 @@
     }
   },
   "order": [
+    "slideshow_WUADqE",
     "slideshow_with_banner_KEfjPq",
     "collection_list_VmEYkJ",
     "featured_collection_pfcpCH",
