@@ -58,10 +58,6 @@
   border-radius: 5px !important;
 }
 
-.swiper-pagination-clickable .swiper-pagination-bullet {
-  margin-right: 8px !important;
-}
-
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
