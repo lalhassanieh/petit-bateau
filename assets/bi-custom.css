@@ -8,7 +8,7 @@
 }
 
 .header_search-mega .search__input {
-  background-color: #f3f3f3;
+  background-color: #f3f3f3 !important;
 }
 
 @media (min-width: 1024px) {
