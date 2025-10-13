@@ -2466,8 +2466,8 @@ header.active li.visible .submenu:not(.submenu-vertical) {
 :root {
   --swiper-navigation-color: var(--color-dark);
   --swiper-navigation-size: 16px;
-  --swiper-pagination-bullet-width: 2.5rem;
-  --swiper-pagination-bullet-height: 2.5rem;
+  --swiper-pagination-bullet-width: 8px;
+  --swiper-pagination-bullet-height:  8px;
   --swiper-pagination-bullet-inactive-opacity: 1;
   --swiper-pagination-color: transparent;
   --swiper-pagination-bullet-inactive-color: transparent;

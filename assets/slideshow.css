@@ -69,7 +69,7 @@
   background-color: var(--color-heading);
 }
 .slideshow .swiper-pagination-bullet:before {
-  border: 1px solid var(--tns-nav-border, var(--color-heading));
+  /* border: 1px solid var(--tns-nav-border, var(--color-heading)); */
 }
 @-webkit-keyframes fadeInslideshow {
   0% {
