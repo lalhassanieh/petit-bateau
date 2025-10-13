@@ -18,8 +18,8 @@
           "type": "text_slider",
           "settings": {
             "text1": "JOURNÉES PRIVILÈGES : jusqu'à -50% dès 2 articles achetés*",
-            "text2": "JOURNÉES PRIVILÈGES : jusqu'à -50% dès 2 articles achetés*",
-            "text3": "JOURNÉES PRIVILÈGES : jusqu'à -50% dès 2 articles achetés*",
+            "text2": "",
+            "text3": "",
             "change_every": 3,
             "hidden_on_mobile": false
           }

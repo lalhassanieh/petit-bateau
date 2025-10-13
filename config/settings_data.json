@@ -17,7 +17,9 @@
     "fluid_container_width": 1410,
     "spacing_desktop": 80,
     "space_mobile": 50,
+    "font_body_system": "work_sans_n4",
     "body_font_size": 15,
+    "font_heading_system": "work_sans_n4",
     "heading_text_transform": "unset",
     "heading_letter_spacing": "negative",
     "menu_font": "heading_font",
@@ -192,7 +194,7 @@
     "color_schemes": {
       "default": {
         "settings": {
-          "background": "#fff",
+          "background": "#ffffff",
           "background_gradient": "",
           "primary_color": "#e14a5c",
           "text_color": "#253b80",
