@@ -55,7 +55,7 @@
 }
 
 #shopify-section-main-password-footer {
-  display: none;
+  display: none !important;
 }
 
 @media (min-width: 1024px) {
