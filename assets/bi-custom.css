@@ -50,12 +50,12 @@
 }
 
 .swiper-pagination-bullet-active::after {
-  width: 24px !important;
+  width: 100% !important;
   border-radius: 5px !important;
 }
 
 .swiper-pagination-clickable .swiper-pagination-bullet {
-  margin-right: 20px !important;
+  margin-right: 8px !important;
 }
 
 @media (min-width: 1024px) {
