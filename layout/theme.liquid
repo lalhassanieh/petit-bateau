@@ -41,6 +41,7 @@
     {% render 'font-variables' %}
     {% if request.design_mode %}
       {{ 'design-mode.css' | asset_url | stylesheet_tag: preload: true }}
+      {{ 'bi-custom.css' | asset_url | stylesheet_tag }}
     {% endif %}
     {% style %}
       {% for scheme in settings.color_schemes -%}
