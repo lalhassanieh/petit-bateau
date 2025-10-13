@@ -49,6 +49,10 @@
   padding: 9px 20px !important;
 }
 
+.swiper-pagination-bullet-active {
+  width: 24px !important;
+}
+
 .swiper-pagination-bullet-active::after {
   width: 100% !important;
   border-radius: 5px !important;
