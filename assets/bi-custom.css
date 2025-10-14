@@ -156,10 +156,6 @@
   }
   .slideshow .slideshow-global-buttons-fixed {
     position: relative !important;
-    bottom: auto !important;
-    transform: none !important;
-    left: auto !important;
-    margin: 2rem 0 1rem 0 !important;
-    padding: 0 20px 75px 20px !important;
+    width: 100%;
   }
 }/*# sourceMappingURL=bi-custom.css.map */
