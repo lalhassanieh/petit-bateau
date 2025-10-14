@@ -102,7 +102,7 @@
         "slider_item_QGDKFa"
       ],
       "custom_css": [
-        ".sec__content-btn a {background: #002E5E !important;}"
+        ".sec__content-btn a {background: #002e5e;}"
       ],
       "name": "t:sections.slideshow.name",
       "settings": {
