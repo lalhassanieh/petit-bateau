@@ -136,8 +136,9 @@
     position: relative !important;
     margin-bottom: 0 !important;
     height: auto !important;
-    aspect-ratio: 3/4; /* Changed from 4/3 to 3/4 for taller images */
+    aspect-ratio: 4/3; /* Default for tablets */
     /* Ensure mobile images display properly */
+    /* Taller images for smaller mobile screens */
   }
   .slideshow.swiper .swiper-slide .sec__inner .banner__media img {
     width: 100% !important;
@@ -145,6 +146,13 @@
     -o-object-fit: cover !important;
        object-fit: cover !important;
   }
+}
+@media (max-width: 991px) and (max-width: 600px) {
+  .slideshow.swiper .swiper-slide .sec__inner .banner__media {
+    aspect-ratio: 3/4;
+  }
+}
+@media (max-width: 991px) {
   .slideshow.swiper .swiper-slide .sec__inner .sec__content {
     position: relative !important;
     padding: 0 1.5rem !important;
