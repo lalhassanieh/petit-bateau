@@ -82,6 +82,10 @@
          &:after {
              background-color: #fff !important;
              opacity: 1 !important;
+
+             @media (max-width: 767px) {
+                 margin-top: 30px !important;
+             }
          }
      }
 
@@ -129,7 +133,7 @@
 
          .btn-primary {
              font-size: 11px;
-            padding: 7px 15px !important;
+             padding: 7px 15px !important;
          }
      }
  }
@@ -149,7 +153,7 @@
  @media (max-width: 991px) {
      .slideshow {
          background: #CADDEA !important;
-
+padding-bottom: 50px !important;
 
          .swiper-slide {
              .sec__inner {
