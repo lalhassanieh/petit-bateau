@@ -103,7 +103,7 @@
       "settings": {
         "section_width": "full_width",
         "slide_height": "full_screen",
-        "desktop_height": 590,
+        "desktop_height": 400,
         "mobile_height": 360,
         "color_scheme": "",
         "slide_effect": "fade",
