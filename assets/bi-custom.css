@@ -120,11 +120,7 @@
 @media (max-width: 991px) {
   .slideshow {
     background: #CADDEA !important;
-    /* Fixed bottom navigation container for mobile */
-    /* Navigation dots styling for mobile */
-    /* Global buttons styling for mobile */
-    /* Stack dots above buttons when both exist */
-    /* Add bottom padding to slideshow content to avoid overlap with fixed elements */
+    /* Adjust global buttons for mobile layout */
   }
   .slideshow .swiper-slide .sec__inner {
     display: flex !important;
@@ -157,53 +153,8 @@
   .slideshow .swiper-slide .sec__inner .sec__content .sec__content-inner .sec__content-heading {
     font-size: 40px;
   }
-  .slideshow .swiper-pagination,
   .slideshow .slideshow-global-buttons-fixed {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 100 !important;
-    background: rgba(255, 255, 255, 0.95) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-            backdrop-filter: blur(10px) !important;
-    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
-    box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1) !important;
-  }
-  .slideshow .swiper-pagination {
-    padding: 0.75rem 1rem !important;
-    margin: 0 !important;
-    transform: none !important;
-  }
-  .slideshow .swiper-pagination .swiper-pagination-bullet {
-    margin: 0 0.25rem !important;
-    opacity: 0.5 !important;
-    background: #002E5E !important;
-  }
-  .slideshow .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    opacity: 1 !important;
-  }
-  .slideshow .slideshow-global-buttons-fixed {
-    padding: 0.75rem 1rem !important;
-    margin: 0 !important;
-    transform: none !important;
-    justify-content: center !important;
-  }
-  .slideshow .slideshow-global-buttons-fixed a {
-    font-size: 0.85rem !important;
-    padding: 0.5rem 1rem !important;
-    margin: 0 0.25rem !important;
-    background: #002E5E !important;
-    color: white !important;
-    border-radius: 0.5rem !important;
-    box-shadow: none !important;
-    -webkit-backdrop-filter: none !important;
-            backdrop-filter: none !important;
-  }
-  .slideshow .slideshow-global-buttons-fixed:not(:only-child) {
-    bottom: 3.5rem !important; /* Height of pagination + padding */
-  }
-  .slideshow .slide-section {
-    padding-bottom: 6rem !important; /* Space for fixed navigation */
+    position: relative !important;
+    width: 100%;
   }
 }/*# sourceMappingURL=bi-custom.css.map */
