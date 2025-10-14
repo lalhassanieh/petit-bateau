@@ -39,6 +39,9 @@
         "text_slider_LFaC38",
         "cur_lang_aPwfT9"
       ],
+      "custom_css": [
+        ".swiper-slide{height:auto;}"
+      ],
       "settings": {
         "section_width": "container",
         "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
