@@ -133,7 +133,7 @@
         "global_button_3_link": "",
         "global_button_4_label": "Femme",
         "global_button_4_link": "",
-        "content_below_image": false,
+        "content_below_image": true,
         "padding_top": 0,
         "padding_bottom": 0,
         "reset_spacing": false
