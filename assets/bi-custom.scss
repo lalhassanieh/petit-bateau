@@ -46,6 +46,7 @@
  .header_search-mega {
      .search__input {
          background-color: #f3f3f3 !important;
+         border-radius: 3rem !important;
      }
  }
 
@@ -87,6 +88,8 @@
  }
 
  .slideshow-global-buttons {
+     margin-top: clamp(40px, 5vw, 68px);
+
      .btn-primary {
          padding: 9px 20px !important;
          border-radius: 4px !important;
