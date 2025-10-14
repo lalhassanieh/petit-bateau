@@ -102,7 +102,7 @@
       "name": "t:sections.slideshow.name",
       "settings": {
         "section_width": "full_width",
-        "slide_height": "full_screen",
+        "slide_height": "custom",
         "desktop_height": 590,
         "mobile_height": 360,
         "color_scheme": "",
