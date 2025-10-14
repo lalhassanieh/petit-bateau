@@ -124,7 +124,7 @@
         "des_font_weight": "body_weight",
         "des_spacing_bottom": 40,
         "global_button_1_label": "Nouveau-nÉ",
-        "global_button_1_link": "",
+        "global_button_1_link": "shopify://pages/contact",
         "global_button_2_label": "Bébé",
         "global_button_2_link": "",
         "global_button_3_label": "Enfant",
