@@ -23,7 +23,7 @@
             "description": "",
             "first_button_label": "decouvrir",
             "first_button_link": "",
-            "first_button_style": false,
+            "first_button_style": true,
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
