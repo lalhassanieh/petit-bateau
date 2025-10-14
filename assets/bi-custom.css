@@ -48,18 +48,17 @@
   letter-spacing: 0.21px;
   padding: 9px 20px !important;
 }
-
-.swiper-pagination-bullet-active {
+.slideshow .swiper-pagination-bullet:after {
+  background-color: #fff !important;
+  opacity: 1 !important;
+}
+.slideshow .swiper-pagination-bullet-active {
   width: 20px !important;
 }
-.swiper-pagination-bullet-active:after {
+.slideshow .swiper-pagination-bullet-active:after {
   width: 100% !important;
   border-radius: 5px !important;
   background-color: #002E5E !important;
-}
-
-.slideshow .swiper-pagination-bullet:after {
-  background-color: #fff;
 }
 
 @media (min-width: 1024px) {
