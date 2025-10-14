@@ -51,6 +51,10 @@
  }
 
  .slideshow {
+     .sec__content-inner {
+         padding-top: 0 !important;
+     }
+
      .sec__content-subheading {
          font-family: 'Oswald-Medium' !important;
          letter-spacing: 0.305px;
