@@ -134,7 +134,6 @@
   }
   .slideshow .swiper-slide .sec__inner .sec__content {
     position: relative !important;
-    background: #CADDEA !important;
     /* Light blue background */
     padding: 2rem 1.5rem !important;
     width: 100% !important;
@@ -143,21 +142,11 @@
     border-radius: 0 0 1rem 1rem;
     /* Rounded bottom corners */
   }
-  .slideshow .swiper-slide .sec__inner .sec__content .sec__content-inner {
-    background: transparent !important;
-    padding: 0 !important;
-    max-width: 100% !important;
-    text-align: center !important;
+  .slideshow .swiper-slide .sec__inner .sec__content .sec__content-inner .sec__content-subheading {
+    font-size: 50px;
   }
-  .slideshow .swiper-slide .sec__inner .sec__content .sec__content-inner .sec__content-heading,
-  .slideshow .swiper-slide .sec__inner .sec__content .sec__content-inner .sec__content-subheading,
-  .slideshow .swiper-slide .sec__inner .sec__content .sec__content-inner .sec__content-des {
-    color: #002E5E !important;
-    /* Dark blue text */
-  }
-  .slideshow .swiper-slide .sec__inner .sec__content .sec__content-inner .sec__content-btn {
-    justify-content: center !important;
-    margin-top: 1.5rem !important;
+  .slideshow .swiper-slide .sec__inner .sec__content .sec__content-inner .sec__content-heading {
+    font-size: 40px;
   }
   .slideshow .slideshow-global-buttons-fixed {
     position: relative !important;
