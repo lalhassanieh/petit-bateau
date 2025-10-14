@@ -135,6 +135,63 @@
 
  //  }
 
+ /* Mobile Slideshow Layout - Under 992px */
+ @media (max-width: 991px) {
+     .slideshow {
+         .swiper-slide {
+             .sec__inner {
+                 display: flex !important;
+                 flex-direction: column !important;
+                 
+                 .banner__media {
+                     position: relative !important;
+                     margin-bottom: 0 !important;
+                     height: auto !important;
+                     aspect-ratio: 4/3;
+                 }
+                 
+                 .sec__content {
+                     position: relative !important;
+                     background: #B8D4F0 !important; /* Light blue background */
+                     padding: 2rem 1.5rem !important;
+                     width: 100% !important;
+                     max-width: 100% !important;
+                     margin: 0 !important;
+                     border-radius: 0 0 1rem 1rem; /* Rounded bottom corners */
+                     
+                     .sec__content-inner {
+                         background: transparent !important;
+                         padding: 0 !important;
+                         max-width: 100% !important;
+                         text-align: center !important;
+                         
+                         .sec__content-heading,
+                         .sec__content-subheading,
+                         .sec__content-des {
+                             color: #002E5E !important; /* Dark blue text */
+                         }
+                         
+                         .sec__content-btn {
+                             justify-content: center !important;
+                             margin-top: 1.5rem !important;
+                         }
+                     }
+                 }
+             }
+         }
+         
+         /* Adjust global buttons for mobile layout */
+         .slideshow-global-buttons-fixed {
+             position: relative !important;
+             bottom: auto !important;
+             transform: none !important;
+             left: auto !important;
+             margin: 2rem 0 1rem 0 !important;
+             padding: 0 1.5rem !important;
+         }
+     }
+ }
+
  @media (min-width: 1024px) {
      #topbar {
          .text-slide {
