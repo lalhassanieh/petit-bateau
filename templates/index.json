@@ -227,7 +227,7 @@
         "information_spacing": 15,
         "rounded_image": true,
         "image_custom_width": true,
-        "image_width": 160,
+        "image_width": 140,
         "padding_top": 10,
         "padding_bottom": 90,
         "reset_spacing": false
