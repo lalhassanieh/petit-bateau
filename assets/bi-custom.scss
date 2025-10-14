@@ -56,6 +56,7 @@
 
          @media (max-width: 767px) {
              padding-top: 50px !important;
+             padding-bottom: 25px !important;
          }
      }
 
@@ -126,9 +127,9 @@
          bottom: calc(clamp(1.2rem, 2vw, 3rem) + 4rem) !important;
          padding: 0 1rem;
 
-         a {
+         .btn-primary {
              font-size: 11px;
-             padding: 0.75rem 1.5rem;
+            padding: 7px 15px !important;
          }
      }
  }
@@ -148,6 +149,8 @@
  @media (max-width: 991px) {
      .slideshow {
          background: #CADDEA !important;
+
+         padding-bottom: 100px;
 
          .swiper-slide {
              .sec__inner {
@@ -170,18 +173,13 @@
 
                  .sec__content {
                      position: relative !important;
-
-                     /* Light blue background */
-                     padding: 2rem 1.5rem !important;
+                     padding: 0 1.5rem !important;
                      width: 100% !important;
                      max-width: 100% !important;
                      margin: 0 !important;
                      border-radius: 0 0 1rem 1rem;
-                     /* Rounded bottom corners */
 
                      .sec__content-inner {
-
-
                          .sec__content-subheading {
                              font-size: 50px;
                          }
