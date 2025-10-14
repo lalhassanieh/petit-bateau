@@ -87,8 +87,13 @@
      }
  }
 
- .slideshow-global-buttons {
-     margin-top: clamp(40px, 5vw, 68px);
+ /* Global Buttons Fixed Positioning */
+ .slideshow-global-buttons-fixed {
+     position: absolute !important;
+     z-index: 10;
+     pointer-events: none;
+     /* Allow clicks to pass through container */
+     transform: translate(-50%, 0) !important;
 
      .btn-primary {
          padding: 9px 20px !important;
@@ -105,7 +110,27 @@
              color: #fff !important;
          }
      }
+
+     @media (max-width: 767px) {
+         bottom: calc(clamp(1.2rem, 2vw, 3rem) + 4rem) !important;
+         /* Adjust for mobile */
+         padding: 0 1rem;
+         /* Add padding for mobile */
+
+         a {
+             font-size: 0.9rem;
+             /* Slightly smaller on mobile */
+             padding: 0.75rem 1.5rem;
+             /* Adjust button padding */
+         }
+     }
  }
+
+//  .slideshow-global-buttons {
+//      margin-top: clamp(40px, 5vw, 68px);
+
+
+//  }
 
  @media (min-width: 1024px) {
      #topbar {
@@ -114,29 +139,6 @@
              max-width: 100% !important;
              text-align: center;
              margin: auto !important;
-         }
-     }
- }
-
- /* Global Buttons Fixed Positioning */
- .slideshow-global-buttons-fixed {
-     position: absolute !important;
-     z-index: 10;
-     pointer-events: none; /* Allow clicks to pass through container */
-     
-     a {
-         pointer-events: auto; /* Re-enable clicks on buttons */
-         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Add shadow for visibility */
-         backdrop-filter: blur(2px); /* Add subtle blur effect */
-     }
-
-     @media (max-width: 767px) {
-         bottom: calc(clamp(1.2rem, 2vw, 3rem) + 4rem) !important; /* Adjust for mobile */
-         padding: 0 1rem; /* Add padding for mobile */
-         
-         a {
-             font-size: 0.9rem; /* Slightly smaller on mobile */
-             padding: 0.75rem 1.5rem; /* Adjust button padding */
          }
      }
  }
