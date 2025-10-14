@@ -102,14 +102,14 @@
         "slider_item_QGDKFa"
       ],
       "custom_css": [
-        "@media only screen and (max-width: 768px) {.sec__content-btn a {background: #002e5e;}}"
+        "@media only screen and (max-width: 768px) {.sec__content-btn a {background: #002e5e; }}"
       ],
       "name": "t:sections.slideshow.name",
       "settings": {
         "section_width": "full_width",
         "slide_height": "custom",
         "desktop_height": 590,
-        "mobile_height": 570,
+        "mobile_height": 300,
         "color_scheme": "",
         "slide_effect": "fade",
         "reveal_slideshow": false,
