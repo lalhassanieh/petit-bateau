@@ -268,6 +268,67 @@
         {% endif %}
       </slide-section>
     {% endif %}
+    
+    {% comment %} Global Buttons {% endcomment %}
+    {% if section_st.global_button_1_label != blank or section_st.global_button_2_label != blank or section_st.global_button_3_label != blank or section_st.global_button_4_label != blank %}
+      <div class="slideshow-global-buttons flex flex-wrap gap-15 justify-content-center mt-30">
+        {% if section_st.global_button_1_label != blank %}
+          <a
+            {% if section_st.global_button_1_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section_st.global_button_1_link | default: "#" }}"
+            {% endif %}
+            aria-label="{{ section_st.global_button_1_label }}"
+            class="inline-flex no-underline btn-primary"
+          >
+            {{ section_st.global_button_1_label }}
+          </a>
+        {% endif %}
+        
+        {% if section_st.global_button_2_label != blank %}
+          <a
+            {% if section_st.global_button_2_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section_st.global_button_2_link | default: "#" }}"
+            {% endif %}
+            aria-label="{{ section_st.global_button_2_label }}"
+            class="inline-flex no-underline btn-primary"
+          >
+            {{ section_st.global_button_2_label }}
+          </a>
+        {% endif %}
+        
+        {% if section_st.global_button_3_label != blank %}
+          <a
+            {% if section_st.global_button_3_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section_st.global_button_3_link | default: "#" }}"
+            {% endif %}
+            aria-label="{{ section_st.global_button_3_label }}"
+            class="inline-flex no-underline btn-primary"
+          >
+            {{ section_st.global_button_3_label }}
+          </a>
+        {% endif %}
+        
+        {% if section_st.global_button_4_label != blank %}
+          <a
+            {% if section_st.global_button_4_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section_st.global_button_4_link | default: "#" }}"
+            {% endif %}
+            aria-label="{{ section_st.global_button_4_label }}"
+            class="inline-flex no-underline btn-primary"
+          >
+            {{ section_st.global_button_4_label }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 </div>
 
@@ -584,6 +645,54 @@
       "max": 60,
       "step": 1,
       "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Global Buttons"
+    },
+    {
+      "type": "text",
+      "id": "global_button_1_label",
+      "label": "Button 1 Label",
+      "info": "Leave empty to hide button"
+    },
+    {
+      "type": "url",
+      "id": "global_button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "global_button_2_label",
+      "label": "Button 2 Label",
+      "info": "Leave empty to hide button"
+    },
+    {
+      "type": "url",
+      "id": "global_button_2_link",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "text",
+      "id": "global_button_3_label",
+      "label": "Button 3 Label",
+      "info": "Leave empty to hide button"
+    },
+    {
+      "type": "url",
+      "id": "global_button_3_link",
+      "label": "Button 3 Link"
+    },
+    {
+      "type": "text",
+      "id": "global_button_4_label",
+      "label": "Button 4 Label",
+      "info": "Leave empty to hide button"
+    },
+    {
+      "type": "url",
+      "id": "global_button_4_link",
+      "label": "Button 4 Link"
     },
     {
       "type": "header",
