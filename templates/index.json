@@ -28,7 +28,7 @@
             "second_button_link": "",
             "second_button_style": false,
             "content_alignment": "center",
-            "content_position": "bottom-center",
+            "content_position": "middle-center",
             "content_width": "container",
             "content_max_width": 100,
             "content_padding_block": 60,
@@ -54,8 +54,8 @@
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "left",
-            "content_position": "bottom-left",
+            "content_alignment": "center",
+            "content_position": "bottom-center",
             "content_width": "container",
             "content_max_width": 100,
             "content_padding_block": 60,
@@ -63,7 +63,7 @@
             "show_content_background": false,
             "content_background": "#ffffff",
             "content_box_opacity": 100,
-            "content_alignment_mobile": "left"
+            "content_alignment_mobile": "center"
           }
         },
         "slider_item_QGDKFa": {
@@ -81,8 +81,8 @@
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "left",
-            "content_position": "bottom-left",
+            "content_alignment": "center",
+            "content_position": "bottom-center",
             "content_width": "container",
             "content_max_width": 100,
             "content_padding_block": 60,
@@ -90,7 +90,7 @@
             "show_content_background": false,
             "content_background": "#ffffff",
             "content_box_opacity": 100,
-            "content_alignment_mobile": "left"
+            "content_alignment_mobile": "center"
           }
         }
       },
