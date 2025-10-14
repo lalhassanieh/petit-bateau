@@ -140,12 +140,17 @@
                     {%- render 'placeholder-render', class: 'absolute inset-0 w-full h-full object-fit-cover' -%}
                   {% endif %}
                 </div>
-                {% if block_st.heading != blank
-                  or block_st.subheading != blank
-                  or block_st.description != blank
-                  or block_st.first_button_label != blank
-                  or block_st.second_button_label != blank
+                {% liquid
+                  assign has_slide_content = false
+                  assign has_global_buttons = false
+                  if block_st.heading != blank or block_st.subheading != blank or block_st.description != blank or block_st.first_button_label != blank or block_st.second_button_label != blank
+                    assign has_slide_content = true
+                  endif
+                  if section_st.global_button_1_label != blank or section_st.global_button_2_label != blank or section_st.global_button_3_label != blank or section_st.global_button_4_label != blank
+                    assign has_global_buttons = true
+                  endif
                 %}
+                {% if has_slide_content or has_global_buttons %}
                   {% liquid
                     assign animate_delay = 0
                   %}
@@ -248,12 +253,20 @@
                       {% endif %}
 
                       {% comment %} Global Buttons {% endcomment %}
-                      {% if section_st.global_button_1_label != blank
-                        or section_st.global_button_2_label != blank
-                        or section_st.global_button_3_label != blank
-                        or section_st.global_button_4_label != blank
-                      %}
-                        <div class="slideshow-global-buttons flex flex-wrap gap-15 justify-content-center mt-30">
+                      {% if has_global_buttons %}
+                        {% unless has_slide_content %}
+                          {% assign animate_delay = 0 %}
+                        {% endunless %}
+                        {% assign animate_delay = animate_delay | plus: 50 %}
+                        <motion-element
+                          data-motion="fade-up"
+                          {% if block_st.slider_effect != 'effect_fadeinup' %}
+                            hold
+                          {% endif %}
+                          slideshow
+                          data-motion-delay="{{ animate_delay }}"
+                          class="slideshow-global-buttons {{ animate }} {% if block_st.slider_effect == 'effect_fadeinup' %} {{ slider_effect }}  {% endif %} flex flex-wrap gap-15 justify-content-{{ block_st.content_alignment_mobile | default: 'center' }} justify-content-md-{{ block_st.content_alignment | default: 'center' }}{% if has_slide_content %} mt-30{% endif %}"
+                        >
                           {% if section_st.global_button_1_label != blank %}
                             <a
                               {% if section_st.global_button_1_link == blank %}
@@ -309,7 +322,7 @@
                               {{ section_st.global_button_4_label }}
                             </a>
                           {% endif %}
-                        </div>
+                        </motion-element>
                       {% endif %}
                     </div>
                   </div>
