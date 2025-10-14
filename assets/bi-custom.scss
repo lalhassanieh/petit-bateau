@@ -69,14 +69,20 @@
      }
  }
 
-  .swiper-pagination-bullet-active{
-     width: 24px!important;
+ .swiper-pagination-bullet-active {
+     width: 20px !important;
+
+     &:after {
+         width: 100% !important;
+         border-radius: 5px !important;
+         background-color: #002E5E !important;
+     }
  }
 
-
- .swiper-pagination-bullet-active::after {
-     width: 100% !important;
-     border-radius: 5px !important;
+ .slideshow .swiper-pagination-bullet {
+     &:after {
+         background-color: #fff;
+     }
  }
 
  @media (min-width: 1024px) {
