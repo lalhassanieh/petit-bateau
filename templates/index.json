@@ -594,56 +594,48 @@
           "type": "collection",
           "settings": {
             "collection": "daily-deals",
-            "collection_title": ""
+            "collection_image": "shopify://shop_images/dfae0b6b9f9ec64dd6600eef79b8e71b693b458b.jpg",
+            "collection_title": "Jusqu'à -60%"
           }
         },
         "collection_FUAzK4": {
           "type": "collection",
           "settings": {
             "collection": "macbook-pcs",
-            "collection_title": ""
+            "collection_image": "shopify://shop_images/image_4.jpg",
+            "collection_title": "Bonnets"
           }
         },
         "collection_3cyDDE": {
           "type": "collection",
           "settings": {
             "collection": "phone-mobile",
-            "collection_title": ""
+            "collection_image": "shopify://shop_images/image_3.jpg",
+            "collection_title": "Gants"
           }
         },
         "collection_TVQR9f": {
           "type": "collection",
           "settings": {
             "collection": "tablets-ipad-pro",
-            "collection_title": ""
+            "collection_image": "shopify://shop_images/image_2.jpg",
+            "collection_title": "Snoods"
           }
         },
         "collection_kUA3MH": {
           "type": "collection",
           "settings": {
             "collection": "camera-photo",
-            "collection_title": ""
+            "collection_image": "shopify://shop_images/image_5.jpg",
+            "collection_title": "Collants-chaussettes"
           }
         },
         "collection_ctTBpd": {
           "type": "collection",
           "settings": {
             "collection": "home-electronics",
-            "collection_title": ""
-          }
-        },
-        "collection_fyfMEN": {
-          "type": "collection",
-          "settings": {
-            "collection": "clearance-sale",
-            "collection_title": ""
-          }
-        },
-        "collection_qdMHYe": {
-          "type": "collection",
-          "settings": {
-            "collection": "sale-50-off",
-            "collection_title": ""
+            "collection_image": "shopify://shop_images/Lots.jpg",
+            "collection_title": "Lots"
           }
         }
       },
@@ -653,9 +645,7 @@
         "collection_3cyDDE",
         "collection_TVQR9f",
         "collection_kUA3MH",
-        "collection_ctTBpd",
-        "collection_fyfMEN",
-        "collection_qdMHYe"
+        "collection_ctTBpd"
       ],
       "settings": {
         "section_width": "fluid_container",
@@ -668,7 +658,7 @@
         "display_mode": "carousel",
         "image_ratio": "square",
         "custom_ratio": "",
-        "items_per_row": 8,
+        "items_per_row": 6,
         "column_gap": 20,
         "show_arrow": false,
         "carousel_pagination": "show_dots_on_mobile",
