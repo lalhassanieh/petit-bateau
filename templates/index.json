@@ -600,40 +600,35 @@
         "collection_FUAzK4": {
           "type": "collection",
           "settings": {
-            "collection": "macbook-pcs",
-            "collection_image": "shopify://shop_images/image_4.jpg",
+            "collection": "bonnets",
             "collection_title": "Bonnets"
           }
         },
         "collection_3cyDDE": {
           "type": "collection",
           "settings": {
-            "collection": "phone-mobile",
-            "collection_image": "shopify://shop_images/image_3.jpg",
+            "collection": "gants",
             "collection_title": "Gants"
           }
         },
         "collection_TVQR9f": {
           "type": "collection",
           "settings": {
-            "collection": "tablets-ipad-pro",
-            "collection_image": "shopify://shop_images/image_2.jpg",
+            "collection": "snoods",
             "collection_title": "Snoods"
           }
         },
         "collection_kUA3MH": {
           "type": "collection",
           "settings": {
-            "collection": "camera-photo",
-            "collection_image": "shopify://shop_images/image_5.jpg",
+            "collection": "collants-chaussettes",
             "collection_title": "Collants-chaussettes"
           }
         },
         "collection_ctTBpd": {
           "type": "collection",
           "settings": {
-            "collection": "home-electronics",
-            "collection_image": "shopify://shop_images/Lots.jpg",
+            "collection": "lots",
             "collection_title": "Lots"
           }
         }
