@@ -101,6 +101,9 @@
         "slider_item_fRcjwc",
         "slider_item_QGDKFa"
       ],
+      "custom_css": [
+        ".sec__content-btn a {background: #002E5E !important;}"
+      ],
       "name": "t:sections.slideshow.name",
       "settings": {
         "section_width": "full_width",
