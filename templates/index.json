@@ -236,6 +236,103 @@
         "reset_spacing": false
       }
     },
+    "product_with_banner_LtQYDR": {
+      "type": "product-with-banner",
+      "blocks": {
+        "product_banner_pBryNz": {
+          "type": "product_banner",
+          "settings": {
+            "content_background_color": "#f1f3f7",
+            "subheading": "SAVE 30—50% ELECTRONICS",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Small Size Big Sound",
+            "heading_font_size": 36,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 24,
+            "description": "<p>A mini speaker with powerful and dynamic sound. Compact and portable, <br/>perfect for any space and easy to carry anywhere.</p>",
+            "description_font_size": 14,
+            "description_spacing_bottom": 25,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_AYpkmm": {
+          "type": "product_banner",
+          "settings": {
+            "content_background_color": "#f1f3f7",
+            "subheading": "SAVE 30—50% ELECTRONICS",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Small Size Big Sound",
+            "heading_font_size": 36,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 24,
+            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "description_font_size": 14,
+            "description_spacing_bottom": 25,
+            "product": "hot-sales-for-original-macbooks-pro-16-m2-gray-color",
+            "product_spacing_bottom": 25,
+            "button_label": "",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_RcAWqT": {
+          "type": "product_banner",
+          "settings": {
+            "content_background_color": "#f1f3f7",
+            "subheading": "SAVE 30—50% ELECTRONICS",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Small Size Big Sound",
+            "heading_font_size": 36,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 24,
+            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "description_font_size": 14,
+            "description_spacing_bottom": 25,
+            "product": "hot-sales-for-original-macbooks-pro-16-m3-gray",
+            "product_spacing_bottom": 25,
+            "button_label": "",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "product_banner_pBryNz",
+        "product_banner_AYpkmm",
+        "product_banner_RcAWqT"
+      ],
+      "settings": {
+        "section_width": "fluid_container",
+        "heading": "",
+        "subheading": "",
+        "description": "",
+        "header_size": "small",
+        "header_alignment": "center",
+        "column_gap": 20,
+        "content_alignment": "center",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "image_position": "left",
+        "show_arrow": false,
+        "carousel_pagination": true,
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
     "featured_collection_pfcpCH": {
       "type": "featured-collection",
       "custom_css": [
@@ -857,103 +954,6 @@
         "reset_spacing": false
       }
     },
-    "product_with_banner_LtQYDR": {
-      "type": "product-with-banner",
-      "blocks": {
-        "product_banner_pBryNz": {
-          "type": "product_banner",
-          "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
-            "subheading_font_size": 12,
-            "subheading_font_weight": "heading_weight",
-            "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
-            "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>A mini speaker with powerful and dynamic sound. Compact and portable, <br/>perfect for any space and easy to carry anywhere.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "portable-wireless-speakers-music-speakers-new-2025",
-            "product_spacing_bottom": 25,
-            "button_label": "",
-            "button_link": "",
-            "button_type": "primary"
-          }
-        },
-        "product_banner_AYpkmm": {
-          "type": "product_banner",
-          "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
-            "subheading_font_size": 12,
-            "subheading_font_weight": "heading_weight",
-            "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
-            "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "hot-sales-for-original-macbooks-pro-16-m2-gray-color",
-            "product_spacing_bottom": 25,
-            "button_label": "",
-            "button_link": "",
-            "button_type": "primary"
-          }
-        },
-        "product_banner_RcAWqT": {
-          "type": "product_banner",
-          "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
-            "subheading_font_size": 12,
-            "subheading_font_weight": "heading_weight",
-            "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
-            "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "hot-sales-for-original-macbooks-pro-16-m3-gray",
-            "product_spacing_bottom": 25,
-            "button_label": "",
-            "button_link": "",
-            "button_type": "primary"
-          }
-        }
-      },
-      "block_order": [
-        "product_banner_pBryNz",
-        "product_banner_AYpkmm",
-        "product_banner_RcAWqT"
-      ],
-      "settings": {
-        "section_width": "fluid_container",
-        "heading": "",
-        "subheading": "",
-        "description": "",
-        "header_size": "small",
-        "header_alignment": "center",
-        "column_gap": 20,
-        "content_alignment": "center",
-        "image_ratio": "adapt",
-        "custom_ratio": "",
-        "image_position": "left",
-        "show_arrow": false,
-        "carousel_pagination": true,
-        "infinite": false,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": false
-      }
-    },
     "icon_box_TRwJBD": {
       "type": "icon-box",
       "blocks": {
@@ -1115,13 +1115,13 @@
   "order": [
     "slideshow_WUADqE",
     "collection_list_VmEYkJ",
+    "product_with_banner_LtQYDR",
     "featured_collection_pfcpCH",
     "promotion_banner_TwEMDb",
     "products_list_U8R8cq",
     "banner_packery_VG3nKM",
     "featured_collection_Gemyez",
     "brand_logo_CLhf4Y",
-    "product_with_banner_LtQYDR",
     "icon_box_TRwJBD",
     "icon_box_YbT4tf"
   ]
