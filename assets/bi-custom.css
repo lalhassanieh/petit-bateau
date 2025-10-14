@@ -125,7 +125,7 @@
 @media (max-width: 991px) {
   .slideshow.swiper {
     background: #CADDEA !important;
-    padding-bottom: 52px !important;
+    padding-bottom: 40px !important;
     /* Adjust global buttons for mobile layout */
   }
   .slideshow.swiper .swiper-slide .sec__inner {
