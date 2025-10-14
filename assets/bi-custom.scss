@@ -91,8 +91,7 @@
  .slideshow-global-buttons-fixed {
      position: absolute !important;
      z-index: 10;
-     pointer-events: none;
-     /* Allow clicks to pass through container */
+     pointer-events: auto;
      transform: translate(-50%, 0) !important;
 
      .btn-primary {
@@ -126,11 +125,11 @@
      }
  }
 
-//  .slideshow-global-buttons {
-//      margin-top: clamp(40px, 5vw, 68px);
+ //  .slideshow-global-buttons {
+ //      margin-top: clamp(40px, 5vw, 68px);
 
 
-//  }
+ //  }
 
  @media (min-width: 1024px) {
      #topbar {

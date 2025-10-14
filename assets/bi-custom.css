@@ -66,8 +66,7 @@
 .slideshow-global-buttons-fixed {
   position: absolute !important;
   z-index: 10;
-  pointer-events: none;
-  /* Allow clicks to pass through container */
+  pointer-events: auto;
   transform: translate(-50%, 0) !important;
 }
 .slideshow-global-buttons-fixed .btn-primary {
