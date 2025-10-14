@@ -61,6 +61,19 @@
   background-color: #002E5E !important;
 }
 
+.slideshow-global-buttons .btn-primary {
+  padding: 9px 20px !important;
+  border-radius: 4px !important;
+  border: 1px solid #002E5E;
+  background: #fff !important;
+  color: #002E5E !important;
+  transition: background-color 0.3s ease-in-out;
+}
+.slideshow-global-buttons .btn-primary:hover {
+  background: #002E5E !important;
+  color: #fff !important;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
