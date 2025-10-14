@@ -115,6 +115,13 @@
     margin-bottom: 0 !important;
     height: auto !important;
     aspect-ratio: 4/3;
+    /* Ensure mobile images display properly */
+  }
+  .slideshow .swiper-slide .sec__inner .banner__media img {
+    width: 100% !important;
+    height: 100% !important;
+    -o-object-fit: cover !important;
+       object-fit: cover !important;
   }
   .slideshow .swiper-slide .sec__inner .sec__content {
     position: relative !important;

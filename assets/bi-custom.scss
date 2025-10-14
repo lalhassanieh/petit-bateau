@@ -148,6 +148,13 @@
                      margin-bottom: 0 !important;
                      height: auto !important;
                      aspect-ratio: 4/3;
+                     
+                     /* Ensure mobile images display properly */
+                     img {
+                         width: 100% !important;
+                         height: 100% !important;
+                         object-fit: cover !important;
+                     }
                  }
                  
                  .sec__content {
