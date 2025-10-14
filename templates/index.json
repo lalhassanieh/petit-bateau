@@ -208,7 +208,7 @@
         "image_ratio": "adapt",
         "custom_ratio": "",
         "items_per_row": 6,
-        "column_gap": 40,
+        "column_gap": 0,
         "show_arrow": false,
         "carousel_pagination": "show_dots_on_mobile",
         "infinite": false,
