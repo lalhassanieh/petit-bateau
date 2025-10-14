@@ -97,6 +97,8 @@
          background: #fff !important;
          color: #002E5E !important;
          transition: background-color 0.3s ease-in-out;
+         font-family: Oswald-Bold !important;
+         letter-spacing: .21px;
 
          &:hover {
              background: #002E5E !important;
@@ -112,6 +114,29 @@
              max-width: 100% !important;
              text-align: center;
              margin: auto !important;
+         }
+     }
+ }
+
+ /* Global Buttons Fixed Positioning */
+ .slideshow-global-buttons-fixed {
+     position: absolute !important;
+     z-index: 10;
+     pointer-events: none; /* Allow clicks to pass through container */
+     
+     a {
+         pointer-events: auto; /* Re-enable clicks on buttons */
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Add shadow for visibility */
+         backdrop-filter: blur(2px); /* Add subtle blur effect */
+     }
+
+     @media (max-width: 767px) {
+         bottom: calc(clamp(1.2rem, 2vw, 3rem) + 4rem) !important; /* Adjust for mobile */
+         padding: 0 1rem; /* Add padding for mobile */
+         
+         a {
+             font-size: 0.9rem; /* Slightly smaller on mobile */
+             padding: 0.75rem 1.5rem; /* Adjust button padding */
          }
      }
  }
