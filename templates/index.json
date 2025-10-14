@@ -106,7 +106,7 @@
         "section_width": "full_width",
         "slide_height": "custom",
         "desktop_height": 590,
-        "mobile_height": 360,
+        "mobile_height": 570,
         "color_scheme": "",
         "slide_effect": "fade",
         "reveal_slideshow": false,
@@ -133,7 +133,7 @@
         "global_button_3_link": "",
         "global_button_4_label": "Femme",
         "global_button_4_link": "",
-        "content_below_image": false,
+        "content_below_image": true,
         "padding_top": 0,
         "padding_bottom": 0,
         "reset_spacing": false
