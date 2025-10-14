@@ -56,7 +56,7 @@
 
          @media (max-width: 767px) {
              padding-top: 50px !important;
-             padding-bottom: 25px !important;
+             padding-bottom: 30px !important;
          }
      }
 
@@ -150,7 +150,6 @@
      .slideshow {
          background: #CADDEA !important;
 
-         padding-bottom: 100px;
 
          .swiper-slide {
              .sec__inner {
@@ -192,10 +191,64 @@
              }
          }
 
-         /* Adjust global buttons for mobile layout */
+         /* Fixed bottom navigation container for mobile */
+         .swiper-pagination,
          .slideshow-global-buttons-fixed {
-             position: relative !important;
-             width: 100%;
+             position: fixed !important;
+             bottom: 0 !important;
+             left: 0 !important;
+             right: 0 !important;
+             z-index: 100 !important;
+             background: rgba(255, 255, 255, 0.95) !important;
+             backdrop-filter: blur(10px) !important;
+             border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+             box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1) !important;
+         }
+         
+         /* Navigation dots styling for mobile */
+         .swiper-pagination {
+             padding: 0.75rem 1rem !important;
+             margin: 0 !important;
+             transform: none !important;
+             
+             .swiper-pagination-bullet {
+                 margin: 0 0.25rem !important;
+                 opacity: 0.5 !important;
+                 background: #002E5E !important;
+                 
+                 &.swiper-pagination-bullet-active {
+                     opacity: 1 !important;
+                 }
+             }
+         }
+         
+         /* Global buttons styling for mobile */
+         .slideshow-global-buttons-fixed {
+             padding: 0.75rem 1rem !important;
+             margin: 0 !important;
+             transform: none !important;
+             justify-content: center !important;
+             
+             a {
+                 font-size: 0.85rem !important;
+                 padding: 0.5rem 1rem !important;
+                 margin: 0 0.25rem !important;
+                 background: #002E5E !important;
+                 color: white !important;
+                 border-radius: 0.5rem !important;
+                 box-shadow: none !important;
+                 backdrop-filter: none !important;
+             }
+         }
+         
+         /* Stack dots above buttons when both exist */
+         .slideshow-global-buttons-fixed:not(:only-child) {
+             bottom: 3.5rem !important; /* Height of pagination + padding */
+         }
+         
+         /* Add bottom padding to slideshow content to avoid overlap with fixed elements */
+         .slide-section {
+             padding-bottom: 6rem !important; /* Space for fixed navigation */
          }
      }
  }
