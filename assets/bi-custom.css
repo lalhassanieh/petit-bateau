@@ -120,6 +120,20 @@
   margin: auto;
   margin-bottom: 30px !important;
 }
+.sec__product-banner .sec__content-des {
+  line-height: 19px;
+  max-width: 460px;
+  margin: auto;
+  margin-bottom: 30px !important;
+}
+
+.btn-primary {
+  border-radius: 4px;
+  font-family: Oswald-Bold !important;
+  letter-spacing: 0.21px;
+  padding: 9px 20px !important;
+  font-size: 12px;
+}
 
 @media (min-width: 1024px) {
   #topbar .text-slide {
