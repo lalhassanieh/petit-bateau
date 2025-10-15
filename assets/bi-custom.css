@@ -136,6 +136,10 @@
   font-size: 12px;
 }
 
+.product-item__name {
+  font-family: "Oswald-Bold";
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
