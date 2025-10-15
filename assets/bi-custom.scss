@@ -168,9 +168,17 @@
  }
 
  .product-item__name {
-    font-family: 'Oswald-Bold';
+     font-family: 'Oswald-Bold';
  }
- 
+
+ .price-regular {
+     color: #002E5E !important;
+
+     .price-item {
+         color: #002E5E !important;
+     }
+ }
+
  @media (min-width: 1024px) {
      #topbar {
          .text-slide {

@@ -140,6 +140,13 @@
   font-family: "Oswald-Bold";
 }
 
+.price-regular {
+  color: #002E5E !important;
+}
+.price-regular .price-item {
+  color: #002E5E !important;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
