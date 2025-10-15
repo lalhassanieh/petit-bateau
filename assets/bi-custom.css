@@ -140,10 +140,8 @@
   font-family: "Oswald-Bold";
 }
 
-.price-regular {
-  color: #002E5E !important;
-}
-.price-regular .price-item {
+.price-regular .price-item,
+.price-regular .price {
   color: #002E5E !important;
 }
 
