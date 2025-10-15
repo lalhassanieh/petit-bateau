@@ -284,11 +284,107 @@
             "button_link": "",
             "button_type": "primary"
           }
+        },
+        "product_banner_3b6Q6P": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/Property_1_3_1.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_P4xJFy": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/Property_1_4.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_rH6JEf": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/Property_1_5.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_dt8aGe": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/image_19_1.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
         }
       },
       "block_order": [
         "product_banner_pBryNz",
-        "product_banner_xTyA4d"
+        "product_banner_xTyA4d",
+        "product_banner_3b6Q6P",
+        "product_banner_P4xJFy",
+        "product_banner_rH6JEf",
+        "product_banner_dt8aGe"
       ],
       "custom_css": [
         ".section__block-inner {border-radius: 1px;}"
