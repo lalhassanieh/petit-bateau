@@ -113,6 +113,13 @@
   }
 }
 
+.sec__product-banner .sec__content-heading {
+  font-family: "Oswald-Bold" !important;
+  letter-spacing: 0.2px !important;
+  max-width: 435px;
+  margin: auto;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
@@ -136,7 +143,8 @@
     position: relative !important;
     margin-bottom: 0 !important;
     height: auto !important;
-    aspect-ratio: 4/3; /* Default for tablets */
+    aspect-ratio: 4/3;
+    /* Default for tablets */
     /* Ensure mobile images display properly */
     /* Taller images for smaller mobile screens */
   }
