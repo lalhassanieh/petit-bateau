@@ -251,7 +251,7 @@
             "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
             "heading_font_size": 28,
             "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
+            "heading_spacing_bottom": 30,
             "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
             "description_font_size": 16,
             "description_spacing_bottom": 10,
@@ -311,6 +311,9 @@
         "product_banner_pBryNz",
         "product_banner_AYpkmm",
         "product_banner_RcAWqT"
+      ],
+      "custom_css": [
+        ".section__block-inner {border-radius: 1px;}"
       ],
       "settings": {
         "section_width": "fluid_container",
