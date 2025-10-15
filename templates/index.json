@@ -262,46 +262,25 @@
             "button_type": "primary"
           }
         },
-        "product_banner_AYpkmm": {
+        "product_banner_xTyA4d": {
           "type": "product_banner",
           "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
+            "image": "shopify://shop_images/Property_1_2.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
             "subheading_font_size": 12,
             "subheading_font_weight": "heading_weight",
             "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
             "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "hot-sales-for-original-macbooks-pro-16-m2-gray-color",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
             "product_spacing_bottom": 25,
-            "button_label": "",
-            "button_link": "",
-            "button_type": "primary"
-          }
-        },
-        "product_banner_RcAWqT": {
-          "type": "product_banner",
-          "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
-            "subheading_font_size": 12,
-            "subheading_font_weight": "heading_weight",
-            "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
-            "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "hot-sales-for-original-macbooks-pro-16-m3-gray",
-            "product_spacing_bottom": 25,
-            "button_label": "",
+            "button_label": "Découvrir",
             "button_link": "",
             "button_type": "primary"
           }
@@ -309,8 +288,7 @@
       },
       "block_order": [
         "product_banner_pBryNz",
-        "product_banner_AYpkmm",
-        "product_banner_RcAWqT"
+        "product_banner_xTyA4d"
       ],
       "custom_css": [
         ".section__block-inner {border-radius: 1px;}"
