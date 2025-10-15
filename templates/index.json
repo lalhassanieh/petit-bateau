@@ -312,6 +312,9 @@
         "product_banner_AYpkmm",
         "product_banner_RcAWqT"
       ],
+      "custom_css": [
+        ".section__block-inner{border-radius: 1px}"
+      ],
       "settings": {
         "section_width": "fluid_container",
         "heading": "",
