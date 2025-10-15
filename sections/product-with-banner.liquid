@@ -138,7 +138,7 @@
         {% if scroll_animation == 'none' %}
           hold
         {% endif %}
-        class="w-full relative col-md-w-custom rounded col-md-w-custom-50"
+        class="w-full relative col-md-w-custom col-md-w-custom-50"
       >
         <div
           class="{{ settings.hover_effect }} product-banner__image-wrapper h-full"
@@ -148,7 +148,7 @@
             {% assign block_st = block.settings %}
             {% if block.type == 'product_banner' %}
               <div
-                class="hover-effect rounded product-banner__image{% if forloop.first %} active{% endif %}"
+                class="hover-effect product-banner__image{% if forloop.first %} active{% endif %}"
                 data-block-id="{{ block.id }}"
                 data-index="{{ forloop.index0 }}"
                 style="--aspect-ratio: {{ ratio }};"
