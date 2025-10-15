@@ -109,7 +109,7 @@
         "section_width": "full_width",
         "slide_height": "custom",
         "desktop_height": 590,
-        "mobile_height": 540,
+        "mobile_height": 300,
         "color_scheme": "",
         "slide_effect": "fade",
         "reveal_slideshow": false,
@@ -142,508 +142,49 @@
         "reset_spacing": false
       }
     },
-    "slideshow_with_banner_KEfjPq": {
-      "type": "slideshow-with-banner",
-      "blocks": {
-        "slide_parent_ie3hb9": {
-          "type": "_slide-parent",
-          "name": "t:sections.slideshow.name",
-          "settings": {
-            "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
-            "slide_effect": "fade",
-            "show_arrow": true,
-            "carousel_pagination": "show_dots",
-            "pagination_position": "center",
-            "autoplay": false,
-            "autorotate_speed": 5
-          },
-          "blocks": {
-            "slide_item_4UpFea": {
-              "type": "_slide-item",
-              "settings": {
-                "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
-                "content_width": "50%",
-                "media_type": "image",
-                "image": "shopify://shop_images/image_11.jpg",
-                "image_link": "",
-                "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-                "autoplay": true,
-                "video_ratio": "16/9",
-                "overlay_opacity": 0,
-                "content_alignment": "start",
-                "content_position": "middle-left",
-                "content_padding_block": 40,
-                "content_padding_inline": 30
-              },
-              "blocks": {
-                "subheading_slide_63wYRa": {
-                  "type": "_subheading-slide",
-                  "settings": {
-                    "subheading": "BUY 1 GET 1—WATCH!",
-                    "font_size": 12,
-                    "font_weight": "heading_weight",
-                    "uppercase": true,
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                },
-                "heading_slide_q4A7Kc": {
-                  "type": "_heading-slide",
-                  "settings": {
-                    "heading": "Save!<br>\n30-50%",
-                    "font_size": 80,
-                    "font_weight": "heading_weight",
-                    "uppercase": false,
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                },
-                "text_slide_VqYcGh": {
-                  "type": "_text-slide",
-                  "name": "t:blocks.general.text.name",
-                  "settings": {
-                    "text": "<p>Starting at $175. Hurry up! Do not miss...</p>",
-                    "font_size": 16,
-                    "font_weight": "body_weight",
-                    "spacing_bottom": 40
-                  },
-                  "blocks": {}
-                },
-                "button_slide_67w8Ad": {
-                  "type": "_button-slide",
-                  "settings": {
-                    "first_button_label": "Shop Save",
-                    "first_button_link": "shopify://collections/daily-deals",
-                    "first_button_type": "primary",
-                    "second_button_label": "",
-                    "second_button_link": "",
-                    "second_button_type": "primary",
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "subheading_slide_63wYRa",
-                "heading_slide_q4A7Kc",
-                "text_slide_VqYcGh",
-                "button_slide_67w8Ad"
-              ]
-            },
-            "slide_item_3XQ9m6": {
-              "type": "_slide-item",
-              "settings": {
-                "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
-                "content_width": "50%",
-                "media_type": "image",
-                "image": "shopify://shop_images/logo-petit-bateau_svg.svg",
-                "image_link": "",
-                "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-                "autoplay": true,
-                "video_ratio": "16/9",
-                "overlay_opacity": 0,
-                "content_alignment": "start",
-                "content_position": "middle-left",
-                "content_padding_block": 40,
-                "content_padding_inline": 30
-              },
-              "blocks": {
-                "subheading_slide_ERt6RU": {
-                  "type": "_subheading-slide",
-                  "settings": {
-                    "subheading": "BUY 1 GET 1—DOG FOOD!",
-                    "font_size": 12,
-                    "font_weight": "heading_weight",
-                    "uppercase": true,
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                },
-                "heading_slide_eVFgXW": {
-                  "type": "_heading-slide",
-                  "settings": {
-                    "heading": "Up to<br>\n50% Off!",
-                    "font_size": 80,
-                    "font_weight": "heading_weight",
-                    "uppercase": false,
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                },
-                "text_slide_xLRwhr": {
-                  "type": "_text-slide",
-                  "name": "t:blocks.general.text.name",
-                  "settings": {
-                    "text": "<p>Starting at $175. Hurry up! Do not miss...</p>",
-                    "font_size": 16,
-                    "font_weight": "body_weight",
-                    "spacing_bottom": 40
-                  },
-                  "blocks": {}
-                },
-                "button_slide_kiN6LF": {
-                  "type": "_button-slide",
-                  "settings": {
-                    "first_button_label": "Shop Save",
-                    "first_button_link": "shopify://collections/daily-deals",
-                    "first_button_type": "primary",
-                    "second_button_label": "",
-                    "second_button_link": "",
-                    "second_button_type": "primary",
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "subheading_slide_ERt6RU",
-                "heading_slide_eVFgXW",
-                "text_slide_xLRwhr",
-                "button_slide_kiN6LF"
-              ]
-            },
-            "slide_item_LDHzcH": {
-              "type": "_slide-item",
-              "settings": {
-                "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
-                "content_width": "50%",
-                "media_type": "image",
-                "image_link": "",
-                "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-                "autoplay": true,
-                "video_ratio": "16/9",
-                "overlay_opacity": 0,
-                "content_alignment": "start",
-                "content_position": "middle-left",
-                "content_padding_block": 40,
-                "content_padding_inline": 30
-              },
-              "blocks": {
-                "subheading_slide_Nr6ira": {
-                  "type": "_subheading-slide",
-                  "settings": {
-                    "subheading": "BUY 1 GET 1—CAMERA!",
-                    "font_size": 12,
-                    "font_weight": "heading_weight",
-                    "uppercase": true,
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                },
-                "heading_slide_WYgwaq": {
-                  "type": "_heading-slide",
-                  "settings": {
-                    "heading": "Flash<br>\nSale Alert!",
-                    "font_size": 80,
-                    "font_weight": "heading_weight",
-                    "uppercase": false,
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                },
-                "text_slide_ndVBkd": {
-                  "type": "_text-slide",
-                  "name": "t:blocks.general.text.name",
-                  "settings": {
-                    "text": "<p>Starting at $175. Hurry up! Do not miss...</p>",
-                    "font_size": 16,
-                    "font_weight": "body_weight",
-                    "spacing_bottom": 40
-                  },
-                  "blocks": {}
-                },
-                "button_slide_NKRYdQ": {
-                  "type": "_button-slide",
-                  "settings": {
-                    "first_button_label": "Shop Save",
-                    "first_button_link": "shopify://collections/daily-deals",
-                    "first_button_type": "primary",
-                    "second_button_label": "",
-                    "second_button_link": "",
-                    "second_button_type": "primary",
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "subheading_slide_Nr6ira",
-                "heading_slide_WYgwaq",
-                "text_slide_ndVBkd",
-                "button_slide_NKRYdQ"
-              ]
-            }
-          },
-          "block_order": [
-            "slide_item_4UpFea",
-            "slide_item_3XQ9m6",
-            "slide_item_LDHzcH"
-          ]
-        },
-        "banner_parent_Rx78VF": {
-          "type": "_banner-parent",
-          "settings": {},
-          "blocks": {
-            "banner_item_KfWBBW": {
-              "type": "_banner-item",
-              "settings": {
-                "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
-                "content_width": "50%",
-                "media_type": "image",
-                "image_link": "shopify://collections/daily-deals",
-                "autoplay": true,
-                "video_ratio": "16/9",
-                "overlay_opacity": 0,
-                "content_alignment": "center",
-                "content_position": "top-center",
-                "content_padding_block": 40,
-                "content_padding_inline": 20
-              },
-              "blocks": {
-                "subheading_aYGPAV": {
-                  "type": "subheading",
-                  "settings": {
-                    "subheading": "SAVE 30—50% ELECTRONICS",
-                    "font_size": 12,
-                    "font_weight": "subheading_weight",
-                    "uppercase": false,
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                },
-                "heading_4TPBgR": {
-                  "type": "heading",
-                  "settings": {
-                    "heading": "Air Fryer<br>\nSave Up To $159",
-                    "font_size": 28,
-                    "font_weight": "heading_weight",
-                    "uppercase": false,
-                    "spacing_bottom": 25
-                  },
-                  "blocks": {}
-                },
-                "button_VJV4Wc": {
-                  "type": "button",
-                  "settings": {
-                    "show_full_width": false,
-                    "first_button_label": "Shop Now",
-                    "first_button_link": "shopify://collections/daily-deals",
-                    "first_button_type": "primary",
-                    "second_button_label": "",
-                    "second_button_link": "",
-                    "second_button_type": "primary",
-                    "spacing_bottom": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "subheading_aYGPAV",
-                "heading_4TPBgR",
-                "button_VJV4Wc"
-              ]
-            },
-            "banner_item_PxPnNT": {
-              "type": "_banner-item",
-              "settings": {
-                "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
-                "content_width": "50%",
-                "media_type": "image",
-                "image_link": "shopify://collections/camera-photo",
-                "autoplay": true,
-                "video_ratio": "16/9",
-                "overlay_opacity": 0,
-                "content_alignment": "start",
-                "content_position": "middle-left",
-                "content_padding_block": 20,
-                "content_padding_inline": 30
-              },
-              "blocks": {
-                "subheading_BeAbYy": {
-                  "type": "subheading",
-                  "settings": {
-                    "subheading": "APPLE BRAND",
-                    "font_size": 12,
-                    "font_weight": "heading_weight",
-                    "uppercase": false,
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                },
-                "heading_4aa8P3": {
-                  "type": "heading",
-                  "settings": {
-                    "heading": "Buy 1 Get 1<br>\nIpod 5",
-                    "font_size": 24,
-                    "font_weight": "heading_weight",
-                    "uppercase": false,
-                    "spacing_bottom": 30
-                  },
-                  "blocks": {}
-                },
-                "text_UAphEY": {
-                  "type": "description",
-                  "name": "t:blocks.general.text.name",
-                  "settings": {
-                    "text": "<p>Starting at <strong>$135</strong></p>",
-                    "font_size": 16,
-                    "font_weight": "body_weight",
-                    "spacing_bottom": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "subheading_BeAbYy",
-                "heading_4aa8P3",
-                "text_UAphEY"
-              ]
-            },
-            "banner_item_8e9cH9": {
-              "type": "_banner-item",
-              "name": "t:names.banner_item",
-              "settings": {
-                "color_scheme": "scheme-3d10de96-a479-49bd-819c-e044746b4f3e",
-                "content_width": "50%",
-                "media_type": "image",
-                "image_link": "shopify://collections/macbook-pcs",
-                "autoplay": true,
-                "video_ratio": "16/9",
-                "overlay_opacity": 0,
-                "content_alignment": "start",
-                "content_position": "middle-left",
-                "content_padding_block": 30,
-                "content_padding_inline": 30
-              },
-              "blocks": {
-                "subheading_FcpaHg": {
-                  "type": "subheading",
-                  "settings": {
-                    "subheading": "SAMSUNG BRAND",
-                    "font_size": 12,
-                    "font_weight": "subheading_weight",
-                    "uppercase": false,
-                    "spacing_bottom": 10
-                  },
-                  "blocks": {}
-                },
-                "heading_wiDKFW": {
-                  "type": "heading",
-                  "settings": {
-                    "heading": "Sale 30%<br>\nHeadphones",
-                    "font_size": 24,
-                    "font_weight": "heading_weight",
-                    "uppercase": false,
-                    "spacing_bottom": 30
-                  },
-                  "blocks": {}
-                },
-                "text_bUkj4e": {
-                  "type": "description",
-                  "name": "t:blocks.general.text.name",
-                  "settings": {
-                    "text": "<p>Starting at <strong>$95</strong></p>",
-                    "font_size": 16,
-                    "font_weight": "body_weight",
-                    "spacing_bottom": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "subheading_FcpaHg",
-                "heading_wiDKFW",
-                "text_bUkj4e"
-              ]
-            }
-          },
-          "block_order": [
-            "banner_item_KfWBBW",
-            "banner_item_PxPnNT",
-            "banner_item_8e9cH9"
-          ]
-        }
-      },
-      "block_order": [
-        "slide_parent_ie3hb9",
-        "banner_parent_Rx78VF"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".slide__wrapper .sec__content-heading {line-height: 1;}",
-        ".slide__wrapper .sec__content-heading {color: var(--color-primary);}",
-        ".sec__content-des strong {color: var(--color-primary);}",
-        "@media (max-width: 1024.5px) {.grid-3 .section__block-inner:nth-child(1) .sec__content-inner {padding-top: 40px; }}",
-        "@media (max-width: 576px) {.slide__wrapper .sec__content-heading {--font-size: 60 !important; }}"
-      ],
-      "name": "t:sections.slideshow-with-banner.name",
-      "settings": {
-        "section_width": "fluid_container",
-        "background": "#f1f3f7",
-        "column_gap": 20,
-        "slide_width": 50,
-        "padding_top": 30,
-        "padding_bottom": 0,
-        "reset_spacing": true
-      }
-    },
     "collection_list_VmEYkJ": {
       "type": "collection-list",
       "blocks": {
         "collection_r7aTxN": {
           "type": "collection",
           "settings": {
-            "collection": "daily-deals",
-            "collection_title": ""
+            "collection": "jusqua-60",
+            "collection_title": "Jusqu'à -60%"
           }
         },
         "collection_FUAzK4": {
           "type": "collection",
           "settings": {
-            "collection": "macbook-pcs",
-            "collection_title": ""
+            "collection": "bonnets",
+            "collection_title": "Bonnets"
           }
         },
         "collection_3cyDDE": {
           "type": "collection",
           "settings": {
-            "collection": "phone-mobile",
-            "collection_title": ""
+            "collection": "gants",
+            "collection_title": "Gants"
           }
         },
         "collection_TVQR9f": {
           "type": "collection",
           "settings": {
-            "collection": "tablets-ipad-pro",
-            "collection_title": ""
+            "collection": "snoods",
+            "collection_title": "Snoods"
           }
         },
         "collection_kUA3MH": {
           "type": "collection",
           "settings": {
-            "collection": "camera-photo",
-            "collection_title": ""
+            "collection": "collants-chaussettes",
+            "collection_title": "Collants-chaussettes"
           }
         },
         "collection_ctTBpd": {
           "type": "collection",
           "settings": {
-            "collection": "home-electronics",
-            "collection_title": ""
-          }
-        },
-        "collection_fyfMEN": {
-          "type": "collection",
-          "settings": {
-            "collection": "clearance-sale",
-            "collection_title": ""
-          }
-        },
-        "collection_qdMHYe": {
-          "type": "collection",
-          "settings": {
-            "collection": "sale-50-off",
-            "collection_title": ""
+            "collection": "lots",
+            "collection_title": "Lots"
           }
         }
       },
@@ -653,12 +194,13 @@
         "collection_3cyDDE",
         "collection_TVQR9f",
         "collection_kUA3MH",
-        "collection_ctTBpd",
-        "collection_fyfMEN",
-        "collection_qdMHYe"
+        "collection_ctTBpd"
+      ],
+      "custom_css": [
+        ".swiper {max-width: 66%;}"
       ],
       "settings": {
-        "section_width": "fluid_container",
+        "section_width": "stretch_width",
         "color_scheme": "scheme-2b5c6c91-201d-4fb1-aba3-e6d562656976",
         "heading": "",
         "description": "",
@@ -666,10 +208,10 @@
         "header_size": "medium",
         "header_alignment": "center",
         "display_mode": "carousel",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "custom_ratio": "",
-        "items_per_row": 8,
-        "column_gap": 20,
+        "items_per_row": 6,
+        "column_gap": 30,
         "show_arrow": false,
         "carousel_pagination": "show_dots_on_mobile",
         "infinite": false,
@@ -683,14 +225,112 @@
         "show_product_count": false,
         "show_icon": false,
         "show_description": false,
-        "font_size": 14,
+        "font_size": 16,
         "font_weight": "heading_weight",
         "information_spacing": 15,
         "rounded_image": true,
         "image_custom_width": true,
-        "image_width": 120,
-        "padding_top": 60,
-        "padding_bottom": 60,
+        "image_width": 150,
+        "padding_top": 10,
+        "padding_bottom": 90,
+        "reset_spacing": false
+      }
+    },
+    "product_with_banner_LtQYDR": {
+      "type": "product-with-banner",
+      "blocks": {
+        "product_banner_pBryNz": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/Component_2.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 24,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_AYpkmm": {
+          "type": "product_banner",
+          "settings": {
+            "content_background_color": "#f1f3f7",
+            "subheading": "SAVE 30—50% ELECTRONICS",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Small Size Big Sound",
+            "heading_font_size": 36,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 24,
+            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "description_font_size": 14,
+            "description_spacing_bottom": 25,
+            "product": "hot-sales-for-original-macbooks-pro-16-m2-gray-color",
+            "product_spacing_bottom": 25,
+            "button_label": "",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_RcAWqT": {
+          "type": "product_banner",
+          "settings": {
+            "content_background_color": "#f1f3f7",
+            "subheading": "SAVE 30—50% ELECTRONICS",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Small Size Big Sound",
+            "heading_font_size": 36,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 24,
+            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "description_font_size": 14,
+            "description_spacing_bottom": 25,
+            "product": "hot-sales-for-original-macbooks-pro-16-m3-gray",
+            "product_spacing_bottom": 25,
+            "button_label": "",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "product_banner_pBryNz",
+        "product_banner_AYpkmm",
+        "product_banner_RcAWqT"
+      ],
+      "settings": {
+        "section_width": "fluid_container",
+        "heading": "",
+        "subheading": "",
+        "description": "",
+        "header_size": "small",
+        "header_alignment": "center",
+        "column_gap": 20,
+        "content_alignment": "center",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "image_position": "right",
+        "show_arrow": false,
+        "carousel_pagination": true,
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "padding_top": 0,
+        "padding_bottom": 0,
         "reset_spacing": false
       }
     },
@@ -1315,103 +955,6 @@
         "reset_spacing": false
       }
     },
-    "product_with_banner_LtQYDR": {
-      "type": "product-with-banner",
-      "blocks": {
-        "product_banner_pBryNz": {
-          "type": "product_banner",
-          "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
-            "subheading_font_size": 12,
-            "subheading_font_weight": "heading_weight",
-            "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
-            "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>A mini speaker with powerful and dynamic sound. Compact and portable, <br/>perfect for any space and easy to carry anywhere.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "portable-wireless-speakers-music-speakers-new-2025",
-            "product_spacing_bottom": 25,
-            "button_label": "",
-            "button_link": "",
-            "button_type": "primary"
-          }
-        },
-        "product_banner_AYpkmm": {
-          "type": "product_banner",
-          "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
-            "subheading_font_size": 12,
-            "subheading_font_weight": "heading_weight",
-            "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
-            "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "hot-sales-for-original-macbooks-pro-16-m2-gray-color",
-            "product_spacing_bottom": 25,
-            "button_label": "",
-            "button_link": "",
-            "button_type": "primary"
-          }
-        },
-        "product_banner_RcAWqT": {
-          "type": "product_banner",
-          "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
-            "subheading_font_size": 12,
-            "subheading_font_weight": "heading_weight",
-            "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
-            "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "hot-sales-for-original-macbooks-pro-16-m3-gray",
-            "product_spacing_bottom": 25,
-            "button_label": "",
-            "button_link": "",
-            "button_type": "primary"
-          }
-        }
-      },
-      "block_order": [
-        "product_banner_pBryNz",
-        "product_banner_AYpkmm",
-        "product_banner_RcAWqT"
-      ],
-      "settings": {
-        "section_width": "fluid_container",
-        "heading": "",
-        "subheading": "",
-        "description": "",
-        "header_size": "small",
-        "header_alignment": "center",
-        "column_gap": 20,
-        "content_alignment": "center",
-        "image_ratio": "adapt",
-        "custom_ratio": "",
-        "image_position": "left",
-        "show_arrow": false,
-        "carousel_pagination": true,
-        "infinite": false,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": false
-      }
-    },
     "icon_box_TRwJBD": {
       "type": "icon-box",
       "blocks": {
@@ -1572,15 +1115,14 @@
   },
   "order": [
     "slideshow_WUADqE",
-    "slideshow_with_banner_KEfjPq",
     "collection_list_VmEYkJ",
+    "product_with_banner_LtQYDR",
     "featured_collection_pfcpCH",
     "promotion_banner_TwEMDb",
     "products_list_U8R8cq",
     "banner_packery_VG3nKM",
     "featured_collection_Gemyez",
     "brand_logo_CLhf4Y",
-    "product_with_banner_LtQYDR",
     "icon_box_TRwJBD",
     "icon_box_YbT4tf"
   ]
