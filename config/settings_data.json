@@ -29,6 +29,7 @@
     "btn_text_transform": "uppercase",
     "button_radius": 1,
     "enable_browser_tab_notifications": false,
+    "badges_rounded_corner": 4,
     "sale_color": "#002e5e",
     "sale_background": "#fece00",
     "sale_badge_type": "percent",
