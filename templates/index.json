@@ -197,7 +197,8 @@
         "collection_ctTBpd"
       ],
       "custom_css": [
-        ".swiper {max-width: 66%;}"
+        ".swiper {max-width: 66%;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%;}}"
       ],
       "settings": {
         "section_width": "stretch_width",
