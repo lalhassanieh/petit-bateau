@@ -197,7 +197,8 @@
         "collection_ctTBpd"
       ],
       "custom_css": [
-        ".swiper {max-width: 66%;}"
+        ".swiper {max-width: 66%;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; }}"
       ],
       "settings": {
         "section_width": "stretch_width",
@@ -232,7 +233,7 @@
         "image_custom_width": true,
         "image_width": 150,
         "padding_top": 10,
-        "padding_bottom": 90,
+        "padding_bottom": 40,
         "reset_spacing": false
       }
     },
@@ -262,46 +263,117 @@
             "button_type": "primary"
           }
         },
-        "product_banner_AYpkmm": {
+        "product_banner_xTyA4d": {
           "type": "product_banner",
           "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
+            "image": "shopify://shop_images/Property_1_2.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
             "subheading_font_size": 12,
             "subheading_font_weight": "heading_weight",
             "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
             "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "hot-sales-for-original-macbooks-pro-16-m2-gray-color",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
             "product_spacing_bottom": 25,
-            "button_label": "",
+            "button_label": "Découvrir",
             "button_link": "",
             "button_type": "primary"
           }
         },
-        "product_banner_RcAWqT": {
+        "product_banner_3b6Q6P": {
           "type": "product_banner",
           "settings": {
-            "content_background_color": "#f1f3f7",
-            "subheading": "SAVE 30—50% ELECTRONICS",
+            "image": "shopify://shop_images/Property_1_3_1.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
             "subheading_font_size": 12,
             "subheading_font_weight": "heading_weight",
             "subheading_spacing_bottom": 10,
-            "heading": "Small Size Big Sound",
-            "heading_font_size": 36,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
             "heading_font_weight": "heading_weight",
-            "heading_spacing_bottom": 24,
-            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "description_font_size": 14,
-            "description_spacing_bottom": 25,
-            "product": "hot-sales-for-original-macbooks-pro-16-m3-gray",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
             "product_spacing_bottom": 25,
-            "button_label": "",
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_P4xJFy": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/Property_1_4.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_rH6JEf": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/Property_1_5.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_dt8aGe": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/image_19_1.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Depuis quelques frissons, on le sent, l’hiver est arrivé !",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Suivez les 3 étapes Petit Bateau pour passer cette saison bien au chaud : 1 comme sous-vêtements tout doux pour la peau, 2 comme tricot, 3 comme manteaux !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
             "button_link": "",
             "button_type": "primary"
           }
@@ -309,8 +381,11 @@
       },
       "block_order": [
         "product_banner_pBryNz",
-        "product_banner_AYpkmm",
-        "product_banner_RcAWqT"
+        "product_banner_xTyA4d",
+        "product_banner_3b6Q6P",
+        "product_banner_P4xJFy",
+        "product_banner_rH6JEf",
+        "product_banner_dt8aGe"
       ],
       "custom_css": [
         ".section__block-inner {border-radius: 1px;}"
@@ -346,24 +421,24 @@
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
-        "heading": "Today's Best Deals",
+        "heading": "Nos nouveaux arrivages !",
         "description": "",
         "show_view_all_button": false,
         "space_between_header": true,
-        "header_size": "small",
+        "header_size": "medium",
         "header_alignment": "left",
-        "enable_collection_deal": true,
+        "enable_collection_deal": false,
         "messages": "Hurry up! Offer ends in:",
         "end_time": "09-22-2026",
         "timer_style": "highlight",
         "collections_type": "carousel",
-        "collection": "daily-deals",
+        "collection": "nos-nouveaux-arrivages",
         "items_to_show": 10,
-        "items_per_row": 5,
+        "items_per_row": 4,
         "rows_on_desktop": 2,
         "enable_load_more": false,
         "button_label": "Load more",
-        "column_gap": 30,
+        "column_gap": 10,
         "show_arrow": true,
         "carousel_pagination": "show_dots_on_mobile",
         "infinite": false,
