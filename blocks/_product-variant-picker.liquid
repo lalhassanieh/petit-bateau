@@ -28,7 +28,7 @@
         {% paginate product.collections.first.products by 10000 %}
           {% for related_product in product.collections.first.products %}
             {% for variant in related_product.variants %}
-              {% comment %} Check if variant SKU is in the products_comesin array {% endcomment %}
+              {% comment %} Check if variant SKU is in the products_comesin array  {% endcomment %}
               {% if products_comesin contains variant.sku %}
                 <div class="swatch-element">
                   <a href="/products/{{related_product.handle}}">
