@@ -40,7 +40,7 @@
         "cur_lang_aPwfT9"
       ],
       "custom_css": [
-        ".swiper-slide{height:auto;}"
+        ".swiper-slide {height: auto;}"
       ],
       "settings": {
         "section_width": "container",
