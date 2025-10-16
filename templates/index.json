@@ -561,6 +561,28 @@
         "reset_spacing": false
       }
     },
+    "newsletter_cPwnaD": {
+      "type": "newsletter",
+      "name": "t:sections.newsletters.name",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "-15% sur votre première commande",
+        "description": "<p>Bénéficiez de -15% sur votre première commande en vous inscrivant à notre newsletter !<br/>(hors soldes et promotions en cours)</p>",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "email_placeholder": "Email *",
+        "btn_text": "Subscribe",
+        "note": "On vous enverra plein de conseils sympas & nos offres exclusives! * Voir conditions.",
+        "form_layout": "vertical",
+        "show_content_background": false,
+        "content_background": "#fff",
+        "content_box_opacity": 100,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
     "icon_box_TRwJBD": {
       "type": "icon-box",
       "blocks": {
@@ -726,6 +748,7 @@
     "featured_collection_pfcpCH",
     "collection_list_iYKgWH",
     "custom_html_JjLxXP",
+    "newsletter_cPwnaD",
     "icon_box_TRwJBD",
     "icon_box_YbT4tf"
   ]
