@@ -179,6 +179,10 @@
 .product-detail__information .swatch-colors {
   padding-bottom: 30px;
 }
+.product-detail__information .swatch-colors .swatch__title {
+  font-size: 1.4rem !important;
+  margin-bottom: 10px !important;
+}
 .product-detail__information .swatch-colors a {
   height: 80px;
   width: 80px;
