@@ -252,7 +252,7 @@
  .custom-text-block {
      color: #A4A9AD;
      text-align: center;
-     padding:0 20px;
+     padding: 0 20px;
 
      .first-title {
          font-size: 25px;
@@ -260,7 +260,8 @@
          text-transform: uppercase;
      }
 
-     .first-description.second-description {
+     .first-description,
+     .second-description {
          font-size: 12px;
          line-height: 1.3;
      }
