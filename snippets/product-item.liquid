@@ -533,7 +533,7 @@
         {% comment %} Product item price {% endcomment %}
         {% if template_enable_price == true %}
           {% if hidden_price != true %}
-            <div class="flex items-center justify-between gap-10 w-full">
+            <div class="flex items-center justify-between gap-10 w-full align-items-center">
               <div
                 class="product-item__price{% if type == 'list' or type == 'sticky' %} text-start{% else %} justify-content-{{ settings.product_alignment }} fs-custom fw-custom{% endif %} flex gap-custom lh-normal {{ priceclass }}"
                 style="--font-size: {{ settings.price_size }}; --gap: 3px;--heading-weight: {{ settings.price_font_weight }}"
