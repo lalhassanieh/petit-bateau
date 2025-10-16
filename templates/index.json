@@ -457,6 +457,98 @@
         "reset_spacing": false
       }
     },
+    "collection_list_iYKgWH": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_aGRhHH": {
+          "type": "collection",
+          "settings": {
+            "collection": "douce-nuit",
+            "collection_title": ""
+          }
+        },
+        "collection_AXraYd": {
+          "type": "collection",
+          "settings": {
+            "collection": "douce-nuit-1",
+            "collection_title": ""
+          }
+        },
+        "collection_djaj9w": {
+          "type": "collection",
+          "settings": {
+            "collection": "dans-la-savane",
+            "collection_title": ""
+          }
+        },
+        "collection_kaqgdM": {
+          "type": "collection",
+          "settings": {
+            "collection": "nuit-reposante",
+            "collection_title": ""
+          }
+        },
+        "collection_JBAnm8": {
+          "type": "collection",
+          "settings": {
+            "collection": "petit-bonheur",
+            "collection_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_aGRhHH",
+        "collection_AXraYd",
+        "collection_djaj9w",
+        "collection_kaqgdM",
+        "collection_JBAnm8"
+      ],
+      "custom_css": [
+        ".collection-item__information {left: 30px;}",
+        ".collection-item__name {text-align: left; padding: 0; border: none; background-color: transparent;}",
+        ".collection-item__media--ratio {--aspect-ratio: 0.6536458333333334 !important;}",
+        ".collection-item__name-inner {font-family: \"Oswald-Medium\";}",
+        ".collection-item__name {width: auto !important;}",
+        ".collection-item__information {justify-content: flex-start !important;}"
+      ],
+      "name": "t:sections.collection-list.name",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Looks du moment!",
+        "description": "",
+        "show_view_all_button": false,
+        "header_size": "medium",
+        "header_alignment": "left",
+        "display_mode": "carousel",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "items_per_row": 5,
+        "column_gap": 25,
+        "show_arrow": false,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1,
+        "design": "default",
+        "collection_information_position": "overlay_image",
+        "text_alignment": "center",
+        "show_product_count": false,
+        "show_icon": false,
+        "show_description": false,
+        "font_size": 24,
+        "font_weight": "heading_weight",
+        "information_spacing": 12,
+        "rounded_image": false,
+        "image_custom_width": false,
+        "image_width": 200,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
     "promotion_banner_TwEMDb": {
       "type": "promotion-banner",
       "blocks": {
@@ -916,47 +1008,6 @@
         "reset_spacing": false
       }
     },
-    "featured_collection_Gemyez": {
-      "type": "featured-collection",
-      "name": "t:names.featured_collection",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "",
-        "heading": "Best Selling",
-        "description": "",
-        "show_view_all_button": true,
-        "space_between_header": true,
-        "header_size": "small",
-        "header_alignment": "left",
-        "enable_collection_deal": false,
-        "messages": "Hurry up! Offer ends in:",
-        "end_time": "09-22-2026",
-        "timer_style": "default",
-        "collections_type": "carousel",
-        "collection": "home-electronics",
-        "items_to_show": 10,
-        "items_per_row": 5,
-        "rows_on_desktop": 2,
-        "enable_load_more": false,
-        "button_label": "Load more",
-        "column_gap": 30,
-        "show_arrow": true,
-        "carousel_pagination": "show_dots_on_mobile",
-        "infinite": false,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "reveal": false,
-        "equal_height_adjustment": false,
-        "sticky_block": false,
-        "content_width": 30,
-        "block_position": "left",
-        "carousel_on_mobile": false,
-        "items_per_row_mobile": 1.5,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": false
-      }
-    },
     "brand_logo_CLhf4Y": {
       "type": "brand-logo",
       "blocks": {
@@ -1197,10 +1248,10 @@
     "collection_list_VmEYkJ",
     "product_with_banner_LtQYDR",
     "featured_collection_pfcpCH",
+    "collection_list_iYKgWH",
     "promotion_banner_TwEMDb",
     "products_list_U8R8cq",
     "banner_packery_VG3nKM",
-    "featured_collection_Gemyez",
     "brand_logo_CLhf4Y",
     "icon_box_TRwJBD",
     "icon_box_YbT4tf"
