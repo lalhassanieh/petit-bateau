@@ -503,6 +503,10 @@
         "collection_kaqgdM",
         "collection_JBAnm8"
       ],
+      "custom_css": [
+        ".collection-item__information {left: 0;}",
+        ".collection-item__name {text-align: left; padding: 0; border: none; background-color: transparent;}"
+      ],
       "name": "t:sections.collection-list.name",
       "settings": {
         "section_width": "fluid_container",
