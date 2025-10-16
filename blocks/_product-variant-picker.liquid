@@ -30,6 +30,7 @@
         {% if main_collection != blank %}
           {% paginate main_collection.products by 1000 %}
             {% for product_comesin in products_comesin %}
+              {{ products_comesin }}
               {% assign barcode_trimmed = product_comesin | strip %}
               {% for related_product in main_collection.products %}
                 {% assign found_match = false %}
