@@ -20,8 +20,8 @@
   </div>
   {% comment %} custom code for related products {% endcomment %}
 
-  {% if product.metafields.product.related_products.value != blank %}
-    {% assign products_comesin = product.metafields.product.related_products.value | split: ',' %}
+  {% if product.metafields.custom.related_products.value != blank %}
+    {% assign products_comesin = product.metafields.custom.related_products.value | split: ',' %}
     {{ products_comesin}}
     <div class="swatch-colors item_square">
       <h4 class="swatch__title">Couleur:</h4>
