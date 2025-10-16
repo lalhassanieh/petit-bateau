@@ -457,6 +457,90 @@
         "reset_spacing": false
       }
     },
+    "collection_list_iYKgWH": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_aGRhHH": {
+          "type": "collection",
+          "settings": {
+            "collection": "douce-nuit",
+            "collection_title": ""
+          }
+        },
+        "collection_AXraYd": {
+          "type": "collection",
+          "settings": {
+            "collection": "douce-nuit-1",
+            "collection_title": ""
+          }
+        },
+        "collection_djaj9w": {
+          "type": "collection",
+          "settings": {
+            "collection": "dans-la-savane",
+            "collection_title": ""
+          }
+        },
+        "collection_kaqgdM": {
+          "type": "collection",
+          "settings": {
+            "collection": "nuit-reposante",
+            "collection_title": ""
+          }
+        },
+        "collection_JBAnm8": {
+          "type": "collection",
+          "settings": {
+            "collection": "petit-bonheur",
+            "collection_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_aGRhHH",
+        "collection_AXraYd",
+        "collection_djaj9w",
+        "collection_kaqgdM",
+        "collection_JBAnm8"
+      ],
+      "name": "t:sections.collection-list.name",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Douce nuitLooks du moment!",
+        "description": "",
+        "show_view_all_button": false,
+        "header_size": "medium",
+        "header_alignment": "left",
+        "display_mode": "carousel",
+        "image_ratio": "portrait",
+        "custom_ratio": "",
+        "items_per_row": 5,
+        "column_gap": 25,
+        "show_arrow": false,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1,
+        "design": "default",
+        "collection_information_position": "overlay_image",
+        "text_alignment": "center",
+        "show_product_count": false,
+        "show_icon": false,
+        "show_description": false,
+        "font_size": 16,
+        "font_weight": "heading_weight",
+        "information_spacing": 12,
+        "rounded_image": false,
+        "image_custom_width": false,
+        "image_width": 200,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
     "promotion_banner_TwEMDb": {
       "type": "promotion-banner",
       "blocks": {
@@ -1197,6 +1281,7 @@
     "collection_list_VmEYkJ",
     "product_with_banner_LtQYDR",
     "featured_collection_pfcpCH",
+    "collection_list_iYKgWH",
     "promotion_banner_TwEMDb",
     "products_list_U8R8cq",
     "banner_packery_VG3nKM",
