@@ -568,7 +568,7 @@
       ],
       "name": "t:sections.newsletters.name",
       "settings": {
-        "section_width": "fluid_container",
+        "section_width": "stretch_width",
         "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
         "heading": "-15% sur votre première commande",
         "description": "<p style=\"line-height:14.7px\">Bénéficiez de -15% sur votre première commande en vous inscrivant à notre newsletter! <br>(hors soldes et promotions en cours)</p>",
