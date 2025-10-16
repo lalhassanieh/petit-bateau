@@ -19,40 +19,36 @@
     {% endif %}
   </div>
   {% comment %} custom code for related products {% endcomment %}
-{% if product.metafields.custom.related_products.value != blank %}
-  {% assign products_comesin = product.metafields.custom.related_products.value | split: ',' %}
-  <div class="swatch-colors item_square">
-    <h4 class="swatch__title">Couleur:</h4>
-    <div class="d-flex">
-      {% assign main_collection = product.collections.first %}
-      {% if main_collection != blank %}
+  {% if product.metafields.custom.related_products.value != blank %}
+    {% assign products_comesin = product.metafields.custom.related_products.value | split: ',' %}
+    <div class="swatch-colors item_square">
+      <h4 class="swatch__title">Also Comes In :</h4>
+      <div class="d-flex">
+        <div style="display:none">{{ product.collections.first.title }}</div>
+        {% assign i = 0 %}
         {% for product_comesin in products_comesin %}
-          {% assign barcode_trimmed = product_comesin | strip %}
-          {% for related_product in main_collection.products %}
-            {% assign found_match = false %}
-            {% for variant in related_product.variants %}
-              {% if variant.barcode == barcode_trimmed %}
-                <div class="swatch-element">
-                  <a href="/products/{{ related_product.handle }}">
-                    <div
-                      class="swatch-thumbnail"
-                      style="background-image: url({{ related_product.featured_image | image_url: width: 100 }}); background-size: contain;"
-                    ></div>
-                  </a>
-                </div>
-                {% assign found_match = true %}
-                {% break %}
-              {% endif %}
-            {% endfor %}
-            {% if found_match %}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-      {% endif %}
+          {{ products_comesin }}
+          {% paginate product.collections.first.products by 10000 %}
+            {% for related_product in product.collections.first.products %}
+              {% for variant in related_product.variants %}
+                {% if variant.barcode == product_comesin %}
+                  <div class="swatch-element">
+                    <a href="/products/{{related_product.handle}}">
+                      <div
+                        class="swatch-thumbnail"
+                        style="background-image: url({{ related_product.featured_image | product_img_url: imagesize }});background-size:contain;"
+                      ></div>
+                    </a>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {%- endfor -%}
+          {% endpaginate %}
+          {% assign i = i | plus: 1 %}
+        {%- endfor -%}
+      </div>
     </div>
-  </div>
-{% endif %}
+  {% endif %}
 
   {% comment %} custom code for related products {% endcomment %}
 {% endif %}
