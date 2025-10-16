@@ -172,6 +172,7 @@
  }
 
  .price-regular {
+
      .price-item,
      .price {
          color: #002E5E !important;
@@ -199,8 +200,10 @@
      padding: 10px !important;
  }
 
- .align-items-center {
-     align-items: center;
+ .product-item__wrapper {
+     .items-center {
+         align-items: center;
+     }
  }
 
  @media (min-width: 1024px) {

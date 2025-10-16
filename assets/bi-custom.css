@@ -163,7 +163,7 @@
   padding: 10px !important;
 }
 
-.align-items-center {
+.product-item__wrapper .items-center {
   align-items: center;
 }
 
