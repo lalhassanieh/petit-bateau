@@ -125,7 +125,7 @@
               href="{{ card_product.url }}"
             {% endif %}
             aria-label="{{ card_product.title }}"
-            class="product__media product-item__media--ratio rounded block{% if card_product.media[1] != blank and show_secondary_image %} show_secondary{% endif %}"
+            class="product__media product-item__media--ratio block{% if card_product.media[1] != blank and show_secondary_image %} show_secondary{% endif %}"
             style="--aspect-ratio: {{ ratio }};"
           >
             {% if type_video %}
@@ -392,7 +392,14 @@
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="spin opacity-0 icon-load">
                         <use href="#icon-load"></use>
                       </svg>
-                      <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" class="block hidden-1025 hidden-on-load icon-cart">
+                      <svg
+                        width="20"
+                        height="21"
+                        viewBox="0 0 20 21"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="block hidden-1025 hidden-on-load icon-cart"
+                      >
                         <path d="M13.3335 8.0201V5.5201C13.3335 3.67915 11.8411 2.18677 10.0001 2.18677C8.1592 2.18677 6.66681 3.67915 6.66681 5.5201V8.0201M8.49982 18.8534H6.47602C4.95295 18.8534 4.19142 18.8534 3.63183 18.5483C3.14024 18.2802 2.75289 17.8548 2.53185 17.3403C2.28023 16.7547 2.35132 15.9965 2.49348 14.4801L2.99348 9.14674C3.11353 7.86622 3.17355 7.22596 3.46153 6.7419C3.71515 6.31559 4.08987 5.97436 4.53799 5.76164C5.04682 5.5201 5.68989 5.5201 6.97602 5.5201L13.0243 5.5201C14.3104 5.5201 14.9535 5.5201 15.4623 5.76164C15.9104 5.97436 16.2851 6.31559 16.5388 6.7419C16.7754 7.13964 16.8581 7.64284 16.9467 8.52002" stroke="#002E5E" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M14 12.52L14 16.52" stroke="#002E5E" stroke-linecap="round"/>
                         <path d="M16 14.52H12" stroke="#002E5E" stroke-linecap="round"/>
@@ -460,7 +467,14 @@
                             disabled
                           {% endif %}
                         >
-                          <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" class="block hidden-1025 hidden-on-load icon-cart">
+                          <svg
+                            width="20"
+                            height="21"
+                            viewBox="0 0 20 21"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="block hidden-1025 hidden-on-load icon-cart"
+                          >
                             <path d="M13.3335 8.0201V5.5201C13.3335 3.67915 11.8411 2.18677 10.0001 2.18677C8.1592 2.18677 6.66681 3.67915 6.66681 5.5201V8.0201M8.49982 18.8534H6.47602C4.95295 18.8534 4.19142 18.8534 3.63183 18.5483C3.14024 18.2802 2.75289 17.8548 2.53185 17.3403C2.28023 16.7547 2.35132 15.9965 2.49348 14.4801L2.99348 9.14674C3.11353 7.86622 3.17355 7.22596 3.46153 6.7419C3.71515 6.31559 4.08987 5.97436 4.53799 5.76164C5.04682 5.5201 5.68989 5.5201 6.97602 5.5201L13.0243 5.5201C14.3104 5.5201 14.9535 5.5201 15.4623 5.76164C15.9104 5.97436 16.2851 6.31559 16.5388 6.7419C16.7754 7.13964 16.8581 7.64284 16.9467 8.52002" stroke="#002E5E" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M14 12.52L14 16.52" stroke="#002E5E" stroke-linecap="round"/>
                             <path d="M16 14.52H12" stroke="#002E5E" stroke-linecap="round"/>
@@ -572,7 +586,14 @@
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="spin opacity-0 icon-load">
                         <use href="#icon-load"></use>
                       </svg>
-                      <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" class="block hidden-on-load icon-cart">
+                      <svg
+                        width="20"
+                        height="21"
+                        viewBox="0 0 20 21"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="block hidden-on-load icon-cart"
+                      >
                         <path d="M13.3335 8.0201V5.5201C13.3335 3.67915 11.8411 2.18677 10.0001 2.18677C8.1592 2.18677 6.66681 3.67915 6.66681 5.5201V8.0201M8.49982 18.8534H6.47602C4.95295 18.8534 4.19142 18.8534 3.63183 18.5483C3.14024 18.2802 2.75289 17.8548 2.53185 17.3403C2.28023 16.7547 2.35132 15.9965 2.49348 14.4801L2.99348 9.14674C3.11353 7.86622 3.17355 7.22596 3.46153 6.7419C3.71515 6.31559 4.08987 5.97436 4.53799 5.76164C5.04682 5.5201 5.68989 5.5201 6.97602 5.5201L13.0243 5.5201C14.3104 5.5201 14.9535 5.5201 15.4623 5.76164C15.9104 5.97436 16.2851 6.31559 16.5388 6.7419C16.7754 7.13964 16.8581 7.64284 16.9467 8.52002" stroke="#002E5E" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M14 12.52L14 16.52" stroke="#002E5E" stroke-linecap="round"/>
                         <path d="M16 14.52H12" stroke="#002E5E" stroke-linecap="round"/>
@@ -618,7 +639,14 @@
                             disabled
                           {% endif %}
                         >
-                          <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" class="block hidden-on-load icon-cart">
+                          <svg
+                            width="20"
+                            height="21"
+                            viewBox="0 0 20 21"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="block hidden-on-load icon-cart"
+                          >
                             <path d="M13.3335 8.0201V5.5201C13.3335 3.67915 11.8411 2.18677 10.0001 2.18677C8.1592 2.18677 6.66681 3.67915 6.66681 5.5201V8.0201M8.49982 18.8534H6.47602C4.95295 18.8534 4.19142 18.8534 3.63183 18.5483C3.14024 18.2802 2.75289 17.8548 2.53185 17.3403C2.28023 16.7547 2.35132 15.9965 2.49348 14.4801L2.99348 9.14674C3.11353 7.86622 3.17355 7.22596 3.46153 6.7419C3.71515 6.31559 4.08987 5.97436 4.53799 5.76164C5.04682 5.5201 5.68989 5.5201 6.97602 5.5201L13.0243 5.5201C14.3104 5.5201 14.9535 5.5201 15.4623 5.76164C15.9104 5.97436 16.2851 6.31559 16.5388 6.7419C16.7754 7.13964 16.8581 7.64284 16.9467 8.52002" stroke="#002E5E" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M14 12.52L14 16.52" stroke="#002E5E" stroke-linecap="round"/>
                             <path d="M16 14.52H12" stroke="#002E5E" stroke-linecap="round"/>
