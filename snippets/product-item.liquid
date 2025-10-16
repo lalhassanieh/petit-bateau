@@ -533,7 +533,7 @@
               href="{{ card_product.url }}"
             {% endif %}
           >
-            {{- card_product.title -}}
+            {{- card_product.title | truncate: 43 -}}
           </a>
         {% endif %}
         {% comment %} Product item rating {% endcomment %}
@@ -1057,7 +1057,7 @@
           title="{{ 'onboarding.product_title_example' | t }}"
           aria-label="{{ 'onboarding.product_title_example' | t }}"
         >
-          {{ 'onboarding.product_title_example' | t }}
+          {{ 'onboarding.product_title_example' | t | truncate: 43 }}
         </a>
         <div
           class="product-item__price mt-5 {% if type != 'list' %}justify-content-{{ settings.product_alignment }}{% endif %} fs-custom fw-custom flex"
