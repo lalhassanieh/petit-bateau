@@ -508,7 +508,7 @@
         ".collection-item__name {text-align: left; padding: 0; border: none; background-color: transparent;}",
         ".collection-item__media--ratio {--aspect-ratio: 0.6536458333333334 !important;}",
         ".collection-item__name-inner {font-family: \"Oswald-Medium\";}",
-        " .collection-item__name{width:auto;}"
+        ".collection-item__name {width: auto !important;}"
       ],
       "name": "t:sections.collection-list.name",
       "settings": {
