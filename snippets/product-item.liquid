@@ -686,14 +686,14 @@
         {% comment %} Display color count for product {% endcomment %}
         {% assign color_count = 1 %}
 
-        {% if product.metafields.custom.related_products.value != blank %}
-          {% assign products_comesin = product.metafields.custom.related_products.value | split: ',' %}
+        {% if card_product.metafields.custom.related_products.value != blank %}
+          {% assign products_comesin = card_product.metafields.custom.related_products.value | split: ',' %}
           {% assign color_count = color_count | plus: products_comesin.size %}
         {% endif %}
 
         {% if color_count > 1 %}
           <div class="product-colors-count">
-            <a href="{{ product.url }}"> {{ color_count }} couleurs </a>
+            <a href="{{ card_product.url }}"> {{ color_count }} couleurs </a>
           </div>
         {% endif %}
         {% comment %} End color count {% endcomment %}
