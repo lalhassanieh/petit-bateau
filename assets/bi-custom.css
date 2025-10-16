@@ -206,7 +206,6 @@
 .custom-text-block {
   color: #A4A9AD;
   text-align: center;
-  padding: 0 20px;
 }
 .custom-text-block .first-title {
   font-size: 25px;
@@ -221,6 +220,7 @@
 .custom-text-block .second-title {
   font-size: 20px;
   text-transform: uppercase;
+  padding-top: 20px;
 }
 
 @media (min-width: 1024px) {
