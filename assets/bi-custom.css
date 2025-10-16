@@ -197,6 +197,10 @@
   height: 80px;
 }
 
+.product-colors-count {
+  margin-top: 7px;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
