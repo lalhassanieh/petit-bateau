@@ -372,6 +372,7 @@
                 {% endif %}
               {% endif %}
               {% if product_style != 'morden' %}
+                {% comment %} COMMENTED OUT: Only the overlay add to cart buttons on top of images
                 {% if template_enable_add_cart == true and show_add_cart and theme_st.enable_catalog_mode == false %}
                   {%- liquid
                     assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id
@@ -499,6 +500,7 @@
                     </product-form>
                   {%- endif -%}
                 {% endif %}
+                END COMMENTED OUT: Add to cart overlay buttons only {% endcomment %}
               {% endif %}
             {% endif %}
           </div>
