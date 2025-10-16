@@ -575,7 +575,7 @@
         "header_size": "medium",
         "header_alignment": "center",
         "email_placeholder": "Email *",
-        "btn_text": "Subscribe",
+        "btn_text": "Valider",
         "note": "On vous enverra plein de conseils sympas &amp; nos offres exclusives! <br>* Voir conditions.<br>\nEn savoir plus sur la politique de protection des données",
         "form_layout": "vertical",
         "show_content_background": false,
