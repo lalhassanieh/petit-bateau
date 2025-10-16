@@ -152,6 +152,13 @@
 .product-item__information .product-item__name {
   margin-bottom: 12px;
 }
+.product-item__information .product-item__price {
+  margin-top: 0 !important;
+}
+
+.product-item__button-submit {
+  transform: unset !important;
+}
 
 @media (min-width: 1024px) {
   #topbar .text-slide {
