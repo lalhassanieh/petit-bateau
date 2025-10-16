@@ -156,7 +156,8 @@
   margin-top: 0 !important;
 }
 
-.product-item__button-submit {
+.product-item__button-submit,
+.product-item__select-options {
   transform: unset !important;
   background-color: #BDD4E5 !important;
   border-radius: 4px !important;
