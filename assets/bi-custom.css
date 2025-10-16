@@ -145,6 +145,14 @@
   color: #002E5E !important;
 }
 
+.product__badges {
+  margin-inline-start: 4px;
+}
+
+.product-item__information .product-item__name {
+  margin-bottom: 12px;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;

@@ -172,9 +172,20 @@
  }
 
  .price-regular {
+
      .price-item,
      .price {
          color: #002E5E !important;
+     }
+ }
+
+ .product__badges {
+     margin-inline-start: 4px;
+ }
+
+ .product-item__information {
+     .product-item__name {
+         margin-bottom: 12px;
      }
  }
 
