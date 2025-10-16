@@ -167,6 +167,11 @@
   align-items: center;
 }
 
+.product-item__button {
+  background-color: transparent !important;
+  box-shadow: unset !important;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
