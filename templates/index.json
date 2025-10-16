@@ -530,7 +530,7 @@
         "show_product_count": false,
         "show_icon": false,
         "show_description": false,
-        "font_size": 16,
+        "font_size": 24,
         "font_weight": "heading_weight",
         "information_spacing": 12,
         "rounded_image": false,
