@@ -568,7 +568,7 @@
         "section_width": "fluid_container",
         "color_scheme": "",
         "heading": "-15% sur votre première commande",
-        "description": "<p>Bénéficiez de -15% sur votre première commande en vous inscrivant à notre newsletter !<br>(hors soldes et promotions en cours)</p>",
+        "description": "<p>Bénéficiez de -15% sur votre première commande en vous inscrivant à notre newsletter!<br>(hors soldes et promotions en cours)</p>",
         "header_size": "medium",
         "header_alignment": "center",
         "email_placeholder": "Email *",
