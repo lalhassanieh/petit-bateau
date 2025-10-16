@@ -415,7 +415,8 @@
     "featured_collection_pfcpCH": {
       "type": "featured-collection",
       "custom_css": [
-        ".countdown--container:not(:last-child):after {display: none;}"
+        ".countdown--container:not(:last-child):after {display: none;}",
+        " .product-item__wrapper .items-center {align-items: center; }"
       ],
       "name": "t:names.featured_collection",
       "settings": {
