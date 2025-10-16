@@ -564,7 +564,8 @@
     "newsletter_cPwnaD": {
       "type": "newsletter",
       "custom_css": [
-        "h2 {text-transform: uppercase !important; font-size: 33.6px; font-family: \"Oswald-Bold\"; font-weight: 500 !important; letter-spacing: 0.2px !important;}"
+        "h2 {text-transform: uppercase !important; font-size: 33.6px; font-family: \"Oswald-Bold\"; font-weight: 500 !important; letter-spacing: 0.2px !important; padding-bottom: 20px;}",
+        ".section__header-des {margin-bottom: 50px;}"
       ],
       "name": "t:sections.newsletters.name",
       "settings": {
