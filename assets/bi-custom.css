@@ -158,6 +158,9 @@
 
 .product-item__button-submit {
   transform: unset !important;
+  background-color: #BDD4E5 !important;
+  border-radius: 4px !important;
+  padding: 10px !important;
 }
 
 @media (min-width: 1024px) {
