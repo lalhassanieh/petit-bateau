@@ -176,6 +176,7 @@
 .section__header-heading {
   font-family: "Oswald-Medium";
   font-weight: 500 !important;
+  letter-spacing: 0.2px !important;
 }
 
 .product-detail__information .swatch-colors {
@@ -200,6 +201,21 @@
 
 .product-colors-count {
   margin-top: 7px;
+}
+
+.custom-text-block {
+  color: #A4A9AD;
+  text-align: center;
+}
+.custom-text-block .first-title {
+  font-size: 25px;
+  font-weight: 500;
+}
+.custom-text-block .first-description.second-description {
+  font-size: 12px;
+}
+.custom-text-block .second-title {
+  font-size: 20px;
 }
 
 @media (min-width: 1024px) {
