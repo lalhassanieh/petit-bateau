@@ -21,9 +21,8 @@
   {% comment %} custom code for related products {% endcomment %}
   {% if product.metafields.custom.related_products.value != blank %}
     {% assign products_comesin = product.metafields.custom.related_products.value | split: ',' %}
-
-    <div class="swatch-colors item_square">
-      <h4 class="swatch__title">Also Comes In :</h4>
+    <div class="swatch-colors">
+      <h4 class="swatch__title">Couleur:</h4>
       <div class="d-flex">
         {% comment %} Paginate once outside the loop {% endcomment %}
         {% paginate product.collections.first.products by 10000 %}

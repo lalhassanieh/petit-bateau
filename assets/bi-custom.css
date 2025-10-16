@@ -176,6 +176,19 @@
   font-family: "Oswald-Medium";
 }
 
+.product-detail__information .swatch-colors {
+  padding-bottom: 30px;
+}
+.product-detail__information .swatch-colors a {
+  height: 80px;
+  width: 80px;
+  display: inline-block;
+  margin-right: 15px;
+}
+.product-detail__information .swatch-colors a .swatch-thumbnail {
+  height: 80px;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
