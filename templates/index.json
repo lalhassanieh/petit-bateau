@@ -416,7 +416,7 @@
       "type": "featured-collection",
       "custom_css": [
         ".countdown--container:not(:last-child):after {display: none;}",
-        " .product-item__wrapper .items-center {align-items: center; }"
+        ".product-item__wrapper .items-center {align-items: center;}"
       ],
       "name": "t:names.featured_collection",
       "settings": {
@@ -439,7 +439,7 @@
         "rows_on_desktop": 2,
         "enable_load_more": false,
         "button_label": "Load more",
-        "column_gap": 10,
+        "column_gap": 15,
         "show_arrow": true,
         "carousel_pagination": "show_dots_on_mobile",
         "infinite": false,
