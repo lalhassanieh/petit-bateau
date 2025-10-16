@@ -520,20 +520,109 @@
         {% comment %} Product item price {% endcomment %}
         {% if template_enable_price == true %}
           {% if hidden_price != true %}
-            <div
-              class="product-item__price{% if type == 'list' or type == 'sticky' %} text-start{% else %} justify-content-{{ settings.product_alignment }} fs-custom fw-custom{% endif %} flex gap-custom lh-normal {{ priceclass }}"
-              style="--font-size: {{ settings.price_size }}; --gap: 3px;--heading-weight: {{ settings.price_font_weight }}"
-            >
-              {%- render 'price', scope: 'item', product: card_product, show_badges: false, class: priceclass -%}
-              {% comment %} Add badges beside price (excluding sold out) {% endcomment %}
-              {% if template_enable_product_badges == true %}
-                {% render 'product-badges',
-                  card_product: card_product,
-                  type: 'product_item',
-                  class: 'ml-10 flex gap-5',
-                  sticky: type,
-                  exclude_sold_out: true
-                %}
+            <div class="flex items-center justify-between gap-10 w-full">
+              <div
+                class="product-item__price{% if type == 'list' or type == 'sticky' %} text-start{% else %} justify-content-{{ settings.product_alignment }} fs-custom fw-custom{% endif %} flex gap-custom lh-normal {{ priceclass }}"
+                style="--font-size: {{ settings.price_size }}; --gap: 3px;--heading-weight: {{ settings.price_font_weight }}"
+              >
+                {%- render 'price', scope: 'item', product: card_product, show_badges: false, class: priceclass -%}
+                {% comment %} Add badges beside price (excluding sold out) {% endcomment %}
+                {% if template_enable_product_badges == true %}
+                  {% render 'product-badges',
+                    card_product: card_product,
+                    type: 'product_item',
+                    class: 'ml-10 flex gap-5',
+                    sticky: type,
+                    exclude_sold_out: true
+                  %}
+                {% endif %}
+              </div>
+              {% comment %} Quick add to cart button beside price {% endcomment %}
+              {% if type != 'list' and type != 'sticky' and product_style != 'morden' %}
+                {% if template_enable_add_cart == true and show_add_cart and theme_st.enable_catalog_mode == false %}
+                  {%- liquid
+                    assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id
+                    assign qty_rules = false
+                    if card_product.selected_or_first_available_variant.quantity_rule.template > 1 or card_product.selected_or_first_available_variant.quantity_rule.max != null or card_product.selected_or_first_available_variant.quantity_rule.increment > 1
+                      assign qty_rules = true
+                    endif
+                  -%}
+                  {%- if card_product.variants.size > 1 or qty_rules -%}
+                    {% comment %} Case select options {% endcomment %}
+                    <select-option
+                      tabindex="0"
+                      data-custom-class="quickview"
+                      data-item="overlay-quickbuy"
+                      data-url="/products/{{ card_product.handle }}?section_id=product-quickview&ajax=1"
+                      class="product__add-cart product-item__select-options transition btn btn-white shadow text-center inline-flex content-center relative px-15 py-5"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="spin opacity-0 icon-load">
+                        <use href="#icon-load"></use>
+                      </svg>
+                      <svg width="12" height="14" fill="none" class="block hidden-on-load icon-cart">
+                        <use href="#icon-cart" />
+                      </svg>
+                      <span class="hidden hidden-on-load">
+                        {{- 'products.product.actions.select_options.label' | t -}}
+                      </span>
+                    </select-option>
+                  {%- else -%}
+                    {% comment %} Case add cart directly {% endcomment %}
+                    <product-form class="product-item__product-form">
+                      {%- form 'product',
+                        card_product,
+                        id: product_form_id,
+                        class: 'form',
+                        novalidate: 'novalidate',
+                        data-type: 'add-to-cart-form'
+                      -%}
+                        <input
+                          type="hidden"
+                          name="id"
+                          value="{{ card_product.selected_or_first_available_variant.id }}"
+                          disabled
+                        >
+                        <button
+                          id="{{ product_form_id }}-submit"
+                          type="submit"
+                          name="add"
+                          class="product__add-cart product-item__button-submit transition btn btn-white shadow text-center inline-flex content-center relative px-15 py-5"
+                          aria-haspopup="dialog"
+                          aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                          aria-live="polite"
+                          arial-label="
+                            {%- if card_product.selected_or_first_available_variant.available -%}
+                              {{ 'products.product.actions.add_to_cart.default.label' | t }}
+                            {%- else -%}
+                              {{ 'products.product.actions.add_to_cart.sold_out.label' | t }}
+                            {%- endif -%}
+                          "
+                          data-sold-out-message="true"
+                          {% if card_product.selected_or_first_available_variant.available == false %}
+                            disabled
+                          {% endif %}
+                        >
+                          <svg width="12" height="14" fill="none" class="block hidden-on-load icon-cart">
+                            <use href="#icon-cart" />
+                          </svg>
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="spin opacity-0 icon-load">
+                            <use href="#icon-load"></use>
+                          </svg>
+                          <span class="hidden hidden-on-load btn-action">
+                            {%- if card_product.selected_or_first_available_variant.available -%}
+                              {{ 'products.product.actions.add_to_cart.default.label' | t }}
+                            {%- else -%}
+                              {{ 'products.product.actions.add_to_cart.sold_out.label' | t }}
+                            {%- endif -%}
+                          </span>
+                          <span class="sold-out-message hidden">
+                            {{ 'products.product.actions.add_to_cart.sold_out.label' | t }}
+                          </span>
+                        </button>
+                      {%- endform -%}
+                    </product-form>
+                  {%- endif -%}
+                {% endif %}
               {% endif %}
             </div>
           {% endif %}

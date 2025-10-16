@@ -229,14 +229,12 @@
               {% render 'placeholder-render', class: 'rounded' %}
             </a>
           {%- endif -%}
-          {% comment %} Sold out badge stays on image {% endcomment %}
           {% if template_enable_product_badges == true %}
             {% render 'product-badges',
               card_product: card_product,
-              type: 'product_item',
+              type: 'price_badges',
               class: bage_positon,
-              sticky: type,
-              show_only_sold_out: true
+              sticky: type
             %}
           {% endif %}
             {% comment %} Product item wishlist using only wishlist page {% endcomment %}
@@ -392,64 +390,52 @@
                   disabled
                 >
                   {% if hidden_price != true %}
-                    <div class="flex items-center justify-between gap-10 w-full">
-                      <div
-                        class="product-item__price justify-content-{{ settings.product_alignment }} fs-custom fw-custom flex gap-custom lh-normal {{ priceclass }}"
-                        style="--font-size: {{ settings.price_size }}; --gap: 3px;--heading-weight: {{ settings.price_font_weight }}"
-                      >
-                        {%- render 'price', scope: 'item', product: card_product, show_badges: false, class: priceclass -%}
-                        {% comment %} Add badges beside price (excluding sold out) {% endcomment %}
-                        {% if template_enable_product_badges == true %}
-                          {% render 'product-badges',
-                            card_product: card_product,
-                            type: 'product_item',
-                            class: 'ml-10 flex gap-5',
-                            sticky: type,
-                            exclude_sold_out: true
-                          %}
-                        {% endif %}
-                      </div>
-                      {% if show_add_cart and theme_st.enable_catalog_mode == false %}
-                        <button
-                          id="{{ product_form_id }}-submit"
-                          type="submit"
-                          name="add"
-                          class="product__add-cart product__add-cart__bundle product-item__select-options transition btn-outline text-center inline-flex content-center relative morden-style px-15 py-5"
-                          aria-haspopup="dialog"
-                          aria-labelledby="{{ product_form_id }}-submit title-{{ section.id }}-{{ card_product.id }}"
-                          aria-live="polite"
-                          arial-label="
-                            {%- if card_product.selected_or_first_available_variant.available -%}
-                              {{ 'products.product.actions.add_to_bundle.label_bundle' | t }}
-                            {%- else -%}
-                              {{ 'products.product.actions.add_to_cart.sold_out.label' | t }}
-                            {%- endif -%}
-                          "
-                          data-sold-out-message="true"
-                          {% if card_product.selected_or_first_available_variant.available == false %}
-                            disabled
-                          {% endif %}
-                        >
-                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="spin opacity-0 icon-load">
-                            <use href="#icon-load"></use>
-                          </svg>
-                          <span class="block hidden-on-load btn-action">
-                            {%- if card_product.selected_or_first_available_variant.available -%}
-                              {{ 'products.product.actions.add_to_bundle.label_bundle' | t }}
-                            {%- else -%}
-                              {{ 'products.product.actions.add_to_cart.sold_out.label' | t }}
-                            {%- endif -%}
-                          </span>
-                          <span class="sold-out-message hidden">
-                            {{ 'products.product.actions.add_to_cart.sold_out.label' | t }}
-                          </span>
-                        </button>
-                      {% endif %}
+                    <div
+                      class="product-item__price justify-content-{{ settings.product_alignment }} fs-custom fw-custom flex gap-custom lh-normal {{ priceclass }}"
+                      style="--font-size: {{ settings.price_size }}; --gap: 3px;--heading-weight: {{ settings.price_font_weight }}"
+                    >
+                      {%- render 'price', scope: 'item', product: card_product, show_badges: false, class: priceclass -%}
                     </div>
                   {% endif %}
                 {%- if show_variant -%}
                   {%- render 'color-swatches' | product: card_product | type: "bundle" -%}
                 {%- endif -%}
+                {% if show_add_cart and theme_st.enable_catalog_mode == false %}
+                  <button
+                    id="{{ product_form_id }}-submit"
+                    type="submit"
+                    name="add"
+                    class="w-full product__add-cart product__add-cart__bundle product-item__select-options transition btn-outline text-center inline-flex content-center relative mt-20 morden-style"
+                    aria-haspopup="dialog"
+                    aria-labelledby="{{ product_form_id }}-submit title-{{ section.id }}-{{ card_product.id }}"
+                    aria-live="polite"
+                    arial-label="
+                      {%- if card_product.selected_or_first_available_variant.available -%}
+                        {{ 'products.product.actions.add_to_bundle.label_bundle' | t }}
+                      {%- else -%}
+                        {{ 'products.product.actions.add_to_cart.sold_out.label' | t }}
+                      {%- endif -%}
+                    "
+                    data-sold-out-message="true"
+                    {% if card_product.selected_or_first_available_variant.available == false %}
+                      disabled
+                    {% endif %}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="spin opacity-0 icon-load">
+                      <use href="#icon-load"></use>
+                    </svg>
+                    <span class="block hidden-on-load btn-action">
+                      {%- if card_product.selected_or_first_available_variant.available -%}
+                        {{ 'products.product.actions.add_to_bundle.label_bundle' | t }}
+                      {%- else -%}
+                        {{ 'products.product.actions.add_to_cart.sold_out.label' | t }}
+                      {%- endif -%}
+                    </span>
+                    <span class="sold-out-message hidden">
+                      {{ 'products.product.actions.add_to_cart.sold_out.label' | t }}
+                    </span>
+                  </button>
+                {% endif %}
               {%- endform -%}
             </product-form-bundle>
         </div>
