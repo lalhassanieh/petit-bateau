@@ -121,8 +121,10 @@
               </button>
             </div>
           {%- endform -%}
-          {%- if section_st.note != blank -%}
-            <div class="sec_newsletter_note newsletter-note mt-12 mx-auto fs-12">{{ section.settings.note }}</div>
+          {%- if section.settings.note != blank -%}
+            <div class="sec_newsletter_note newsletter-note mt-12 mx-auto fs-12">
+              {{ section.settings.note }}
+            </div>
           {% endif %}
         </motion-element>
       </div>
