@@ -513,7 +513,7 @@
         "header_size": "medium",
         "header_alignment": "left",
         "display_mode": "carousel",
-        "image_ratio": "portrait",
+        "image_ratio": "square",
         "custom_ratio": "",
         "items_per_row": 5,
         "column_gap": 25,
