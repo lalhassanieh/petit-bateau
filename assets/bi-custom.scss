@@ -224,16 +224,21 @@
              margin-bottom: 10px !important;
          }
 
-         a {
-             height: 80px;
-             width: 80px;
-             display: inline-block;
-             margin-right: 15px;
+         .d-flex {
+             display: flex;
 
-             .swatch-thumbnail {
+             a {
                  height: 80px;
+                 width: 80px;
+                 display: inline-block;
+                 margin-right: 15px;
+
+                 .swatch-thumbnail {
+                     height: 80px;
+                 }
              }
          }
+
      }
  }
 

@@ -183,13 +183,16 @@
   font-size: 1.4rem !important;
   margin-bottom: 10px !important;
 }
-.product-detail__information .swatch-colors a {
+.product-detail__information .swatch-colors .d-flex {
+  display: flex;
+}
+.product-detail__information .swatch-colors .d-flex a {
   height: 80px;
   width: 80px;
   display: inline-block;
   margin-right: 15px;
 }
-.product-detail__information .swatch-colors a .swatch-thumbnail {
+.product-detail__information .swatch-colors .d-flex a .swatch-thumbnail {
   height: 80px;
 }
 
