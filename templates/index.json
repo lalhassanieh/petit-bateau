@@ -565,7 +565,7 @@
       "type": "newsletter",
       "custom_css": [
         "h2 {text-transform: uppercase !important; font-size: 33.6px; font-family: \"Oswald-Bold\"; font-weight: 500 !important; letter-spacing: 0.2px !important; padding-bottom: 20px;}",
-        ".subcribe-submit {margin-top: 30px !important;}"
+        ".subcribe-submit {margin-top: 25px !important; margin-bottom:20px !important;}"
       ],
       "name": "t:sections.newsletters.name",
       "settings": {
