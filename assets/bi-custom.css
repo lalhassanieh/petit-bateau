@@ -172,6 +172,10 @@
   box-shadow: unset !important;
 }
 
+.section__header-heading {
+  font-family: "Oswald-Medium";
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
