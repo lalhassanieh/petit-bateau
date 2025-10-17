@@ -344,7 +344,8 @@
      padding-inline-start: 24px;
 
      &.phone {
-        font-weight: 600;
+         font-weight: 600;
+
          a {
              &:before {
                  content: "";
@@ -370,6 +371,22 @@
                  position: absolute;
                  top: 7px;
                  inset-inline-start: 0;
+             }
+         }
+     }
+ }
+
+ .footer-block {
+     .footer__block-info {
+         p {
+             font-size: 12px;
+         }
+     }
+
+     ul {
+         li {
+             a {
+                 font-size: 12px;
              }
          }
      }

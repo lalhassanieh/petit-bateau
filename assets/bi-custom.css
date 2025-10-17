@@ -303,6 +303,13 @@
   inset-inline-start: 0;
 }
 
+.footer-block .footer__block-info p {
+  font-size: 12px;
+}
+.footer-block ul li a {
+  font-size: 12px;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
