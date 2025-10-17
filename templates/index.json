@@ -563,23 +563,32 @@
     },
     "newsletter_cPwnaD": {
       "type": "newsletter",
+      "custom_css": [
+        "h2 {text-transform: uppercase !important; font-size: 33.6px; font-family: \"Oswald-Bold\"; font-weight: 500 !important; letter-spacing: 0.2px !important; padding-bottom: 10px;}",
+        ".subcribe-submit {margin-top: 25px !important;}",
+        ".newsletter-inner {margin-bottom: 20px !important;}",
+        ".subcribe-input {background-color: #fff; border-color: #d8d8d8;}",
+        ".newsletter-bottom-info > div {margin-top: 10px;}",
+        ".sec__newsletter {border-top: 1.05px solid #979797; border-bottom: 1.05px solid #979797;}",
+        ".subcribe-button {letter-spacing: 0.2px; font-size: 17px;}"
+      ],
       "name": "t:sections.newsletters.name",
       "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "",
+        "section_width": "full_width",
+        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
         "heading": "-15% sur votre première commande",
-        "description": "<p>Bénéficiez de -15% sur votre première commande en vous inscrivant à notre newsletter!<br>(hors soldes et promotions en cours)</p>",
+        "description": "<p style=\"line-height:14.7px\">Bénéficiez de -15% sur votre première commande en vous inscrivant à notre newsletter! <br>(hors soldes et promotions en cours)</p>",
         "header_size": "medium",
         "header_alignment": "center",
         "email_placeholder": "Email *",
-        "btn_text": "Subscribe",
-        "note": "On vous enverra plein de conseils sympas & nos offres exclusives! * Voir conditions.",
+        "btn_text": "Valider",
+        "note": "<div class=\"newsletter-bottom-info\">\n  On vous enverra plein de conseils sympas &amp; nos offres exclusives! <br>\n  <div><a href=\"\">* Voir conditions.</a></div>\n  <div><a href=\"\">En savoir plus sur la politique de protection des données</a></div>\n</div>",
         "form_layout": "vertical",
         "show_content_background": false,
         "content_background": "#ffffff",
         "content_box_opacity": 100,
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
         "reset_spacing": false
       }
     },
@@ -589,35 +598,63 @@
         "icon_box_ACjiqA": {
           "type": "icon_box",
           "settings": {
+            "icon_image": "shopify://shop_images/Icon_5.svg",
             "icon_svg": "free_shipping",
             "custom_svg": "",
-            "heading": "Free Shipping",
-            "description": "<p>Enjoy free worldwide shipping and returns, with <br/>customs and duties taxes included.</p>"
+            "heading": "Le savoir-faire",
+            "description": "<p>depuis 1893</p>"
           }
         },
         "icon_box_RLNr9a": {
           "type": "icon_box",
           "settings": {
+            "icon_image": "shopify://shop_images/Icon_6.svg",
             "icon_svg": "check_badge",
             "custom_svg": "",
-            "heading": "Free Returns",
-            "description": "<p>Free returns within 15 days, please make sure the <br/>items are in undamaged condition.</p>"
+            "heading": "Livraison gratuite",
+            "description": "<p>En boutique</p>"
           }
         },
         "icon_box_tj4DJd": {
           "type": "icon_box",
           "settings": {
+            "icon_image": "shopify://shop_images/Icon_7.svg",
             "icon_svg": "message_communications",
             "custom_svg": "",
-            "heading": "Support Online",
-            "description": "<p>We support customers 24/7, send questions we will <br/>solve for you immediately.</p>"
+            "heading": "Échange et retour gratuits",
+            "description": "<p>en boutique</p>"
+          }
+        },
+        "icon_box_e7XKCP": {
+          "type": "icon_box",
+          "settings": {
+            "icon_image": "shopify://shop_images/Icon_8.svg",
+            "icon_svg": "message_communications",
+            "custom_svg": "",
+            "heading": "Paiement",
+            "description": "<p>100% sécurisé</p>"
+          }
+        },
+        "icon_box_RLGgCT": {
+          "type": "icon_box",
+          "settings": {
+            "icon_image": "shopify://shop_images/Icon_10.svg",
+            "icon_svg": "message_communications",
+            "custom_svg": "",
+            "heading": "Service client",
+            "description": "<p>à votre écoute</p>"
           }
         }
       },
       "block_order": [
         "icon_box_ACjiqA",
         "icon_box_RLNr9a",
-        "icon_box_tj4DJd"
+        "icon_box_tj4DJd",
+        "icon_box_e7XKCP",
+        "icon_box_RLGgCT"
+      ],
+      "custom_css": [
+        ".sec__icon-box-content-heading {font-family: \"Oswald-Medium\"; letter-spacing: 0.2px; margin-bottom: 5px;}"
       ],
       "settings": {
         "section_width": "fluid_container",
