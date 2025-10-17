@@ -198,7 +198,8 @@
       ],
       "custom_css": [
         ".swiper {max-width: 66%;}",
-        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; }}"
+        ".swiper-pagination-bullet::after {background-color: #002E5E !important;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 0 !important; }}"
       ],
       "settings": {
         "section_width": "stretch_width",
