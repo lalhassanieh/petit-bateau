@@ -350,6 +350,10 @@
   border-color: #002E5E !important;
 }
 
+#product-form-product-quickview .btn-primary {
+  padding: 1.5rem 2.5rem !important;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;

@@ -429,14 +429,18 @@
  }
 
  .product-detail__buy-buttons {
-
-
      .product-item__button {
          &.active {
              background-color: #002E5E !important;
              color: #FFF !important;
              border-color: #002E5E !important;
          }
+     }
+ }
+
+ #product-form-product-quickview {
+     .btn-primary {
+         padding: 1.5rem 2.5rem !important;
      }
  }
 
