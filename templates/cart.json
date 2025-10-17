@@ -18,6 +18,7 @@
         },
         "heading_f6yAbL": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "page_title": "",
             "header_size": "default"
@@ -25,6 +26,7 @@
         },
         "description_Uyfq9Y": {
           "type": "description",
+          "disabled": true,
           "settings": {
             "description": "<p>Review your selected items before purchase. Enjoy a seamless shopping experience!</p>"
           }
@@ -38,7 +40,7 @@
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "",
-        "alignment": "center",
+        "alignment": "left",
         "overlay_opacity": 0,
         "height": "adapt",
         "padding_top": 80,
