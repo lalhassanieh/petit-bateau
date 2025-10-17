@@ -334,6 +334,7 @@
   left: 20px;
   display: flex;
 }
+
 .menu-collection .collection-info span {
   background-color: unset;
   width: auto !important;

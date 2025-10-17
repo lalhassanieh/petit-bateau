@@ -408,6 +408,7 @@
  .banner__media.collection-media.p-0.hover-effect.block.rounded {
      height: 230px;
  }
+ 
 
  .menu-collection {
      .collection-info {
@@ -439,11 +440,12 @@
      }
  }
 
- #product-form-product-quickview ,.cart-footer{
+ #product-form-product-quickview , .cart-footer{
      .btn-primary {
          padding: 1.5rem 2.5rem !important;
      }
  }
+
 
  @media (min-width: 1024px) {
      #topbar {
