@@ -14,10 +14,12 @@
       "blocks": {
         "breadcrumb_MJHLQb": {
           "type": "breadcrumb",
+          "disabled": true,
           "settings": {}
         },
         "heading_fntt9G": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "page_title": "",
             "header_size": "default"
@@ -33,7 +35,6 @@
         "heading_fntt9G",
         "description_FAmcR8"
       ],
-      "disabled": true,
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "",
