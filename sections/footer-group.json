@@ -19,10 +19,10 @@
           "settings": {
             "image_width": 70,
             "store_heading": "Nous contacter",
-            "store_description": "<p><a href=\"mailto:allo@petit-bateau.com.lb\" title=\"mailto:allo@petit-bateau.com.lb\">allo@petit-bateau.com.lb</a><br/><a href=\"tel:+961 70119517\" title=\"tel:+961 70119517\"><strong>+961 70119517</strong></a><br/>Du lundi au vendredi de 10h à 18h</p>",
+            "store_description": "<p>Du lundi au vendredi de 10h à 18h</p>",
             "store_address": false,
-            "store_phone": false,
-            "store_email": false,
+            "store_phone": true,
+            "store_email": true,
             "content_width": "33.333%"
           }
         },
