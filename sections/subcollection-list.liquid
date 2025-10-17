@@ -40,8 +40,8 @@
     }
   {%- endstyle -%}
 {% endif %}
-{% if collection.metafields.custom.subcollection.value %}
-  {% assign sub_collection = collection.metafields.custom.subcollection.value %}
+{% if collection.metafields.custom.subcollections.value %}
+  {% assign sub_collection = collection.metafields.custom.subcollections.value %}
   {% if sub_collection != blank %}
     <div
       class="section remove_spacing mb-60{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-list color-{{ color_scheme }} gradient{% if reveal %} overflow-hidden{% endif %}"
