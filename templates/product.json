@@ -334,6 +334,7 @@
     },
     "divider_8KXwgr": {
       "type": "divider",
+      "disabled": true,
       "settings": {
         "section_width": "full_width",
         "border_height": 1,
