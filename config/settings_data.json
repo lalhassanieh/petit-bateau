@@ -117,6 +117,7 @@
         "blocks": {
           "badges_NhM4GM": {
             "type": "_product-badges",
+            "disabled": true,
             "settings": {},
             "blocks": {}
           },
@@ -157,10 +158,10 @@
           "buy_buttons_pDYNX9": {
             "type": "_product-buy-buttons",
             "settings": {
-              "show_dynamic_checkout": true,
-              "show_gift_card_recipient": true,
+              "show_dynamic_checkout": false,
+              "show_gift_card_recipient": false,
               "show_wishlist": true,
-              "show_compare": true
+              "show_compare": false
             },
             "blocks": {}
           }
