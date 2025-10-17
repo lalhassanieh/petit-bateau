@@ -334,7 +334,6 @@
   left: 20px;
   display: flex;
 }
-
 .menu-collection .collection-info span {
   background-color: unset;
   width: auto !important;
@@ -352,7 +351,7 @@
   border-color: #002E5E !important;
 }
 
-#product-form-product-quickview .btn-primary, .cart-footer .btn-primary {
+#product-form-product-quickview .btn-primary, .cart-footer .btn-primary, .auth-actions .btn-primary, #create_customer .btn-primary {
   padding: 1.5rem 2.5rem !important;
 }
 
