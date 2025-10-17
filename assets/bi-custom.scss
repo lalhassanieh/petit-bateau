@@ -12,17 +12,17 @@
  }
 
  @font-face {
-    font-family: 'Oswald-SemiBold';
-    src: url('./Oswald-SemiBold.eot');
-    src: url('./Oswald-SemiBold.eot?#iefix') format('embedded-opentype'),
-        url('./Oswald-SemiBold.woff2') format('woff2'),
-        url('./Oswald-SemiBold.woff') format('woff'),
-        url('./Oswald-SemiBold.ttf') format('truetype'),
-        url('./Oswald-SemiBold.svg#Oswald-SemiBold') format('svg');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
+     font-family: 'Oswald-SemiBold';
+     src: url('./Oswald-SemiBold.eot');
+     src: url('./Oswald-SemiBold.eot?#iefix') format('embedded-opentype'),
+         url('./Oswald-SemiBold.woff2') format('woff2'),
+         url('./Oswald-SemiBold.woff') format('woff'),
+         url('./Oswald-SemiBold.ttf') format('truetype'),
+         url('./Oswald-SemiBold.svg#Oswald-SemiBold') format('svg');
+     font-weight: 600;
+     font-style: normal;
+     font-display: swap;
+ }
 
  @font-face {
      font-family: 'Oswald-Light';
@@ -181,7 +181,7 @@
  }
 
  .product-item__name {
-     font-family: 'Oswald-Bold';
+     font-family: 'Oswald-SemiBold';
  }
 
  .price-regular {
