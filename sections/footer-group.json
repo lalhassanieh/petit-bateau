@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -18,11 +18,11 @@
           "type": "store_info",
           "settings": {
             "image_width": 70,
-            "store_heading": "Help Customers",
-            "store_description": "<p>Find a location nearest you to reduce shipping costs and make <br\/>shopping easier. <a href=\"https:\/\/www.google.com\/maps\" target=\"_blank\" title=\"https:\/\/www.google.com\/maps\"><strong>Show on google maps.<\/strong><\/a><\/p>",
-            "store_address": true,
-            "store_phone": true,
-            "store_email": true,
+            "store_heading": "Nous contacter",
+            "store_description": "<p><a href=\"mailto:allo@petit-bateau.com.lb\" title=\"mailto:allo@petit-bateau.com.lb\">allo@petit-bateau.com.lb</a><br/><a href=\"tel:+961 70119517\" title=\"tel:+961 70119517\"><strong>+961 70119517</strong></a><br/>Du lundi au vendredi de 10h à 18h</p>",
+            "store_address": false,
+            "store_phone": false,
+            "store_email": false,
             "content_width": "33.333%"
           }
         },
@@ -30,7 +30,7 @@
           "type": "link_list",
           "settings": {
             "heading": "",
-            "menu": "our-company",
+            "menu": "",
             "content_width": "16%"
           }
         },
@@ -38,18 +38,27 @@
           "type": "link_list",
           "settings": {
             "heading": "",
-            "menu": "shop-categories",
+            "menu": "",
+            "content_width": "16%"
+          }
+        },
+        "link_list_eJdN9G": {
+          "type": "link_list",
+          "settings": {
+            "heading": "",
+            "menu": "",
             "content_width": "16%"
           }
         },
         "newsletter_Rk8BD6": {
           "type": "newsletter",
+          "disabled": true,
           "settings": {
             "heading": "Sign Up to Newsletter",
             "description": "Sign up for 10% off your first purchase and free shipping. Updates information on Sales and Offers.",
             "email_placeholder": "Enter your email...",
             "button_label": "Sign Up",
-            "note": "***By entering the e-mail you accept the <a href=\"\/policies\/terms-of-service\" title=\"Terms of Service\"><strong>terms and conditions<\/strong><\/a> and the <a href=\"\/policies\/privacy-policy\" title=\"Privacy Policy\"><strong>privacy policy.<\/strong><\/a>",
+            "note": "***By entering the e-mail you accept the <a href=\"/policies/terms-of-service\" title=\"Terms of Service\"><strong>terms and conditions</strong></a> and the <a href=\"/policies/privacy-policy\" title=\"Privacy Policy\"><strong>privacy policy.</strong></a>",
             "content_width": "33.333%"
           }
         }
@@ -58,6 +67,7 @@
         "store_info_tUhcyD",
         "link_list_JTq77M",
         "link_list_x4zwRH",
+        "link_list_eJdN9G",
         "newsletter_Rk8BD6"
       ],
       "settings": {
@@ -65,12 +75,12 @@
         "color_scheme": "",
         "enable_back_top": true,
         "separator_line": "inner_page",
-        "enable_country_selector": true,
+        "enable_country_selector": false,
         "enable_language_selector": false,
         "enable_follow_on_shop": true,
+        "menu_store_policies": "",
         "show_social": true,
         "payment_enable": true,
-        "payment_image": "shopify:\/\/shop_images\/payment.png",
         "payment_width": 340,
         "copyright_text": "© 2024 Glozin store. All rights reserved.",
         "footer_heading_size": 16,
