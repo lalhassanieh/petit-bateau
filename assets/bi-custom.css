@@ -353,7 +353,7 @@
     display: block !important;
   }
   .menu-list .grid-cols .collection-items {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
   }
 }
 /* Mobile Slideshow Layout - Under 992px */
