@@ -262,16 +262,19 @@
   margin-top: 10px;
 }
 
-.footer__block-heading {
+.footer__block-heading,
+.footer-menu-title {
   font-family: "Oswald-Bold";
   letter-spacing: 0.2px;
   padding-bottom: 10px !important;
   text-transform: uppercase;
 }
-.footer__block-heading .store-info-content a:first-child {
+.footer__block-heading .store-info-content a:first-child,
+.footer-menu-title .store-info-content a:first-child {
   color: red;
 }
-.footer__block-heading .store-info-content a:nth-child(2) {
+.footer__block-heading .store-info-content a:nth-child(2),
+.footer-menu-title .store-info-content a:nth-child(2) {
   color: green;
 }
 
