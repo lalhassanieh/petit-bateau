@@ -77,7 +77,7 @@
         "payment_enable": true,
         "payment_image": "shopify://shop_images/Screenshot_2025-10-17_123626.png",
         "payment_width": 340,
-        "copyright_text": "<p>&lt;p&gt;Contact&lt;br&gt;FAQ&lt;br&gt;CGV&lt;br&gt;Mentions légales&lt;br&gt;CGU&lt;br&gt;Cookies&lt;br&gt;Politique de protection des données&lt;br&gt;*Conditions des offres en cours&lt;br&gt;Paramètres des cookies&lt;/p&gt;<br/><br/></p>",
+        "copyright_text": "<p>\n<a href=\"/pages/contact\">Contact</a>\n<a href=\"/pages/faq\">FAQ</a>\n<a href=\"/pages/cgv\">CGV</a>\n<a href=\"/pages/mentions-legales\">Mentions légales</a>\n<a href=\"/pages/cgu\">CGU</a>\n<a href=\"/pages/cookies\">Cookies</a>\n<a href=\"/pages/politique-de-protection-des-donnees\">Politique de protection des données</a>\n<a href=\"/pages/conditions-des-offres-en-cours\">*Conditions des offres en cours</a>\n<a href=\"/pages/parametres-des-cookies\">Paramètres des cookies</a>\n</p>",
         "footer_heading_size": 16,
         "padding_top": 60,
         "padding_bottom": 52,
