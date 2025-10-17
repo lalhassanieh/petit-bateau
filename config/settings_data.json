@@ -55,7 +55,7 @@
     "swatch_item_type": "variant_images",
     "search_type": "default",
     "search_result": "products",
-    "enable_search_suggestion": true,
+    "enable_search_suggestion": false,
     "popular_key_word": "",
     "collection_suggestion": "daily-deals",
     "show_search_price": true,
