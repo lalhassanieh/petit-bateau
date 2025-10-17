@@ -81,6 +81,7 @@
         "menu_store_policies": "",
         "show_social": true,
         "payment_enable": true,
+        "payment_image": "shopify://shop_images/Screenshot_2025-10-17_123626.png",
         "payment_width": 340,
         "copyright_text": "© 2024 Glozin store. All rights reserved.",
         "footer_heading_size": 16,
