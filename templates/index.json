@@ -682,104 +682,8 @@
         "carousel_on_mobile": true,
         "items_per_row_mobile": "1",
         "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_bottom": 40,
         "reset_spacing": false
-      }
-    },
-    "icon_box_YbT4tf": {
-      "type": "icon-box",
-      "blocks": {
-        "subheading_qANn9R": {
-          "type": "subheading",
-          "settings": {
-            "subheading": "HELP CENTER",
-            "font_size": 12,
-            "font_weight": "heading_weight",
-            "uppercase": false,
-            "spacing_bottom": 5
-          }
-        },
-        "heading_kykKcn": {
-          "type": "heading",
-          "settings": {
-            "heading": "Online Suport 24/7",
-            "font_size": 28,
-            "font_weight": "heading_weight",
-            "uppercase": false,
-            "spacing_bottom": 30
-          }
-        },
-        "description_ftGHkA": {
-          "type": "description",
-          "settings": {
-            "description": "<p>Trusted by 5.9 Million American**. We always try to bring the best experience to customers when shopping at Glozin.</p>",
-            "font_size": 13,
-            "font_weight": "subheading_weight",
-            "spacing_top": 33
-          }
-        },
-        "icon_box_Dehie3": {
-          "type": "icon_box",
-          "settings": {
-            "icon_svg": "phone",
-            "custom_svg": "",
-            "heading": "Call Us",
-            "description": "<p>Call now +222-1800-2628</p>"
-          }
-        },
-        "icon_box_UVK4Qb": {
-          "type": "icon_box",
-          "settings": {
-            "icon_svg": "chat",
-            "custom_svg": "",
-            "heading": "Chat with Us",
-            "description": "<p>Chat now with an expert</p>"
-          }
-        },
-        "icon_box_7dAUrm": {
-          "type": "icon_box",
-          "settings": {
-            "icon_svg": "email",
-            "custom_svg": "",
-            "heading": "Email Us",
-            "description": "<p>Nextskycompany@gmail.com</p>"
-          }
-        }
-      },
-      "block_order": [
-        "subheading_qANn9R",
-        "heading_kykKcn",
-        "description_ftGHkA",
-        "icon_box_Dehie3",
-        "icon_box_UVK4Qb",
-        "icon_box_7dAUrm"
-      ],
-      "custom_css": [
-        ".sec__icon-box-inner .border.radius-5 {border-radius: 100px;}"
-      ],
-      "settings": {
-        "section_width": "container",
-        "color_scheme": "scheme-2b5c6c91-201d-4fb1-aba3-e6d562656976",
-        "type": "frame",
-        "column_gap": 20,
-        "icon_position": "left",
-        "icon_size": 32,
-        "spacing": 15,
-        "show_border": false,
-        "enable_background": true,
-        "background": "linear-gradient(310deg, rgba(255, 255, 255, 1) 85%, rgba(255, 255, 255, 1) 100%)",
-        "content_alignment": "left",
-        "heading_font_size": 16,
-        "heading_font_weight": "heading_weight",
-        "heading_uppercase": false,
-        "heading_spacing_bottom": 0,
-        "des_font_size": 14,
-        "des_font_weight": "body_weight",
-        "carousel_on_mobile": true,
-        "items_per_row_mobile": "1",
-        "padding_top": 60,
-        "padding_bottom": 60,
-        "reset_spacing": true
       }
     }
   },
@@ -791,7 +695,6 @@
     "collection_list_iYKgWH",
     "custom_html_JjLxXP",
     "newsletter_cPwnaD",
-    "icon_box_TRwJBD",
-    "icon_box_YbT4tf"
+    "icon_box_TRwJBD"
   ]
 }
