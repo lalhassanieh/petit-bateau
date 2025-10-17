@@ -38,7 +38,7 @@
         "description_Uyfq9Y"
       ],
       "settings": {
-        "section_width": "stretch_width",
+        "section_width": "fluid_container",
         "color_scheme": "",
         "alignment": "left",
         "overlay_opacity": 0,
