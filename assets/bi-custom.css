@@ -265,6 +265,8 @@
 .footer__block-heading {
   font-family: "Oswald-Bold";
   letter-spacing: 0.2px;
+  padding-bottom: 0px !important;
+  text-transform: uppercase;
 }
 .footer__block-heading .store-info-content a:first-child {
   color: red;

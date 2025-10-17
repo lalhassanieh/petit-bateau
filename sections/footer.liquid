@@ -267,11 +267,6 @@
                       %}
                     {% endif %}
 
-                    {%- if block_st.store_description != blank -%}
-                      <div class="footer__block-info rich__text-mt-0 mb-20">
-                        {{ block_st.store_description }}
-                      </div>
-                    {% endif %}
                     {%- if block_st.store_address != blank or block_st.store_address or block_st.store_email %}
                       <div class="footer_store-infor">
                         {%- if block_st.store_address != blank -%}
@@ -280,14 +275,14 @@
                           </div>
                         {% endif %}
                         {%- if block_st.store_phone != blank and theme_st.store_phone != blank -%}
-                          <div class="footer__store-info">
+                          <div class="footer__store-info phone">
                             <a href="tel:{{ settings.store_phone }}" class="heading-color no-underline">
                               {{ theme_st.store_phone }}
                             </a>
                           </div>
                         {% endif %}
                         {%- if block_st.store_email != blank and theme_st.store_email != blank -%}
-                          <div class="footer__store-info">
+                          <div class="footer__store-info mail">
                             <a href="mailto:{{ settings.store_email }}" class="heading-color no-underline">
                               {{ theme_st.store_email }}
                             </a>
@@ -295,7 +290,11 @@
                         {% endif %}
                       </div>
                     {% endif %}
-
+                    {%- if block_st.store_description != blank -%}
+                      <div class="footer__block-info rich__text-mt-0 mb-20">
+                        {{ block_st.store_description }}
+                      </div>
+                    {% endif %}
                     {%- if shop.features.follow_on_shop? and section_st.enable_follow_on_shop -%}
                       <div class="footer__follow-on-shop mt-15">
                         {{ shop | login_button: action: 'follow' }}
