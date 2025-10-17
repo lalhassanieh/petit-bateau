@@ -116,6 +116,9 @@
         "popular_product_Xwjqcf",
         "image_banner_UUJxtT"
       ],
+      "custom_css": [
+        ".collapsible-heading{border-radius:50px}"
+      ],
       "settings": {
         "section_width": "fluid_container",
         "enable_filtering": true,
