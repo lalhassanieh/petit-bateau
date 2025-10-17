@@ -1,12 +1,12 @@
 /*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -18,8 +18,8 @@
           "type": "store_info",
           "settings": {
             "image_width": 70,
-            "store_heading": "About The Store",
-            "store_description": "<p>Find a location nearest you to reduce shipping costs and make <br/>shopping easier. <a href=\"https://www.google.com/maps\" target=\"_blank\" title=\"https://www.google.com/maps\"><strong>Show on google maps.</strong></a></p>",
+            "store_heading": "Help Customers",
+            "store_description": "<p>Find a location nearest you to reduce shipping costs and make <br\/>shopping easier. <a href=\"https:\/\/www.google.com\/maps\" target=\"_blank\" title=\"https:\/\/www.google.com\/maps\"><strong>Show on google maps.<\/strong><\/a><\/p>",
             "store_address": true,
             "store_phone": true,
             "store_email": true,
@@ -48,8 +48,8 @@
             "heading": "Sign Up to Newsletter",
             "description": "Sign up for 10% off your first purchase and free shipping. Updates information on Sales and Offers.",
             "email_placeholder": "Enter your email...",
-            "button_label": "Subscribe",
-            "note": "***By entering the e-mail you accept the<a href=\"/policies/terms-of-service\" target=\"_blank\" title=\"Terms of Service\"> <strong>terms and conditions</strong></a> and the <a href=\"/policies/privacy-policy\" target=\"_blank\" title=\"Privacy Policy\"><strong>privacy policy.</strong></a>",
+            "button_label": "Sign Up",
+            "note": "***By entering the e-mail you accept the <a href=\"\/policies\/terms-of-service\" title=\"Terms of Service\"><strong>terms and conditions<\/strong><\/a> and the <a href=\"\/policies\/privacy-policy\" title=\"Privacy Policy\"><strong>privacy policy.<\/strong><\/a>",
             "content_width": "33.333%"
           }
         }
@@ -60,25 +60,22 @@
         "link_list_x4zwRH",
         "newsletter_Rk8BD6"
       ],
-      "custom_css": [
-        ".field__input {background: #fff !important;}"
-      ],
       "settings": {
         "section_width": "fluid_container",
-        "color_scheme": "scheme-2b5c6c91-201d-4fb1-aba3-e6d562656976",
+        "color_scheme": "",
         "enable_back_top": true,
-        "separator_line": "homepage",
+        "separator_line": "inner_page",
         "enable_country_selector": true,
         "enable_language_selector": false,
         "enable_follow_on_shop": true,
         "show_social": true,
         "payment_enable": true,
-        "payment_image": "shopify://shop_images/payment.png",
+        "payment_image": "shopify:\/\/shop_images\/payment.png",
         "payment_width": 340,
-        "copyright_text": "© 2025 Glozin store. All rights reserved.",
+        "copyright_text": "© 2024 Glozin store. All rights reserved.",
         "footer_heading_size": 16,
         "padding_top": 60,
-        "padding_bottom": 45,
+        "padding_bottom": 52,
         "reset_spacing_on_homepage": true
       }
     }
