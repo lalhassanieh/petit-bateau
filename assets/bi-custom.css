@@ -375,6 +375,7 @@
     margin-bottom: 20px !important;
   }
 }
+
 /* Mobile Slideshow Layout - Under 992px */
 @media (max-width: 991px) {
   .slideshow.swiper {
