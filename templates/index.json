@@ -564,13 +564,7 @@
     "newsletter_cPwnaD": {
       "type": "newsletter",
       "custom_css": [
-        "h2 {text-transform: uppercase !important; font-size: 33.6px; font-family: \"Oswald-Bold\"; font-weight: 500 !important; letter-spacing: 0.2px !important; padding-bottom: 10px;}",
-        ".subcribe-submit {margin-top: 25px !important;}",
-        ".newsletter-inner {margin-bottom: 20px !important;}",
-        ".subcribe-input {background-color: #fff; border-color: #d8d8d8;}",
-        ".newsletter-bottom-info > div {margin-top: 10px;}",
-        ".sec__newsletter {border-top: 1.05px solid #979797; border-bottom: 1.05px solid #979797;}",
-        ".subcribe-button {letter-spacing: 0.2px; font-size: 17px;}"
+        "h2 {text-transform: uppercase !important; font-size: 33.6px; font-family: \"Oswald-Bold\"; font-weight: 500 !important; letter-spacing: 0.2px !important; padding-bottom: 10px;}"
       ],
       "name": "t:sections.newsletters.name",
       "settings": {
