@@ -18,7 +18,6 @@
         },
         "heading_fntt9G": {
           "type": "heading",
-          "disabled": true,
           "settings": {
             "page_title": "",
             "header_size": "default"
