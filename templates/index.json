@@ -507,7 +507,7 @@
         ".collection-item__information {left: 30px;}",
         ".collection-item__name {text-align: left; padding: 0; border: none; background-color: transparent;}",
         ".collection-item__media--ratio {--aspect-ratio: 0.6536458333333334 !important;}",
-        ".collection-item__name-inner {font-family: 'Oswald-SemiBold';}",
+        ".collection-item__name-inner {font-family: \"Oswald-SemiBold\";}",
         ".collection-item__name {width: auto !important;}",
         ".collection-item__information {justify-content: flex-start !important;}"
       ],
@@ -569,7 +569,7 @@
         ".newsletter-inner {margin-bottom: 20px !important;}",
         ".subcribe-input {background-color: #fff; border-color: #d8d8d8;}",
         ".newsletter-bottom-info > div {margin-top: 10px;}",
-        ".sec__newsletter {border-top: 1.05px solid #979797; border-bottom: 1.05px solid #979797;}",
+        ".sec__newsletter {border-top: 1.05px solid #979797; border-bottom: 1.05px solid #979797; }",
         ".subcribe-button {letter-spacing: 0.2px; font-size: 17px;}"
       ],
       "name": "t:sections.newsletters.name",
