@@ -239,6 +239,29 @@
   letter-spacing: 0.2px !important;
 }
 
+.sec__newsletter {
+  border-top: 1.05px solid #979797;
+  border-bottom: 1.05px solid #979797;
+  margin-bottom: 40px !important;
+}
+.sec__newsletter .subcribe-button {
+  letter-spacing: 0.2px;
+  font-size: 17px;
+}
+.sec__newsletter .subcribe-submit {
+  margin-top: 25px !important;
+}
+.sec__newsletter .newsletter-inner {
+  margin-bottom: 20px !important;
+}
+.sec__newsletter .subcribe-input {
+  background-color: #fff;
+  border-color: #d8d8d8;
+}
+.sec__newsletter .newsletter-bottom-info > div {
+  margin-top: 10px;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
