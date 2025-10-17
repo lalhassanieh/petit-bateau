@@ -579,7 +579,7 @@
         "header_alignment": "center",
         "email_placeholder": "Email *",
         "btn_text": "Valider",
-        "note": "On vous enverra plein de conseils sympas &amp; nos offres exclusives! <br><div><a href=\"\">* Voir conditions.</a></div><br>\n<div><a href=\"\">En savoir plus sur la politique de protection des données</a></div>",
+        "note": "On vous enverra plein de conseils sympas &amp; nos offres exclusives! <br><div><a href=\"\">* Voir conditions.</a></div>\n<div><a href=\"\">En savoir plus sur la politique de protection des données</a></div>",
         "form_layout": "vertical",
         "show_content_background": false,
         "content_background": "#ffffff",
