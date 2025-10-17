@@ -198,8 +198,9 @@
       ],
       "custom_css": [
         ".swiper {max-width: 66%;}",
-        ".swiper-pagination-bullet::after {background-color: #002E5E !important;}",
-        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 0 !important; }}"
+        ".swiper-pagination-bullet::after {background-color: #ccc !important;}",
+        ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}"
       ],
       "settings": {
         "section_width": "stretch_width",
