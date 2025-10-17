@@ -321,6 +321,22 @@
      }
  }
 
+ .footer__block-heading {
+     font-family: 'Oswald-Bold';
+     letter-spacing: 0.2px;
+
+     .store-info-content {
+         a:first-child {
+             color: red;
+         }
+
+         a:nth-child(2) {
+             color: green;
+         }
+
+     }
+ }
+
  @media (min-width: 1024px) {
      #topbar {
          .text-slide {
@@ -331,7 +347,7 @@
          }
      }
  }
- 
+
  /* Mobile Slideshow Layout - Under 992px */
  @media (max-width: 991px) {
      .slideshow.swiper {

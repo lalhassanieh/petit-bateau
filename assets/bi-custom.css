@@ -262,6 +262,17 @@
   margin-top: 10px;
 }
 
+.footer__block-heading {
+  font-family: "Oswald-Bold";
+  letter-spacing: 0.2px;
+}
+.footer__block-heading .store-info-content a:first-child {
+  color: red;
+}
+.footer__block-heading .store-info-content a:nth-child(2) {
+  color: green;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
