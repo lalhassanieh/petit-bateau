@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "page-heading": {
@@ -14,8 +14,7 @@
       "blocks": {
         "breadcrumb_UKcBAE": {
           "type": "breadcrumb",
-          "settings": {
-          }
+          "settings": {}
         },
         "heading_X8998p": {
           "type": "heading",
@@ -37,9 +36,9 @@
         "description_XFfaTA"
       ],
       "settings": {
-        "section_width": "stretch_width",
+        "section_width": "fluid_container",
         "color_scheme": "",
-        "alignment": "center",
+        "alignment": "left",
         "overlay_opacity": 0,
         "height": "adapt",
         "padding_top": 80,
