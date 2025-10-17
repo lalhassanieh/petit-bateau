@@ -56,7 +56,7 @@
     "search_type": "default",
     "search_result": "products",
     "enable_search_suggestion": true,
-    "popular_key_word": "Apple, Valdus, crop top",
+    "popular_key_word": "",
     "collection_suggestion": "daily-deals",
     "show_search_price": true,
     "show_message_when_remove": true,
