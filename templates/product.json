@@ -121,10 +121,10 @@
         "buy_buttons_LcQGtR": {
           "type": "_product-buy-buttons",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
             "show_wishlist": true,
-            "show_compare": true
+            "show_compare": false
           },
           "blocks": {}
         },
@@ -169,6 +169,7 @@
         },
         "trust_badge_qKXhpg": {
           "type": "_product-trust-badge",
+          "disabled": true,
           "settings": {
             "message": "Guarantee Safe Checkout:",
             "image_width": 340
