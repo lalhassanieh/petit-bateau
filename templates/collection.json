@@ -49,11 +49,11 @@
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "default",
-        "heading": "test",
-        "description": "<p>test</p>",
+        "heading": "",
+        "description": "",
         "header_size": "medium",
         "header_alignment": "left",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "custom_ratio": "",
         "items_per_row": 6,
         "column_gap": 30,
@@ -117,7 +117,9 @@
         "image_banner_UUJxtT"
       ],
       "custom_css": [
-        ".collapsible-heading {border-radius: 50px;}"
+        ".collapsible-heading {border-radius: 50px;}",
+        ".btn-filter {padding-top: 0.5rem !important; padding-bottom: 0.5rem !important;}",
+        " @media (max-width: 480px) {.product__badges-sale {display: none;} }"
       ],
       "settings": {
         "section_width": "fluid_container",
