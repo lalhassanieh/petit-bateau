@@ -62,6 +62,8 @@
     "show_message_when_remove": true,
     "action_after_add_cart": "open_drawer",
     "free_shipping_minimum": "150",
+    "enable_cart_note": false,
+    "enable_gift_wrap": false,
     "choose_gift_wrap_product": "gift-card",
     "product_recommendations_heading": "You may also like...",
     "minicart_type": "show_beside",
@@ -73,6 +75,8 @@
       "apple-iphone-13-mini-128gb-blue-unlocked-renewed",
       "apple-iphone-13-mini-128gb-pink-unlocked-renewed"
     ],
+    "show_estimate_shipping_rates": false,
+    "show_delivery_day": false,
     "facebook": "https://www.facebook.com/petitbateau",
     "instagram": "https://www.instagram.com/petitbateau/",
     "twitter": "",
