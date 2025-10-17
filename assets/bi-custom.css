@@ -306,6 +306,9 @@
 .footer-block .footer__block-info p {
   font-size: 12px;
 }
+.footer-block ul li {
+  padding-bottom: 0 !important;
+}
 .footer-block ul li a {
   font-size: 12px;
 }
