@@ -351,7 +351,7 @@
   border-color: #002E5E !important;
 }
 
-#product-form-product-quickview .btn-primary {
+#product-form-product-quickview .btn-primary, .cart-footer .btn-primary {
   padding: 1.5rem 2.5rem !important;
 }
 

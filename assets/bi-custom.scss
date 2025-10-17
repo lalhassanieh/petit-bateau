@@ -1,5 +1,5 @@
  /*fonts*/
- 
+
  @font-face {
      font-family: 'Oswald-Medium';
      src: url('./Oswald-Medium.eot');
@@ -439,7 +439,7 @@
      }
  }
 
- #product-form-product-quickview {
+ #product-form-product-quickview ,.cart-footer{
      .btn-primary {
          padding: 1.5rem 2.5rem !important;
      }
