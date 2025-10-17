@@ -40,11 +40,11 @@
     }
   {%- endstyle -%}
 {% endif %}
-{{ collection.metafields.custom.subcollections }}
-{{ collection.metafields.custom.subcollection }}
-{% if collection.metafields.custom.subcollections.value %}
-  {% assign sub_collection = collection.metafields.custom.subcollections.value %}
-  {{ sub_collection }}
+
+
+{% if collection.metafields.custom.custom.sub_collections.value %}
+  {% assign sub_collection = collection.metafields.custom.custom.sub_collections.value %}
+
   {% if sub_collection != blank %}
     <div
       class="test section remove_spacing mb-60{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-list color-{{ color_scheme }} gradient{% if reveal %} overflow-hidden{% endif %}"
