@@ -23,31 +23,31 @@
             "store_address": false,
             "store_phone": true,
             "store_email": true,
-            "content_width": "33.333%"
+            "content_width": "41.6666%"
           }
         },
         "link_list_JTq77M": {
           "type": "link_list",
           "settings": {
-            "heading": "",
-            "menu": "",
+            "heading": "Services",
+            "menu": "services",
             "content_width": "16%"
           }
         },
         "link_list_x4zwRH": {
           "type": "link_list",
           "settings": {
-            "heading": "",
-            "menu": "",
+            "heading": "Conseils",
+            "menu": "conseils",
             "content_width": "16%"
           }
         },
         "link_list_eJdN9G": {
           "type": "link_list",
           "settings": {
-            "heading": "",
-            "menu": "",
-            "content_width": "16%"
+            "heading": "Petit bateau",
+            "menu": "petit-bateau",
+            "content_width": "25%"
           }
         },
         "newsletter_Rk8BD6": {
