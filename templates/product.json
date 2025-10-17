@@ -286,6 +286,7 @@
     },
     "divider_E3r6ih": {
       "type": "divider",
+      "disabled": true,
       "settings": {
         "section_width": "full_width",
         "border_height": 1,
@@ -313,6 +314,7 @@
         "scrolling_text_dEP8jr",
         "scrolling_text_bPAypi"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "section_width": "full_width",
