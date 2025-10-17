@@ -567,7 +567,8 @@
         "h2 {text-transform: uppercase !important; font-size: 33.6px; font-family: \"Oswald-Bold\"; font-weight: 500 !important; letter-spacing: 0.2px !important; padding-bottom: 10px;}",
         ".subcribe-submit {margin-top: 25px !important;}",
         ".newsletter-inner {margin-bottom: 20px !important;}",
-        ".subcribe-input {background-color: #fff; border-color: #979797;}"
+        ".subcribe-input {background-color: #fff; border-color: #979797;}",
+        " .newsletter-bottom-info > div{margin-bottom:10px}"
       ],
       "name": "t:sections.newsletters.name",
       "settings": {
