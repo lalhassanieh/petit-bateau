@@ -376,12 +376,14 @@
          }
      }
  }
+
  .footer-block {
      .footer__block-info {
          p {
              font-size: 12px;
          }
      }
+
      ul {
          li {
              padding-bottom: 0 !important;
@@ -392,6 +394,19 @@
          }
      }
  }
+
+ .footer_bottom-inner {
+     padding-top: 10px !important;
+     padding-bottom: 10px !important;
+
+     .footer__copyright {
+         a {
+             font-size: 13px;
+             margin-right: 5px;
+         }
+     }
+ }
+
 
  @media (min-width: 1024px) {
      #topbar {
