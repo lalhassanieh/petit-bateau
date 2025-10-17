@@ -19,8 +19,20 @@
           target="_blank"
           aria-label="{{ 'general.social.links.facebook' | t }}"
         >
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <circle cx="20" cy="20" r="19.5" stroke="currentColor"/><path fill="currentColor" d="M18.333 16.667V18H17v2h1.333v6H21v-6h1.773L23 18h-2v-1.167c0-.54.053-.826.887-.826H23V14h-1.787c-2.133 0-2.88 1-2.88 2.667Z"/>
+          {% comment %}
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="19.5" stroke="currentColor"/><path fill="currentColor" d="M18.333 16.667V18H17v2h1.333v6H21v-6h1.773L23 18h-2v-1.167c0-.54.053-.826.887-.826H23V14h-1.787c-2.133 0-2.88 1-2.88 2.667Z"/>
+            </svg>
+          {% endcomment %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="9" height="17" viewBox="0 0 9 17" fill="none">
+            <g clip-path="url(#clip0_97_1939)">
+              <path d="M7.50897 9.00265L7.92026 6.38995H5.3885V4.69112C5.3885 3.97677 5.74144 3.27936 6.87179 3.27936H8.03979V1.05442C7.35981 0.945829 6.67281 0.887007 5.98426 0.878418C3.89862 0.878418 2.53767 2.13301 2.53767 4.39842V6.38995H0.228027V9.00265H2.53862V15.3217H5.3885V9.00265H7.50897Z" fill="#337FFF"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_97_1939">
+                <rect width="8.47059" height="16" fill="white" transform="translate(0.0395508 0.100098)"/>
+              </clipPath>
+            </defs>
           </svg>
           <span class="tooltip-content invisible rounded-3 absolute pointer-none tooltip-bottom">
             {{- 'general.social.links.facebook' | t -}}
