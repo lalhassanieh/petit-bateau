@@ -243,6 +243,9 @@
         "collapsible_row_DA4FUC",
         "complementary_products_Wip9YG"
       ],
+      "custom_css": [
+        ".btn-primary {padding: 1.5rem 2.5rem !important;}"
+      ],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
