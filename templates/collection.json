@@ -14,7 +14,6 @@
       "blocks": {
         "breadcrumb_MJHLQb": {
           "type": "breadcrumb",
-          "disabled": true,
           "settings": {}
         },
         "heading_fntt9G": {
@@ -36,9 +35,9 @@
         "description_FAmcR8"
       ],
       "settings": {
-        "section_width": "stretch_width",
+        "section_width": "fluid_container",
         "color_scheme": "",
-        "alignment": "center",
+        "alignment": "left",
         "show_collection_image": false,
         "overlay_opacity": 0,
         "height": "adapt",
