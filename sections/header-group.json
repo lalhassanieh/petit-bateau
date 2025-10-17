@@ -100,13 +100,13 @@
             "open-link-newtab": true,
             "item_label": "unset",
             "collection_menu_column": 2,
-            "mega_custom_width": 1030,
+            "mega_custom_width": 1400,
             "center_submenu": false,
-            "full_width": false,
+            "full_width": true,
             "collection_width": 52,
-            "collection_1": "camera-photo",
-            "collection_2": "daily-deals",
-            "collection_3": ""
+            "collection_1": "bonnets",
+            "collection_2": "gants",
+            "collection_3": "collants-chaussettes"
           }
         },
         "menu_promotion_VK7kpq": {
@@ -167,7 +167,7 @@
         "label_background_popular": "#14854e",
         "redirect_to_link": true,
         "menu_mobile_color": "#ffffff",
-        "menu_mobile_background": "#d0473e",
+        "menu_mobile_background": "#002e5e",
         "show_search": true,
         "show_account_icon": true,
         "show_wishlist_icon": true,
