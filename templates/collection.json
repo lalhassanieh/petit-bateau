@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "banner": {
       "type": "main-collection-heading",
@@ -85,7 +85,7 @@
           "type": "categories",
           "settings": {
             "title": "Products Category",
-            "menu": "products-category"
+            "menu": "main-menu"
           }
         },
         "filter_giBtHK": {
@@ -94,6 +94,7 @@
         },
         "popular_product_Xwjqcf": {
           "type": "popular_product",
+          "disabled": true,
           "settings": {
             "title": "Featured product",
             "collection": "shorts",
@@ -102,8 +103,8 @@
         },
         "image_banner_UUJxtT": {
           "type": "image_banner",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/sidebar_banner.jpg",
             "url": "shopify://collections",
             "open_link": true
           }
@@ -130,7 +131,6 @@
         "column_gap": 30,
         "pagination": "default",
         "button_show_more": "Load more",
-        "promotion_image": "shopify://shop_images/bannrx-category.jpg",
         "promotion_link": "shopify://collections/best-seller",
         "promotion_postion": 6,
         "items_per_row_mobile": "2",
