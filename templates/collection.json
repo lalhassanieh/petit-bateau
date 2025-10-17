@@ -117,7 +117,8 @@
         "image_banner_UUJxtT"
       ],
       "custom_css": [
-        ".collapsible-heading {border-radius: 50px;}"
+        ".collapsible-heading {border-radius: 50px;}",
+        ".btn-filter {padding-top: 0.5rem !important; padding-bottom: 0.5rem !important;}"
       ],
       "settings": {
         "section_width": "fluid_container",
