@@ -198,7 +198,9 @@
       ],
       "custom_css": [
         ".swiper {max-width: 66%;}",
-        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; }}"
+        ".swiper-pagination-bullet::after {background-color: #ccc !important;}",
+        ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}"
       ],
       "settings": {
         "section_width": "stretch_width",
@@ -388,7 +390,9 @@
         "product_banner_dt8aGe"
       ],
       "custom_css": [
-        ".section__block-inner {border-radius: 1px;}"
+        ".section__block-inner {border-radius: 1px;}",
+        ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}"
       ],
       "settings": {
         "section_width": "fluid_container",
@@ -416,7 +420,10 @@
       "type": "featured-collection",
       "custom_css": [
         ".countdown--container:not(:last-child):after {display: none;}",
-        ".product-item__wrapper .items-center {align-items: center;}"
+        ".product-item__wrapper .items-center {align-items: center;}",
+        ".swiper-pagination-bullet::after {background-color: #ccc !important;}",
+        ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}"
       ],
       "name": "t:names.featured_collection",
       "settings": {
@@ -659,7 +666,10 @@
         "icon_box_RLGgCT"
       ],
       "custom_css": [
-        ".sec__icon-box-content-heading {font-family: \"Oswald-SemiBold\"; letter-spacing: 0.2px; margin-bottom: 5px;}"
+        ".sec__icon-box-content-heading {font-family: \"Oswald-SemiBold\"; letter-spacing: 0.2px; margin-bottom: 5px;}",
+        ".swiper-pagination-bullet::after {background-color: #ccc !important;}",
+        ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}"
       ],
       "settings": {
         "section_width": "fluid_container",
