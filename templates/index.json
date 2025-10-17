@@ -569,7 +569,7 @@
         ".newsletter-inner {margin-bottom: 20px !important;}",
         ".subcribe-input {background-color: #fff; border-color: #d8d8d8;}",
         ".newsletter-bottom-info > div {margin-top: 10px;}",
-        ".sec__newsletter {border-top: 1.05px solid #979797; border-bottom: 1.05px solid #979797; }",
+        ".sec__newsletter {border-top: 1.05px solid #979797; border-bottom: 1.05px solid #979797;}",
         ".subcribe-button {letter-spacing: 0.2px; font-size: 17px;}"
       ],
       "name": "t:sections.newsletters.name",
@@ -635,6 +635,16 @@
             "description": "<p>100% sécurisé</p>"
           }
         },
+        "icon_box_BPN3tm": {
+          "type": "icon_box",
+          "settings": {
+            "icon_image": "shopify://shop_images/Icon_9.svg",
+            "icon_svg": "message_communications",
+            "custom_svg": "",
+            "heading": "Paiement",
+            "description": "<p>1 euro = 1 point</p>"
+          }
+        },
         "icon_box_RLGgCT": {
           "type": "icon_box",
           "settings": {
@@ -651,6 +661,7 @@
         "icon_box_RLNr9a",
         "icon_box_tj4DJd",
         "icon_box_e7XKCP",
+        "icon_box_BPN3tm",
         "icon_box_RLGgCT"
       ],
       "custom_css": [
