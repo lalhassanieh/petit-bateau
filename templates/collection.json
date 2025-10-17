@@ -137,7 +137,7 @@
         "button_show_more": "Load more",
         "promotion_link": "shopify://collections/best-seller",
         "promotion_postion": 6,
-        "items_per_row_mobile": "1",
+        "items_per_row_mobile": "2",
         "padding_top": 0,
         "padding_bottom": 0
       }
