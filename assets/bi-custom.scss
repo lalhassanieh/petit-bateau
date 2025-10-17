@@ -401,6 +401,7 @@
          a {
              font-size: 13px;
              margin-right: 5px;
+             text-decoration: none;
          }
      }
  }
@@ -432,7 +433,9 @@
 
  .product-detail__buy-buttons {
      .product-item__button {
-         &.active {
+
+         &.active,
+         &:hover {
              background-color: #002E5E !important;
              color: #FFF !important;
              border-color: #002E5E !important;
