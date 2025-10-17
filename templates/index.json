@@ -654,7 +654,7 @@
         "icon_box_RLGgCT"
       ],
       "custom_css": [
-        ".sec__icon-box-content-heading {font-family: \"Oswald-Medium\"; letter-spacing: 0.2px; margin-bottom: 5px;}"
+        ".sec__icon-box-content-heading {font-family: 'Oswald-SemiBold'; letter-spacing: 0.2px; margin-bottom: 5px;}"
       ],
       "settings": {
         "section_width": "fluid_container",
