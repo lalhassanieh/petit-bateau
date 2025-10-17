@@ -420,6 +420,7 @@
              background-color: unset;
              width: auto !important;
              padding: 0 !important;
+             max-width: unset !important
          }
      }
  }
@@ -434,6 +435,16 @@
          }
      }
  }
+  @media (max-width: 1024px) {
+.menu-list{
+    .grid-cols{
+        display: block;
+        .collection-items{
+            margin-bottom: 20px;
+        }
+    }
+}
+  }
 
  /* Mobile Slideshow Layout - Under 992px */
  @media (max-width: 991px) {

@@ -337,6 +337,7 @@
   background-color: unset;
   width: auto !important;
   padding: 0 !important;
+  max-width: unset !important;
 }
 
 @media (min-width: 1024px) {
@@ -345,6 +346,14 @@
     max-width: 100% !important;
     text-align: center;
     margin: auto !important;
+  }
+}
+@media (max-width: 1024px) {
+  .menu-list .grid-cols {
+    display: block;
+  }
+  .menu-list .grid-cols .collection-items {
+    margin-bottom: 20px;
   }
 }
 /* Mobile Slideshow Layout - Under 992px */
