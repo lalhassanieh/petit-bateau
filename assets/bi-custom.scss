@@ -407,6 +407,22 @@
      }
  }
 
+ .banner__media.collection-media.p-0.hover-effect.block.rounded {
+     height: 230px;
+ }
+
+ .menu-collection {
+     .collection-info {
+         left: 20px;
+         display: flex;
+
+         span {
+             background-color: unset;
+             width: auto !important;
+             padding: 0 !important;
+         }
+     }
+ }
 
  @media (min-width: 1024px) {
      #topbar {
