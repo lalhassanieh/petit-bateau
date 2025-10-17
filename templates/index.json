@@ -651,6 +651,9 @@
         "icon_box_e7XKCP",
         "icon_box_RLGgCT"
       ],
+      "custom_css": [
+        ".sec__icon-box-content-heading {font-family: \"Oswald-Medium\"; letter-spacing: 0.2px; margin-bottom: 5px;}"
+      ],
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
