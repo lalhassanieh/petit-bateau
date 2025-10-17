@@ -350,7 +350,7 @@
 }
 @media (max-width: 1024px) {
   .menu-list .grid-cols {
-    display: block;
+    display: block !important;
   }
   .menu-list .grid-cols .collection-items {
     margin-bottom: 20px;
