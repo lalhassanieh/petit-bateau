@@ -219,6 +219,8 @@
   font-size: 25px;
   font-weight: 500;
   text-transform: uppercase;
+  line-height: 30px;
+  padding-bottom: 7px;
 }
 .custom-text-block .first-description,
 .custom-text-block .second-description {
@@ -230,6 +232,8 @@
   font-weight: 500;
   text-transform: uppercase;
   padding-top: 20px;
+  line-height: 30px;
+  padding-bottom: 7px;
 }
 
 .section__header-heading {
