@@ -102,7 +102,7 @@
             "collection_menu_column": 2,
             "mega_custom_width": 1400,
             "center_submenu": false,
-            "full_width": false,
+            "full_width": true,
             "collection_width": 52,
             "collection_1": "camera-photo",
             "collection_2": "daily-deals",
