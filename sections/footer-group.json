@@ -23,7 +23,7 @@
             "store_address": false,
             "store_phone": true,
             "store_email": true,
-            "content_width": "41.6666%"
+            "content_width": "33.333%"
           }
         },
         "link_list_JTq77M": {
@@ -47,7 +47,7 @@
           "settings": {
             "heading": "Petit bateau",
             "menu": "petit-bateau",
-            "content_width": "25%"
+            "content_width": "33.333%"
           }
         },
         "newsletter_Rk8BD6": {
