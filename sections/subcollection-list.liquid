@@ -42,9 +42,10 @@
 {% endif %}
 {% if collection.metafields.custom.subcollections.value %}
   {% assign sub_collection = collection.metafields.custom.subcollections.value %}
+  {{ sub_collection }}
   {% if sub_collection != blank %}
     <div
-      class="section remove_spacing mb-60{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-list color-{{ color_scheme }} gradient{% if reveal %} overflow-hidden{% endif %}"
+      class="test section remove_spacing mb-60{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-list color-{{ color_scheme }} gradient{% if reveal %} overflow-hidden{% endif %}"
       style="{{ style | strip | strip_newlines }}"
     >
       <div class="{{ section_width }}">
@@ -124,8 +125,7 @@
             <div
               class="swiper-pagination flex flex-wrap px-15 lh-1 bottom-30 {% if carousel_pagination == 'show_dots_on_mobile' %} hidden-md{% endif %} justify-content-center{% if section_st.content_below_image %} absolute-md-impo{% endif %}"
               style="--swiper-pagination-bottom: 3rem;--swiper-pagination-position: static;z-index: 2"
-            >
-            </div>
+            ></div>
           {% endif %}
         </slide-section>
         {% if scroll_animation %}
