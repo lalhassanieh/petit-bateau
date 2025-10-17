@@ -51,7 +51,7 @@
  }
 
  .header-color>a:not(:hover),
- :where(input, textarea)::placeholder,
+ .search__input::placeholder,
  .search__button {
      color: #002E5E !important;
  }

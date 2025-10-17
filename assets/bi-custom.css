@@ -30,11 +30,11 @@
   font-style: normal;
   font-display: swap;
 }
-:where(input, textarea)::-moz-placeholder {
+.search__input::-moz-placeholder {
   color: #002E5E !important;
 }
 .header-color > a:not(:hover),
-:where(input, textarea)::placeholder,
+.search__input::placeholder,
 .search__button {
   color: #002E5E !important;
 }
