@@ -114,7 +114,7 @@
         {% case block.type %}
           {% when 'icon_box' %}
             <div
-              class="sec__icon-switch-slide"
+              class="test3 sec__icon-switch-slide"
             >
               <div
                 class="motion-item sec__icon-box-item {% if section_st.enable_background %}show-background{% endif %} flex {{ icon_position }}{% if section_st.icon_position == 'top' or section_st.icon_position == 'bottom' and section_st.content_alignment == 'center' %} align-center{% endif %}{% if section_st.content_alignment == 'right' %}{% if section_st.icon_position == 'top' or section_st.icon_position == 'bottom' %} align-end{% endif %}{% endif %}{% if section_st.content_alignment == 'left' %}{% if section_st.icon_position == 'top' or section_st.icon_position == 'bottom' %} align-start{% endif %}{% endif %}{% if section_st.spacing > 15 %} gap-custom-big{% else %} gap-custom{% endif %}{% if section_st.icon_position == 'top' and section_st.content_alignment == 'center' %} align-center{% endif %}{% if section_st.type == 'frame' %} border p-15 radius-5{% endif %}"

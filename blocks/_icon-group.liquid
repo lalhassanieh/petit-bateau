@@ -45,7 +45,7 @@
         assign description_id = 'description_' | append: i
         assign description = block_st[description_id]
       %}
-      <div class="sec__icon-switch-slide">
+      <div class="test2 sec__icon-switch-slide">
         <div
           class="sec__icon-box-item flex {{ icon_position }}{% if block_st.icon_position == 'top' or block_st.icon_position == 'bottom' and block_st.content_alignment == 'center' %} align-center{% endif %}{% if block_st.content_alignment == 'right' %}{% if block_st.icon_position == 'top' or block_st.icon_position == 'bottom' %} align-end{% endif %}{% endif %}{% if block_st.content_alignment == 'left' %}{% if block_st.icon_position == 'top' or block_st.icon_position == 'bottom' %} align-start{% endif %}{% endif %} {% if block_st.icon_position == 'top' and block_st.content_alignment == 'center' %} align-center{% endif %}"
         >
