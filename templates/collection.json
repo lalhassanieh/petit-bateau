@@ -129,7 +129,7 @@
         "sorting": true,
         "grid_list": true,
         "items_to_show": 11,
-        "items_per_row": 3,
+        "items_per_row": 4,
         "column_gap": 30,
         "pagination": "default",
         "button_show_more": "Load more",
