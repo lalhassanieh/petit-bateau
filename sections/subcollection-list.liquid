@@ -40,6 +40,8 @@
     }
   {%- endstyle -%}
 {% endif %}
+{{ collection.metafields.custom.subcollections }}
+{{ collection.metafields.custom.subcollection }}
 {% if collection.metafields.custom.subcollections.value %}
   {% assign sub_collection = collection.metafields.custom.subcollections.value %}
   {{ sub_collection }}
