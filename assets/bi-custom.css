@@ -265,7 +265,7 @@
 .footer__block-heading {
   font-family: "Oswald-Bold";
   letter-spacing: 0.2px;
-  padding-bottom: 0px !important;
+  padding-bottom: 10px !important;
   text-transform: uppercase;
 }
 .footer__block-heading .store-info-content a:first-child {
@@ -273,6 +273,27 @@
 }
 .footer__block-heading .store-info-content a:nth-child(2) {
   color: green;
+}
+
+.footer__store-info.phone a:before {
+  content: "";
+  background-image: url("./phone-icon.svg");
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.footer__store-info.mail a:before {
+  content: "";
+  background-image: url("./mail-icon.svg");
+  background-size: 16px 10px;
+  width: 16px;
+  height: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 @media (min-width: 1024px) {
