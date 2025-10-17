@@ -340,7 +340,11 @@
  }
 
  .footer__store-info {
+     position: relative;
+     padding-inline-start: 24px;
+
      &.phone {
+        font-weight: 600;
          a {
              &:before {
                  content: "";
@@ -349,8 +353,8 @@
                  width: 16px;
                  height: 16px;
                  position: absolute;
-                 top: 0;
-                 left: 0;
+                 top: 4px;
+                 inset-inline-start: 0;
              }
          }
      }
@@ -360,12 +364,12 @@
              &:before {
                  content: "";
                  background-image: url("./mail-icon.svg");
-                 background-size: 16px 10px;
+                 background-size: 16px 12px;
                  width: 16px;
-                 height: 10px;
+                 height: 12px;
                  position: absolute;
-                 top: 0;
-                 left: 0;
+                 top: 7px;
+                 inset-inline-start: 0;
              }
          }
      }

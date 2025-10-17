@@ -274,17 +274,18 @@
                             {{ theme_st.store_address }}
                           </div>
                         {% endif %}
-                        {%- if block_st.store_phone != blank and theme_st.store_phone != blank -%}
-                          <div class="footer__store-info phone">
-                            <a href="tel:{{ settings.store_phone }}" class="heading-color no-underline">
-                              {{ theme_st.store_phone }}
-                            </a>
-                          </div>
-                        {% endif %}
+
                         {%- if block_st.store_email != blank and theme_st.store_email != blank -%}
                           <div class="footer__store-info mail">
                             <a href="mailto:{{ settings.store_email }}" class="heading-color no-underline">
                               {{ theme_st.store_email }}
+                            </a>
+                          </div>
+                        {% endif %}
+                        {%- if block_st.store_phone != blank and theme_st.store_phone != blank -%}
+                          <div class="footer__store-info phone">
+                            <a href="tel:{{ settings.store_phone }}" class="heading-color no-underline">
+                              {{ theme_st.store_phone }}
                             </a>
                           </div>
                         {% endif %}
