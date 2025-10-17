@@ -73,12 +73,12 @@
       "apple-iphone-13-mini-128gb-blue-unlocked-renewed",
       "apple-iphone-13-mini-128gb-pink-unlocked-renewed"
     ],
-    "facebook": "#",
-    "instagram": "#",
+    "facebook": "https://www.facebook.com/petitbateau",
+    "instagram": "https://www.instagram.com/petitbateau/",
     "twitter": "",
-    "youtube": "#",
-    "tiktok": "#",
-    "pinterest": "#",
+    "youtube": "https://www.youtube.com/PetitBateau",
+    "tiktok": "",
+    "pinterest": "https://fr.pinterest.com/petitbateau/",
     "vimeo": "",
     "linkedin": "",
     "whatsapp": "",
@@ -86,8 +86,8 @@
     "zoom_image": false,
     "scroll_animation": "fade-in",
     "hover_effect": "hover_zoom",
-    "store_phone": "+1 (973) 435-3638",
-    "store_email": "info@fashionwomen.com",
+    "store_phone": "+961 70119517",
+    "store_email": "allo@petit-bateau.com.lb",
     "store_page": "our-store",
     "heading_cookies": "",
     "content_cookies": "<p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffics. By clicking \"<strong>Allow Cookies</strong>\" you consent to our use of cookie.</p>",
@@ -212,7 +212,7 @@
     "color_schemes": {
       "default": {
         "settings": {
-          "background": "#fff",
+          "background": "#ffffff",
           "background_gradient": "",
           "primary_color": "#e14a5c",
           "text_color": "#002e5e",
