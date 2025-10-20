@@ -43,6 +43,7 @@
     "product_style": "card",
     "show_quick_view": false,
     "show_compare": false,
+    "show_variant": false,
     "product_alignment": "start",
     "product_size": 16,
     "product_font_weight": "400",
