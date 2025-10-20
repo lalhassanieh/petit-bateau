@@ -371,7 +371,8 @@
   },
   "platform_customizations": {
     "custom_css": [
-      ".shadow {box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);}"
+      ".shadow {box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);}",
+      "/* === FRENCH COLOR SWATCH MAPPING === *//* Neutres */[data-color=\"noir\"] {background-color: #000000; }"
     ]
   }
 }
