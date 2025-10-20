@@ -1,0 +1,228 @@
+/* === FRENCH COLOR SWATCH MAPPING === */
+/* Neutres */
+[data-color="noir"] {
+    background-color: #000000;
+}
+
+[data-color="blanc"] {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+}
+
+[data-color="gris"] {
+    background-color: #808080;
+}
+
+[data-color="gris clair"] {
+    background-color: #d3d3d3;
+}
+
+[data-color="gris foncé"] {
+    background-color: #505050;
+}
+
+[data-color="argent"] {
+    background-color: #c0c0c0;
+}
+
+[data-color="beige"] {
+    background-color: #f5f5dc;
+}
+
+[data-color="marron"] {
+    background-color: #8b4513;
+}
+
+[data-color="chocolat"] {
+    background-color: #7b3f00;
+}
+
+[data-color="taupe"] {
+    background-color: #483c32;
+}
+
+/* Rouges et roses */
+[data-color="rouge"] {
+    background-color: #ff0000;
+}
+
+[data-color="bordeaux"] {
+    background-color: #800000;
+}
+
+[data-color="rose"] {
+    background-color: #ffc0cb;
+}
+
+[data-color="rose clair"] {
+    background-color: #ffb6c1;
+}
+
+[data-color="fuchsia"] {
+    background-color: #ff00ff;
+}
+
+[data-color="corail"] {
+    background-color: #ff7f50;
+}
+
+/* Oranges et jaunes */
+[data-color="orange"] {
+    background-color: #ffa500;
+}
+
+[data-color="jaune"] {
+    background-color: #ffff00;
+}
+
+[data-color="jaune clair"] {
+    background-color: #fffacd;
+}
+
+[data-color="ocre"] {
+    background-color: #cc7722;
+}
+
+[data-color="or"] {
+    background-color: #ffd700;
+}
+
+/* Verts */
+[data-color="vert"] {
+    background-color: #008000;
+}
+
+[data-color="vert clair"] {
+    background-color: #90ee90;
+}
+
+[data-color="vert foncé"] {
+    background-color: #006400;
+}
+
+[data-color="vert olive"] {
+    background-color: #808000;
+}
+
+[data-color="kaki"] {
+    background-color: #c3b091;
+}
+
+[data-color="menthe"] {
+    background-color: #98ff98;
+}
+
+[data-color="turquoise"] {
+    background-color: #40e0d0;
+}
+
+/* Bleus */
+[data-color="bleu"] {
+    background-color: #0000ff;
+}
+
+[data-color="bleu clair"] {
+    background-color: #add8e6;
+}
+
+[data-color="bleu foncé"] {
+    background-color: #00008b;
+}
+
+[data-color="bleu marine"] {
+    background-color: #001f3f;
+}
+
+[data-color="bleu ciel"] {
+    background-color: #87ceeb;
+}
+
+[data-color="cyan"] {
+    background-color: #00ffff;
+}
+
+[data-color="aqua"] {
+    background-color: #00ffff;
+}
+
+/* Violets */
+[data-color="violet"] {
+    background-color: #8a2be2;
+}
+
+[data-color="mauve"] {
+    background-color: #e0b0ff;
+}
+
+[data-color="lavande"] {
+    background-color: #e6e6fa;
+}
+
+[data-color="prune"] {
+    background-color: #70193d;
+}
+
+[data-color="lilas"] {
+    background-color: #c8a2c8;
+}
+
+/* Métalliques */
+[data-color="doré"] {
+    background-color: #ffd700;
+}
+
+[data-color="cuivre"] {
+    background-color: #b87333;
+}
+
+[data-color="bronze"] {
+    background-color: #cd7f32;
+}
+
+/* Autres tons */
+[data-color="crème"] {
+    background-color: #fffdd0;
+}
+
+[data-color="ivoire"] {
+    background-color: #fffff0;
+}
+
+[data-color="nude"] {
+    background-color: #e3bc9a;
+}
+
+[data-color="camel"] {
+    background-color: #c19a6b;
+}
+
+[data-color="sable"] {
+    background-color: #f4a460;
+}
+
+[data-color="brique"] {
+    background-color: #a52a2a;
+}
+
+[data-color="terracotta"] {
+    background-color: #e2725b;
+}
+
+[data-color="vin"] {
+    background-color: #722f37;
+}
+
+[data-color="anthracite"] {
+    background-color: #36454f;
+}
+/* Transparent placeholder (for missing mapping) */
+[data-color="transparent"] {
+  background: repeating-linear-gradient(
+    45deg,
+    #ccc,
+    #ccc 10px,
+    #fff 10px,
+    #fff 20px
+  );
+  border: 1px solid #999;
+}
