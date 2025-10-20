@@ -392,6 +392,9 @@
     "products_recently_viewed_GdCNUL": {
       "type": "products-recently-viewed",
       "custom_css": [
+        ".swiper-pagination-bullet::after {background-color: #ccc !important;}",
+        ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}",
         "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
       ],
       "settings": {
