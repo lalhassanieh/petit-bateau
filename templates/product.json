@@ -361,6 +361,9 @@
     },
     "related_products": {
       "type": "related-products",
+      "custom_css": [
+        "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
+      ],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -388,6 +391,9 @@
     },
     "products_recently_viewed_GdCNUL": {
       "type": "products-recently-viewed",
+      "custom_css": [
+        "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
+      ],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
