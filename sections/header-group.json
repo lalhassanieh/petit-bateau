@@ -112,11 +112,11 @@
         "menu_promotion_VK7kpq": {
           "type": "menu_promotion",
           "settings": {
-            "text": "Products",
+            "text": "Bébé Garçon (6-24 mois)",
             "open-link-newtab": true,
             "item_label": "unset",
             "promotion_menu_column": 4,
-            "mega_custom_width": 1030,
+            "mega_custom_width": 1400,
             "center_submenu": true,
             "full_width": true,
             "promotion_position": "right",
