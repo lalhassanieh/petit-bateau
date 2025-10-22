@@ -126,13 +126,32 @@
             "promotion_link_2": "",
             "promotion_link_newtab_2": true
           }
+        },
+        "menu_promotion_nc8jTi": {
+          "type": "menu_promotion",
+          "settings": {
+            "text": "Fille (3-18 ans)",
+            "open-link-newtab": true,
+            "item_label": "unset",
+            "promotion_menu_column": 2,
+            "mega_custom_width": 1400,
+            "center_submenu": true,
+            "full_width": true,
+            "promotion_position": "right",
+            "promotion_image_width": 34,
+            "promotion_link_1": "",
+            "promotion_link_newtab_1": true,
+            "promotion_link_2": "",
+            "promotion_link_newtab_2": true
+          }
         }
       },
       "block_order": [
         "menu_promotion_hBEmkU",
         "menu_promotion_4ytFzi",
         "menu_collection_at6Dkq",
-        "menu_promotion_VK7kpq"
+        "menu_promotion_VK7kpq",
+        "menu_promotion_nc8jTi"
       ],
       "custom_css": [
         ".border-bottom {border-color: #ebebeb;}"
