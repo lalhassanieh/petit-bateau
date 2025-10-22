@@ -359,6 +359,10 @@
   padding: 1.5rem 2.5rem !important;
 }
 
+.white-wishlist path {
+  fill: #fff;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;

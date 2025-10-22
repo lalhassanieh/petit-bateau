@@ -85,6 +85,10 @@
       {% comment %} Product inner media {% endcomment %}
       <div class="product-item__inner hover-effect overflow-hidden relative{% if type == 'list' or type == 'sticky' %} col-w-custom{% endif %}">
         {% assign product_media = card_product.featured_media %}
+        {% assign has_no_image = false %}
+        {% unless product_media %}
+          {% assign has_no_image = true %}
+        {% endunless %}
         {% comment %} Case product has image {% endcomment %}
         {%- if product_media -%}
           {%- liquid
@@ -283,7 +287,7 @@
               {% endif %}
               <button-wishlist
                 tabindex="0"
-                class="product-item__button pointer product-item__button-wishlist tooltip btn-hover transition btn-hover transition shadow btn-white rounded-50 p-0 border w-45 h-45 inline-flex content-center absolute top-10 top-1025-15{% if settings.rtl %} left-10 left-1025-15{% else %} right-10 right-1025-15{% endif %}"
+                class="product-item__button pointer product-item__button-wishlist tooltip btn-hover transition btn-hover transition shadow btn-white rounded-50 p-0 border w-45 h-45 inline-flex content-center absolute top-10 top-1025-15{% if settings.rtl %} left-10 left-1025-15{% else %} right-10 right-1025-15{% endif %}{% if has_no_image %} white-wishlist{% endif %}"
                 data-product-id="{{ card_product.id }}"
                 data-action="{{ action_when_click_added_wishlist }}"
                 data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
@@ -311,7 +315,7 @@
                       {% endif %}
                       <button-wishlist
                         tabindex="0"
-                        class="product-item__button pointer product-item__button-wishlist tooltip relative btn-hover transition btn-hover transition btn-white rounded-50 p-0 shadow w-45 h-45 inline-flex content-center"
+                        class="product-item__button pointer product-item__button-wishlist tooltip relative btn-hover transition btn-hover transition btn-white rounded-50 p-0 shadow w-45 h-45 inline-flex content-center{% if has_no_image %} white-wishlist{% endif %}"
                         data-product-id="{{ card_product.id }}"
                         data-action="{{ action_when_click_added_wishlist }}"
                         data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
@@ -808,7 +812,7 @@
                 {% endif %}
                 <button-wishlist
                   tabindex="0"
-                  class="product-item__button pointer product-item__button-wishlist tooltip relative btn-hover transition btn-hover transition btn-white rounded-50 p-0 border w-45 h-45 inline-flex content-center"
+                  class="product-item__button pointer product-item__button-wishlist tooltip relative btn-hover transition btn-hover transition btn-white rounded-50 p-0 border w-45 h-45 inline-flex content-center{% if has_no_image %} white-wishlist{% endif %}"
                   data-product-id="{{ card_product.id }}"
                   data-action="{{ action_when_click_added_wishlist }}"
                   data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
@@ -837,7 +841,7 @@
                 {% endif %}
                 <button-compare
                   tabindex="0"
-                  class="product-item__button pointer product-item__button-wishlist tooltip relative btn-hover transition btn-hover transition btn-white rounded-50 p-0 border w-45 h-45 inline-flex content-center"
+                  class="product-item__button pointer product-item__button-wishlist tooltip relative btn-hover transition btn-hover transition btn-white rounded-50 p-0 border w-45 h-45 inline-flex content-center{% if has_no_image %} white-wishlist{% endif %}"
                   data-product-id="{{ card_product.id }}"
                   data-action="{{ action_when_click_added_compare }}"
                   data-tooltip-remove="{{ 'products.product.actions.compare.remove' | t }}"

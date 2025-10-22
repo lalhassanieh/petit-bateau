@@ -121,7 +121,7 @@
      }
  }
 
- 
+
  /* Global Buttons Fixed Positioning */
  .slideshow-global-buttons-fixed {
      position: absolute !important;
@@ -453,6 +453,11 @@
      }
  }
 
+ .white-wishlist {
+     path {
+         fill: #fff;
+     }
+ }
 
  @media (min-width: 1024px) {
      #topbar {
