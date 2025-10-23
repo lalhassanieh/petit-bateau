@@ -192,7 +192,8 @@
         "menu_promotion_TGLwGd"
       ],
       "custom_css": [
-        ".border-bottom {border-color: #ebebeb;}"
+        ".border-bottom {border-color: #ebebeb;}",
+        ".subchildmenu a {color: #002e5e !important;}"
       ],
       "settings": {
         "section_width": "fluid_container",
