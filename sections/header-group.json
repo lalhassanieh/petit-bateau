@@ -79,7 +79,7 @@
           "type": "menu_promotion",
           "settings": {
             "text": "Nouveau-né (0-12 mois)",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 4,
             "mega_custom_width": 1030,
@@ -97,7 +97,7 @@
           "type": "menu_collection",
           "settings": {
             "text": "Bébé fille (6-24 mois)",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "collection_menu_column": 2,
             "mega_custom_width": 1400,
@@ -113,7 +113,7 @@
           "type": "menu_promotion",
           "settings": {
             "text": "Bébé Garçon (6-24 mois)",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 2,
             "mega_custom_width": 1400,
@@ -131,7 +131,7 @@
           "type": "menu_promotion",
           "settings": {
             "text": "Fille (3-18 ans)",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 2,
             "mega_custom_width": 1400,
@@ -149,7 +149,7 @@
           "type": "menu_promotion",
           "settings": {
             "text": "Garçon (3-18 ans)",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 2,
             "mega_custom_width": 1400,
@@ -167,7 +167,7 @@
           "type": "menu_promotion",
           "settings": {
             "text": "Femme",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 2,
             "mega_custom_width": 1400,
