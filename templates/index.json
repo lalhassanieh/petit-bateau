@@ -573,8 +573,8 @@
       "type": "newsletter",
       "custom_css": [
         "h2 {text-transform: uppercase !important; font-size: 33.6px; font-family: \"Oswald-Bold\"; font-weight: 500 !important; letter-spacing: 0.2px !important; padding-bottom: 10px;}",
-        "body.logged-out .loggedin-message {display: none;}",
-        "body.logged-in .loggedout-message {display: none;}"
+        ".logged-out .loggedin-message {display: none;}",
+        ".logged-in .loggedout-message {display: none;}"
       ],
       "name": "t:sections.newsletters.name",
       "settings": {
