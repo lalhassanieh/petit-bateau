@@ -41,7 +41,7 @@
         </li>
       {%- when 'product' -%}
   {%- comment -%}
-    Get the first manual (non-"All") collection the product belongs to.
+    STEP 1 — Find the first non-"All" collection related to the product
   {%- endcomment -%}
   {%- assign current_collection = collection -%}
   {%- if current_collection == nil or current_collection.handle == 'all' -%}
@@ -53,45 +53,68 @@
     {%- endfor -%}
   {%- endif -%}
 
-  {%- comment -%}
-    Try to match that collection to the menu for proper hierarchy.
-  {%- endcomment -%}
-  {%- assign try_handles = "main-menu,content/menus/main-menu" | split: "," -%}
+  {%- assign main_menu = linklists['main-menu'].links | default: linklists['content/menus/main-menu'].links -%}
+
   {%- assign found_branch = false -%}
+  {%- assign breadcrumb_links = '' -%}
 
-  {%- for handle in try_handles -%}
-    {%- assign handle = handle | strip -%}
-    {%- if linklists[handle] != blank -%}
-      {%- assign nav = linklists[handle].links -%}
+  {%- comment -%}
+    STEP 2 — Recursive search in menu links (up to 3 levels deep)
+  {%- endcomment -%}
+  {%- for level1 in main_menu -%}
+    {%- if level1.type == 'collection_link' and level1.object.handle == current_collection.handle -%}
+      {%- assign breadcrumb_links = breadcrumb_links | append: level1.title | append: '||' | append: level1.url | append: ';' -%}
+      {%- assign found_branch = true -%}
+      {%- break -%}
+    {%- endif -%}
 
-      {%- for link in nav -%}
-        {%- if link.type == 'collection_link' and link.object.handle == current_collection.handle -%}
-          <li class="breadcrumb-item">{{ link.title | link_to: link.url }}</li>
+    {%- for level2 in level1.links -%}
+      {%- if level2.type == 'collection_link' and level2.object.handle == current_collection.handle -%}
+        {%- assign breadcrumb_links = breadcrumb_links
+          | append: level1.title | append: '||' | append: level1.url | append: ';'
+          | append: level2.title | append: '||' | append: level2.url | append: ';' -%}
+        {%- assign found_branch = true -%}
+        {%- break -%}
+      {%- endif -%}
+
+      {%- for level3 in level2.links -%}
+        {%- if level3.type == 'collection_link' and level3.object.handle == current_collection.handle -%}
+          {%- assign breadcrumb_links = breadcrumb_links
+            | append: level1.title | append: '||' | append: level1.url | append: ';'
+            | append: level2.title | append: '||' | append: level2.url | append: ';'
+            | append: level3.title | append: '||' | append: level3.url | append: ';' -%}
           {%- assign found_branch = true -%}
           {%- break -%}
         {%- endif -%}
-
-        {%- for child in link.links -%}
-          {%- if child.type == 'collection_link' and child.object.handle == current_collection.handle -%}
-            <li class="breadcrumb-item">{{ link.title | link_to: link.url }}</li>
-            <li class="breadcrumb-item">{{ child.title | link_to: child.url }}</li>
-            {%- assign found_branch = true -%}
-            {%- break -%}
-          {%- endif -%}
-        {%- endfor -%}
-
-        {%- if found_branch -%}{%- break -%}{%- endif -%}
       {%- endfor -%}
-    {%- endif -%}
+
+      {%- if found_branch -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+
     {%- if found_branch -%}{%- break -%}{%- endif -%}
   {%- endfor -%}
 
-  {%- if current_collection and found_branch == false -%}
-    <li class="breadcrumb-item">{{ current_collection.title | link_to: current_collection.url }}</li>
+  {%- comment -%}
+    STEP 3 — Render breadcrumb
+  {%- endcomment -%}
+  {%- if found_branch -%}
+    {%- assign crumbs = breadcrumb_links | split: ';' -%}
+    {%- for crumb in crumbs -%}
+      {%- assign parts = crumb | split: '||' -%}
+      {%- if parts.size == 2 -%}
+        <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+          <a href="{{ parts[1] }}">{{ parts[0] }}</a>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- elsif current_collection -%}
+    <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+      <a href="{{ current_collection.url }}">{{ current_collection.title }}</a>
+    </li>
   {%- endif -%}
 
-  <li class="breadcrumb-item">
-    <span aria-current="page">{{ product.title }}</span>
+  <li class="breadcrumb-item dot-between inline-flex align-center">
+    <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
   </li>
 
       {%- when 'collection' and collection.handle -%}
