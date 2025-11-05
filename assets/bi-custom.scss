@@ -123,7 +123,6 @@
 
 
  /* Global Buttons Fixed Positioning */
- 
  .slideshow-global-buttons-fixed {
      position: absolute !important;
      z-index: 10;
@@ -541,4 +540,8 @@
              width: 100%;
          }
      }
+ }
+
+ .header-mega-store logo-position{
+    padding-bottom: 0;
  }
