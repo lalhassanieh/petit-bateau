@@ -41,7 +41,7 @@
         </li>
       {%- when 'product' -%}
   {%- comment -%}
-    STEP 1 — Find the first non-"All" collection related to the product
+    STEP 1 — Find the current collection (skip "All")
   {%- endcomment -%}
   {%- assign current_collection = collection -%}
   {%- if current_collection == nil or current_collection.handle == 'all' -%}
@@ -53,52 +53,53 @@
     {%- endfor -%}
   {%- endif -%}
 
-  {%- assign main_menu = linklists['main-menu'].links | default: linklists['content/menus/main-menu'].links -%}
+  {%- assign current_handle = current_collection.handle -%}
+  {%- assign main_menu = menu.main-menu.items -%}
 
-  {%- assign found_branch = false -%}
-  {%- assign breadcrumb_links = '' -%}
+  {%- assign breadcrumb_items = '' -%}
+  {%- assign found = false -%}
 
   {%- comment -%}
-    STEP 2 — Recursive search in menu links (up to 3 levels deep)
+    STEP 2 — Loop through the menu to find parent/child match
   {%- endcomment -%}
   {%- for level1 in main_menu -%}
-    {%- if level1.type == 'collection_link' and level1.object.handle == current_collection.handle -%}
-      {%- assign breadcrumb_links = breadcrumb_links | append: level1.title | append: '||' | append: level1.url | append: ';' -%}
-      {%- assign found_branch = true -%}
+    {%- if level1.type == 'collection_link' and level1.object.handle == current_handle -%}
+      {%- assign breadcrumb_items = breadcrumb_items | append: level1.title | append: '||' | append: level1.url | append: ';' -%}
+      {%- assign found = true -%}
       {%- break -%}
     {%- endif -%}
 
-    {%- for level2 in level1.links -%}
-      {%- if level2.type == 'collection_link' and level2.object.handle == current_collection.handle -%}
-        {%- assign breadcrumb_links = breadcrumb_links
+    {%- for level2 in level1.items -%}
+      {%- if level2.type == 'collection_link' and level2.object.handle == current_handle -%}
+        {%- assign breadcrumb_items = breadcrumb_items
           | append: level1.title | append: '||' | append: level1.url | append: ';'
           | append: level2.title | append: '||' | append: level2.url | append: ';' -%}
-        {%- assign found_branch = true -%}
+        {%- assign found = true -%}
         {%- break -%}
       {%- endif -%}
 
-      {%- for level3 in level2.links -%}
-        {%- if level3.type == 'collection_link' and level3.object.handle == current_collection.handle -%}
-          {%- assign breadcrumb_links = breadcrumb_links
+      {%- for level3 in level2.items -%}
+        {%- if level3.type == 'collection_link' and level3.object.handle == current_handle -%}
+          {%- assign breadcrumb_items = breadcrumb_items
             | append: level1.title | append: '||' | append: level1.url | append: ';'
             | append: level2.title | append: '||' | append: level2.url | append: ';'
             | append: level3.title | append: '||' | append: level3.url | append: ';' -%}
-          {%- assign found_branch = true -%}
+          {%- assign found = true -%}
           {%- break -%}
         {%- endif -%}
       {%- endfor -%}
 
-      {%- if found_branch -%}{%- break -%}{%- endif -%}
+      {%- if found -%}{%- break -%}{%- endif -%}
     {%- endfor -%}
 
-    {%- if found_branch -%}{%- break -%}{%- endif -%}
+    {%- if found -%}{%- break -%}{%- endif -%}
   {%- endfor -%}
 
   {%- comment -%}
-    STEP 3 — Render breadcrumb
+    STEP 3 — Output the full breadcrumb path
   {%- endcomment -%}
-  {%- if found_branch -%}
-    {%- assign crumbs = breadcrumb_links | split: ';' -%}
+  {%- if found -%}
+    {%- assign crumbs = breadcrumb_items | split: ';' -%}
     {%- for crumb in crumbs -%}
       {%- assign parts = crumb | split: '||' -%}
       {%- if parts.size == 2 -%}
