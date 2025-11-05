@@ -39,21 +39,24 @@
         <li class="breadcrumb-item dot-between inline-flex align-center">
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
-      {%- assign product_collections = product.collections -%}
+      {%- when 'product' -%}
+      {% assign menu = linklists['main-menu'] %}
+
 <ul class="breadcrumb-list">
   <li><a href="{{ routes.root_url }}">Accueil</a></li>
 
-  {%- if product_collections.size > 0 -%}
-    {%- assign collection_path = "" -%}
-    {%- assign collection = product_collections.first -%}
-
-    {%- comment -%} Loop through the collection hierarchy {% endcomment -%}
-    {%- for parent in collection.all_parents -%}
-      <li><a href="{{ parent.url }}">{{ parent.title }}</a></li>
-    {%- endfor -%}
-
-    <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
-  {%- endif -%}
+  {% for item in menu.links %}
+    {% if product.url contains item.url %}
+      <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+      {% if item.links.size > 0 %}
+        {% for sub in item.links %}
+          {% if product.url contains sub.url %}
+            <li><a href="{{ sub.url }}">{{ sub.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
 
   <li><span>{{ product.title }}</span></li>
 </ul>
