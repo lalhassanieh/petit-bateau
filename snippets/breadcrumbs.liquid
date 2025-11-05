@@ -40,10 +40,11 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-  {%- comment -%}Use the current collection if available, otherwise pick the first collection{%- endcomment -%}
+  {%- comment -%}Pick a collection for the breadcrumb{%- endcomment -%}
   {%- assign main_collection = collection | default: product.collections.first -%}
 
   {%- if main_collection -%}
+    {%- comment -%}If you want full hierarchy, you can use collection.metafields.parent or manual logic{%- endcomment -%}
     <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
       <a class="breadcrumb-link no-underline light-dark-grey" href="{{ main_collection.url }}">
         {{ main_collection.title }}
