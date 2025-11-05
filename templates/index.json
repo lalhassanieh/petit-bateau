@@ -442,7 +442,7 @@
         "timer_style": "highlight",
         "collections_type": "carousel",
         "collection": "nos-nouveaux-arrivages",
-        "items_to_show": 10,
+        "items_to_show": 12,
         "items_per_row": 4,
         "rows_on_desktop": 2,
         "enable_load_more": false,
