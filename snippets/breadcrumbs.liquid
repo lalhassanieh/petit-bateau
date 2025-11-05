@@ -40,14 +40,32 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-        {%- if collection.url -%}
+  {%- assign main_menu = linklists.main-menu.links -%}
+  {%- assign current_collection_url = collection.url | default: product.collections.first.url -%}
+
+  {%- for link in main_menu -%}
+    {%- if link.url == current_collection_url -%}
+      <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+        {{ link.title | link_to: link.url }}
+      </li>
+    {%- elsif link.links.size > 0 -%}
+      {%- for child_link in link.links -%}
+        {%- if child_link.url == current_collection_url -%}
           <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-            {{ collection.title | link_to: collection.url }}
+            {{ link.title | link_to: link.url }}
+          </li>
+          <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+            {{ child_link.title | link_to: child_link.url }}
           </li>
         {%- endif -%}
-        <li class="breadcrumb-item dot-between inline-flex align-center {% if next_product %}breadcrumb-truncate{% endif %}">
-          <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
-        </li>
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  <li class="breadcrumb-item dot-between inline-flex align-center">
+    <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
+  </li>
+
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
           <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
