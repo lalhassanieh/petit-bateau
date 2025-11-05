@@ -40,14 +40,24 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-        {%- if collection.url -%}
-          <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-            {{ collection.title | link_to: collection.url }}
-          </li>
-        {%- endif -%}
-        <li class="breadcrumb-item dot-between inline-flex align-center {% if next_product %}breadcrumb-truncate{% endif %}">
-          <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
+  {%- assign all_collections = product.collections -%}
+
+  {%- if all_collections.size > 0 -%}
+    {%- for c in all_collections -%}
+      {%- if c.handle != 'all' -%}
+        <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+          <a class="breadcrumb-link no-underline light-dark-grey" href="{{ c.url }}">
+            {{ c.title }}
+          </a>
         </li>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  <li class="breadcrumb-item dot-between inline-flex align-center">
+    <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
+  </li>
+
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
           <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
