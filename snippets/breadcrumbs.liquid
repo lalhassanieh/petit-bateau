@@ -40,27 +40,81 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-  {%- assign main_menu = linklists.main-menu.links -%}
-  {%- assign current_collection_url = collection.url | default: product.collections.first.url -%}
+  {%- assign current_collection = collection | default: product.collections.first -%}
+  {%- assign current_collection_url = current_collection.url | default: '' -%}
 
-  {%- for link in main_menu -%}
-    {%- if link.url == current_collection_url -%}
-      <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-        {{ link.title | link_to: link.url }}
-      </li>
-    {%- elsif link.links.size > 0 -%}
-      {%- for child_link in link.links -%}
-        {%- if child_link.url == current_collection_url -%}
+  {%- comment -%}
+    Try a few likely menu handles. Add any other menu handle your store might use,
+    separated by commas (exact handle names as seen in the Navigation URL).
+  {%- endcomment -%}
+  {%- assign try_handles = "main-menu,content/menus/main-menu,menus/main-menu,main_menu,main-menu-desktop" | split: "," -%}
+  {%- assign found_branch = false -%}
+
+  {%- for handle in try_handles -%}
+    {%- assign handle = handle | strip -%}
+    {%- if linklists[handle] != blank -%}
+      {%- assign nav = linklists[handle].links -%}
+
+      {%- comment -%} top-level links {%- endcomment -%}
+      {%- for link in nav -%}
+        {%- if link.url == current_collection_url -%}
           <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
             {{ link.title | link_to: link.url }}
           </li>
-          <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-            {{ child_link.title | link_to: child_link.url }}
-          </li>
+          {%- assign found_branch = true -%}
+          {%- break -%}
         {%- endif -%}
+
+        {%- if link.links != blank -%}
+          {%- for child in link.links -%}
+            {%- if child.url == current_collection_url -%}
+              <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                {{ link.title | link_to: link.url }}
+              </li>
+              <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                {{ child.title | link_to: child.url }}
+              </li>
+              {%- assign found_branch = true -%}
+              {%- break -%}
+            {%- endif -%}
+
+            {%- if child.links != blank -%}
+              {%- for subchild in child.links -%}
+                {%- if subchild.url == current_collection_url -%}
+                  <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                    {{ link.title | link_to: link.url }}
+                  </li>
+                  <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                    {{ child.title | link_to: child.url }}
+                  </li>
+                  <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                    {{ subchild.title | link_to: subchild.url }}
+                  </li>
+                  {%- assign found_branch = true -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+
+            {%- if found_branch -%}{%- break -%}{%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        {%- if found_branch -%}{%- break -%}{%- endif -%}
       {%- endfor -%}
     {%- endif -%}
+
+    {%- if found_branch -%}{%- break -%}{%- endif -%}
   {%- endfor -%}
+
+  {%- comment -%}
+    If we didn't find the collection in the menu, still show the collection (fallback).
+  {%- endcomment -%}
+  {%- if current_collection and found_branch == false -%}
+    <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+      {{ current_collection.title | link_to: current_collection.url }}
+    </li>
+  {%- endif -%}
 
   <li class="breadcrumb-item dot-between inline-flex align-center">
     <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
