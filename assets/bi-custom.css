@@ -442,8 +442,12 @@
   display: none;
 }
 
+.logged-out .swiper-slide:nth-child(2){
+  display:none;
+}
+
 .logged-out .swiper-slide:nth-child(2)::before {
-  content: "From";
+  content: "Bénéficiez de 15 % de réduction sur votre première commande avec le code promo HELLO15.";
 }
 
 /*# END Added by Carla*/
