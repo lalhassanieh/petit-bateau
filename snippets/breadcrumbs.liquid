@@ -40,18 +40,15 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-  {%- assign all_collections = product.collections -%}
+  {%- comment -%}Use the current collection if available, otherwise pick the first collection{%- endcomment -%}
+  {%- assign main_collection = collection | default: product.collections.first -%}
 
-  {%- if all_collections.size > 0 -%}
-    {%- for c in all_collections -%}
-      {%- if c.handle != 'all' -%}
-        <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-          <a class="breadcrumb-link no-underline light-dark-grey" href="{{ c.url }}">
-            {{ c.title }}
-          </a>
-        </li>
-      {%- endif -%}
-    {%- endfor -%}
+  {%- if main_collection -%}
+    <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+      <a class="breadcrumb-link no-underline light-dark-grey" href="{{ main_collection.url }}">
+        {{ main_collection.title }}
+      </a>
+    </li>
   {%- endif -%}
 
   <li class="breadcrumb-item dot-between inline-flex align-center">
