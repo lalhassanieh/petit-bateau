@@ -40,51 +40,14 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-  {% assign menu_handle = 'main-menu' %}
-  {% assign found_parent = false %}
-  {% assign found_child = false %}
-
-  {% for link in linklists[menu_handle].links %}
-    {% if link.url == collection.url %}
-      {%- comment -%} Case 1: top-level collection {%- endcomment -%}
-      <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-        {{ link.title | link_to: link.url }}
-      </li>
-      {% assign found_parent = true %}
-      {% break %}
-    {% elsif link.links.size > 0 %}
-      {% for sublink in link.links %}
-        {% if sublink.url == collection.url %}
-          {%- comment -%} Case 2: nested collection (child of link) {%- endcomment -%}
+        {%- if collection.url -%}
           <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-            {{ link.title | link_to: link.url }}
+            {{ collection.title | link_to: collection.url }}
           </li>
-          <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-            {{ sublink.title | link_to: sublink.url }}
-          </li>
-          {% assign found_child = true %}
-          {% break %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-    {% if found_child %}{% break %}{% endif %}
-  {% endfor %}
-
-  {%- if collection.url and found_parent == false and found_child == false -%}
-    <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-      {{ collection.title | link_to: collection.url }}
-    </li>
-  {%- endif -%}
-
-  <li class="breadcrumb-item dot-between inline-flex align-center">
-    <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
-  </li>
-
-
-<li class="breadcrumb-item dot-between inline-flex align-center">
-  <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
-</li>
-
+        {%- endif -%}
+        <li class="breadcrumb-item dot-between inline-flex align-center {% if next_product %}breadcrumb-truncate{% endif %}">
+          <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
+        </li>
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
           <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
