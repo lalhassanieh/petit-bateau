@@ -245,7 +245,7 @@
         "product_banner_pBryNz": {
           "type": "product_banner",
           "settings": {
-            "image": "shopify://shop_images/Component_2.jpg",
+            "image": "shopify://shop_images/visuel_gauche_robe_noel.avif",
             "content_background_color": "#bdd4e5",
             "subheading": "",
             "subheading_font_size": 12,
