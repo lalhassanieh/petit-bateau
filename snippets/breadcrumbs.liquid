@@ -40,16 +40,14 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-      {% assign menu = linklists['main-menu'] %}
-
-<ul class="breadcrumb-list">
+      <ul class="breadcrumb-list">
   <li><a href="{{ routes.root_url }}">Accueil</a></li>
 
-  {% for item in menu.links %}
+  {% for item in menus.main-menu.items %}
     {% if product.url contains item.url %}
       <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-      {% if item.links.size > 0 %}
-        {% for sub in item.links %}
+      {% if item.items.size > 0 %}
+        {% for sub in item.items %}
           {% if product.url contains sub.url %}
             <li><a href="{{ sub.url }}">{{ sub.title }}</a></li>
           {% endif %}
@@ -60,6 +58,7 @@
 
   <li><span>{{ product.title }}</span></li>
 </ul>
+
 
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
