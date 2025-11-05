@@ -17,9 +17,10 @@
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
-            "text1": "JOURNÉES PRIVILÈGES : jusqu'à -50% dès 2 articles achetés*",
-            "text2": "",
-            "text3": "",
+            "text1": "<strong>Bienvenue chez PETIT BATEAU Liban !</strong> ",
+            "text2": "Inscrivez-vous dès maintenant et bénéficiez de <strong>15 % de réduction</strong> sur votre première commande avec le code promo <strong>HELLO15</strong>.",
+            "text3": "Bénéficiez de <strong>15 % de réduction</strong> sur votre première commande avec le code promo <strong>HELLO15</strong>.",
+            "text4": "Livraison partout au Liban. [Plus d’informations…] ",
             "change_every": 3,
             "hidden_on_mobile": false
           }
