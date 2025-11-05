@@ -40,14 +40,23 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-  {%- assign current_collection = collection | default: product.collections.first -%}
-  {%- assign current_collection_url = current_collection.url | default: '' -%}
+  {%- comment -%}
+    Get the first manual (non-"All") collection the product belongs to.
+  {%- endcomment -%}
+  {%- assign current_collection = collection -%}
+  {%- if current_collection == nil or current_collection.handle == 'all' -%}
+    {%- for coll in product.collections -%}
+      {%- if coll.handle != 'all' -%}
+        {%- assign current_collection = coll -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
 
   {%- comment -%}
-    Try a few likely menu handles. Add any other menu handle your store might use,
-    separated by commas (exact handle names as seen in the Navigation URL).
+    Try to match that collection to the menu for proper hierarchy.
   {%- endcomment -%}
-  {%- assign try_handles = "main-menu,content/menus/main-menu,menus/main-menu,main_menu,main-menu-desktop" | split: "," -%}
+  {%- assign try_handles = "main-menu,content/menus/main-menu" | split: "," -%}
   {%- assign found_branch = false -%}
 
   {%- for handle in try_handles -%}
@@ -55,69 +64,34 @@
     {%- if linklists[handle] != blank -%}
       {%- assign nav = linklists[handle].links -%}
 
-      {%- comment -%} top-level links {%- endcomment -%}
       {%- for link in nav -%}
-        {%- if link.url == current_collection_url -%}
-          <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-            {{ link.title | link_to: link.url }}
-          </li>
+        {%- if link.type == 'collection_link' and link.object.handle == current_collection.handle -%}
+          <li class="breadcrumb-item">{{ link.title | link_to: link.url }}</li>
           {%- assign found_branch = true -%}
           {%- break -%}
         {%- endif -%}
 
-        {%- if link.links != blank -%}
-          {%- for child in link.links -%}
-            {%- if child.url == current_collection_url -%}
-              <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                {{ link.title | link_to: link.url }}
-              </li>
-              <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                {{ child.title | link_to: child.url }}
-              </li>
-              {%- assign found_branch = true -%}
-              {%- break -%}
-            {%- endif -%}
-
-            {%- if child.links != blank -%}
-              {%- for subchild in child.links -%}
-                {%- if subchild.url == current_collection_url -%}
-                  <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                    {{ link.title | link_to: link.url }}
-                  </li>
-                  <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                    {{ child.title | link_to: child.url }}
-                  </li>
-                  <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                    {{ subchild.title | link_to: subchild.url }}
-                  </li>
-                  {%- assign found_branch = true -%}
-                  {%- break -%}
-                {%- endif -%}
-              {%- endfor -%}
-            {%- endif -%}
-
-            {%- if found_branch -%}{%- break -%}{%- endif -%}
-          {%- endfor -%}
-        {%- endif -%}
+        {%- for child in link.links -%}
+          {%- if child.type == 'collection_link' and child.object.handle == current_collection.handle -%}
+            <li class="breadcrumb-item">{{ link.title | link_to: link.url }}</li>
+            <li class="breadcrumb-item">{{ child.title | link_to: child.url }}</li>
+            {%- assign found_branch = true -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
 
         {%- if found_branch -%}{%- break -%}{%- endif -%}
       {%- endfor -%}
     {%- endif -%}
-
     {%- if found_branch -%}{%- break -%}{%- endif -%}
   {%- endfor -%}
 
-  {%- comment -%}
-    If we didn't find the collection in the menu, still show the collection (fallback).
-  {%- endcomment -%}
   {%- if current_collection and found_branch == false -%}
-    <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-      {{ current_collection.title | link_to: current_collection.url }}
-    </li>
+    <li class="breadcrumb-item">{{ current_collection.title | link_to: current_collection.url }}</li>
   {%- endif -%}
 
-  <li class="breadcrumb-item dot-between inline-flex align-center">
-    <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
+  <li class="breadcrumb-item">
+    <span aria-current="page">{{ product.title }}</span>
   </li>
 
       {%- when 'collection' and collection.handle -%}
