@@ -512,7 +512,7 @@
   },
   "products": {
     "price": {
-      "from_price_html": "Depuis {{ price }}",
+      "from_price_html": "Dès {{ price }}",
       "regular_price": "Prix ​​régulier",
       "sale_price": "Prix ​​de vente",
       "unit_price": "Prix ​​unitaire"
@@ -531,7 +531,7 @@
         "subscription": "Abonnement"
       },
       "price": {
-        "from_price_html": "Depuis {{ price }}",
+        "from_price_html": "Dès {{ price }}",
         "regular_price": "Prix ​​régulier",
         "sale_price": "Prix ​​de vente",
         "unit_price": "Prix ​​unitaire",
