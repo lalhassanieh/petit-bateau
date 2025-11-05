@@ -40,26 +40,14 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-      <ul class="breadcrumb-list">
-  <li><a href="{{ routes.root_url }}">Accueil</a></li>
-
-  {% for item in menus.main-menu.items %}
-    {% if product.url contains item.url %}
-      <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-      {% if item.items.size > 0 %}
-        {% for sub in item.items %}
-          {% if product.url contains sub.url %}
-            <li><a href="{{ sub.url }}">{{ sub.title }}</a></li>
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-
-  <li><span>{{ product.title }}</span></li>
-</ul>
-
-
+        {%- if collection.url -%}
+          <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+            {{ collection.title | link_to: collection.url }}
+          </li>
+        {%- endif -%}
+        <li class="breadcrumb-item dot-between inline-flex align-center {% if next_product %}breadcrumb-truncate{% endif %}">
+          <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
+        </li>
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
           <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
