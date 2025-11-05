@@ -61,6 +61,9 @@
     {% endfor %}
   {% endif %}
 {% endfor %}
+<li class="breadcrumb-item dot-between inline-flex align-center">
+  <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
+</li>
 
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
