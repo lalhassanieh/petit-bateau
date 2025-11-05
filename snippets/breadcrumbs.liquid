@@ -42,7 +42,6 @@
       {%- when 'product' -%}
   {%- assign menu_handle = 'main-menu' -%}
   {%- assign nav_links = linklists[menu_handle].links -%}
-  {%- assign current_collection = collection -%}
 
   {%- for link in nav_links -%}
     {%- if link.url == collection.url or link.child_active -%}
@@ -75,6 +74,7 @@
   <li class="breadcrumb-item dot-between inline-flex align-center {% if next_product %}breadcrumb-truncate{% endif %}">
     <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
   </li>
+
 
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
