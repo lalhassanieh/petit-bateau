@@ -160,20 +160,23 @@
                         </div>
                       </div>
                     {% endif %}
-                    {%- if block_st.text2 != blank -%}
-                      <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
-                        <div class="px-15">
-                          {{- block_st.text2 -}}
+                    {%- if customer -%}
+                      {%- if block_st.text2 != blank -%}
+                        <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
+                          <div class="px-15">
+                            {{- block_st.text2 -}}
+                          </div>
                         </div>
-                      </div>
-                    {% endif %}
-                    {%- if block_st.text3 != blank -%}
-                      <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
-                        <div class="px-15">
-                          {{- block_st.text3 -}}
+                      {% endif %}
+                    {%- else -%}
+                      {%- if block_st.text3 != blank -%}
+                        <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
+                          <div class="px-15">
+                            {{- block_st.text3 -}}
+                          </div>
                         </div>
-                      </div>
-                    {% endif %}
+                      {% endif %}
+                    {%- endif -%}
                     {%- if block_st.text4 != blank -%}
                       <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
                         <div class="px-15">
