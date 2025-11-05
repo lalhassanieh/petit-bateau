@@ -153,9 +153,11 @@
                         style="--font-size: {{ section_st.heading_font_size }}; --space-bottom: {{ section_st.heading_spacing_bottom }}"
                       >
                         {% if block_st.custom_url != blank %}
-                        <a href="{{ block_st.custom_url }}">
-                        {{ block_st.heading }}
-                        </a>
+                          <a href="{{ block_st.custom_url }}">
+                          {{ block_st.heading }}
+                          </a>
+                        {%- else -%}
+                          {{ block_st.heading }}
                         {% endif %}
                       </h3>
                     {% endif %}
