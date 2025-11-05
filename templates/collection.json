@@ -46,6 +46,7 @@
     },
     "subcollection": {
       "type": "subcollection-list",
+      "disabled": true,
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "default",
@@ -119,7 +120,7 @@
       "custom_css": [
         ".collapsible-heading {border-radius: 50px;}",
         ".btn-filter {padding-top: 0.5rem !important; padding-bottom: 0.5rem !important;}",
-        " @media (max-width: 480px) {.product__badges-sale {display: none;} }"
+        "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
       ],
       "settings": {
         "section_width": "fluid_container",
