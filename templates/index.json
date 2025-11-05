@@ -579,8 +579,8 @@
       "settings": {
         "section_width": "full_width",
         "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
-        "heading": "Bienvenue chez PETIT BATEAU Liban ! ",
-        "description": "<p class=\"loggedin-message\" style=\"line-height:14.7px\">Bénéficiez de -15% sur votre première commande en vous inscrivant à notre newsletter! <br>(hors soldes et promotions en cours)</p>\n<p class=\"loggedout-message\" style=\"line-height:14.7px\">Inscrivez-vous dès maintenant et bénéficiez de -15% sur votre première commande en vous inscrivant à notre newsletter! <br>(hors soldes et promotions en cours)</p>",
+        "heading": "-15% sur votre première commande",
+        "description": "Bénéficiez de -15% sur votre première commande en vous inscrivant à notre newsletter ! <br>(hors soldes et promotions en cours)",
         "header_size": "medium",
         "header_alignment": "center",
         "email_placeholder": "Email *",
