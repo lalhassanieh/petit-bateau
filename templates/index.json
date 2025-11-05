@@ -148,8 +148,8 @@
         "collection_r7aTxN": {
           "type": "collection",
           "settings": {
-            "collection": "jusqua-60",
-            "collection_title": "Jusqu'à -60%"
+            "collection": "anoraks",
+            "collection_title": "Anoraks"
           }
         },
         "collection_FUAzK4": {
@@ -183,8 +183,8 @@
         "collection_ctTBpd": {
           "type": "collection",
           "settings": {
-            "collection": "lots",
-            "collection_title": "Lots"
+            "collection": "blouses",
+            "collection_title": "Blouses"
           }
         }
       },
@@ -235,7 +235,7 @@
         "image_custom_width": true,
         "image_width": 150,
         "padding_top": 10,
-        "padding_bottom": 40,
+        "padding_bottom": 20,
         "reset_spacing": false
       }
     },
