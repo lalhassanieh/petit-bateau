@@ -500,7 +500,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const url = new URL(window.location.href);
       if (!url.searchParams.has('sort_by')) {
         // Set your desired default sort
-        const defaultSort = 'price-ascending'; // change to any valid sort key
+        const defaultSort = 'price-descending'; // change to any valid sort key
 
         url.searchParams.set('sort_by', defaultSort);
 
