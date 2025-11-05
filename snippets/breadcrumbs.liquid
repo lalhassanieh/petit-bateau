@@ -40,15 +40,30 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-        {{ collection.title }}
-        {%- if collection.url -%}
-          <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-            {{ collection.title | link_to: collection.url }}
-          </li>
-        {%- endif -%}
-        <li class="breadcrumb-item dot-between inline-flex align-center {% if next_product %}breadcrumb-truncate{% endif %}">
-          <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
-        </li>
+        
+        <ul class="breadcrumb-list">
+  <li><a href="{{ routes.root_url }}">Accueil</a></li>
+
+  {% assign product_collection = product.collections.first %}
+  {% if product_collection %}
+    {% assign breadcrumbs = "" | split: "," %}
+    {% assign current = product_collection %}
+
+    {% comment %} Traverse parent collections if you have a parent/child structure {% endcomment %}
+    {% for link in current.metafields.custom.parent_collections %}
+      {% assign breadcrumbs = breadcrumbs | push: link %}
+    {% endfor %}
+
+    {% for bc in breadcrumbs %}
+      <li><a href="{{ bc.url }}">{{ bc.title }}</a></li>
+    {% endfor %}
+
+    <li><a href="{{ product_collection.url }}">{{ product_collection.title }}</a></li>
+  {% endif %}
+
+  <li>{{ product.title }}</li>
+</ul>
+
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
           <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
