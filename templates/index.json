@@ -615,7 +615,7 @@
             "icon_image": "shopify://shop_images/Icon_6.svg",
             "icon_svg": "check_badge",
             "custom_svg": "",
-            "custom_url": "",
+            "custom_url": "shopify://policies/privacy-policy",
             "heading": "La livraison",
             "description": ""
           }
@@ -626,7 +626,7 @@
             "icon_image": "shopify://shop_images/Icon_7.svg",
             "icon_svg": "message_communications",
             "custom_svg": "",
-            "custom_url": "",
+            "custom_url": "shopify://blogs/news",
             "heading": "Échange et retour gratuits",
             "description": "<p>en boutique</p>"
           }
@@ -637,7 +637,7 @@
             "icon_image": "shopify://shop_images/Icon_8.svg",
             "icon_svg": "message_communications",
             "custom_svg": "",
-            "custom_url": "",
+            "custom_url": "shopify://policies/privacy-policy",
             "heading": "Paiement",
             "description": ""
           }
@@ -648,7 +648,7 @@
             "icon_image": "shopify://shop_images/Icon_9.svg",
             "icon_svg": "message_communications",
             "custom_svg": "",
-            "custom_url": "",
+            "custom_url": "shopify://policies/privacy-policy",
             "heading": "Paiement",
             "description": "<p>Fidelite recompensee’<br/></p>"
           }
@@ -659,7 +659,7 @@
             "icon_image": "shopify://shop_images/Icon_10.svg",
             "icon_svg": "message_communications",
             "custom_svg": "",
-            "custom_url": "",
+            "custom_url": "shopify://policies/privacy-policy",
             "heading": "Service client",
             "description": "<p>à votre écoute</p>"
           }
