@@ -102,7 +102,7 @@
         "slider_item_QGDKFa"
       ],
       "custom_css": [
-        ".sec__inner{text-decoration: none}",
+        ".sec__inner {text-decoration: none;}",
         "@media only screen and (max-width: 768px) {.sec__content-btn a {background: #002e5e; }}"
       ],
       "name": "t:sections.slideshow.name",
@@ -614,8 +614,8 @@
             "icon_image": "shopify://shop_images/Icon_6.svg",
             "icon_svg": "check_badge",
             "custom_svg": "",
-            "heading": "Livraison gratuite",
-            "description": "<p>En boutique</p>"
+            "heading": "La livraison",
+            "description": ""
           }
         },
         "icon_box_tj4DJd": {
@@ -635,7 +635,7 @@
             "icon_svg": "message_communications",
             "custom_svg": "",
             "heading": "Paiement",
-            "description": "<p>100% sécurisé</p>"
+            "description": ""
           }
         },
         "icon_box_BPN3tm": {
