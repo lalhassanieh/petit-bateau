@@ -490,3 +490,34 @@ var eventCollectionShopify = (function () {
   };
 })();
 eventCollectionShopify.init();
+
+
+// --- Default sorting patch for Horizon ---
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    // Check if we're on a collection page and no sort_by param exists
+    if (window.location.pathname.includes('/collections/')) {
+      const url = new URL(window.location.href);
+      if (!url.searchParams.has('sort_by')) {
+        // Set your desired default sort
+        const defaultSort = 'price-ascending'; // change to any valid sort key
+
+        url.searchParams.set('sort_by', defaultSort);
+
+        // Update the dropdown visually if it exists
+        const sortSelect = document.querySelector('select[name="sort_by"], #SortBy');
+        if (sortSelect) {
+          sortSelect.value = defaultSort;
+        }
+
+        // Trigger the theme’s built-in filter renderer
+        const searchParams = url.searchParams.toString();
+        const newUrl = eventCollectionShopify.renderUrl(searchParams);
+        eventCollectionShopify.renderSectionFilter(newUrl, searchParams);
+      }
+    }
+  } catch (e) {
+    console.warn('Default sort initialization error:', e);
+  }
+});
+
