@@ -431,3 +431,15 @@
     width: 100%;
   }
 }/*# sourceMappingURL=bi-custom.css.map */
+
+
+/*# Added by Carla*/
+
+.logged-out .loggedin-message {
+  display: none;
+}
+.logged-in .loggedout-message {
+  display: none;
+}
+
+/*# END Added by Carla*/
