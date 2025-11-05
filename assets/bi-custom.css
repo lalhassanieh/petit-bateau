@@ -442,4 +442,8 @@
   display: none;
 }
 
+.logged-out .swiper-slide:nth-child(2)::before {
+  content: "From";
+}
+
 /*# END Added by Carla*/
