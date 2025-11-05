@@ -39,44 +39,24 @@
         <li class="breadcrumb-item dot-between inline-flex align-center">
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
-      {%- assign main_menu = linklists['main-menu'] -%}
-{%- assign product_collections = product.collections -%}
-{%- assign breadcrumb_collection = product_collections.first -%}
+      {%- assign product_collections = product.collections -%}
+<ul class="breadcrumb-list">
+  <li><a href="{{ routes.root_url }}">Accueil</a></li>
 
-<li class="breadcrumb-item">
-  <a href="{{ routes.root_url }}">Accueil</a>
-</li>
+  {%- if product_collections.size > 0 -%}
+    {%- assign collection_path = "" -%}
+    {%- assign collection = product_collections.first -%}
 
-{%- if breadcrumb_collection -%}
-  {%- comment -%}Traverse main-menu to find the collection hierarchy{%- endcomment -%}
-  {%- assign parents = "" | split: "" -%}
+    {%- comment -%} Loop through the collection hierarchy {% endcomment -%}
+    {%- for parent in collection.all_parents -%}
+      <li><a href="{{ parent.url }}">{{ parent.title }}</a></li>
+    {%- endfor -%}
 
-  {%- for link in main_menu.links -%}
-    {%- if link.type == 'collection_link' and link.object.handle == breadcrumb_collection.handle -%}
-      {%- assign parents = parents | push: link -%}
-    {%- elsif link.links.size > 0 -%}
-      {%- assign found = false -%}
-      {%- for sublink in link.links -%}
-        {%- if sublink.type == 'collection_link' and sublink.object.handle == breadcrumb_collection.handle -%}
-          {%- assign parents = parents | push: link -%}
-          {%- assign parents = parents | push: sublink -%}
-          {%- assign found = true -%}
-          {%- break -%}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endif -%}
-  {%- endfor -%}
+    <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+  {%- endif -%}
 
-  {%- for p in parents -%}
-    <li class="breadcrumb-item">
-      <a href="{{ p.url }}">{{ p.title }}</a>
-    </li>
-  {%- endfor -%}
-{%- endif -%}
-
-<li class="breadcrumb-item">
-  <span aria-current="page">{{ product.title }}</span>
-</li>
+  <li><span>{{ product.title }}</span></li>
+</ul>
 
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
