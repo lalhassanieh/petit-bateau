@@ -40,33 +40,34 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-  {%- comment -%}
-    Find the first valid collection for this product (not "All")
-  {%- endcomment -%}
   {%- assign current_collection = collection -%}
   {%- if current_collection == nil or current_collection.handle == 'all' -%}
     {%- assign current_collection = product.collections.first -%}
   {%- endif -%}
 
-  {%- comment -%}
-    Build breadcrumb from all product collections if nested ones exist
-  {%- endcomment -%}
+  <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+    <a href="{{ routes.root_url }}">Accueil</a>
+  </li>
+
   {%- if current_collection != blank -%}
-    {%- assign parent_collections = current_collection.metafields.custom.parent_collections.value -%}
-    {%- if parent_collections != blank -%}
-      {%- for parent in parent_collections -%}
-        <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-          <a href="{{ parent.url }}">{{ parent.title }}</a>
-        </li>
-      {%- endfor -%}
+    {%- assign parent_title = current_collection.metafields.custom.parent_collection_title -%}
+    {%- assign parent_url = current_collection.metafields.custom.parent_collection_url -%}
+    
+    {%- if parent_title and parent_url -%}
+      <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+        <a href="{{ parent_url }}">{{ parent_title }}</a>
+      </li>
     {%- endif -%}
+
     <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
       <a href="{{ current_collection.url }}">{{ current_collection.title }}</a>
     </li>
   {%- endif -%}
 
   <li class="breadcrumb-item dot-between inline-flex align-center">
-    <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
+    <span class="breadcrumb-link no-underline heading-color" aria-current="page">
+      {{ product.title }}
+    </span>
   </li>
 
       {%- when 'collection' and collection.handle -%}
