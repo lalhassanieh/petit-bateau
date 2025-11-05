@@ -120,57 +120,102 @@
                 class="motion-item sec__icon-box-item {% if section_st.enable_background %}show-background{% endif %} flex {{ icon_position }}{% if section_st.icon_position == 'top' or section_st.icon_position == 'bottom' and section_st.content_alignment == 'center' %} align-center{% endif %}{% if section_st.content_alignment == 'right' %}{% if section_st.icon_position == 'top' or section_st.icon_position == 'bottom' %} align-end{% endif %}{% endif %}{% if section_st.content_alignment == 'left' %}{% if section_st.icon_position == 'top' or section_st.icon_position == 'bottom' %} align-start{% endif %}{% endif %}{% if section_st.spacing > 15 %} gap-custom-big{% else %} gap-custom{% endif %}{% if section_st.icon_position == 'top' and section_st.content_alignment == 'center' %} align-center{% endif %}{% if section_st.type == 'frame' %} border p-15 radius-5{% endif %}"
                 style="--gap: {{ section_st.spacing }};{% if section_st.enable_background %}--background-color: {{ section_st.background }}{% endif %}"
               >
-                {%- if image != blank or block_st.icon_svg != 'none' or block_st.custom_svg != blank -%}
-                  <div
-                    class="sec__icon-box-content-icon {% if show_border %}icon-border{% endif %} lh-1{% if image != blank %} w-custom max-w-100 flex-auto {% endif %}{% if section_st.icon_position == 'left' or  section_st.content_alignment == 'right' %} align-self-center{% endif %}"
-                    style="--custom-width: {{ section_st.icon_size }}px"
-                  >
-                    {%- if image != blank -%}
-                      {%- assign sizes = section_st.icon_size | append: 'px' -%}
-                      {%- assign image_alt = image.alt | default: 'images' -%}
-                      {% render 'responsive-image',
-                        type: 'other',
-                        image: image,
-                        image_alt: image_alt,
-                        sizes: sizes,
-                        custom_widths: '185, 120, 60, 30',
-                        no_animate: true
-                      %}
-                    {%- elsif block_st.custom_svg != blank -%}
-                      <span class="custom-svg w-custom w-custom-svg">
-                        {{ block_st.custom_svg }}
-                      </span>
-                    {%- elsif block_st.icon_svg != 'none' -%}
-                      {% render 'icon_svg_list', icon: block_st.icon_svg, custom_width: section_st.icon_size %}
-                    {% endif %}
-                  </div>
-                {% endif %}
-                {% if block_st.heading != blank or block_st.description != blank %}
-                  <div class="sec__icon-box-content text-{{ section_st.content_alignment }} word-break{% if section_st.icon_position == 'left' or  section_st.content_alignment == 'right' %} align-self-center{% endif %}">
-                    {% if block_st.heading != blank %}
-                      <h3
-                        class="sec__icon-box-content-heading mt-0 fs-custom mb-custom {{ section_st.heading_font_weight }}{% if section_st.heading_uppercase %} uppercase{% endif %}"
-                        style="--font-size: {{ section_st.heading_font_size }}; --space-bottom: {{ section_st.heading_spacing_bottom }}"
-                      >
-                        {% if block_st.custom_url != blank %}
-                          <a href="{{ block_st.custom_url }}">
-                          {{ block_st.heading }}
-                          </a>
-                        {%- else -%}
-                          {{ block_st.heading }}
-                        {% endif %}
-                      </h3>
-                    {% endif %}
-                    {% if block_st.description != blank %}
+                {% if block_st.custom_url != blank %}
+                  <a href="{{ block_st.custom_url }}">
+                    {%- if image != blank or block_st.icon_svg != 'none' or block_st.custom_svg != blank -%}
                       <div
-                        class="sec__icon-box-content-des rich__text-m0 fs-custom {{ section_st.des_font_weight }}"
-                        style="--font-size: {{ section_st.des_font_size }}"
+                        class="sec__icon-box-content-icon {% if show_border %}icon-border{% endif %} lh-1{% if image != blank %} w-custom max-w-100 flex-auto {% endif %}{% if section_st.icon_position == 'left' or  section_st.content_alignment == 'right' %} align-self-center{% endif %}"
+                        style="--custom-width: {{ section_st.icon_size }}px"
                       >
-                        {{ block_st.description }}
+                        {%- if image != blank -%}
+                          {%- assign sizes = section_st.icon_size | append: 'px' -%}
+                          {%- assign image_alt = image.alt | default: 'images' -%}
+                          {% render 'responsive-image',
+                            type: 'other',
+                            image: image,
+                            image_alt: image_alt,
+                            sizes: sizes,
+                            custom_widths: '185, 120, 60, 30',
+                            no_animate: true
+                          %}
+                        {%- elsif block_st.custom_svg != blank -%}
+                          <span class="custom-svg w-custom w-custom-svg">
+                            {{ block_st.custom_svg }}
+                          </span>
+                        {%- elsif block_st.icon_svg != 'none' -%}
+                          {% render 'icon_svg_list', icon: block_st.icon_svg, custom_width: section_st.icon_size %}
+                        {% endif %}
                       </div>
                     {% endif %}
-                  </div>
-                {% endif %}
+                    {% if block_st.heading != blank or block_st.description != blank %}
+                      <div class="sec__icon-box-content text-{{ section_st.content_alignment }} word-break{% if section_st.icon_position == 'left' or  section_st.content_alignment == 'right' %} align-self-center{% endif %}">
+                        {% if block_st.heading != blank %}
+                          <h3
+                            class="sec__icon-box-content-heading mt-0 fs-custom mb-custom {{ section_st.heading_font_weight }}{% if section_st.heading_uppercase %} uppercase{% endif %}"
+                            style="--font-size: {{ section_st.heading_font_size }}; --space-bottom: {{ section_st.heading_spacing_bottom }}"
+                          >
+                              {{ block_st.heading }}
+                          </h3>
+                        {% endif %}
+                        {% if block_st.description != blank %}
+                          <div
+                            class="sec__icon-box-content-des rich__text-m0 fs-custom {{ section_st.des_font_weight }}"
+                            style="--font-size: {{ section_st.des_font_size }}"
+                          >
+                            {{ block_st.description }}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  </a>
+                  {%- else -%}
+                    {%- if image != blank or block_st.icon_svg != 'none' or block_st.custom_svg != blank -%}
+                      <div
+                        class="sec__icon-box-content-icon {% if show_border %}icon-border{% endif %} lh-1{% if image != blank %} w-custom max-w-100 flex-auto {% endif %}{% if section_st.icon_position == 'left' or  section_st.content_alignment == 'right' %} align-self-center{% endif %}"
+                        style="--custom-width: {{ section_st.icon_size }}px"
+                      >
+                        {%- if image != blank -%}
+                          {%- assign sizes = section_st.icon_size | append: 'px' -%}
+                          {%- assign image_alt = image.alt | default: 'images' -%}
+                          {% render 'responsive-image',
+                            type: 'other',
+                            image: image,
+                            image_alt: image_alt,
+                            sizes: sizes,
+                            custom_widths: '185, 120, 60, 30',
+                            no_animate: true
+                          %}
+                        {%- elsif block_st.custom_svg != blank -%}
+                          <span class="custom-svg w-custom w-custom-svg">
+                            {{ block_st.custom_svg }}
+                          </span>
+                        {%- elsif block_st.icon_svg != 'none' -%}
+                          {% render 'icon_svg_list', icon: block_st.icon_svg, custom_width: section_st.icon_size %}
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                    {% if block_st.heading != blank or block_st.description != blank %}
+                      <div class="sec__icon-box-content text-{{ section_st.content_alignment }} word-break{% if section_st.icon_position == 'left' or  section_st.content_alignment == 'right' %} align-self-center{% endif %}">
+                        {% if block_st.heading != blank %}
+                          <h3
+                            class="sec__icon-box-content-heading mt-0 fs-custom mb-custom {{ section_st.heading_font_weight }}{% if section_st.heading_uppercase %} uppercase{% endif %}"
+                            style="--font-size: {{ section_st.heading_font_size }}; --space-bottom: {{ section_st.heading_spacing_bottom }}"
+                          >
+                              {{ block_st.heading }}
+                          </h3>
+                        {% endif %}
+                        {% if block_st.description != blank %}
+                          <div
+                            class="sec__icon-box-content-des rich__text-m0 fs-custom {{ section_st.des_font_weight }}"
+                            style="--font-size: {{ section_st.des_font_size }}"
+                          >
+                            {{ block_st.description }}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  {% endif %}
+
               </div>
             </div>
         {% endcase %}
