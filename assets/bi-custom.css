@@ -238,7 +238,7 @@
 }
 
 .section__header-heading {
-  text-transform: uppercase !important;
+  /*text-transform: uppercase !important;*/
   font-family: "Oswald-Bold";
   font-weight: 500 !important;
   letter-spacing: 0.2px !important;
