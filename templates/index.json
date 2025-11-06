@@ -268,6 +268,7 @@
         },
         "product_banner_VcgL9t": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "content_background_color": "#f1f3f7",
             "subheading": "Subheading",
