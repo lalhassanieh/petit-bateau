@@ -135,7 +135,7 @@
         "items_to_show": 11,
         "items_per_row": 4,
         "column_gap": 30,
-        "pagination": "default",
+        "pagination": "infinit_scrolling",
         "button_show_more": "Load more",
         "promotion_link": "shopify://collections/best-seller",
         "promotion_postion": 6,
