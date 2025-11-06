@@ -266,6 +266,28 @@
             "button_type": "primary"
           }
         },
+        "product_banner_VcgL9t": {
+          "type": "product_banner",
+          "settings": {
+            "content_background_color": "#f1f3f7",
+            "subheading": "Subheading",
+            "subheading_font_size": 14,
+            "subheading_font_weight": "subheading_weight",
+            "subheading_spacing_bottom": 15,
+            "heading": "Talk about your brand",
+            "heading_font_size": 36,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 24,
+            "description": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "description_font_size": 14,
+            "description_spacing_bottom": 25,
+            "product": "",
+            "product_spacing_bottom": 25,
+            "button_label": "Button label",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
         "product_banner_xTyA4d": {
           "type": "product_banner",
           "settings": {
@@ -384,6 +406,7 @@
       },
       "block_order": [
         "product_banner_pBryNz",
+        "product_banner_VcgL9t",
         "product_banner_xTyA4d",
         "product_banner_3b6Q6P",
         "product_banner_P4xJFy",
@@ -393,7 +416,8 @@
       "custom_css": [
         ".section__block-inner {border-radius: 1px;}",
         ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
-        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}"
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}",
+        ".btn-primary{color:#fff;}"
       ],
       "settings": {
         "section_width": "fluid_container",
