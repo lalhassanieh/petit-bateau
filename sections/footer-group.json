@@ -30,7 +30,7 @@
           "type": "link_list",
           "settings": {
             "heading": "Commands",
-            "menu": "petit-bateau",
+            "menu": "commandes",
             "content_width": "25%"
           }
         },
