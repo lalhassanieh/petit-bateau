@@ -23,7 +23,7 @@
             "store_address": false,
             "store_phone": true,
             "store_email": true,
-            "content_width": "25%"
+            "content_width": "20%"
           }
         },
         "link_list_gVEWMi": {
@@ -31,7 +31,7 @@
           "settings": {
             "heading": "Commands",
             "menu": "commandes",
-            "content_width": "25%"
+            "content_width": "20%"
           }
         },
         "link_list_JTq77M": {
@@ -39,7 +39,7 @@
           "settings": {
             "heading": "Services",
             "menu": "services",
-            "content_width": "25%"
+            "content_width": "20%"
           }
         },
         "link_list_x4zwRH": {
@@ -55,7 +55,7 @@
           "settings": {
             "heading": "Petit bateau",
             "menu": "petit-bateau",
-            "content_width": "25%"
+            "content_width": "20%"
           }
         },
         "custom_liquid_FfyL6x": {
