@@ -116,7 +116,7 @@
         "copyright_text": "<p>\n<a href=\"/pages/contact\">Contact</a>\n<a href=\"/pages/faq\">FAQ</a>\n<a href=\"/pages/cgv\">CGV</a>\n<a href=\"/pages/mentions-legales\">Mentions légales</a>\n<a href=\"/pages/cgu\">CGU</a>\n<a href=\"/pages/cookies\">Cookies</a>\n<a href=\"/pages/politique-de-protection-des-donnees\">Politique de protection des données</a>\n<a href=\"/pages/conditions-des-offres-en-cours\">*Conditions des offres en cours</a>\n<a href=\"/pages/parametres-des-cookies\">Paramètres des cookies</a>\n</p>",
         "footer_heading_size": 16,
         "padding_top": 60,
-        "padding_bottom": 52,
+        "padding_bottom": 30,
         "reset_spacing_on_homepage": true
       }
     }
