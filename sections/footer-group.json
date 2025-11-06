@@ -96,7 +96,8 @@
         "store_info_AdgWR4"
       ],
       "custom_css": [
-        ".back-to-top span {background-color: #002e5e;}"
+        ".back-to-top span {background-color: #002e5e;}",
+        ".footer-block:nth-child(6),.footer-block:nth-child(7),.footer-block:nth-child(8),{padding-top: 2rem; margin-top: 2rem; border-top: .1rem solid #d9d9d9;}"
       ],
       "settings": {
         "section_width": "fluid_container",
