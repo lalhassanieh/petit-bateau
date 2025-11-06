@@ -81,7 +81,7 @@
             "store_address": false,
             "store_phone": false,
             "store_email": false,
-            "content_width": "20%"
+            "content_width": "33.333%"
           }
         }
       },
