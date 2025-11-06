@@ -26,6 +26,14 @@
             "content_width": "25%"
           }
         },
+        "link_list_gVEWMi": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Commands",
+            "menu": "petit-bateau",
+            "content_width": "25%"
+          }
+        },
         "link_list_JTq77M": {
           "type": "link_list",
           "settings": {
@@ -59,13 +67,14 @@
       },
       "block_order": [
         "store_info_tUhcyD",
+        "link_list_gVEWMi",
         "link_list_JTq77M",
         "link_list_x4zwRH",
         "link_list_eJdN9G",
         "custom_liquid_FfyL6x"
       ],
       "custom_css": [
-        ".back-to-top span {background-color: #002E5E;}"
+        ".back-to-top span {background-color: #002e5e;}"
       ],
       "settings": {
         "section_width": "fluid_container",
