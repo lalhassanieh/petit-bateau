@@ -98,7 +98,8 @@
       "custom_css": [
         ".back-to-top span {background-color: #002e5e;}",
         ".footer-block:nth-child(6),.footer-block:nth-child(7),.footer-block:nth-child(8) {padding-top: 2rem; margin-top: 2rem; border-top: 0.1rem solid #ebebeb;}",
-        "social-icon {margin-top: -5px;}"
+        "social-icon {margin-top: -5px;}",
+        "@media screen and (max-width: 767px) {.footer-block:nth-child(6),.footer-block:nth-child(7),.footer-block:nth-child(8) {border-top: 0.1rem solid transparent;}}"
       ],
       "settings": {
         "section_width": "fluid_container",
