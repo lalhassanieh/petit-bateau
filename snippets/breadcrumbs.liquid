@@ -48,27 +48,39 @@
           
           {%- comment -%}Find collections by priority{%- endcomment -%}
           {%- for coll in product.collections -%}
+            {%- comment -%}Age/Gender collections{%- endcomment -%}
             {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'ans' or coll.title contains 'Nouveau-né' or coll.title contains 'mois' -%}
               {%- assign age_coll = coll -%}
+            {%- comment -%}Category collections (priority: specific > general){%- endcomment -%}
             {%- elsif coll.title contains 'Sous-vêtements et nuit' or coll.title contains 'Sous' -%}
               {%- assign category_coll = coll -%}
-            {%- elsif coll.title == 'Pyjamas' or coll.title contains 'Gigoteuses' or coll.title contains 'couvertures' or coll.title contains 'literie' -%}
-              {%- assign product_coll = coll -%}
+            {%- elsif coll.title contains 'Puériculture' and category_coll == null -%}
+              {%- assign category_coll = coll -%}
+            {%- elsif coll.title contains 'Vêtements' and category_coll == null -%}
+              {%- assign category_coll = coll -%}
             {%- endif -%}
           {%- endfor -%}
           
-          {%- comment -%}If no Sous-vêtements found, fallback to Puériculture or general Vêtements{%- endcomment -%}
-          {%- if category_coll == null -%}
-            {%- for coll in product.collections -%}
-              {%- if coll.title contains 'Puériculture' and category_coll == null -%}
-                {%- assign category_coll = coll -%}
-                {%- break -%}
-              {%- elsif coll.title contains 'Vêtements' and category_coll == null -%}
-                {%- assign category_coll = coll -%}
-                {%- break -%}
-              {%- endif -%}
-            {%- endfor -%}
-          {%- endif -%}
+          {%- comment -%}Find product type collection (exclude age and category collections){%- endcomment -%}
+          {%- for coll in product.collections -%}
+            {%- assign is_age = false -%}
+            {%- assign is_category = false -%}
+            
+            {%- comment -%}Check if this is an age collection{%- endcomment -%}
+            {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'ans' or coll.title contains 'Nouveau-né' or coll.title contains 'mois' -%}
+              {%- assign is_age = true -%}
+            {%- endif -%}
+            
+            {%- comment -%}Check if this is a category collection{%- endcomment -%}
+            {%- if coll.title contains 'Sous-vêtements' or coll.title contains 'Puériculture' or coll.title contains 'Vêtements' -%}
+              {%- assign is_category = true -%}
+            {%- endif -%}
+            
+            {%- comment -%}If it's neither age nor category, it's likely a product type{%- endcomment -%}
+            {%- if is_age == false and is_category == false and product_coll == null -%}
+              {%- assign product_coll = coll -%}
+            {%- endif -%}
+          {%- endfor -%}
           
           {%- comment -%}Display in logical order{%- endcomment -%}
           {%- if age_coll -%}
