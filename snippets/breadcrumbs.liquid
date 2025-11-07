@@ -46,35 +46,62 @@
           {%- assign current_collection = product.collections.first -%}
         {%- endif -%}
         
-        {%- if current_collection and current_collection.title != blank -%}
-          {%- comment -%}Simple approach: take first 3 collections and display them{%- endcomment -%}
-          {%- assign all_collections = product.collections -%}
-          {%- assign hierarchy_collections = '' | split: '' -%}
+        {%- if product.collections.size > 0 -%}
+          {%- comment -%}Based on admin panel: we should have Fille (3-18 ans), Sous-vêtements et nuit, Pyjamas{%- endcomment -%}
           
-          {%- comment -%}Take up to 3 collections{%- endcomment -%}
-          {%- for coll in all_collections limit: 3 -%}
-            {%- assign hierarchy_collections = hierarchy_collections | push: coll -%}
+          {%- comment -%}Create ordered array: age/gender first, then category, then product type{%- endcomment -%}
+          {%- assign breadcrumb_collections = '' | split: '' -%}
+          {%- assign age_collection = null -%}
+          {%- assign category_collection = null -%}
+          {%- assign product_collection = null -%}
+          
+          {%- comment -%}Find age/gender collection{%- endcomment -%}
+          {%- for coll in product.collections -%}
+            {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'ans' -%}
+              {%- assign age_collection = coll -%}
+              {%- break -%}
+            {%- endif -%}
           {%- endfor -%}
           
-          {%- comment -%}Display the hierarchy{%- endcomment -%}
-          {%- if hierarchy_collections.size > 0 -%}
-            {%- for coll in hierarchy_collections -%}
-              {%- if forloop.last -%}
-                <li class="breadcrumb-item dot-between inline-flex align-center">
-                  <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ coll.title }}</span>
-                </li>
-              {%- else -%}
-                <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                  {{ coll.title | link_to: coll.url }}
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
-          {%- else -%}
-            {%- comment -%}Fallback to current collection{%- endcomment -%}
-            <li class="breadcrumb-item dot-between inline-flex align-center">
-              <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ current_collection.title }}</span>
-            </li>
+          {%- comment -%}Find category collection{%- endcomment -%}
+          {%- for coll in product.collections -%}
+            {%- if coll.title contains 'Sous-vêtements' or coll.title contains 'Vêtements' -%}
+              {%- assign category_collection = coll -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+          
+          {%- comment -%}Find product type collection{%- endcomment -%}
+          {%- for coll in product.collections -%}
+            {%- if coll.title == 'Pyjamas' -%}
+              {%- assign product_collection = coll -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+          
+          {%- comment -%}Build breadcrumb in logical order{%- endcomment -%}
+          {%- if age_collection -%}
+            {%- assign breadcrumb_collections = breadcrumb_collections | push: age_collection -%}
           {%- endif -%}
+          {%- if category_collection -%}
+            {%- assign breadcrumb_collections = breadcrumb_collections | push: category_collection -%}
+          {%- endif -%}
+          {%- if product_collection -%}
+            {%- assign breadcrumb_collections = breadcrumb_collections | push: product_collection -%}
+          {%- endif -%}
+          
+          {%- comment -%}Display the breadcrumb{%- endcomment -%}
+          {%- for coll in breadcrumb_collections -%}
+            {%- if forloop.last -%}
+              <li class="breadcrumb-item dot-between inline-flex align-center">
+                <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ coll.title }}</span>
+              </li>
+            {%- else -%}
+              <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                {{ coll.title | link_to: coll.url }}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
         {%- elsif product.collections.size > 0 -%}
           <li class="breadcrumb-item dot-between inline-flex align-center">
             <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.collections.first.title | default: 'Collection' }}</span>
