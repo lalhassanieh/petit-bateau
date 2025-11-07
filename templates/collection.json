@@ -34,7 +34,8 @@
         "description_FAmcR8"
       ],
       "custom_css": [
-        ".sec__page-heading {margin-bottom: 20px;}"
+        ".sec__page-heading {margin-bottom: 20px;}",
+        ".heading-title{font-size:24px;}"
       ],
       "settings": {
         "section_width": "fluid_container",
