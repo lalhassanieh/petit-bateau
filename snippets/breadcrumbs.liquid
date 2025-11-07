@@ -47,45 +47,19 @@
         {%- endif -%}
         
         {%- if current_collection and current_collection.title != blank -%}
-          {%- comment -%}Try to build hierarchical breadcrumb from collection handle{%- endcomment -%}
-          {%- assign collection_parts = current_collection.handle | split: '-' -%}
-          {%- assign category_handles = array -%}
-          {%- assign current_handle = '' -%}
-          {%- assign found_hierarchy = false -%}
-          
-          {%- comment -%}Build progressive handles for up to 3 levels{%- endcomment -%}
-          {%- for part in collection_parts limit: 3 -%}
-            {%- if current_handle == blank -%}
-              {%- assign current_handle = part -%}
+          {%- comment -%}Show up to 3 collections the product belongs to as hierarchy{%- endcomment -%}
+          {%- assign collections_to_show = product.collections | slice: 0, 3 -%}
+          {%- for coll in collections_to_show -%}
+            {%- if forloop.last -%}
+              <li class="breadcrumb-item dot-between inline-flex align-center">
+                <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ coll.title }}</span>
+              </li>
             {%- else -%}
-              {%- assign current_handle = current_handle | append: '-' | append: part -%}
-            {%- endif -%}
-            {%- assign category_handles = category_handles | push: current_handle -%}
-          {%- endfor -%}
-          
-          {%- comment -%}Display each category level as breadcrumb if collections exist{%- endcomment -%}
-          {%- for handle in category_handles -%}
-            {%- assign category_collection = collections[handle] -%}
-            {%- if category_collection and category_collection.title != blank -%}
-              {%- assign found_hierarchy = true -%}
-              {%- if forloop.last -%}
-                <li class="breadcrumb-item dot-between inline-flex align-center">
-                  <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ category_collection.title }}</span>
-                </li>
-              {%- else -%}
-                <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                  {{ category_collection.title | link_to: category_collection.url }}
-                </li>
-              {%- endif -%}
+              <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                {{ coll.title | link_to: coll.url }}
+              </li>
             {%- endif -%}
           {%- endfor -%}
-          
-          {%- comment -%}Fallback: if no hierarchical collections found, show current collection{%- endcomment -%}
-          {%- unless found_hierarchy -%}
-            <li class="breadcrumb-item dot-between inline-flex align-center">
-              <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ current_collection.title }}</span>
-            </li>
-          {%- endunless -%}
         {%- elsif product.collections.size > 0 -%}
           <li class="breadcrumb-item dot-between inline-flex align-center">
             <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.collections.first.title | default: 'Collection' }}</span>
