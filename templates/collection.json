@@ -35,7 +35,7 @@
       ],
       "custom_css": [
         ".sec__page-heading {margin-bottom: 20px;}",
-        ".heading-title{font-size:24px;}"
+        ".heading-title {font-size: 24px; font-family: Oswald-Bold;}"
       ],
       "settings": {
         "section_width": "fluid_container",
