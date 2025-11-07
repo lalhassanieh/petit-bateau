@@ -4,8 +4,54 @@
   assign variants_option_2_arr = product.variants | map: 'option2'
   assign variants_option_3_arr = product.variants | map: 'option3'
   assign product_form_id = 'product-form-' | append: section.id
+  
+  # Sort option values - always sort if they look like sizes
+  assign sorted_values = option.values
+  assign should_sort = false
+  
+  # Check if values contain size patterns like "8A", "10A", "XS", "M", "L", etc.
+  for val in option.values limit: 3
+    assign val_clean = val | strip | downcase
+    if val_clean contains 'a' or val_clean contains 'xs' or val_clean contains 'xl' or val_clean == 's' or val_clean == 'm' or val_clean == 'l'
+      assign should_sort = true
+      break
+    endif
+  endfor
+  
+  # Sort if detected as sizes
+  if should_sort
+    # Create a custom sorted array for better size ordering
+    assign size_order = '1A,2A,3A,4A,5A,6A,7A,8A,9A,10A,11A,12A,13A,14A,15A,16A,XS,S,M,L,XL,XXL' | split: ','
+    assign sorted_values = ''
+    
+    # Add values in the predefined order
+    for predefined_size in size_order
+      for original_value in option.values
+        if original_value == predefined_size
+          if sorted_values == ''
+            assign sorted_values = original_value
+          else
+            assign sorted_values = sorted_values | append: ',' | append: original_value
+          endif
+        endif
+      endfor
+    endfor
+    
+    # Add any remaining values that werent in the predefined list
+    for original_value in option.values
+      unless sorted_values contains original_value
+        if sorted_values == ''
+          assign sorted_values = original_value
+        else
+          assign sorted_values = sorted_values | append: ',' | append: original_value
+        endif
+      endunless
+    endfor
+    
+    assign sorted_values = sorted_values | split: ','
+  endif
 -%}
-{%- for value in option.values -%}
+{%- for value in sorted_values -%}
   {%- liquid
     assign option_disabled = true
     for option1_name in variants_option_1_arr
