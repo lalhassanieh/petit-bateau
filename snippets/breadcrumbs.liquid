@@ -65,6 +65,7 @@
           {%- for coll in product.collections -%}
             {%- assign is_age = false -%}
             {%- assign is_category = false -%}
+            {%- assign is_generic = false -%}
             
             {%- comment -%}Check if this is an age collection{%- endcomment -%}
             {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'ans' or coll.title contains 'Nouveau-né' or coll.title contains 'mois' -%}
@@ -76,8 +77,13 @@
               {%- assign is_category = true -%}
             {%- endif -%}
             
-            {%- comment -%}If it's neither age nor category, it's likely a product type{%- endcomment -%}
-            {%- if is_age == false and is_category == false and product_coll == null -%}
+            {%- comment -%}Check if this is a generic collection to exclude{%- endcomment -%}
+            {%- if coll.title == 'All' or coll.title == 'Tous' or coll.title == 'Tout' -%}
+              {%- assign is_generic = true -%}
+            {%- endif -%}
+            
+            {%- comment -%}If it's neither age, category, nor generic, it's likely a product type{%- endcomment -%}
+            {%- if is_age == false and is_category == false and is_generic == false and product_coll == null -%}
               {%- assign product_coll = coll -%}
             {%- endif -%}
           {%- endfor -%}
