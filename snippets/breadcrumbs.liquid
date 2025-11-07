@@ -65,7 +65,11 @@
           {%- comment -%}Find the category collection (like Sous vetements, Vetements, etc){%- endcomment -%}
           {%- for coll in all_collections -%}
             {%- if coll.title contains 'Sous' or coll.title contains 'vêtements' or coll.title contains 'Chaussures' or coll.title contains 'Accessoires' or coll.title contains 'Lingerie' -%}
-              {%- if age_gender_collection == null or coll.id != age_gender_collection.id -%}
+              {%- assign is_different_from_age = true -%}
+              {%- if age_gender_collection and coll.id == age_gender_collection.id -%}
+                {%- assign is_different_from_age = false -%}
+              {%- endif -%}
+              {%- if is_different_from_age -%}
                 {%- assign category_collection = coll -%}
                 {%- break -%}
               {%- endif -%}
@@ -75,7 +79,14 @@
           {%- comment -%}Find the specific product type (like Pyjamas, T-shirts, etc){%- endcomment -%}
           {%- for coll in all_collections -%}
             {%- if coll.title contains 'Pyjamas' or coll.title contains 'T-shirt' or coll.title contains 'Pantalon' or coll.title contains 'Chemise' or coll.title contains 'Robe' -%}
-              {%- if (age_gender_collection == null or coll.id != age_gender_collection.id) and (category_collection == null or coll.id != category_collection.id) -%}
+              {%- assign is_different_collection = true -%}
+              {%- if age_gender_collection and coll.id == age_gender_collection.id -%}
+                {%- assign is_different_collection = false -%}
+              {%- endif -%}
+              {%- if category_collection and coll.id == category_collection.id -%}
+                {%- assign is_different_collection = false -%}
+              {%- endif -%}
+              {%- if is_different_collection -%}
                 {%- assign product_type_collection = coll -%}
                 {%- break -%}
               {%- endif -%}
