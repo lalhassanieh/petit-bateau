@@ -47,59 +47,26 @@
         {%- endif -%}
         
         {%- if product.collections.size > 0 -%}
-          {%- comment -%}Based on admin panel: we should have Fille (3-18 ans), Sous-vêtements et nuit, Pyjamas{%- endcomment -%}
-          
-          {%- comment -%}Create ordered array: age/gender first, then category, then product type{%- endcomment -%}
-          {%- assign breadcrumb_collections = '' | split: '' -%}
-          {%- assign age_collection = null -%}
-          {%- assign category_collection = null -%}
-          {%- assign product_collection = null -%}
-          
-          {%- comment -%}Find age/gender collection{%- endcomment -%}
-          {%- for coll in product.collections -%}
-            {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'ans' -%}
-              {%- assign age_collection = coll -%}
-              {%- break -%}
-            {%- endif -%}
+          {%- comment -%}Debug: Let's see what collections we have{%- endcomment -%}
+          <!-- DEBUG: {{ product.collections.size }} collections found -->
+          {%- for debug_coll in product.collections -%}
+            <!-- DEBUG: Collection {{ forloop.index }}: {{ debug_coll.title }} -->
           {%- endfor -%}
           
-          {%- comment -%}Find category collection{%- endcomment -%}
+          {%- comment -%}Simplified approach: just show first 3 collections directly{%- endcomment -%}
+          {%- assign counter = 0 -%}
           {%- for coll in product.collections -%}
-            {%- if coll.title contains 'Sous-vêtements' or coll.title contains 'Vêtements' -%}
-              {%- assign category_collection = coll -%}
-              {%- break -%}
-            {%- endif -%}
-          {%- endfor -%}
-          
-          {%- comment -%}Find product type collection{%- endcomment -%}
-          {%- for coll in product.collections -%}
-            {%- if coll.title == 'Pyjamas' -%}
-              {%- assign product_collection = coll -%}
-              {%- break -%}
-            {%- endif -%}
-          {%- endfor -%}
-          
-          {%- comment -%}Build breadcrumb in logical order{%- endcomment -%}
-          {%- if age_collection -%}
-            {%- assign breadcrumb_collections = breadcrumb_collections | push: age_collection -%}
-          {%- endif -%}
-          {%- if category_collection -%}
-            {%- assign breadcrumb_collections = breadcrumb_collections | push: category_collection -%}
-          {%- endif -%}
-          {%- if product_collection -%}
-            {%- assign breadcrumb_collections = breadcrumb_collections | push: product_collection -%}
-          {%- endif -%}
-          
-          {%- comment -%}Display the breadcrumb{%- endcomment -%}
-          {%- for coll in breadcrumb_collections -%}
-            {%- if forloop.last -%}
-              <li class="breadcrumb-item dot-between inline-flex align-center">
-                <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ coll.title }}</span>
-              </li>
-            {%- else -%}
-              <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                {{ coll.title | link_to: coll.url }}
-              </li>
+            {%- if counter < 3 -%}
+              {%- assign counter = counter | plus: 1 -%}
+              {%- if counter == 3 or forloop.last -%}
+                <li class="breadcrumb-item dot-between inline-flex align-center">
+                  <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ coll.title }}</span>
+                </li>
+              {%- else -%}
+                <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                  <a href="{{ coll.url }}" class="breadcrumb-link no-underline light-dark-grey">{{ coll.title }}</a>
+                </li>
+              {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
         {%- elsif product.collections.size > 0 -%}
