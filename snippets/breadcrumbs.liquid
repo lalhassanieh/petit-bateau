@@ -47,19 +47,57 @@
         {%- endif -%}
         
         {%- if current_collection and current_collection.title != blank -%}
-          {%- comment -%}Show up to 3 collections the product belongs to as hierarchy{%- endcomment -%}
-          {%- assign collections_to_show = product.collections | slice: 0, 3 -%}
-          {%- for coll in collections_to_show -%}
-            {%- if forloop.last -%}
-              <li class="breadcrumb-item dot-between inline-flex align-center">
-                <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ coll.title }}</span>
-              </li>
-            {%- else -%}
-              <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                {{ coll.title | link_to: coll.url }}
-              </li>
+          {%- comment -%}Build smart hierarchy based on collection structure{%- endcomment -%}
+          {%- assign all_collections = product.collections -%}
+          {%- assign hierarchy_collections = array -%}
+          
+          {%- comment -%}Find the broadest collection (likely age/gender category){%- endcomment -%}
+          {%- for coll in all_collections -%}
+            {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'Bébé' or coll.title contains 'Enfant' or coll.title contains 'ans' -%}
+              {%- assign hierarchy_collections = hierarchy_collections | push: coll -%}
+              {%- break -%}
             {%- endif -%}
           {%- endfor -%}
+          
+          {%- comment -%}Find the category collection (like Sous vetements, Vetements, etc){%- endcomment -%}
+          {%- for coll in all_collections -%}
+            {%- if coll.title contains 'Sous' or coll.title contains 'Vêtements' or coll.title contains 'Chaussures' or coll.title contains 'Accessoires' -%}
+              {%- unless hierarchy_collections contains coll -%}
+                {%- assign hierarchy_collections = hierarchy_collections | push: coll -%}
+                {%- break -%}
+              {%- endunless -%}
+            {%- endif -%}
+          {%- endfor -%}
+          
+          {%- comment -%}Find the specific product type (like Pyjamas, T-shirts, etc){%- endcomment -%}
+          {%- for coll in all_collections -%}
+            {%- unless hierarchy_collections contains coll -%}
+              {%- if coll.title contains 'Pyjamas' or coll.title contains 'T-shirt' or coll.title contains 'Pantalon' or coll.title contains 'Chemise' or coll.title contains 'Robe' -%}
+                {%- assign hierarchy_collections = hierarchy_collections | push: coll -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endunless -%}
+          {%- endfor -%}
+          
+          {%- comment -%}Display the hierarchy{%- endcomment -%}
+          {%- if hierarchy_collections.size > 0 -%}
+            {%- for coll in hierarchy_collections -%}
+              {%- if forloop.last -%}
+                <li class="breadcrumb-item dot-between inline-flex align-center">
+                  <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ coll.title }}</span>
+                </li>
+              {%- else -%}
+                <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                  {{ coll.title | link_to: coll.url }}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- else -%}
+            {%- comment -%}Fallback to current collection{%- endcomment -%}
+            <li class="breadcrumb-item dot-between inline-flex align-center">
+              <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ current_collection.title }}</span>
+            </li>
+          {%- endif -%}
         {%- elsif product.collections.size > 0 -%}
           <li class="breadcrumb-item dot-between inline-flex align-center">
             <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.collections.first.title | default: 'Collection' }}</span>
