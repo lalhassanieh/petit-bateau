@@ -50,6 +50,7 @@
         -%}
         
         {%- if current_collection and current_collection.handle != blank -%}
+          {%- comment -%}Try to build hierarchical breadcrumb{%- endcomment -%}
           {%- liquid
             assign collection_parts = current_collection.handle | split: '-'
             assign category_handles = array
@@ -65,9 +66,11 @@
             endfor
           -%}
           
+          {%- assign found_categories = false -%}
           {%- for handle in category_handles -%}
             {%- assign category_collection = collections[handle] -%}
             {%- if category_collection and category_collection.title != blank -%}
+              {%- assign found_categories = true -%}
               {%- if forloop.last -%}
                 <li class="breadcrumb-item dot-between inline-flex align-center">
                   <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ category_collection.title }}</span>
@@ -79,12 +82,18 @@
               {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
-        {%- else -%}
-          {%- if current_collection -%}
+          
+          {%- comment -%}If no hierarchical structure found, show the current collection{%- endcomment -%}
+          {%- unless found_categories -%}
             <li class="breadcrumb-item dot-between inline-flex align-center">
               <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ current_collection.title }}</span>
             </li>
-          {%- endif -%}
+          {%- endunless -%}
+        {%- else -%}
+          {%- comment -%}Last resort: show "Products" if no collection found{%- endcomment -%}
+          <li class="breadcrumb-item dot-between inline-flex align-center">
+            <span class="breadcrumb-link no-underline heading-color" aria-current="page">Products</span>
+          </li>
         {%- endif -%}
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
