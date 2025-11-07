@@ -33,6 +33,9 @@
         "heading_fntt9G",
         "description_FAmcR8"
       ],
+      "custom_css": [
+        ".sec__page-heading {margin-bottom: 20px;}"
+      ],
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
