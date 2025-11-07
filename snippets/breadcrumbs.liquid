@@ -53,20 +53,16 @@
             <!-- DEBUG: Collection {{ forloop.index }}: {{ debug_coll.title }} -->
           {%- endfor -%}
           
-          {%- comment -%}Simplified approach: just show first 3 collections directly{%- endcomment -%}
-          {%- assign counter = 0 -%}
-          {%- for coll in product.collections -%}
-            {%- if counter < 3 -%}
-              {%- assign counter = counter | plus: 1 -%}
-              {%- if counter == 3 or forloop.last -%}
-                <li class="breadcrumb-item dot-between inline-flex align-center">
-                  <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ coll.title }}</span>
-                </li>
-              {%- else -%}
-                <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                  <a href="{{ coll.url }}" class="breadcrumb-link no-underline light-dark-grey">{{ coll.title }}</a>
-                </li>
-              {%- endif -%}
+          {%- comment -%}Show exactly 3 collections, with the last one being non-clickable{%- endcomment -%}
+          {%- for coll in product.collections limit: 3 -%}
+            {%- if forloop.index == 3 or forloop.last -%}
+              <li class="breadcrumb-item dot-between inline-flex align-center">
+                <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ coll.title }}</span>
+              </li>
+            {%- else -%}
+              <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                <a href="{{ coll.url }}" class="breadcrumb-link no-underline light-dark-grey">{{ coll.title }}</a>
+              </li>
             {%- endif -%}
           {%- endfor -%}
         {%- elsif product.collections.size > 0 -%}
