@@ -100,8 +100,8 @@
             </li>
           {%- endif -%}
           {%- if product_coll -%}
-            <li class="breadcrumb-item dot-between inline-flex align-center">
-              <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product_coll.title }}</span>
+            <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+              <a href="{{ product_coll.url }}" class="breadcrumb-link no-underline light-dark-grey">{{ product_coll.title }}</a>
             </li>
           {%- endif -%}
         {%- else -%}
