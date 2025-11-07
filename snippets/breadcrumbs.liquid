@@ -40,30 +40,25 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-        {%- liquid
-          assign current_collection = collection
-          if current_collection == blank or current_collection.id == blank
-            if product.collections.size > 0
-              assign current_collection = product.collections.first
-            endif
-          endif
-        -%}
+        {%- comment -%}Get collection - try multiple ways{%- endcomment -%}
+        {%- assign current_collection = collection -%}
+        {%- if current_collection == blank and product.collections.size > 0 -%}
+          {%- assign current_collection = product.collections.first -%}
+        {%- endif -%}
         
+        {%- comment -%}Show collection or fallback{%- endcomment -%}
         {%- if current_collection and current_collection.title != blank -%}
           <li class="breadcrumb-item dot-between inline-flex align-center">
             <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ current_collection.title }}</span>
           </li>
+        {%- elsif product.collections.size > 0 -%}
+          <li class="breadcrumb-item dot-between inline-flex align-center">
+            <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.collections.first.title | default: 'Collection' }}</span>
+          </li>
         {%- else -%}
-          {%- comment -%}Debug: Show first available collection or "No Collection"{%- endcomment -%}
-          {%- if product.collections.size > 0 -%}
-            <li class="breadcrumb-item dot-between inline-flex align-center">
-              <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.collections.first.title }}</span>
-            </li>
-          {%- else -%}
-            <li class="breadcrumb-item dot-between inline-flex align-center">
-              <span class="breadcrumb-link no-underline heading-color" aria-current="page">Catalog</span>
-            </li>
-          {%- endif -%}
+          <li class="breadcrumb-item dot-between inline-flex align-center">
+            <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.type | default: 'Produits' }}</span>
+          </li>
         {%- endif -%}
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
