@@ -123,6 +123,7 @@
       "custom_css": [
         ".collapsible-heading {border-radius: 50px;}",
         ".btn-filter {padding-top: 0.5rem !important; padding-bottom: 0.5rem !important;}",
+        ".toolbar-products {margin-top: 2rem !important;}",
         "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
       ],
       "settings": {
