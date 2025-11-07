@@ -49,35 +49,49 @@
         {%- if current_collection and current_collection.title != blank -%}
           {%- comment -%}Build smart hierarchy based on collection structure{%- endcomment -%}
           {%- assign all_collections = product.collections -%}
-          {%- assign hierarchy_collections = array -%}
+          {%- assign hierarchy_collections = '' | split: '' -%}
+          {%- assign age_gender_collection = null -%}
+          {%- assign category_collection = null -%}
+          {%- assign product_type_collection = null -%}
           
           {%- comment -%}Find the broadest collection (likely age/gender category){%- endcomment -%}
           {%- for coll in all_collections -%}
             {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'Bébé' or coll.title contains 'Enfant' or coll.title contains 'ans' -%}
-              {%- assign hierarchy_collections = hierarchy_collections | push: coll -%}
+              {%- assign age_gender_collection = coll -%}
               {%- break -%}
             {%- endif -%}
           {%- endfor -%}
           
           {%- comment -%}Find the category collection (like Sous vetements, Vetements, etc){%- endcomment -%}
           {%- for coll in all_collections -%}
-            {%- if coll.title contains 'Sous' or coll.title contains 'Vêtements' or coll.title contains 'Chaussures' or coll.title contains 'Accessoires' -%}
-              {%- unless hierarchy_collections contains coll -%}
-                {%- assign hierarchy_collections = hierarchy_collections | push: coll -%}
+            {%- if coll.title contains 'Sous' or coll.title contains 'vêtements' or coll.title contains 'Chaussures' or coll.title contains 'Accessoires' or coll.title contains 'Lingerie' -%}
+              {%- if age_gender_collection == null or coll.id != age_gender_collection.id -%}
+                {%- assign category_collection = coll -%}
                 {%- break -%}
-              {%- endunless -%}
+              {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
           
           {%- comment -%}Find the specific product type (like Pyjamas, T-shirts, etc){%- endcomment -%}
           {%- for coll in all_collections -%}
-            {%- unless hierarchy_collections contains coll -%}
-              {%- if coll.title contains 'Pyjamas' or coll.title contains 'T-shirt' or coll.title contains 'Pantalon' or coll.title contains 'Chemise' or coll.title contains 'Robe' -%}
-                {%- assign hierarchy_collections = hierarchy_collections | push: coll -%}
+            {%- if coll.title contains 'Pyjamas' or coll.title contains 'T-shirt' or coll.title contains 'Pantalon' or coll.title contains 'Chemise' or coll.title contains 'Robe' -%}
+              {%- if (age_gender_collection == null or coll.id != age_gender_collection.id) and (category_collection == null or coll.id != category_collection.id) -%}
+                {%- assign product_type_collection = coll -%}
                 {%- break -%}
               {%- endif -%}
-            {%- endunless -%}
+            {%- endif -%}
           {%- endfor -%}
+          
+          {%- comment -%}Build hierarchy array{%- endcomment -%}
+          {%- if age_gender_collection -%}
+            {%- assign hierarchy_collections = hierarchy_collections | push: age_gender_collection -%}
+          {%- endif -%}
+          {%- if category_collection -%}
+            {%- assign hierarchy_collections = hierarchy_collections | push: category_collection -%}
+          {%- endif -%}
+          {%- if product_type_collection -%}
+            {%- assign hierarchy_collections = hierarchy_collections | push: product_type_collection -%}
+          {%- endif -%}
           
           {%- comment -%}Display the hierarchy{%- endcomment -%}
           {%- if hierarchy_collections.size > 0 -%}
