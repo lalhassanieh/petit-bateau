@@ -49,46 +49,21 @@
           endif
         -%}
         
-        {%- if current_collection and current_collection.handle != blank -%}
-          {%- comment -%}Try to build hierarchical breadcrumb{%- endcomment -%}
-          {%- liquid
-            assign collection_parts = current_collection.handle | split: '-'
-            assign category_handles = array
-            assign current_handle = ''
-            
-            for part in collection_parts limit: 3
-              if current_handle == blank
-                assign current_handle = part
-              else
-                assign current_handle = current_handle | append: '-' | append: part
-              endif
-              assign category_handles = category_handles | push: current_handle
-            endfor
-          -%}
-          
-          {%- assign found_categories = false -%}
-          {%- for handle in category_handles -%}
-            {%- assign category_collection = collections[handle] -%}
-            {%- if category_collection and category_collection.title != blank -%}
-              {%- assign found_categories = true -%}
-              {%- if forloop.last -%}
-                <li class="breadcrumb-item dot-between inline-flex align-center">
-                  <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ category_collection.title }}</span>
-                </li>
-              {%- else -%}
-                <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-                  {{ category_collection.title | link_to: category_collection.url }}
-                </li>
-              {%- endif -%}
-            {%- endif -%}
-          {%- endfor -%}
-          
-          {%- comment -%}If no hierarchical structure found, show the current collection{%- endcomment -%}
-          {%- unless found_categories -%}
+        {%- if current_collection and current_collection.title != blank -%}
+          <li class="breadcrumb-item dot-between inline-flex align-center">
+            <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ current_collection.title }}</span>
+          </li>
+        {%- else -%}
+          {%- comment -%}Debug: Show first available collection or "No Collection"{%- endcomment -%}
+          {%- if product.collections.size > 0 -%}
             <li class="breadcrumb-item dot-between inline-flex align-center">
-              <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ current_collection.title }}</span>
+              <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.collections.first.title }}</span>
             </li>
-          {%- endunless -%}
+          {%- else -%}
+            <li class="breadcrumb-item dot-between inline-flex align-center">
+              <span class="breadcrumb-link no-underline heading-color" aria-current="page">Catalog</span>
+            </li>
+          {%- endif -%}
         {%- endif -%}
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
