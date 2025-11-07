@@ -40,14 +40,52 @@
           <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ page.title }}</span>
         </li>
       {%- when 'product' -%}
-        {%- if collection.url -%}
-          <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
-            {{ collection.title | link_to: collection.url }}
-          </li>
+        {%- liquid
+          assign current_collection = collection
+          if current_collection == blank or current_collection.id == blank
+            if product.collections.size > 0
+              assign current_collection = product.collections.first
+            endif
+          endif
+        -%}
+        
+        {%- if current_collection and current_collection.handle != blank -%}
+          {%- liquid
+            assign collection_parts = current_collection.handle | split: '-'
+            assign category_handles = array
+            assign current_handle = ''
+            
+            for part in collection_parts limit: 3
+              if current_handle == blank
+                assign current_handle = part
+              else
+                assign current_handle = current_handle | append: '-' | append: part
+              endif
+              assign category_handles = category_handles | push: current_handle
+            endfor
+          -%}
+          
+          {%- for handle in category_handles -%}
+            {%- assign category_collection = collections[handle] -%}
+            {%- if category_collection and category_collection.title != blank -%}
+              {%- if forloop.last -%}
+                <li class="breadcrumb-item dot-between inline-flex align-center">
+                  <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ category_collection.title }}</span>
+                </li>
+              {%- else -%}
+                <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
+                  {{ category_collection.title | link_to: category_collection.url }}
+                </li>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- if current_collection -%}
+            <li class="breadcrumb-item dot-between inline-flex align-center">
+              <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ current_collection.title }}</span>
+            </li>
+          {%- endif -%}
         {%- endif -%}
-        <li class="breadcrumb-item dot-between inline-flex align-center {% if next_product %}breadcrumb-truncate{% endif %}">
-          <span class="breadcrumb-link no-underline heading-color" aria-current="page">{{ product.title }}</span>
-        </li>
       {%- when 'collection' and collection.handle -%}
         {%- if current_tags -%}
           <li class="breadcrumb-item dot-between inline-flex align-center light-dark-grey">
