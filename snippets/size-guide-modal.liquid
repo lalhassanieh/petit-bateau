@@ -206,20 +206,24 @@
   color: #004499;
 }
 
-/* Modal container - Popup overlay above product page */
+/* Modal container - Full viewport overlay that breaks out of containers */
 .pb-size-guide-modal {
   display: none;
-  position: fixed;
-  z-index: 99999;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  position: fixed !important;
+  z-index: 999999 !important;
+  left: 0 !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.7) !important;
   opacity: 0;
   transition: opacity 0.3s ease;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  transform: none !important;
 }
 
 .pb-size-guide-modal.show {
@@ -227,30 +231,30 @@
 }
 
 .pb-modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
   cursor: pointer;
 }
 
 .pb-modal-container {
-  background: #fff;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  height: 85%;
-  max-width: 1200px;
-  max-height: 800px;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
+  background: #fff !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 90% !important;
+  height: 85% !important;
+  max-width: 1200px !important;
+  max-height: 800px !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
   animation: modalSlideIn 0.3s ease;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-  z-index: 100000;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+  z-index: 1000000 !important;
 }
 
 @keyframes modalSlideIn {
@@ -697,9 +701,15 @@ body.modal-open {
   
   // Open modal
   function openModal() {
+    // Move modal to body to break out of any container constraints
+    if (modal.parentElement !== document.body) {
+      document.body.appendChild(modal);
+    }
+    
     modal.style.display = 'block';
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
     
     // Add show class for animation
     requestAnimationFrame(() => {
@@ -727,6 +737,7 @@ body.modal-open {
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
       trigger.focus(); // Return focus to trigger
     }, 300);
   }
