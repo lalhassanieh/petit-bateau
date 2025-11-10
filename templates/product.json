@@ -128,6 +128,10 @@
           },
           "blocks": {}
         },
+        "sc_back_in_stock_app_block_fdmzYc": {
+          "type": "shopify://apps/sc-back-in-stock/blocks/app-block/839cbcb7-0406-4c2b-8e74-a54d987b90ab",
+          "settings": {}
+        },
         "model_size_XM7z6E": {
           "type": "_product-modal-size",
           "settings": {},
@@ -234,6 +238,7 @@
         "product_addons_YRaprz",
         "stock_countdown_JNK9zi",
         "buy_buttons_LcQGtR",
+        "sc_back_in_stock_app_block_fdmzYc",
         "model_size_XM7z6E",
         "pickup_availability_cyVydQ",
         "product_grouped_6epkNf",
