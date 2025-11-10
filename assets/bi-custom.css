@@ -445,6 +445,12 @@
 .button_buy-now .product_submit_button{
   background-color:#ffce00!important;
   font-size:14px;
+  border:none;
+}
+
+.button_buy-now .product_submit_button:hover{
+  background-color:#002e5e;
+  color:#fff;
 }
 
 /*# END Added by Carla*/
