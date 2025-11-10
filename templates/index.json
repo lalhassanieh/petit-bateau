@@ -771,6 +771,9 @@
         "product_banner_qVLbrb"
       ],
       "custom_css": [
+        ".section__block-inner {border-radius: 1px;}",
+        ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
+        "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}",
         ".btn-primary {color: #fff;}",
         ".btn-primary:hover {color: rgb(0, 46, 94);}"
       ],
