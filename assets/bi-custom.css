@@ -442,5 +442,8 @@
   display: none;
 }
 
+.button_buy-now .product_submit_button{
+  background-color:#ffce00!important;
+}
 
 /*# END Added by Carla*/
