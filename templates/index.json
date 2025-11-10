@@ -482,7 +482,7 @@
       ],
       "custom_css": [
         ".collection-item__information {left: 30px;}",
-        ".collection-item__name {text-align: left; padding: 0; color:#fff; border: none; background-color: transparent;}",
+        ".collection-item__name {text-align: left; padding: 0; color: #fff; border: none; background-color: transparent;}",
         ".collection-item__media--ratio {--aspect-ratio: 0.6536458333333334 !important;}",
         ".collection-item__name-inner {font-family: \"Oswald-SemiBold\";}",
         ".collection-item__name {width: auto !important;}",
@@ -713,7 +713,7 @@
             "icon_image": "shopify://shop_images/Icon_5.svg",
             "icon_svg": "free_shipping",
             "custom_svg": "",
-            "custom_url": "shopify://policies/privacy-policy",
+            "custom_url": "shopify://pages/le-savoir-faire-depuis-1893",
             "heading": "Le savoir-faire",
             "description": "<p>depuis 1893</p>"
           }
@@ -724,7 +724,7 @@
             "icon_image": "shopify://shop_images/Icon_6.svg",
             "icon_svg": "check_badge",
             "custom_svg": "",
-            "custom_url": "shopify://policies/privacy-policy",
+            "custom_url": "shopify://pages/livraision",
             "heading": "La livraison",
             "description": ""
           }
@@ -735,8 +735,8 @@
             "icon_image": "shopify://shop_images/Icon_7.svg",
             "icon_svg": "message_communications",
             "custom_svg": "",
-            "custom_url": "shopify://blogs/news",
-            "heading": "Échange et retour gratuits",
+            "custom_url": "shopify://pages/echange-et-retour",
+            "heading": "Échange et retour",
             "description": "<p>en boutique</p>"
           }
         },
@@ -746,7 +746,7 @@
             "icon_image": "shopify://shop_images/Icon_8.svg",
             "icon_svg": "message_communications",
             "custom_svg": "",
-            "custom_url": "shopify://policies/privacy-policy",
+            "custom_url": "shopify://pages/paiement",
             "heading": "Paiement",
             "description": ""
           }
@@ -757,9 +757,9 @@
             "icon_image": "shopify://shop_images/Icon_9.svg",
             "icon_svg": "message_communications",
             "custom_svg": "",
-            "custom_url": "shopify://policies/privacy-policy",
-            "heading": "Paiement",
-            "description": "<p>Fidelite recompensee’<br/></p>"
+            "custom_url": "shopify://pages/fidelite-recompensee",
+            "heading": "Fidélité récompensée",
+            "description": "<p><strong>1 USD </strong>= 1 point</p>"
           }
         },
         "icon_box_RLGgCT": {
@@ -768,7 +768,7 @@
             "icon_image": "shopify://shop_images/Icon_10.svg",
             "icon_svg": "message_communications",
             "custom_svg": "",
-            "custom_url": "shopify://policies/privacy-policy",
+            "custom_url": "shopify://pages/le-service-client-a-votre-ecoute",
             "heading": "Service client",
             "description": "<p>à votre écoute</p>"
           }
