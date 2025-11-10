@@ -376,7 +376,8 @@
       ".header-mega-store.logo-position {padding-bottom: 10px !important;}",
       ".header-bottom__navigation::before {border-top: 1px solid #f3f3f3;}",
       "#esc-out-of-stock-inputs .esc-out-of-stock-title {text-align: left;}",
-      "#esc-out-of-stock-inputs {border: none;}"
+      ".esc-email-container input {padding-left: 10px;}",
+      "#esc-out-of-stock-inputs {border: none; padding: 0;}"
     ]
   }
 }
