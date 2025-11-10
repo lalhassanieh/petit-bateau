@@ -28,6 +28,7 @@
         },
         "link_list_gVEWMi": {
           "type": "link_list",
+          "disabled": true,
           "settings": {
             "heading": "Commands",
             "menu": "commandes",
@@ -99,7 +100,7 @@
         ".back-to-top span {background-color: #002e5e;}",
         ".footer-block:nth-child(6),.footer-block:nth-child(7),.footer-block:nth-child(8) {padding-top: 2rem; margin-top: 2rem; border-top: 0.1rem solid #ebebeb;}",
         "social-icon {margin-top: -5px;}",
-        "@media screen and (max-width: 767px) {.footer-block:nth-child(6),.footer-block:nth-child(7),.footer-block:nth-child(8) {border-top: 0.1rem solid transparent;}}"
+        "@media screen and (max-width: 767px) {.footer-block:nth-child(6), .footer-block:nth-child(7), .footer-block:nth-child(8) {border-top: 0.1rem solid transparent; }}"
       ],
       "settings": {
         "section_width": "fluid_container",
@@ -114,7 +115,7 @@
         "payment_enable": false,
         "payment_image": "shopify://shop_images/Screenshot_2025-10-17_123626.png",
         "payment_width": 340,
-        "copyright_text": "<p>\n<a href=\"/pages/contact\">Contact</a>\n<a href=\"/pages/faq\">FAQ</a>\n<a href=\"/pages/cgv\">CGV</a>\n<a href=\"/pages/mentions-legales\">Mentions légales</a>\n<a href=\"/pages/cgu\">CGU</a>\n<a href=\"/pages/cookies\">Cookies</a>\n<a href=\"/pages/politique-de-protection-des-donnees\">Politique de protection des données</a>\n<a href=\"/pages/conditions-des-offres-en-cours\">*Conditions des offres en cours</a>\n<a href=\"/pages/parametres-des-cookies\">Paramètres des cookies</a>\n</p>",
+        "copyright_text": "<p>\n<a href=\"/pages/contact\">Contact</a>\n<a href=\"/pages/cgv\">CGV</a>\n<a href=\"/pages/mentions-legales\">Mentions légales</a>\n<a href=\"/pages/cgu\">CGU</a>\n<a href=\"/pages/cookies\">Cookies</a>\n</p>",
         "footer_heading_size": 16,
         "padding_top": 60,
         "padding_bottom": 10,
