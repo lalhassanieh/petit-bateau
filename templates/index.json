@@ -667,6 +667,130 @@
         "reset_spacing": false
       }
     },
+    "product_with_banner_CYGGMD": {
+      "type": "product-with-banner",
+      "blocks": {
+        "product_banner_8DMA74": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/BLOC_COM_MOBILE_seconde_main_mob.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "La seconde main Petit Bateau",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Faites le choix de la <strong>qualité</strong> en seconde main : chaque pièce est soigneusement contrôlée, nettoyée et désinfectée pour vous offrir des produits comme neufs.<br/><br/>Achetez en toute confiance !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_B8BE79": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/BLOC_COM_MOBILE_cagnotte_mob.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "La cagnotte en ligne par Petit Bateau",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Faire plaisir avec Petit Bateau, c'est pas nouveau ! <strong>Ce qui est nouveau, c'est notre cagnotte en ligne:</strong> un moyen tout simple de créer bien plus qu'un lien avec vos proches et de transformer toutes vos participations en une vraie carte cadeau Petit Bateau !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_7Y89zX": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/BLOC_COM_MOBILE_carte_cadeau_mob.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "La carte cadeau",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Vous les aimez, mais vous ne savez pas ce qu'ils aiment ? Alors, offrez leur le choix avec notre carte cadeau personnalisable*. De 10€ à 500€, valable en ligne et en boutique, et à dépenser d'un coup, ou pas !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        },
+        "product_banner_qVLbrb": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/bloc_com_navigateurs_2.jpg",
+            "content_background_color": "#bdd4e5",
+            "subheading": "",
+            "subheading_font_size": 12,
+            "subheading_font_weight": "heading_weight",
+            "subheading_spacing_bottom": 10,
+            "heading": "Petit Bateau sponsor des plus grands rêves !",
+            "heading_font_size": 28,
+            "heading_font_weight": "heading_weight",
+            "heading_spacing_bottom": 30,
+            "description": "<p>Petit Bateau est fière d’accompagner Caroline et Benoit, duo de navigateurs intrépides, tout au long de la saison nautique 2025.<br/><br/>Leur rêve : être les premiers navigateurs à remporter la Mini Transat à bord d’un bateau volant. Rdv le 21 septembre aux Sables d’Olonne !</p>",
+            "description_font_size": 16,
+            "description_spacing_bottom": 10,
+            "product": "portable-wireless-speakers-music-speakers-new-2025",
+            "product_spacing_bottom": 25,
+            "button_label": "Découvrir",
+            "button_link": "",
+            "button_type": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "product_banner_8DMA74",
+        "product_banner_B8BE79",
+        "product_banner_7Y89zX",
+        "product_banner_qVLbrb"
+      ],
+      "settings": {
+        "section_width": "fluid_container",
+        "heading": "",
+        "subheading": "",
+        "description": "",
+        "header_size": "small",
+        "header_alignment": "center",
+        "column_gap": 20,
+        "content_alignment": "center",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "image_position": "right",
+        "show_arrow": false,
+        "carousel_pagination": true,
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
     "custom_html_JjLxXP": {
       "type": "custom-html",
       "name": "t:sections.html_custom.name",
@@ -821,6 +945,7 @@
     "collection_list_WgpYhJ",
     "featured_collection_pfcpCH",
     "collection_list_iYKgWH",
+    "product_with_banner_CYGGMD",
     "custom_html_JjLxXP",
     "newsletter_cPwnaD",
     "icon_box_TRwJBD"
