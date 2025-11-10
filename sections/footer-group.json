@@ -62,7 +62,7 @@
         "custom_liquid_FfyL6x": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"footer-menu-title\">Moyens de paiement</div>\n<img src=\"https://cdn.shopify.com/s/files/1/0681/4833/0565/files/Screenshot_2025-11-06_163643.png?v=1762439826\"/>",
+            "custom_liquid": "<div class=\"footer-menu-title\">Moyens de paiement</div>\n<img src=\"https://cdn.shopify.com/s/files/1/0681/4833/0565/files/Screenshot_2025-11-06_163643_9ab5f782-3bef-4497-b9cf-cc5093a117f0.png?v=1762784194\"/>",
             "content_width": "43.5%"
           }
         },
