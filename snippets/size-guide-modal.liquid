@@ -3,8 +3,10 @@
   Usage: {% render 'size-guide-modal' %}
 {%- endcomment -%}
 
+{%- assign unique_id = 'size-guide-' | append: section.id | append: '-' | append: forloop.index0 | default: 'main' -%}
+
 <!-- Size Guide Trigger Button -->
-<button id="size-guide-trigger" class="size-guide-btn" type="button">
+<button id="{{ unique_id }}-trigger" class="size-guide-btn" type="button">
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="size-guide-icon">
     <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 13H7v-2h2v2zm0-3H7V4h2v6z" fill="currentColor"/>
   </svg>
@@ -12,12 +14,12 @@
 </button>
 
 <!-- Size Guide Modal Structure -->
-<div id="size-guide-modal" class="size-guide-modal" role="dialog" aria-labelledby="size-guide-title" aria-hidden="true">
+<div id="{{ unique_id }}-modal" class="size-guide-modal" role="dialog" aria-labelledby="{{ unique_id }}-title" aria-hidden="true">
   <div class="size-guide-modal-overlay"></div>
   <div class="size-guide-modal-content">
     <div class="size-guide-header">
-      <h2 id="size-guide-title" class="size-guide-title">Guide des tailles</h2>
-      <button type="button" class="size-guide-close" id="size-guide-close" aria-label="Fermer le guide des tailles">
+      <h2 id="{{ unique_id }}-title" class="size-guide-title">Guide des tailles</h2>
+      <button type="button" class="size-guide-close" id="{{ unique_id }}-close" aria-label="Fermer le guide des tailles">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -441,9 +443,10 @@
 (function() {
   'use strict';
   
-  const modal = document.getElementById('size-guide-modal');
-  const trigger = document.getElementById('size-guide-trigger');
-  const closeBtn = document.getElementById('size-guide-close');
+  const uniqueId = '{{ unique_id }}';
+  const modal = document.getElementById(uniqueId + '-modal');
+  const trigger = document.getElementById(uniqueId + '-trigger');
+  const closeBtn = document.getElementById(uniqueId + '-close');
   const overlay = modal?.querySelector('.size-guide-modal-overlay');
   
   if (!modal || !trigger || !closeBtn) return;
@@ -508,7 +511,7 @@
   closeBtn.addEventListener('click', closeModal);
   overlay?.addEventListener('click', closeModal);
   
-  // Close on Escape key
+  // Close on Escape key - only if this modal is open
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && modal.style.display === 'block') {
       closeModal();
