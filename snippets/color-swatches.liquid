@@ -170,37 +170,8 @@
             </div>
 
             {%- if option_size contains option_name_nospace -%}
-              {%- if block.settings.show_size_guide -%}
-                {%- liquid
-                  assign product_collections = product.collections
-                  assign collection_size_chart = ''
-                  for productCollection in product_collections
-                    if productCollection.metafields.custom.size_chart != blank
-                      assign collection_size_chart = productCollection.metafields.custom.size_chart
-                    endif
-                  endfor
-                -%}
-                {% if block.settings.size_guide_page != blank
-                  or product.metafields.custom.size_chart != blank
-                  or collection_size_chart != ''
-                %}
-                  <product-addons
-                    data-text-header="{{ 'general.product.size_guide' | t }}"
-                    data-custom-class="size_chart"
-                    class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
-                  >
-                    {{ block.settings.size_guide_label }}
-                    <div class="product-addons__content ask-question__content hidden">
-                      {% if product.metafields.custom.size_chart != blank %}
-                        {% assign size_chart_html = product.metafields.custom.size_chart %}
-                        {{ pages[size_chart_html].content }}
-                      {%- else -%}
-                        {{ pages[block.settings.size_guide_page].content }}
-                      {% endif %}
-                    </div>
-                  </product-addons>
-                {% endif %}
-              {%- endif -%}
+              {%- comment -%} Add Petit Bateau Style Size Guide Modal {%- endcomment -%}
+              {% render 'size-guide-modal' %}
             {%- endif -%}
           </div>
           <swatch-dropdown
@@ -261,37 +232,8 @@
             >
 
             {%- if option_size contains option_name_nospace -%}
-              {%- if block.settings.show_size_guide -%}
-                {%- liquid
-                  assign product_collections = product.collections
-                  assign collection_size_chart = ''
-                  for productCollection in product_collections
-                    if productCollection.metafields.custom.size_chart != blank
-                      assign collection_size_chart = productCollection.metafields.custom.size_chart
-                    endif
-                  endfor
-                -%}
-                {% if block.settings.size_guide_page != blank
-                  or product.metafields.custom.size_chart != blank
-                  or collection_size_chart != ''
-                %}
-                  <product-addons
-                    data-text-header="{{ 'general.product.size_guide' | t }}"
-                    data-custom-class="size_chart"
-                    class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
-                  >
-                    {{ block.settings.size_guide_label }}
-                    <div class="product-addons__content ask-question__content hidden">
-                      {% if product.metafields.custom.size_chart != blank %}
-                        {% assign size_chart_html = product.metafields.custom.size_chart %}
-                        {{ pages[size_chart_html].content }}
-                      {%- else -%}
-                        {{ pages[block.settings.size_guide_page].content }}
-                      {% endif %}
-                    </div>
-                  </product-addons>
-                {% endif %}
-              {%- endif -%}
+              {%- comment -%} Add Petit Bateau Style Size Guide Modal {%- endcomment -%}
+              {% render 'size-guide-modal' %}
             {%- endif -%}
           </div>
           {% render 'product-variant-options',
@@ -346,37 +288,8 @@
               {{- option.name }}: <span class="option_value heading-style capitalize">{{ op_value }}</span></span
             >
             {%- if option_size contains option_name_nospace -%}
-              {%- if block.settings.show_size_guide -%}
-                {%- liquid
-                  assign product_collections = product.collections
-                  assign collection_size_chart = ''
-                  for productCollection in product_collections
-                    if productCollection.metafields.custom.size_chart != blank
-                      assign collection_size_chart = productCollection.metafields.custom.size_chart
-                    endif
-                  endfor
-                -%}
-                {% if block.settings.size_guide_page != blank
-                  or product.metafields.custom.size_chart != blank
-                  or collection_size_chart != ''
-                %}
-                  <product-addons
-                    data-text-header="{{ 'general.product.size_guide' | t }}"
-                    data-custom-class="size_chart"
-                    class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
-                  >
-                    {{ block.settings.size_guide_label }}
-                    <div class="product-addons__content ask-question__content hidden">
-                      {% if product.metafields.custom.size_chart != blank %}
-                        {% assign size_chart_html = product.metafields.custom.size_chart %}
-                        {{ pages[size_chart_html].content }}
-                      {%- else -%}
-                        {{ pages[block.settings.size_guide_page].content }}
-                      {% endif %}
-                    </div>
-                  </product-addons>
-                {% endif %}
-              {%- endif -%}
+              {%- comment -%} Add Petit Bateau Style Size Guide Modal {%- endcomment -%}
+              {% render 'size-guide-modal' %}
             {%- endif -%}
           </div>
           {% render 'product-variant-options',
