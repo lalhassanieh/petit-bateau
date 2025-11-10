@@ -170,9 +170,6 @@
             </div>
 
             {%- if option_size contains option_name_nospace -%}
-              {%- comment -%} Add Petit Bateau Style Size Guide Modal {%- endcomment -%}
-              {% render 'size-guide-modal' %}
-
               {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
               {% liquid
                 assign wishlist = pages.wishlist
@@ -258,9 +255,8 @@
             >
 
             {%- if option_size contains option_name_nospace -%}
-              {%- comment -%} Add Petit Bateau Style Size Guide Modal {%- endcomment -%}
-              {% render 'size-guide-modal' %}
-
+              
+              
               {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
               {% liquid
                 assign wishlist = pages.wishlist
