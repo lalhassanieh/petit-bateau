@@ -172,6 +172,32 @@
             {%- if option_size contains option_name_nospace -%}
               {%- comment -%} Add Petit Bateau Style Size Guide Modal {%- endcomment -%}
               {% render 'size-guide-modal' %}
+
+              {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
+              {% liquid
+                assign wishlist = pages.wishlist
+                assign action_when_click_added_wishlist = settings.action_when_click_added_wishlist
+                if wishlist == empty
+                  assign action_when_click_added_wishlist = 'remove'
+                endif
+              %}
+              <div class="wishlist-section mt-15">
+                <button-wishlist
+                  tabindex="0"
+                  class="wishlist-button flex align-center gap-10 pointer text-color-primary"
+                  data-product-id="{{ product.id }}"
+                  data-action="{{ action_when_click_added_wishlist }}"
+                  data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
+                  data-tooltip-add="{{ 'products.product.actions.wishlist.add' | t }}"
+                  data-tooltip-redirect="{{ 'products.product.actions.wishlist.redirect' | t }}"
+                  style="background: none; border: none; padding: 0; font-size: 14px;"
+                >
+                  <svg width="16" height="15" fill="none" style="color: #003366;">
+                    <use href="#icon-wishlist" />
+                  </svg>
+                  <span style="color: #003366;">Ajouter à ma wishlist</span>
+                </button-wishlist>
+              </div>
             {%- endif -%}
           </div>
           <swatch-dropdown
@@ -234,6 +260,32 @@
             {%- if option_size contains option_name_nospace -%}
               {%- comment -%} Add Petit Bateau Style Size Guide Modal {%- endcomment -%}
               {% render 'size-guide-modal' %}
+
+              {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
+              {% liquid
+                assign wishlist = pages.wishlist
+                assign action_when_click_added_wishlist = settings.action_when_click_added_wishlist
+                if wishlist == empty
+                  assign action_when_click_added_wishlist = 'remove'
+                endif
+              %}
+              <div class="wishlist-section mt-15">
+                <button-wishlist
+                  tabindex="0"
+                  class="wishlist-button flex align-center gap-10 pointer text-color-primary"
+                  data-product-id="{{ product.id }}"
+                  data-action="{{ action_when_click_added_wishlist }}"
+                  data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
+                  data-tooltip-add="{{ 'products.product.actions.wishlist.add' | t }}"
+                  data-tooltip-redirect="{{ 'products.product.actions.wishlist.redirect' | t }}"
+                  style="background: none; border: none; padding: 0; font-size: 14px;"
+                >
+                  <svg width="16" height="15" fill="none" style="color: #003366;">
+                    <use href="#icon-wishlist" />
+                  </svg>
+                  <span style="color: #003366;">Ajouter à ma wishlist</span>
+                </button-wishlist>
+              </div>
             {%- endif -%}
           </div>
           {% render 'product-variant-options',
@@ -319,6 +371,32 @@
                   </product-addons>
                 {% endif %}
               {%- endif -%}
+
+              {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
+              {% liquid
+                assign wishlist = pages.wishlist
+                assign action_when_click_added_wishlist = settings.action_when_click_added_wishlist
+                if wishlist == empty
+                  assign action_when_click_added_wishlist = 'remove'
+                endif
+              %}
+              <div class="wishlist-section mt-15">
+                <button-wishlist
+                  tabindex="0"
+                  class="wishlist-button flex align-center gap-10 pointer text-color-primary"
+                  data-product-id="{{ product.id }}"
+                  data-action="{{ action_when_click_added_wishlist }}"
+                  data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
+                  data-tooltip-add="{{ 'products.product.actions.wishlist.add' | t }}"
+                  data-tooltip-redirect="{{ 'products.product.actions.wishlist.redirect' | t }}"
+                  style="background: none; border: none; padding: 0; font-size: 14px;"
+                >
+                  <svg width="16" height="15" fill="none" style="color: #003366;">
+                    <use href="#icon-wishlist" />
+                  </svg>
+                  <span style="color: #003366;">Ajouter à ma wishlist</span>
+                </button-wishlist>
+              </div>
             {%- endif -%}
           </div>
           {% render 'product-variant-options',
