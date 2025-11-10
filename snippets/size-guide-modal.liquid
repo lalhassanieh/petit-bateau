@@ -206,7 +206,7 @@
   color: #004499;
 }
 
-/* Modal container - Full screen overlay positioned at top */
+/* Modal container - Popup overlay above product page */
 .pb-size-guide-modal {
   display: none;
   position: fixed;
@@ -215,9 +215,11 @@
   top: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   opacity: 0;
   transition: opacity 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .pb-size-guide-modal.show {
@@ -235,25 +237,29 @@
 
 .pb-modal-container {
   background: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  border-radius: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 85%;
+  max-width: 1200px;
+  max-height: 800px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   animation: modalSlideIn 0.3s ease;
-  box-shadow: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  z-index: 100000;
 }
 
 @keyframes modalSlideIn {
   from {
-    transform: translateY(-30px);
+    transform: translate(-50%, -60%) scale(0.9);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
 }
@@ -526,7 +532,9 @@
 /* Mobile responsive */
 @media (max-width: 1024px) {
   .pb-modal-container {
-    /* Already full screen */
+    width: 95%;
+    height: 90%;
+    max-height: 90vh;
   }
   
   .pb-modal-title {
@@ -549,8 +557,15 @@
 }
 
 @media (max-width: 768px) {
+  .pb-size-guide-modal {
+    padding: 10px;
+  }
+  
   .pb-modal-container {
-    /* Already full screen */
+    width: 98%;
+    height: 95%;
+    max-height: 95vh;
+    border-radius: 8px;
   }
   
   .pb-modal-header {
