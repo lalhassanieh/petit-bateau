@@ -378,7 +378,7 @@
       "#esc-out-of-stock-inputs .esc-out-of-stock-title {text-align: left;}",
       ".esc-email-container input {padding-left: 10px;}",
       "#esc-out-of-stock-inputs {border: none; padding: 0;}",
-      "#esc-out-of-stock-inputs .esc-btn {border-radius: 4px; font-family: Oswald-Bold !important; letter-spacing: .21px;}"
+      "#esc-out-of-stock-inputs .esc-btn {border-radius: 4px; font-family: Oswald-Bold !important; letter-spacing: 0.21px; text-transform: uppercase;}"
     ]
   }
 }
