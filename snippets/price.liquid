@@ -28,7 +28,7 @@ if product.price_varies
       <span class="price heading_weight primary-color price-same-style {{ special_class }}">
         {{ money_price }}
       </span>
-      <span class="tax-included-text" style="font-size: 12px; color: #666; margin-left: 5px;">Prix inclus taxes</span>
+      <span class="tax-included-text">Prix inclus taxes</span>
     </div>
     <div class="price-regular">
       <span class="visually-hidden">
@@ -50,6 +50,8 @@ if product.price_varies
       <span class="price price-same-style heading-style">
         {{ money_price }}
       </span>
+      <span class="tax-included-text">Prix inclus taxes</span>
+    
     </div>
   {%- endif -%}
   {% if target.unit_price_measurement != null %}
