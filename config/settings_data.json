@@ -374,11 +374,7 @@
       ".shadow {box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);}",
       " /* === FRENCH COLOR SWATCH MAPPING === */ /* Neutres */[data-color=\"noir\"] {background-color: #000000;}",
       ".header-mega-store.logo-position {padding-bottom: 10px !important;}",
-      ".header-bottom__navigation::before {border-top: 1px solid #f3f3f3;}",
-      "#esc-out-of-stock-inputs .esc-out-of-stock-title {text-align: left;}",
-      ".esc-email-container input {padding-left: 10px;}",
-      "#esc-out-of-stock-inputs {border: none; padding: 0;}",
-      "#esc-out-of-stock-inputs .esc-btn {border-radius: 4px; font-family: Oswald-Bold !important; letter-spacing: 0.21px; text-transform: uppercase;}"
+      ".header-bottom__navigation::before {border-top: 1px solid #f3f3f3;}"
     ]
   }
 }
