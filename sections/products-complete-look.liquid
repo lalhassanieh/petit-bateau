@@ -46,7 +46,7 @@
     assign search_results = search.results | where: 'object_type', 'product'
     
     # Also check through multiple collections to find all products
-    assign all_collections_to_check = 'all,garcon-3-18-ans,sous-vetements-et-nuit,flanelles'
+    assign all_collections_to_check = 'all,garcon-3-18-ans,sous-vetements-et-nuit,flanelles,anoraks,blousons,bebe-garcon-6-24-mois,cires'
     assign collections_array = all_collections_to_check | split: ','
     
     for collection_handle in collections_array
@@ -286,7 +286,7 @@
         <div class="swiper-wrapper">
           {% comment %} Loop through multiple collections to find and display matching products {% endcomment %}
           {% assign displayed_count = 0 %}
-          {% assign collections_to_check = 'all,garcon-3-18-ans,sous-vetements-et-nuit,flanelles' %}
+          {% assign collections_to_check = 'all,garcon-3-18-ans,sous-vetements-et-nuit,flanelles,anoraks,blousons,bebe-garcon-6-24-mois,cires' %}
           {% assign collections_array = collections_to_check | split: ',' %}
           
           {% for collection_handle in collections_array %}
