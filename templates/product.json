@@ -415,6 +415,7 @@
     },
     "products_recently_viewed_GdCNUL": {
       "type": "products-recently-viewed",
+      "disabled": true,
       "custom_css": [
         ".swiper-pagination-bullet::after {background-color: #ccc !important;}",
         ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
