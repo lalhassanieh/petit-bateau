@@ -81,14 +81,14 @@
   <p>Matching Products Count: {{ matching_products_count }}</p>
   <p>Debug Matches: {{ debug_matches }}</p>
   
-  <p><strong>DETAILED COMPARISON CHECK:</strong></p>
+  <p><strong>FIRST 20 PRODUCTS FROM "ALL" COLLECTION:</strong></p>
   <ul>
-    {% for debug_product in collections.all.products limit: 20 %}
+    {% for debug_product in collections['all'].products limit: 20 %}
       {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
-      {% if debug_model != blank %}
-        <li>
-          {{ debug_product.title }} (ID: {{ debug_product.id }})
-          <br>Model: "{{ debug_model }}" ({{ debug_model | size }} chars)
+      <li>
+        {{ debug_product.title }} (ID: {{ debug_product.id }})
+        <br>Model: "{{ debug_model }}" ({{ debug_model | size }} chars)
+        {% if debug_model != blank %}
           <br>Match Check: "{{ debug_model }}" == "{{ current_model_no }}" = 
           {% if debug_model == current_model_no %}
             <strong style="color: green;">TRUE</strong>
@@ -100,6 +100,20 @@
           {% else %}
             <strong style="color: red;">FALSE</strong>
           {% endif %}
+        {% else %}
+          <strong style="color: orange;">NO MODEL NUMBER</strong>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  
+  <p><strong>SEARCH FOR P98U SPECIFICALLY:</strong></p>
+  <ul>
+    {% for debug_product in collections['all'].products %}
+      {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
+      {% if debug_model == 'P98U' %}
+        <li style="background: yellow; padding: 5px;">
+          <strong>FOUND P98U:</strong> {{ debug_product.title }} (ID: {{ debug_product.id }})
         </li>
       {% endif %}
     {% endfor %}
