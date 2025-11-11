@@ -37,12 +37,16 @@
   assign products_with_model_no = 0
   
   # Check if current product has a model number, then find matching products
-  # Search specifically in the "All" collection with pagination
+  # Search through EVERY product in the "All" collection using paginate
   if current_model_no != blank
-    # Loop through multiple pages of the "All" collection
-    for page in (1..20)
+    # Use a much larger range to ensure we get ALL products
+    for page in (1..100)
       assign offset = page | minus: 1 | times: 50
-      for check_product in collections['all'].products offset: offset limit: 50
+      assign current_page_products = collections['all'].products | offset: offset | limit: 50
+      assign page_count = 0
+      
+      for check_product in current_page_products
+        assign page_count = page_count | plus: 1
         assign total_products_checked = total_products_checked | plus: 1
         assign check_model = check_product.metafields.global.product_additional_modelno
         
@@ -59,9 +63,13 @@
         endif
       endfor
       
-      # Break if we got less than 50 products (reached the end)
-      assign max_offset = offset | plus: 50
-      if collections['all'].products.size < max_offset
+      # Break if this page had no products (we've reached the end)
+      if page_count == 0
+        break
+      endif
+      
+      # Also break if we've checked as many products as the collection claims to have
+      if total_products_checked >= collections['all'].products.size
         break
       endif
     endfor
@@ -107,15 +115,35 @@
     {% endfor %}
   </ul>
   
-  <p><strong>SEARCH FOR P98U SPECIFICALLY:</strong></p>
+  <p><strong>SEARCH FOR P98U ACROSS ALL PAGES:</strong></p>
   <ul>
-    {% for debug_product in collections['all'].products %}
-      {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
-      {% if debug_model == 'P98U' %}
-        <li style="background: yellow; padding: 5px;">
-          <strong>FOUND P98U:</strong> {{ debug_product.title }} (ID: {{ debug_product.id }})
-        </li>
-      {% endif %}
+    {% for page in (1..100) %}
+      {% assign offset = page | minus: 1 | times: 50 %}
+      {% assign page_products = collections['all'].products | offset: offset | limit: 50 %}
+      {% assign page_has_products = false %}
+      
+      {% for debug_product in page_products %}
+        {% assign page_has_products = true %}
+        {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
+        {% if debug_model == 'P98U' %}
+          <li style="background: yellow; padding: 5px;">
+            <strong>FOUND P98U ON PAGE {{ page }}:</strong> {{ debug_product.title }} (ID: {{ debug_product.id }})
+          </li>
+        {% endif %}
+      {% endfor %}
+      
+      {% unless page_has_products %}
+        {% break %}
+      {% endunless %}
+    {% endfor %}
+  </ul>
+  
+  <p><strong>PAGINATION TEST:</strong></p>
+  <ul>
+    {% for page in (1..10) %}
+      {% assign offset = page | minus: 1 | times: 50 %}
+      {% assign page_products = collections['all'].products | offset: offset | limit: 50 %}
+      <li>Page {{ page }} (offset {{ offset }}): {{ page_products.size }} products</li>
     {% endfor %}
   </ul>
 </div>
