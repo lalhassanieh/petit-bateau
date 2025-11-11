@@ -28,9 +28,28 @@
   assign scroll_animation = settings.scroll_animation
   assign animate_delay = 0
 
-  # Get current product's model number
+  # Get current product's model number - try different variations
   assign current_model_no = product.metafields.global.product_additional_modelno
-  assign complete_look_products = collections.all.products | where: 'metafields.global.product_additional_modelno', current_model_no
+  assign current_model_no_alt1 = product.metafields.custom.product_additional_modelno  
+  assign current_model_no_alt2 = product.metafields.global.product_additional_model_no
+  assign current_model_no_alt3 = product.metafields.custom.model_number
+  
+  # Use the first one that has a value
+  if current_model_no != blank
+    assign final_model_no = current_model_no
+    assign metafield_path = 'metafields.global.product_additional_modelno'
+  elsif current_model_no_alt1 != blank
+    assign final_model_no = current_model_no_alt1
+    assign metafield_path = 'metafields.custom.product_additional_modelno'
+  elsif current_model_no_alt2 != blank
+    assign final_model_no = current_model_no_alt2
+    assign metafield_path = 'metafields.global.product_additional_model_no'
+  elsif current_model_no_alt3 != blank
+    assign final_model_no = current_model_no_alt3
+    assign metafield_path = 'metafields.custom.model_number'
+  endif
+  
+  assign complete_look_products = collections.all.products | where: metafield_path, final_model_no
   assign has_matching_products = false
   
   # Check if there are matching products (excluding current product)
@@ -44,21 +63,34 @@
 
 <!-- DEBUG OUTPUT -->
 <div style="background: #f0f0f0; padding: 10px; margin: 10px; border: 1px solid #ccc;">
-  <p><strong>DEBUG INFO:</strong></p>
+  <p><strong>DEBUG INFO - METAFIELD VARIATIONS:</strong></p>
   <p>Current Product ID: {{ product.id }}</p>
-  <p>Current Model No: "{{ current_model_no }}" ({{ current_model_no | size }} characters)</p>
+  <p>Trying different metafield paths:</p>
+  <ul>
+    <li>global.product_additional_modelno: "{{ current_model_no }}" ({{ current_model_no | size }} chars)</li>
+    <li>custom.product_additional_modelno: "{{ current_model_no_alt1 }}" ({{ current_model_no_alt1 | size }} chars)</li>
+    <li>global.product_additional_model_no: "{{ current_model_no_alt2 }}" ({{ current_model_no_alt2 | size }} chars)</li>
+    <li>custom.model_number: "{{ current_model_no_alt3 }}" ({{ current_model_no_alt3 | size }} chars)</li>
+  </ul>
+  <p><strong>Final Model No Used:</strong> "{{ final_model_no }}" using path: {{ metafield_path }}</p>
   <p>Has Matching Products: {{ has_matching_products }}</p>
   <p>Total Products Found: {{ complete_look_products.size }}</p>
-  <p>All Products with Same Model No:</p>
+  
+  <p><strong>Sample of ALL products with their metafields (first 5):</strong></p>
   <ul>
-    {% for debug_product in complete_look_products %}
-      <li>{{ debug_product.title }} (ID: {{ debug_product.id }}) - Model: "{{ debug_product.metafields.global.product_additional_modelno }}"</li>
+    {% for debug_product in collections.all.products limit: 5 %}
+      <li>{{ debug_product.title }} (ID: {{ debug_product.id }})
+        <ul>
+          <li>global.product_additional_modelno: "{{ debug_product.metafields.global.product_additional_modelno }}"</li>
+          <li>custom.product_additional_modelno: "{{ debug_product.metafields.custom.product_additional_modelno }}"</li>
+        </ul>
+      </li>
     {% endfor %}
   </ul>
 </div>
 <!-- END DEBUG -->
 
-{%- if current_model_no != blank and has_matching_products -%}
+{%- if final_model_no != blank and has_matching_products -%}
   {%- capture style -%}
       --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
     {%- endcapture -%}
