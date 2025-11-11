@@ -81,7 +81,8 @@
       endfor
       
       # Break if we got less than 50 products (reached the end)
-      if collections.all.products.size < offset | plus: 50
+      assign max_offset = offset | plus: 50
+      if collections.all.products.size < max_offset
         break
       endif
     endfor
@@ -224,7 +225,8 @@
               {% endif %}
             {% endfor %}
             {% comment %} Break if we got less than 50 products (reached the end) {% endcomment %}
-            {% if collections.all.products.size < offset | plus: 50 %}
+            {% assign max_offset = offset | plus: 50 %}
+            {% if collections.all.products.size < max_offset %}
               {% break %}
             {% endif %}
           {% endfor %}
