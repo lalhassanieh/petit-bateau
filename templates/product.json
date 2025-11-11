@@ -12,7 +12,7 @@
     "breadcrumb": {
       "type": "breadcrumb",
       "custom_css": [
-        "@media (max-width: 768px) {.breadcrumbs{display:none;}}"
+        "@media (max-width: 768px) {.breadcrumbs {display: none; }}"
       ],
       "settings": {
         "section_width": "fluid_container",
@@ -376,7 +376,7 @@
         "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
       ],
       "settings": {
-        "section_width": "container",
+        "section_width": "fluid_container",
         "color_scheme": "",
         "heading": "Les gens ont également acheté",
         "description": "",
@@ -409,7 +409,7 @@
         "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
       ],
       "settings": {
-        "section_width": "container",
+        "section_width": "fluid_container",
         "color_scheme": "",
         "heading": "Récemment consulté",
         "description": "",
