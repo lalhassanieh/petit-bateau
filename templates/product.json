@@ -142,6 +142,7 @@
         },
         "pickup_availability_cyVydQ": {
           "type": "_product-pickup-availability",
+          "disabled": true,
           "settings": {},
           "blocks": {}
         },
@@ -195,10 +196,9 @@
         },
         "collapsible_row_eLaQpR": {
           "type": "_product-collapsible-row",
-          "disabled": true,
           "settings": {
-            "heading": "Expédition et retours",
-            "content": "<p>We offer fast and reliable shipping for all our clothing items. Orders are processed within <strong>1-2 business days</strong> and shipped via standard delivery, which typically takes 3-5 business days.</p><p>Express shipping options are also available at checkout for an additional fee, ensuring your fashion essentials arrive even sooner. Enjoy <strong>free shipping</strong> on orders<strong> over $150</strong>. For any questions regarding your order, please contact our customer service team for assistance.</p>",
+            "heading": "Composition et matière",
+            "content": "<p>{{ closest.product.metafields.global.product_composition_material.value }}</p>",
             "use_product_description": false,
             "open": false
           },
@@ -206,10 +206,19 @@
         },
         "collapsible_row_DA4FUC": {
           "type": "_product-collapsible-row",
-          "disabled": true,
           "settings": {
-            "heading": "Politiques de retour",
-            "content": "<p>Provided the conditions in our refund policy have been met, refunds will be processed using the original form of payment. You can return an item purchased online by posting it to us. Please contact customer service for return address. Please note that delivery costs will be excluded from the refund unless goods are returned in accordance with your statutory rights (e.g. they are faulty or not as ordered).</p><ul><li>The items with the original receipt are returned within 30 days of purchase. </li><li>Items must be in the original condition as purchased with all labels/tickets attached.</li></ul><p>Provided the conditions in our refund policy have been met, refunds will be processed using the original form of payment. You can return an item purchased online by posting it to us. Please contact customer service for return address. Please note that delivery costs will be excluded from the refund unless goods are returned in accordance with your statutory rights (e.g. they are faulty or not as ordered).</p>",
+            "heading": "Conseils d'entretien",
+            "content": "",
+            "use_product_description": false,
+            "open": false
+          },
+          "blocks": {}
+        },
+        "product_collapsible_row_qM7FX8": {
+          "type": "_product-collapsible-row",
+          "settings": {
+            "heading": "Article responsable",
+            "content": "",
             "use_product_description": false,
             "open": false
           },
@@ -251,11 +260,13 @@
         "collapsible_row_m3g6f8",
         "collapsible_row_eLaQpR",
         "collapsible_row_DA4FUC",
+        "product_collapsible_row_qM7FX8",
         "complementary_products_Wip9YG"
       ],
       "custom_css": [
         ".btn-primary {padding: 1.5rem 2.5rem !important;}",
-        ".product-detail__title {font-family: Oswald-Bold; font-weight: 500 !important; letter-spacing: 0.2px !important;}"
+        ".product-detail__title {font-family: Oswald-Bold; font-weight: 500 !important; letter-spacing: 0.2px !important;}",
+        ".price-regular .price {font-size: 20px; font-weight: 400;}"
       ],
       "settings": {
         "section_width": "fluid_container",
@@ -373,7 +384,8 @@
     "related_products": {
       "type": "related-products",
       "custom_css": [
-        "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
+        "@media (max-width: 480px) {.product__badges-sale {display: none; }}",
+        ".section__header-heading {text-transform: capitalize !important;}"
       ],
       "settings": {
         "section_width": "fluid_container",
@@ -381,7 +393,7 @@
         "heading": "Les gens ont également acheté",
         "description": "",
         "header_size": "medium",
-        "header_alignment": "center",
+        "header_alignment": "left",
         "items_to_show": 4,
         "items_per_row": 4,
         "column_gap": 30,
@@ -405,6 +417,7 @@
       "custom_css": [
         ".swiper-pagination-bullet::after {background-color: #ccc !important;}",
         ".swiper-pagination-bullet-active::after {background-color: #002e5e !important;}",
+        ".section__header-heading {text-transform: capitalize !important;}",
         "@media only screen and (max-width: 768px) {.swiper {max-width: 90%; } .swiper-pagination-bullet::after {margin-top: 20px !important; }}",
         "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
       ],
@@ -414,7 +427,7 @@
         "heading": "Récemment consulté",
         "description": "",
         "header_size": "medium",
-        "header_alignment": "center",
+        "header_alignment": "left",
         "items_to_show": 8,
         "items_per_row": 4,
         "column_gap": 30,
