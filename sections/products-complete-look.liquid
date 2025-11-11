@@ -31,22 +31,34 @@
   # Get current product's model number
   assign current_model_no = product.metafields.global.product_additional_modelno
   assign complete_look_products = collections.all.products | where: 'metafields.global.product_additional_modelno', current_model_no
-  assign filtered_products = ''
-  assign filtered_products_array = ''
-
-  # Filter out current product and limit results
-  for complete_product in complete_look_products limit: items_to_show
+  assign has_matching_products = false
+  
+  # Check if there are matching products (excluding current product)
+  for complete_product in complete_look_products
     unless complete_product.id == product.id
-      if filtered_products_array == ''
-        assign filtered_products_array = complete_product
-      else
-        assign filtered_products_array = filtered_products_array | concat: ',' | concat: complete_product
-      endif
+      assign has_matching_products = true
+      break
     endunless
   endfor
 -%}
-{{ complete_look_products }}
-{%- if current_model_no != blank and filtered_products_array != blank -%}
+
+<!-- DEBUG OUTPUT -->
+<div style="background: #f0f0f0; padding: 10px; margin: 10px; border: 1px solid #ccc;">
+  <p><strong>DEBUG INFO:</strong></p>
+  <p>Current Product ID: {{ product.id }}</p>
+  <p>Current Model No: "{{ current_model_no }}" ({{ current_model_no | size }} characters)</p>
+  <p>Has Matching Products: {{ has_matching_products }}</p>
+  <p>Total Products Found: {{ complete_look_products.size }}</p>
+  <p>All Products with Same Model No:</p>
+  <ul>
+    {% for debug_product in complete_look_products %}
+      <li>{{ debug_product.title }} (ID: {{ debug_product.id }}) - Model: "{{ debug_product.metafields.global.product_additional_modelno }}"</li>
+    {% endfor %}
+  </ul>
+</div>
+<!-- END DEBUG -->
+
+{%- if current_model_no != blank and has_matching_products -%}
   {%- capture style -%}
       --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
     {%- endcapture -%}
