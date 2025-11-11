@@ -60,6 +60,64 @@
   endif
 -%}
 
+<!-- COMPREHENSIVE DEBUG OUTPUT -->
+<div style="background: #f0f0f0; padding: 15px; margin: 15px; border: 2px solid #ccc; font-family: monospace;">
+  <h3 style="margin: 0 0 10px 0; color: #333;">🔍 Complete the Look - Debug Information</h3>
+  
+  <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #007cba;">
+    <strong>Current Product Info:</strong><br>
+    • Product ID: {{ product.id }}<br>
+    • Product Title: {{ product.title }}<br>
+    • Model Number: "{{ current_model_no }}" ({{ current_model_no | size }} characters)<br>
+  </div>
+  
+  <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #28a745;">
+    <strong>Search Results:</strong><br>
+    • Has Matching Products: {{ has_matching_products }}<br>
+    • Matching Products Count: {{ matching_products_count }}<br>
+    • Matching Product IDs: {{ matching_product_ids }}<br>
+  </div>
+  
+  <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #dc3545;">
+    <strong>Collection Analysis:</strong><br>
+    • Collections.all size: {{ collections.all.products.size }}<br>
+    • Current product collections: 
+    {% for collection in product.collections limit: 5 %}
+      {{ collection.title }}{% unless forloop.last %}, {% endunless %}
+    {% endfor %}<br>
+  </div>
+  
+  <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #ffc107;">
+    <strong>Products with Model "{{ current_model_no }}" (All Matches):</strong><br>
+    {% assign found_count = 0 %}
+    {% for debug_product in collections.all.products limit: 500 %}
+      {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
+      {% if debug_model == current_model_no %}
+        {% assign found_count = found_count | plus: 1 %}
+        • {{ debug_product.title }} (ID: {{ debug_product.id }})
+        {% if debug_product.id == product.id %}<strong style="color: red;"> ← CURRENT PRODUCT</strong>{% endif %}
+        <br>
+      {% endif %}
+    {% endfor %}
+    Total found: {{ found_count }}
+  </div>
+  
+  <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #6f42c1;">
+    <strong>Sample Products with ANY Model Numbers:</strong><br>
+    {% assign sample_count = 0 %}
+    {% for debug_product in collections.all.products limit: 200 %}
+      {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
+      {% if debug_model != blank %}
+        {% assign sample_count = sample_count | plus: 1 %}
+        • {{ debug_product.title }} - Model: "{{ debug_model }}"<br>
+        {% if sample_count >= 10 %}{% break %}{% endif %}
+      {% endif %}
+    {% endfor %}
+    Showing first 10 products with model numbers.
+  </div>
+</div>
+<!-- END DEBUG -->
+
 {%- if current_model_no != blank and has_matching_products -%}
   {%- capture style -%}
       --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
