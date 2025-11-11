@@ -40,9 +40,21 @@
   assign products_with_model_numbers = 0
   
   if current_model_no != blank
-    for check_product in collections.all.products
-      assign total_products_checked = total_products_checked | plus: 1
-      assign check_model = check_product.metafields.global.product_additional_modelno
+    # Use search to find products with specific metafield values
+    # This bypasses the 50-product limit
+    assign search_query = 'metafields.global.product_additional_modelno:' | append: current_model_no
+    assign search_results = search.results | where: 'object_type', 'product'
+    
+    # Also check through multiple collections to find all products
+    assign all_collections_to_check = 'all,garcon-3-18-ans,sous-vetements-et-nuit,flanelles'
+    assign collections_array = all_collections_to_check | split: ','
+    
+    for collection_handle in collections_array
+      assign current_collection = collections[collection_handle]
+      if current_collection != blank
+        for check_product in current_collection.products
+          assign total_products_checked = total_products_checked | plus: 1
+          assign check_model = check_product.metafields.global.product_additional_modelno
       
       # Count products with any model number
       if check_model != blank
@@ -69,10 +81,12 @@
         # Add to debug info
         assign debug_loop_info = debug_loop_info | append: 'MATCH FOUND: ' | append: check_product.title | append: ' | '
         
-        # Stop after finding the number we want to show
-        if matching_products_count >= items_to_show
-          break
+          # Stop after finding the number we want to show
+          if matching_products_count >= items_to_show
+            break
+          endif
         endif
+      endfor
       endif
     endfor
   endif
@@ -234,26 +248,42 @@
           {%- render 'swiper-navigation' -%}
         {% endif %}
         <div class="swiper-wrapper">
-          {% comment %} Loop through all products and display matching ones {% endcomment %}
-          {% for item in collections.all.products limit: items_to_show %}
-            {% assign item_model = item.metafields.global.product_additional_modelno %}
-            
-            {% if item_model == current_model_no and item.id != product.id %}
-              {% render 'product-item',
-                card_product: item,
-                section_id: section.id,
-                class: ' swiper-slide',
-                template_enable_action: true,
-                template_enable_product_vendor: true,
-                template_enable_rate: true,
-                template_enable_product_short_description: false,
-                template_enable_color_swatches: true,
-                template_enable_price: true,
-                template_enable_product_badges: true,
-                template_enable_add_cart: true,
-                scroll_animation: scroll_animation,
-                indexFor: forloop.index
-              %}
+          {% comment %} Loop through multiple collections to find and display matching products {% endcomment %}
+          {% assign displayed_count = 0 %}
+          {% assign collections_to_check = 'all,garcon-3-18-ans,sous-vetements-et-nuit,flanelles' %}
+          {% assign collections_array = collections_to_check | split: ',' %}
+          
+          {% for collection_handle in collections_array %}
+            {% assign current_collection = collections[collection_handle] %}
+            {% if current_collection != blank %}
+              {% for item in current_collection.products %}
+                {% assign item_model = item.metafields.global.product_additional_modelno %}
+                
+                {% if item_model == current_model_no and item.id != product.id %}
+                  {% render 'product-item',
+                    card_product: item,
+                    section_id: section.id,
+                    class: ' swiper-slide',
+                    template_enable_action: true,
+                    template_enable_product_vendor: true,
+                    template_enable_rate: true,
+                    template_enable_product_short_description: false,
+                    template_enable_color_swatches: true,
+                    template_enable_price: true,
+                    template_enable_product_badges: true,
+                    template_enable_add_cart: true,
+                    scroll_animation: scroll_animation,
+                    indexFor: forloop.index
+                  %}
+                  {% assign displayed_count = displayed_count | plus: 1 %}
+                  {% if displayed_count >= items_to_show %}
+                    {% break %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            {% if displayed_count >= items_to_show %}
+              {% break %}
             {% endif %}
           {% endfor %}
         </div>
