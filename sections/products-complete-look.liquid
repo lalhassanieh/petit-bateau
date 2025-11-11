@@ -302,6 +302,48 @@
   </div>
 {%- endif -%}
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize swiper for complete-look section
+  const completeLoookSwipers = document.querySelectorAll('.products-complete-look.swiper');
+  
+  completeLoookSwipers.forEach(function(swiperEl) {
+    if (swiperEl.swiper) return; // Already initialized
+    
+    const swiperConfig = {
+      slidesPerView: 1,
+      spaceBetween: parseInt(swiperEl.dataset.spacing) || 30,
+      speed: parseInt(swiperEl.dataset.speed) || 500,
+      loop: swiperEl.dataset.loop === 'true',
+      autoplay: swiperEl.dataset.autoplay === 'true' ? {
+        delay: (parseInt(swiperEl.dataset.autoplaySpeed) || 5) * 1000,
+        disableOnInteraction: false,
+      } : false,
+      breakpoints: {
+        768: {
+          slidesPerView: parseInt(swiperEl.dataset.desktop) || 4,
+        },
+        480: {
+          slidesPerView: parseFloat(swiperEl.dataset.mobile) || 1,
+        }
+      },
+      navigation: {
+        nextEl: swiperEl.querySelector('.swiper-button-next'),
+        prevEl: swiperEl.querySelector('.swiper-button-prev'),
+      },
+      pagination: {
+        el: swiperEl.querySelector('.swiper-pagination'),
+        clickable: true,
+        type: swiperEl.dataset.paginationProgressbar === 'true' ? 'progressbar' : 'bullets',
+      },
+    };
+    
+    // Initialize Swiper
+    new Swiper(swiperEl, swiperConfig);
+  });
+});
+</script>
+
 {% schema %}
 {
   "name": "Complete the Look",
