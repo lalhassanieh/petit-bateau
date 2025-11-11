@@ -40,13 +40,12 @@
   assign products_with_model_numbers = 0
   
   if current_model_no != blank
-    # Use collections.all.products - simple and reliable approach
-    # Note: Limited to first 50 products, but works consistently
+    # Use collections.all to find matching products (simpler approach)
     for check_product in collections.all.products
       assign total_products_checked = total_products_checked | plus: 1
       assign check_model = check_product.metafields.global.product_additional_modelno
       
-      # Count products with model numbers
+      # Count products with any model number
       if check_model != blank
         assign products_with_model_numbers = products_with_model_numbers | plus: 1
       endif
@@ -111,7 +110,7 @@
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #ffc107;">
-    <strong>Products with Model "{{ current_model_no }}" (Collections.all):</strong><br>
+    <strong>Products with Model "{{ current_model_no }}" (All Collection):</strong><br>
     {% assign found_count = 0 %}
     
     {% for debug_product in collections.all.products %}
@@ -123,9 +122,7 @@
         <br>
       {% endif %}
     {% endfor %}
-    
-    <strong>Total found:</strong> {{ found_count }}<br>
-    <strong>Collections.all limit:</strong> 50 products (showing first 50 only)
+    Total found: {{ found_count }}
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #fd7e14;">
@@ -261,11 +258,12 @@
           {%- render 'swiper-navigation' -%}
         {% endif %}
         <div class="swiper-wrapper">
-          {% comment %} Display matching products from collections.all {% endcomment %}
+          {% comment %} Loop through all products to find and display matching products {% endcomment %}
           {% assign displayed_count = 0 %}
           
           {% for item in collections.all.products %}
             {% assign item_model = item.metafields.global.product_additional_modelno %}
+            
             {% if item_model == current_model_no and item.id != product.id %}
               {% render 'product-item',
                 card_product: item,
