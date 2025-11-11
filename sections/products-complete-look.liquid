@@ -123,18 +123,54 @@
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #ffc107;">
-    <strong>Products with Model "{{ current_model_no }}" (All Matches):</strong><br>
+    <strong>Products with Model "{{ current_model_no }}" (All Collections Search):</strong><br>
     {% assign found_count = 0 %}
-    {% for debug_product in collections.all.products limit: 500 %}
-      {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
-      {% if debug_model == current_model_no %}
-        {% assign found_count = found_count | plus: 1 %}
-        • {{ debug_product.title }} (ID: {{ debug_product.id }})
-        {% if debug_product.id == product.id %}<strong style="color: red;"> ← CURRENT PRODUCT</strong>{% endif %}
-        <br>
+    {% assign collections_to_check = 'all,garcon-3-18-ans,sous-vetements-et-nuit,flanelles,anoraks,blousons,bebe-garcon-6-24-mois,cires' %}
+    {% assign collections_array = collections_to_check | split: ',' %}
+    
+    {% for collection_handle in collections_array %}
+      {% assign current_collection = collections[collection_handle] %}
+      {% if current_collection != blank %}
+        {% for debug_product in current_collection.products %}
+          {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
+          {% if debug_model == current_model_no %}
+            {% assign found_count = found_count | plus: 1 %}
+            • {{ debug_product.title }} (ID: {{ debug_product.id }}) [{{ collection_handle }}]
+            {% if debug_product.id == product.id %}<strong style="color: red;"> ← CURRENT PRODUCT</strong>{% endif %}
+            <br>
+          {% endif %}
+        {% endfor %}
       {% endif %}
     {% endfor %}
-    Total found: {{ found_count }}
+    Total found across all collections: {{ found_count }}
+  </div>
+  
+  <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #fd7e14;">
+    <strong>Live Match Test for "{{ current_model_no }}":</strong><br>
+    {% assign live_match_count = 0 %}
+    {% assign collections_array = collections_to_check | split: ',' %}
+    
+    {% for collection_handle in collections_array %}
+      {% assign current_collection = collections[collection_handle] %}
+      {% if current_collection != blank %}
+        {% for test_product in current_collection.products %}
+          {% assign test_model = test_product.metafields.global.product_additional_modelno %}
+          {% if test_model == current_model_no and test_product.id != product.id %}
+            {% assign live_match_count = live_match_count | plus: 1 %}
+            • MATCH: {{ test_product.title }} (ID: {{ test_product.id }})<br>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+    Live matches (excluding current): {{ live_match_count }}
+    <br><strong>Should show section:</strong> 
+    {% if current_model_no != blank and live_match_count > 0 %}
+      <span style="color: green; font-weight: bold;">YES ✓</span>
+    {% else %}
+      <span style="color: red; font-weight: bold;">NO ✗</span>
+      {% if current_model_no == blank %} (No model number){% endif %}
+      {% if current_model_no != blank and live_match_count == 0 %} (No matches found){% endif %}
+    {% endif %}
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #6f42c1;">
