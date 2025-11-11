@@ -28,73 +28,38 @@
   assign scroll_animation = settings.scroll_animation
   assign animate_delay = 0
 
-  # Get current product's model number - try different variations
+  # Get current product's model number from global.product_additional_modelno
   assign current_model_no = product.metafields.global.product_additional_modelno
-  assign current_model_no_alt1 = product.metafields.custom.product_additional_modelno  
-  assign current_model_no_alt2 = product.metafields.global.product_additional_model_no
-  assign current_model_no_alt3 = product.metafields.custom.model_number
-  
-  # Use the first one that has a value
-  if current_model_no != blank
-    assign final_model_no = current_model_no
-    assign metafield_path = 'metafields.global.product_additional_modelno'
-  elsif current_model_no_alt1 != blank
-    assign final_model_no = current_model_no_alt1
-    assign metafield_path = 'metafields.custom.product_additional_modelno'
-  elsif current_model_no_alt2 != blank
-    assign final_model_no = current_model_no_alt2
-    assign metafield_path = 'metafields.global.product_additional_model_no'
-  elsif current_model_no_alt3 != blank
-    assign final_model_no = current_model_no_alt3
-    assign metafield_path = 'metafields.custom.model_number'
-  endif
-  
-  # Manual filtering since Shopify's where filter doesn't work well with metafields
-  assign complete_look_products = ''
-  assign complete_look_products_array = ''
   assign has_matching_products = false
-  assign products_count = 0
+  assign matching_products_count = 0
   
-  # Loop through all products and manually filter by metafield
-  for check_product in collections.all.products
-    if check_product.metafields.global.product_additional_modelno == final_model_no
-      unless check_product.id == product.id
-        if complete_look_products_array == ''
-          assign complete_look_products_array = check_product
-        else
-          assign complete_look_products_array = complete_look_products_array | append: ',' | append: check_product.id
-        endif
-        assign has_matching_products = true
-        assign products_count = products_count | plus: 1
-        if products_count >= items_to_show
-          break
-        endif
-      endunless
-    endif
-  endfor
+  # Check if current product has a model number, then find matching products
+  if current_model_no != blank
+    for check_product in collections.all.products
+      if check_product.metafields.global.product_additional_modelno == current_model_no
+        unless check_product.id == product.id
+          assign has_matching_products = true
+          assign matching_products_count = matching_products_count | plus: 1
+        endunless
+      endif
+    endfor
+  endif
 -%}
 
 <!-- DEBUG OUTPUT -->
 <div style="background: #f0f0f0; padding: 10px; margin: 10px; border: 1px solid #ccc;">
-  <p><strong>DEBUG INFO - METAFIELD VARIATIONS:</strong></p>
+  <p><strong>DEBUG INFO - Complete the Look:</strong></p>
   <p>Current Product ID: {{ product.id }}</p>
-  <p>Trying different metafield paths:</p>
-  <ul>
-    <li>global.product_additional_modelno: "{{ current_model_no }}" ({{ current_model_no | size }} chars)</li>
-    <li>custom.product_additional_modelno: "{{ current_model_no_alt1 }}" ({{ current_model_no_alt1 | size }} chars)</li>
-    <li>global.product_additional_model_no: "{{ current_model_no_alt2 }}" ({{ current_model_no_alt2 | size }} chars)</li>
-    <li>custom.model_number: "{{ current_model_no_alt3 }}" ({{ current_model_no_alt3 | size }} chars)</li>
-  </ul>
-  <p><strong>Final Model No Used:</strong> "{{ final_model_no }}" using path: {{ metafield_path }}</p>
+  <p>Current Model No: "{{ current_model_no }}" ({{ current_model_no | size }} characters)</p>
   <p>Has Matching Products: {{ has_matching_products }}</p>
-  <p>Manual Filter Results - Products Count: {{ products_count }}</p>
+  <p>Matching Products Count: {{ matching_products_count }}</p>
   
-  <p><strong>Products with model "{{ final_model_no }}":</strong></p>
+  <p><strong>All products with model number "{{ current_model_no }}":</strong></p>
   <ul>
     {% for debug_product in collections.all.products %}
-      {% if debug_product.metafields.global.product_additional_modelno == final_model_no %}
+      {% if debug_product.metafields.global.product_additional_modelno == current_model_no %}
         <li>{{ debug_product.title }} (ID: {{ debug_product.id }}) - Model: "{{ debug_product.metafields.global.product_additional_modelno }}"
-          {% if debug_product.id == product.id %}<strong> ← CURRENT PRODUCT</strong>{% endif %}
+          {% if debug_product.id == product.id %}<strong> ← CURRENT PRODUCT (EXCLUDED)</strong>{% endif %}
         </li>
       {% endif %}
     {% endfor %}
@@ -102,7 +67,7 @@
 </div>
 <!-- END DEBUG -->
 
-{%- if final_model_no != blank and has_matching_products -%}
+{%- if current_model_no != blank and has_matching_products -%}
   {%- capture style -%}
       --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
     {%- endcapture -%}
@@ -175,7 +140,7 @@
         {% endif %}
         <div class="swiper-wrapper">
           {% for item in collections.all.products limit: 50 %}
-            {% if item.metafields.global.product_additional_modelno == final_model_no %}
+            {% if item.metafields.global.product_additional_modelno == current_model_no %}
               {% unless item.id == product.id %}
                 {% render 'product-item',
                 card_product: item,
