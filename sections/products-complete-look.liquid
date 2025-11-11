@@ -37,21 +37,52 @@
   assign products_with_model_no = 0
   
   # Check if current product has a model number, then find matching products
+  # Using search to get around the 50 product limit
   if current_model_no != blank
-    for check_product in collections.all.products
-      assign total_products_checked = total_products_checked | plus: 1
-      assign check_model = check_product.metafields.global.product_additional_modelno
+    # Try multiple methods to find all products
+    
+    # Method 1: Check all collections for products
+    assign all_collections = collections
+    for collection in all_collections limit: 20
+      for check_product in collection.products
+        assign total_products_checked = total_products_checked | plus: 1
+        assign check_model = check_product.metafields.global.product_additional_modelno
+        
+        if check_model != blank
+          assign products_with_model_no = products_with_model_no | plus: 1
+        endif
+        
+        if check_model == current_model_no
+          unless check_product.id == product.id
+            assign has_matching_products = true
+            assign matching_products_count = matching_products_count | plus: 1
+            assign debug_matches = debug_matches | append: check_product.title | append: ' | '
+          endunless
+        endif
+      endfor
+    endfor
+    
+    # Method 2: Also check collections.all with pagination workaround
+    for page in (1..10)
+      assign offset = page | minus: 1 | times: 50
+      for check_product in collections.all.products offset: offset limit: 50
+        assign total_products_checked = total_products_checked | plus: 1
+        assign check_model = check_product.metafields.global.product_additional_modelno
+        
+        if check_model == current_model_no
+          unless check_product.id == product.id
+            unless debug_matches contains check_product.title
+              assign has_matching_products = true
+              assign matching_products_count = matching_products_count | plus: 1
+              assign debug_matches = debug_matches | append: check_product.title | append: ' | '
+            endunless
+          endunless
+        endif
+      endfor
       
-      if check_model != blank
-        assign products_with_model_no = products_with_model_no | plus: 1
-      endif
-      
-      if check_model == current_model_no
-        unless check_product.id == product.id
-          assign has_matching_products = true
-          assign matching_products_count = matching_products_count | plus: 1
-          assign debug_matches = debug_matches | append: check_product.title | append: ' | '
-        endunless
+      # Break if we got less than 50 products (reached the end)
+      if collections.all.products.size < offset | plus: 50
+        break
       endif
     endfor
   endif
@@ -168,10 +199,13 @@
           {%- render 'swiper-navigation' -%}
         {% endif %}
         <div class="swiper-wrapper">
-          {% for item in collections.all.products limit: 50 %}
-            {% if item.metafields.global.product_additional_modelno == current_model_no %}
-              {% unless item.id == product.id %}
-                {% render 'product-item',
+          {% comment %} Loop through multiple pages to get all products {% endcomment %}
+          {% for page in (1..10) %}
+            {% assign offset = page | minus: 1 | times: 50 %}
+            {% for item in collections.all.products offset: offset limit: 50 %}
+              {% if item.metafields.global.product_additional_modelno == current_model_no %}
+                {% unless item.id == product.id %}
+                  {% render 'product-item',
                 card_product: item,
                 section_id: section.id,
                 class: ' swiper-slide',
@@ -186,7 +220,12 @@
                 scroll_animation: scroll_animation,
                 indexFor: forloop.index
               %}
-              {% endunless %}
+                {% endunless %}
+              {% endif %}
+            {% endfor %}
+            {% comment %} Break if we got less than 50 products (reached the end) {% endcomment %}
+            {% if collections.all.products.size < offset | plus: 50 %}
+              {% break %}
             {% endif %}
           {% endfor %}
         </div>
