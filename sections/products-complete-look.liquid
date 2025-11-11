@@ -40,40 +40,49 @@
   assign products_with_model_numbers = 0
   
   if current_model_no != blank
-    # Use collections.all to find matching products (simpler approach)
-    for check_product in collections.all.products
+    # Method 1: Use Shopify Search API (bypasses 50-product limit)
+    assign search_query = 'metafields.global.product_additional_modelno:' | append: current_model_no
+    assign search_results = search.results | where: 'object_type', 'product'
+    
+    # Process search results
+    for search_product in search_results
       assign total_products_checked = total_products_checked | plus: 1
-      assign check_model = check_product.metafields.global.product_additional_modelno
+      assign check_model = search_product.metafields.global.product_additional_modelno
       
-      # Count products with any model number
       if check_model != blank
         assign products_with_model_numbers = products_with_model_numbers | plus: 1
       endif
       
-      # Debug specific products we're looking for
-      if check_product.title contains 'TEE-SHIRTS MANCHES LONGUES BLANCS' or check_product.title contains 'DEBARDEURS RAYES'
-        assign debug_loop_info = debug_loop_info | append: 'FOUND TARGET: ' | append: check_product.title | append: ' - Model: "' | append: check_model | append: '" | '
+      if search_product.title contains 'TEE-SHIRTS MANCHES LONGUES BLANCS' or search_product.title contains 'DEBARDEURS RAYES'
+        assign debug_loop_info = debug_loop_info | append: 'SEARCH FOUND: ' | append: search_product.title | append: ' - Model: "' | append: check_model | append: '" | '
       endif
       
-      # Check for match
-      if check_model == current_model_no and check_product.id != product.id
+      if check_model == current_model_no and search_product.id != product.id
         assign has_matching_products = true
         assign matching_products_count = matching_products_count | plus: 1
         
-        # Store product ID for later use
         if matching_product_ids == blank
-          assign matching_product_ids = check_product.id | append: ''
+          assign matching_product_ids = search_product.id | append: ''
         else
-          assign matching_product_ids = matching_product_ids | append: ',' | append: check_product.id
+          assign matching_product_ids = matching_product_ids | append: ',' | append: search_product.id
         endif
         
-        # Add to debug info
-        assign debug_loop_info = debug_loop_info | append: 'MATCH FOUND: ' | append: check_product.title | append: ' | '
+        assign debug_loop_info = debug_loop_info | append: 'SEARCH MATCH: ' | append: search_product.title | append: ' | '
         
-        # Stop after finding the number we want to show
         if matching_products_count >= items_to_show
           break
         endif
+      endif
+    endfor
+    
+    # Fallback: Check collections.all for debugging (limited to 50)
+    assign collections_all_checked = 0
+    for check_product in collections.all.products
+      assign collections_all_checked = collections_all_checked | plus: 1
+      assign check_model = check_product.metafields.global.product_additional_modelno
+      
+      if check_product.title contains 'TEE-SHIRTS MANCHES LONGUES BLANCS' or check_product.title contains 'DEBARDEURS RAYES'
+        assign debug_loop_info = debug_loop_info | append: 'COLLECTIONS.ALL FOUND: ' | append: check_product.title | append: ' - Model: "' | append: check_model | append: '" | '
       endif
     endfor
   endif
@@ -91,13 +100,16 @@
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #28a745;">
-    <strong>Search Results:</strong><br>
+    <strong>Search API Results:</strong><br>
+    • Search Query: "{{ search_query }}"<br>
+    • Search Results Found: {{ search_results.size }}<br>
     • Total Products Checked: {{ total_products_checked }}<br>
     • Products with Model Numbers: {{ products_with_model_numbers }}<br>
     • Has Matching Products: {{ has_matching_products }}<br>
     • Matching Products Count: {{ matching_products_count }}<br>
     • Matching Product IDs: {{ matching_product_ids }}<br>
     • Debug Loop Info: {{ debug_loop_info }}<br>
+    • Collections.all checked: {{ collections_all_checked }} (limited to 50)<br>
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #dc3545;">
@@ -258,10 +270,12 @@
           {%- render 'swiper-navigation' -%}
         {% endif %}
         <div class="swiper-wrapper">
-          {% comment %} Loop through all products to find and display matching products {% endcomment %}
+          {% comment %} Use search results to display matching products {% endcomment %}
           {% assign displayed_count = 0 %}
+          {% assign search_query = 'metafields.global.product_additional_modelno:' | append: current_model_no %}
+          {% assign search_results = search.results | where: 'object_type', 'product' %}
           
-          {% for item in collections.all.products %}
+          {% for item in search_results %}
             {% assign item_model = item.metafields.global.product_additional_modelno %}
             
             {% if item_model == current_model_no and item.id != product.id %}
