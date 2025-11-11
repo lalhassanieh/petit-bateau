@@ -266,7 +266,8 @@
       "custom_css": [
         ".btn-primary {padding: 1.5rem 2.5rem !important;}",
         ".product-detail__title {font-family: Oswald-Bold; font-weight: 500 !important; letter-spacing: 0.2px !important;}",
-        ".price-regular .price {font-size: 20px; font-weight: 400;}"
+        ".price-regular .price {font-size: 20px; font-weight: 400;}",
+        ".collapsible-content_inner{font-size:20px;}"
       ],
       "settings": {
         "section_width": "fluid_container",
