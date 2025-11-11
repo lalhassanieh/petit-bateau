@@ -142,6 +142,7 @@
         },
         "pickup_availability_cyVydQ": {
           "type": "_product-pickup-availability",
+          "disabled": true,
           "settings": {},
           "blocks": {}
         },
