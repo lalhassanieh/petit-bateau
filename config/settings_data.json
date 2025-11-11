@@ -223,16 +223,6 @@
       }
     },
     "content_for_index": [],
-    "blocks": {
-      "8315608621410374781": {
-        "type": "shopify://apps/pify-size-charts/blocks/size-chart-app-embed/6acea2e6-5389-4b9c-9a1f-ae00732bccb4",
-        "disabled": false,
-        "settings": {
-          "custom_liquid_css": "",
-          "custom_liquid_js": ""
-        }
-      }
-    },
     "color_schemes": {
       "default": {
         "settings": {
@@ -384,7 +374,9 @@
       ".shadow {box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);}",
       " /* === FRENCH COLOR SWATCH MAPPING === */ /* Neutres */[data-color=\"noir\"] {background-color: #000000;}",
       ".header-mega-store.logo-position {padding-bottom: 10px !important;}",
-      ".header-bottom__navigation::before {border-top: 1px solid #f3f3f3;}"
+      ".header-bottom__navigation::before {border-top: 1px solid #f3f3f3;}",
+      ".btn-primary.btn-small.product-wishlist-js.btn-minicart__add-wishlist-js.pointer.fs-small {color: #fff;}",
+      ".btn-primary.btn-small.product-wishlist-js.btn-minicart__add-wishlist-js.pointer.fs-small:hover {color: var(--btn-primary-hover-color); border: 1px solid var(--btn-primary-hover-color);}"
     ]
   }
 }

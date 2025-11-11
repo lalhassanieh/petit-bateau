@@ -11,6 +11,9 @@
   "sections": {
     "breadcrumb": {
       "type": "breadcrumb",
+      "custom_css": [
+        "@media (max-width: 768px) {.breadcrumbs {display: none; }}"
+      ],
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
@@ -251,14 +254,15 @@
         "complementary_products_Wip9YG"
       ],
       "custom_css": [
-        ".btn-primary {padding: 1.5rem 2.5rem !important;}"
+        ".btn-primary {padding: 1.5rem 2.5rem !important;}",
+        ".product-detail__title {font-family: Oswald-Bold; font-weight: 500 !important; letter-spacing: 0.2px !important;}"
       ],
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": false,
-        "desktop_media_width": 60,
+        "desktop_media_width": 70,
         "desktop_layout": "grid_2_column",
         "image_zoom": "open_lightbox",
         "enable_video_looping": true,
@@ -372,7 +376,7 @@
         "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
       ],
       "settings": {
-        "section_width": "container",
+        "section_width": "fluid_container",
         "color_scheme": "",
         "heading": "Les gens ont également acheté",
         "description": "",
@@ -405,7 +409,7 @@
         "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
       ],
       "settings": {
-        "section_width": "container",
+        "section_width": "fluid_container",
         "color_scheme": "",
         "heading": "Récemment consulté",
         "description": "",
