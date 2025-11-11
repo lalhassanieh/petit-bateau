@@ -48,11 +48,7 @@
           >
           {%- if gift_card_recipient_feature_active -%}
             {% comment %} add gift card recipient form {% endcomment %}
-            {%- render 'gift-card-recipient-form',
-              product: product,
-              form: form,
-              section: section
-            -%}
+            {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
           {%- endif -%}
           <div class="product-form__buttons btn-large flex flex-wrap gap-10">
             <div class="product__submit-form-cart flex flex-wrap gap-10 gap-lg-20 align-center grow-1">
@@ -140,22 +136,46 @@
               {% if wishlist == empty %}
                 {% assign action_when_click_added_wishlist = 'remove' %}
               {% endif %}
-              {% comment %} <button-wishlist
-                tabindex="0"
-                class="product-item__button pointer product-item__button-wishlist tooltip relative btn-hover transition btn-hover transition bg-white rounded-50 border w-50 h-50 inline-flex content-center skeleton-loading"
-                data-product-id="{{ product.id }}"
-                data-action="{{ action_when_click_added_wishlist }}"
-                data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
-                data-tooltip-add="{{ 'products.product.actions.wishlist.add' | t }}"
-                data-tooltip-redirect="{{ 'products.product.actions.wishlist.redirect' | t }}"
-              >
-                <svg width="14" height="13" fill="none">
-                  <use href="#icon-wishlist" />
-                </svg>
-                <span class="tooltip-content invisible rounded-3 absolute pointer-none">
-                  {{- 'products.product.actions.wishlist.add' | t -}}
-                </span>
-              </button-wishlist> {% endcomment %}
+              <div class="wishlist-section mt-15">
+                <button-wishlist
+                  tabindex="0"
+                  class="wishlist-button flex align-center gap-10 pointer text-color-primary"
+                  data-product-id="{{ product.id }}"
+                  data-action="{{ action_when_click_added_wishlist }}"
+                  data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
+                  data-tooltip-add="{{ 'products.product.actions.wishlist.add' | t }}"
+                  data-tooltip-redirect="{{ 'products.product.actions.wishlist.redirect' | t }}"
+                  style="background: none; border: none; padding: 0; font-size: 14px;"
+                >
+                  {% comment %}
+                    <svg width="16" height="15" fill="none" style="color: #003366;">
+                      <use href="#icon-wishlist" />
+                    </svg>
+                  {% endcomment %}
+                  <span style="color: #003366;">Ajouter à ma wishlist</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.993 4.26C9.78198 2.117 6.37798 1.621 3.76498 3.854C1.01898 6.2 0.624979 10.14 2.78998 12.929C3.64098 14.023 5.32098 15.689 6.96098 17.237C8.61298 18.797 10.261 20.27 11.074 20.99L11.086 21C11.166 21.072 11.251 21.146 11.329 21.205C11.418 21.272 11.532 21.345 11.679 21.389C11.883 21.449 12.103 21.449 12.308 21.389C12.4348 21.3493 12.5534 21.287 12.658 21.205C12.736 21.146 12.82 21.072 12.9 21.001L12.912 20.99C13.725 20.27 15.374 18.796 17.025 17.237C18.665 15.69 20.345 14.023 21.195 12.929C23.357 10.149 23.018 6.179 20.215 3.849C17.568 1.649 14.203 2.116 11.993 4.26ZM11.537 5.526C9.71398 3.395 6.75498 2.878 4.54398 4.766C2.27998 6.701 1.96998 9.916 3.73798 12.192C4.52298 13.202 6.13498 14.808 7.78498 16.365C9.12789 17.6277 10.4897 18.8702 11.87 20.092L11.984 20.192C11.9873 20.1947 11.9906 20.1974 11.994 20.2C11.996 20.197 11.999 20.194 12.003 20.192L12.116 20.092C12.926 19.375 14.563 17.911 16.201 16.365C17.851 14.808 19.463 13.202 20.248 12.192C22.022 9.91 21.741 6.677 19.448 4.772C17.188 2.894 14.268 3.4 12.449 5.526C12.3927 5.59186 12.3227 5.64475 12.244 5.68101C12.1653 5.71727 12.0796 5.73604 11.993 5.73604C11.9063 5.73604 11.8207 5.71727 11.742 5.68101C11.6632 5.64475 11.5933 5.59186 11.537 5.526Z" fill="#002E5E"></path>
+                  </svg>
+                </button-wishlist>
+              </div>
+              {% comment %}
+                <button-wishlist
+                  tabindex="0"
+                  class="product-item__button pointer product-item__button-wishlist tooltip relative btn-hover transition btn-hover transition bg-white rounded-50 border w-50 h-50 inline-flex content-center skeleton-loading"
+                  data-product-id="{{ product.id }}"
+                  data-action="{{ action_when_click_added_wishlist }}"
+                  data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
+                  data-tooltip-add="{{ 'products.product.actions.wishlist.add' | t }}"
+                  data-tooltip-redirect="{{ 'products.product.actions.wishlist.redirect' | t }}"
+                >
+                  <svg width="14" height="13" fill="none">
+                    <use href="#icon-wishlist" />
+                  </svg>
+                  <span class="tooltip-content invisible rounded-3 absolute pointer-none">
+                    {{- 'products.product.actions.wishlist.add' | t -}}
+                  </span>
+                </button-wishlist>
+              {% endcomment %}
             {% endif %}
             {% if show_compare == true %}
               {% assign action_when_click_added_compare = 'go_to_page' %}
@@ -180,9 +200,7 @@
               </button-compare>
             {% endif %}
             {%- if show_dynamic_checkout -%}
-              
               {%- if settings.show_checkbox_in_product_page and type == 'single' or type == 'main_product' -%}
-              
                 <terms-conditions
                   class="w-full terms-conditions flex mt-12 mb-10 skeleton-loading"
                   data-custom-class="term-and-condition"
@@ -233,7 +251,6 @@
               </div>
             {%- endif -%}
           </div>
-          
         {%- endform -%}
       </product-form>
     </div>
