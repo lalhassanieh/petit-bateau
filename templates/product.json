@@ -454,7 +454,7 @@
         "description": "",
         "header_size": "medium",
         "header_alignment": "left",
-        "items_to_show": 8,
+        "items_to_show": 10,
         "items_per_row": 4,
         "column_gap": 30,
         "show_arrow": true,
