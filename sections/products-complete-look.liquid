@@ -49,15 +49,28 @@
     assign metafield_path = 'metafields.custom.model_number'
   endif
   
-  assign complete_look_products = collections.all.products | where: metafield_path, final_model_no
+  # Manual filtering since Shopify's where filter doesn't work well with metafields
+  assign complete_look_products = ''
+  assign complete_look_products_array = ''
   assign has_matching_products = false
+  assign products_count = 0
   
-  # Check if there are matching products (excluding current product)
-  for complete_product in complete_look_products
-    unless complete_product.id == product.id
-      assign has_matching_products = true
-      break
-    endunless
+  # Loop through all products and manually filter by metafield
+  for check_product in collections.all.products
+    if check_product.metafields.global.product_additional_modelno == final_model_no
+      unless check_product.id == product.id
+        if complete_look_products_array == ''
+          assign complete_look_products_array = check_product
+        else
+          assign complete_look_products_array = complete_look_products_array | append: ',' | append: check_product.id
+        endif
+        assign has_matching_products = true
+        assign products_count = products_count | plus: 1
+        if products_count >= items_to_show
+          break
+        endif
+      endunless
+    endif
   endfor
 -%}
 
@@ -74,17 +87,16 @@
   </ul>
   <p><strong>Final Model No Used:</strong> "{{ final_model_no }}" using path: {{ metafield_path }}</p>
   <p>Has Matching Products: {{ has_matching_products }}</p>
-  <p>Total Products Found: {{ complete_look_products.size }}</p>
+  <p>Manual Filter Results - Products Count: {{ products_count }}</p>
   
-  <p><strong>Sample of ALL products with their metafields (first 5):</strong></p>
+  <p><strong>Products with model "{{ final_model_no }}":</strong></p>
   <ul>
-    {% for debug_product in collections.all.products limit: 5 %}
-      <li>{{ debug_product.title }} (ID: {{ debug_product.id }})
-        <ul>
-          <li>global.product_additional_modelno: "{{ debug_product.metafields.global.product_additional_modelno }}"</li>
-          <li>custom.product_additional_modelno: "{{ debug_product.metafields.custom.product_additional_modelno }}"</li>
-        </ul>
-      </li>
+    {% for debug_product in collections.all.products %}
+      {% if debug_product.metafields.global.product_additional_modelno == final_model_no %}
+        <li>{{ debug_product.title }} (ID: {{ debug_product.id }}) - Model: "{{ debug_product.metafields.global.product_additional_modelno }}"
+          {% if debug_product.id == product.id %}<strong> ← CURRENT PRODUCT</strong>{% endif %}
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </div>
@@ -162,9 +174,10 @@
           {%- render 'swiper-navigation' -%}
         {% endif %}
         <div class="swiper-wrapper">
-          {% for item in complete_look_products limit: items_to_show %}
-            {% unless item.id == product.id %}
-              {% render 'product-item',
+          {% for item in collections.all.products limit: 50 %}
+            {% if item.metafields.global.product_additional_modelno == final_model_no %}
+              {% unless item.id == product.id %}
+                {% render 'product-item',
                 card_product: item,
                 section_id: section.id,
                 class: ' swiper-slide',
@@ -179,7 +192,8 @@
                 scroll_animation: scroll_animation,
                 indexFor: forloop.index
               %}
-            {% endunless %}
+              {% endunless %}
+            {% endif %}
           {% endfor %}
         </div>
         {%- if carousel_pagination == 'show_dots'
