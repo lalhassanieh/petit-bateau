@@ -33,7 +33,7 @@
   assign complete_look_products = collections.all.products | where: 'metafields.global.product_additional_modelno', current_model_no
   assign filtered_products = ''
   assign filtered_products_array = ''
-  
+
   # Filter out current product and limit results
   for complete_product in complete_look_products limit: items_to_show
     unless complete_product.id == product.id
@@ -45,7 +45,7 @@
     endunless
   endfor
 -%}
-
+{{ complete_look_products }}
 {%- if current_model_no != blank and filtered_products_array != blank -%}
   {%- capture style -%}
       --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
@@ -71,12 +71,12 @@
                   data-motion-delay="{{ animate_delay }}"
                   class="block"
                 >
-                <h2
-                  class="section__header-heading heading-letter-spacing {{ header_size  }} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}"
-                >
-                  {{ section.settings.heading }}
-                </h2>
-              </motion-element>
+                  <h2
+                    class="section__header-heading heading-letter-spacing {{ header_size  }} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}"
+                  >
+                    {{ section.settings.heading }}
+                  </h2>
+                </motion-element>
               {% endif %}
               {%- if section_st.description != blank -%}
                 {% assign animate_delay = animate_delay | plus: 50 %}
