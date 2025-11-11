@@ -476,6 +476,10 @@
      }
  }
 
+ .wishlist-button.active path {
+     fill: #002e5e;
+ }
+
  @media (min-width: 1024px) {
      #topbar {
          .text-slide {
