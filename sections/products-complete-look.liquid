@@ -33,11 +33,19 @@
   assign has_matching_products = false
   assign matching_products_count = 0
   assign debug_matches = ''
+  assign total_products_checked = 0
+  assign products_with_model_no = 0
   
   # Check if current product has a model number, then find matching products
   if current_model_no != blank
     for check_product in collections.all.products
+      assign total_products_checked = total_products_checked | plus: 1
       assign check_model = check_product.metafields.global.product_additional_modelno
+      
+      if check_model != blank
+        assign products_with_model_no = products_with_model_no | plus: 1
+      endif
+      
       if check_model == current_model_no
         unless check_product.id == product.id
           assign has_matching_products = true
@@ -54,6 +62,10 @@
   <p><strong>DEBUG INFO - Complete the Look:</strong></p>
   <p>Current Product ID: {{ product.id }}</p>
   <p>Current Model No: "{{ current_model_no }}" ({{ current_model_no | size }} characters)</p>
+  <p><strong>LOOP STATISTICS:</strong></p>
+  <p>Total Products Checked: {{ total_products_checked }}</p>
+  <p>Products with Model Numbers: {{ products_with_model_no }}</p>
+  <p>Total Products in Store: {{ collections.all.products.size }}</p>
   <p>Has Matching Products: {{ has_matching_products }}</p>
   <p>Matching Products Count: {{ matching_products_count }}</p>
   <p>Debug Matches: {{ debug_matches }}</p>
