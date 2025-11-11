@@ -251,7 +251,8 @@
         "complementary_products_Wip9YG"
       ],
       "custom_css": [
-        ".btn-primary {padding: 1.5rem 2.5rem !important;}"
+        ".btn-primary {padding: 1.5rem 2.5rem !important;}",
+        ".product-detail__title {font-family: Oswald-Bold; font-weight: 500 !important; letter-spacing: 0.2px !important;}"
       ],
       "settings": {
         "section_width": "fluid_container",
