@@ -457,7 +457,7 @@
         "items_to_show": 8,
         "items_per_row": 4,
         "column_gap": 30,
-        "show_arrow": false,
+        "show_arrow": true,
         "carousel_pagination": "disable",
         "infinite": false,
         "autoplay": false,
