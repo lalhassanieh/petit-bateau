@@ -254,7 +254,7 @@
         ".btn-primary {padding: 1.5rem 2.5rem !important;}"
       ],
       "settings": {
-        "section_width": "container",
+        "section_width": "fluid_container",
         "color_scheme": "",
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": false,
