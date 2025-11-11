@@ -104,7 +104,7 @@
 -%}
 
 <!-- COMPREHENSIVE DEBUG OUTPUT -->
-<div style="background: #f0f0f0; padding: 15px; margin: 15px; border: 2px solid #ccc; font-family: monospace;">
+{% comment %} <div style="background: #f0f0f0; padding: 15px; margin: 15px; border: 2px solid #ccc; font-family: monospace;">
   <h3 style="margin: 0 0 10px 0; color: #333;">🔍 Complete the Look - Debug Information</h3>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #007cba;">
@@ -252,7 +252,7 @@
     {% endfor %}
     Total products with metafields: {{ total_with_metafields }} out of {{ collections.all.products.size }}
   </div>
-</div>
+</div> {% endcomment %}
 <!-- END DEBUG -->
 
 {%- if current_model_no != blank and has_matching_products -%}
