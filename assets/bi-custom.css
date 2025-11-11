@@ -238,7 +238,7 @@
 }
 
 .section__header-heading {
-  /*text-transform: uppercase !important;*/
+  text-transform: uppercase !important;
   font-family: "Oswald-Bold";
   font-weight: 500 !important;
   letter-spacing: 0.2px !important;
@@ -363,6 +363,23 @@
   fill: #fff;
 }
 
+.custom-loyalty-program-info {
+  text-align: center;
+  -webkit-box-pack: center;
+  padding: 20px 0;
+}
+.custom-loyalty-program-info .title {
+  font-family: Oswald-Bold;
+  font-weight: 500 !important;
+  letter-spacing: 0.2px !important;
+  font-size: 14px;
+}
+.custom-loyalty-program-info .desc {
+  margin: 0;
+  color: #002e5e;
+  font-size: 1.2rem;
+}
+
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
@@ -431,23 +448,3 @@
     width: 100%;
   }
 }/*# sourceMappingURL=bi-custom.css.map */
-
-
-/*# Added by Carla*/
-
-.logged-out .loggedin-message {
-  display: none;
-}
-.logged-in .loggedout-message {
-  display: none;
-}
-
-.button_buy-now .product_submit_button{
-  background-color:#ffce00!important;
-  font-size:14px;
-  border:none;
-  color:#002e5e;
-}
-
-
-/*# END Added by Carla*/
