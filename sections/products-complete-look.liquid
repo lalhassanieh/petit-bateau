@@ -40,15 +40,11 @@
   assign products_with_model_numbers = 0
   
   if current_model_no != blank
-    # Use Shopify Search API - automatically finds ALL products with matching metafield
-    # No need to manually specify collections - searches entire store!
-    assign search_query = 'metafields.global.product_additional_modelno:' | append: current_model_no
-    assign search_results = search.results | where: 'object_type', 'product'
-    
-    # Process search results directly - they're already filtered by metafield value
-    for search_product in search_results
+    # Use collections.all.products - simple and reliable approach
+    # Note: Limited to first 50 products, but works consistently
+    for check_product in collections.all.products
       assign total_products_checked = total_products_checked | plus: 1
-      assign check_model = search_product.metafields.global.product_additional_modelno
+      assign check_model = check_product.metafields.global.product_additional_modelno
       
       # Count products with model numbers
       if check_model != blank
@@ -56,24 +52,24 @@
       endif
       
       # Debug specific products we're looking for
-      if search_product.title contains 'TEE-SHIRTS MANCHES LONGUES BLANCS' or search_product.title contains 'DEBARDEURS RAYES'
-        assign debug_loop_info = debug_loop_info | append: 'SEARCH FOUND: ' | append: search_product.title | append: ' - Model: "' | append: check_model | append: '" | '
+      if check_product.title contains 'TEE-SHIRTS MANCHES LONGUES BLANCS' or check_product.title contains 'DEBARDEURS RAYES'
+        assign debug_loop_info = debug_loop_info | append: 'FOUND TARGET: ' | append: check_product.title | append: ' - Model: "' | append: check_model | append: '" | '
       endif
       
-      # Check for match (search already filters by metafield, just exclude current product)
-      if search_product.id != product.id
+      # Check for match
+      if check_model == current_model_no and check_product.id != product.id
         assign has_matching_products = true
         assign matching_products_count = matching_products_count | plus: 1
         
         # Store product ID for later use
         if matching_product_ids == blank
-          assign matching_product_ids = search_product.id | append: ''
+          assign matching_product_ids = check_product.id | append: ''
         else
-          assign matching_product_ids = matching_product_ids | append: ',' | append: search_product.id
+          assign matching_product_ids = matching_product_ids | append: ',' | append: check_product.id
         endif
         
         # Add to debug info
-        assign debug_loop_info = debug_loop_info | append: 'MATCH FOUND: ' | append: search_product.title | append: ' | '
+        assign debug_loop_info = debug_loop_info | append: 'MATCH FOUND: ' | append: check_product.title | append: ' | '
         
         # Stop after finding the number we want to show
         if matching_products_count >= items_to_show
@@ -115,21 +111,21 @@
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #ffc107;">
-    <strong>Search API Results for Model "{{ current_model_no }}":</strong><br>
+    <strong>Products with Model "{{ current_model_no }}" (Collections.all):</strong><br>
     {% assign found_count = 0 %}
-    {% assign search_query_debug = 'metafields.global.product_additional_modelno:' | append: current_model_no %}
-    {% assign search_results_debug = search.results | where: 'object_type', 'product' %}
     
-    {% for search_product in search_results_debug %}
-      {% assign found_count = found_count | plus: 1 %}
-      • {{ search_product.title }} (ID: {{ search_product.id }})
-      {% if search_product.id == product.id %}<strong style="color: red;"> ← CURRENT PRODUCT</strong>{% endif %}
-      <br>
+    {% for debug_product in collections.all.products %}
+      {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
+      {% if debug_model == current_model_no %}
+        {% assign found_count = found_count | plus: 1 %}
+        • {{ debug_product.title }} (ID: {{ debug_product.id }})
+        {% if debug_product.id == product.id %}<strong style="color: red;"> ← CURRENT PRODUCT</strong>{% endif %}
+        <br>
+      {% endif %}
     {% endfor %}
     
-    <strong>Search Query:</strong> "{{ search_query_debug }}"<br>
-    <strong>Total found via Search API:</strong> {{ found_count }}<br>
-    <strong>Search Results Available:</strong> {% if search_results_debug.size > 0 %}YES{% else %}NO{% endif %}
+    <strong>Total found:</strong> {{ found_count }}<br>
+    <strong>Collections.all limit:</strong> 50 products (showing first 50 only)
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #fd7e14;">
@@ -265,13 +261,12 @@
           {%- render 'swiper-navigation' -%}
         {% endif %}
         <div class="swiper-wrapper">
-          {% comment %} Use Search API to display matching products - no collection limits! {% endcomment %}
+          {% comment %} Display matching products from collections.all {% endcomment %}
           {% assign displayed_count = 0 %}
-          {% assign search_query_display = 'metafields.global.product_additional_modelno:' | append: current_model_no %}
-          {% assign search_results_display = search.results | where: 'object_type', 'product' %}
           
-          {% for item in search_results_display %}
-            {% if item.id != product.id %}
+          {% for item in collections.all.products %}
+            {% assign item_model = item.metafields.global.product_additional_modelno %}
+            {% if item_model == current_model_no and item.id != product.id %}
               {% render 'product-item',
                 card_product: item,
                 section_id: section.id,
