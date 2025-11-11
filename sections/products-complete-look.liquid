@@ -40,9 +40,20 @@
   assign products_with_model_numbers = 0
   
   if current_model_no != blank
-    # Method 1: Use Shopify Search API (bypasses 50-product limit)
+    # Method 1: Try multiple search query formats
     assign search_query = 'metafields.global.product_additional_modelno:' | append: current_model_no
     assign search_results = search.results | where: 'object_type', 'product'
+    
+    # Try alternative search formats if first one fails
+    if search_results.size == 0
+      assign search_query = 'product_additional_modelno:' | append: current_model_no
+      assign search_results = search.results | where: 'object_type', 'product'
+    endif
+    
+    if search_results.size == 0
+      assign search_query = current_model_no
+      assign search_results = search.results | where: 'object_type', 'product'
+    endif
     
     # Process search results
     for search_product in search_results
@@ -103,6 +114,11 @@
     <strong>Search API Results:</strong><br>
     • Search Query: "{{ search_query }}"<br>
     • Search Results Found: {{ search_results.size }}<br>
+    • Raw search.results size: {{ search.results.size }}<br>
+    • All search results types: 
+    {% for result in search.results limit: 5 %}
+      {{ result.object_type }}{% unless forloop.last %}, {% endunless %}
+    {% endfor %}<br>
     • Total Products Checked: {{ total_products_checked }}<br>
     • Products with Model Numbers: {{ products_with_model_numbers }}<br>
     • Has Matching Products: {{ has_matching_products }}<br>
@@ -110,6 +126,18 @@
     • Matching Product IDs: {{ matching_product_ids }}<br>
     • Debug Loop Info: {{ debug_loop_info }}<br>
     • Collections.all checked: {{ collections_all_checked }} (limited to 50)<br>
+  </div>
+  
+  <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #e74c3c;">
+    <strong>Search API Debugging:</strong><br>
+    • Current URL: {{ request.path }}<br>
+    • Has search param: {% if request.path contains 'search' %}YES{% else %}NO{% endif %}<br>
+    • Search term: {{ search.terms }}<br>
+    • Alternative search queries to try:<br>
+    &nbsp;&nbsp;• product_additional_modelno:P98U<br>
+    &nbsp;&nbsp;• "P98U"<br>
+    &nbsp;&nbsp;• metafields:P98U<br>
+    • Try manual search: <a href="?q=metafields.global.product_additional_modelno:{{ current_model_no }}" target="_blank">Search Link</a><br>
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #dc3545;">
@@ -183,17 +211,46 @@
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #17a2b8;">
-    <strong>Sample Products with ANY Model Numbers:</strong><br>
+    <strong>Comprehensive Metafield Analysis:</strong><br>
     {% assign sample_count = 0 %}
+    {% assign total_with_metafields = 0 %}
+    
+    <strong>Current Product Metafields:</strong><br>
+    • global.product_additional_modelno: "{{ product.metafields.global.product_additional_modelno }}"<br>
+    • All metafields in global namespace:<br>
+    {% for metafield in product.metafields.global %}
+      &nbsp;&nbsp;{{ metafield.first }}: "{{ metafield.last }}"<br>
+    {% endfor %}
+    
+    <br><strong>Sample Products with Model Numbers (any namespace):</strong><br>
     {% for debug_product in collections.all.products limit: 200 %}
       {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
-      {% if debug_model != blank %}
-        {% assign sample_count = sample_count | plus: 1 %}
-        • {{ debug_product.title }} - Model: "{{ debug_model }}"<br>
-        {% if sample_count >= 10 %}{% break %}{% endif %}
+      {% assign has_any_metafield = false %}
+      
+      {% comment %}Check multiple possible metafield locations{% endcomment %}
+      {% assign alt_model1 = debug_product.metafields.custom.product_additional_modelno %}
+      {% assign alt_model2 = debug_product.metafields.custom.modelno %}
+      {% assign alt_model3 = debug_product.metafields.namespace.product_additional_modelno %}
+      
+      {% if debug_model != blank or alt_model1 != blank or alt_model2 != blank or alt_model3 != blank %}
+        {% assign has_any_metafield = true %}
+        {% assign total_with_metafields = total_with_metafields | plus: 1 %}
+        
+        {% if sample_count < 15 %}
+          {% assign sample_count = sample_count | plus: 1 %}
+          • {{ debug_product.title }}<br>
+          &nbsp;&nbsp;global.product_additional_modelno: "{{ debug_model }}"<br>
+          &nbsp;&nbsp;custom.product_additional_modelno: "{{ alt_model1 }}"<br>
+          &nbsp;&nbsp;custom.modelno: "{{ alt_model2 }}"<br>
+          &nbsp;&nbsp;namespace.product_additional_modelno: "{{ alt_model3 }}"<br>
+          {% if debug_model == current_model_no %}
+            &nbsp;&nbsp;<strong style="color: green;">MATCHES CURRENT!</strong><br>
+          {% endif %}
+          <br>
+        {% endif %}
       {% endif %}
     {% endfor %}
-    Showing first 10 products with model numbers.
+    Total products with metafields: {{ total_with_metafields }} out of {{ collections.all.products.size }}
   </div>
 </div>
 <!-- END DEBUG -->
