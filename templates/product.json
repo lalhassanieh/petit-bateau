@@ -12,7 +12,7 @@
     "breadcrumb": {
       "type": "breadcrumb",
       "settings": {
-        "section_width": "container",
+        "section_width": "fluid_container",
         "color_scheme": "",
         "next_prev": true
       }
