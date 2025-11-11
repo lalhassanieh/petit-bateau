@@ -37,40 +37,24 @@
   assign products_with_model_no = 0
   
   # Check if current product has a model number, then find matching products
-  # Search through EVERY product in the "All" collection using paginate
+  # Search through different collections since "All" collection seems empty of metafields
   if current_model_no != blank
-    # Use a much larger range to ensure we get ALL products
-    for page in (1..100)
-      assign offset = page | minus: 1 | times: 50
-      assign current_page_products = collections['all'].products | offset: offset | limit: 50
-      assign page_count = 0
+    
+    # Method 1: Check the main collections.all (system collection)
+    for check_product in collections.all.products limit: 250
+      assign total_products_checked = total_products_checked | plus: 1
+      assign check_model = check_product.metafields.global.product_additional_modelno
       
-      for check_product in current_page_products
-        assign page_count = page_count | plus: 1
-        assign total_products_checked = total_products_checked | plus: 1
-        assign check_model = check_product.metafields.global.product_additional_modelno
-        
-        if check_model != blank
-          assign products_with_model_no = products_with_model_no | plus: 1
-        endif
-        
-        if check_model == current_model_no
-          unless check_product.id == product.id
-            assign has_matching_products = true
-            assign matching_products_count = matching_products_count | plus: 1
-            assign debug_matches = debug_matches | append: check_product.title | append: ' | '
-          endunless
-        endif
-      endfor
-      
-      # Break if this page had no products (we've reached the end)
-      if page_count == 0
-        break
+      if check_model != blank
+        assign products_with_model_no = products_with_model_no | plus: 1
       endif
       
-      # Also break if we've checked as many products as the collection claims to have
-      if total_products_checked >= collections['all'].products.size
-        break
+      if check_model == current_model_no
+        unless check_product.id == product.id
+          assign has_matching_products = true
+          assign matching_products_count = matching_products_count | plus: 1
+          assign debug_matches = debug_matches | append: check_product.title | append: ' | '
+        endunless
       endif
     endfor
   endif
@@ -115,35 +99,32 @@
     {% endfor %}
   </ul>
   
-  <p><strong>SEARCH FOR P98U ACROSS ALL PAGES:</strong></p>
+  <p><strong>SYSTEM COLLECTIONS.ALL CHECK (first 50):</strong></p>
   <ul>
-    {% for page in (1..100) %}
-      {% assign offset = page | minus: 1 | times: 50 %}
-      {% assign page_products = collections['all'].products | offset: offset | limit: 50 %}
-      {% assign page_has_products = false %}
-      
-      {% for debug_product in page_products %}
-        {% assign page_has_products = true %}
-        {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
-        {% if debug_model == 'P98U' %}
-          <li style="background: yellow; padding: 5px;">
-            <strong>FOUND P98U ON PAGE {{ page }}:</strong> {{ debug_product.title }} (ID: {{ debug_product.id }})
-          </li>
-        {% endif %}
-      {% endfor %}
-      
-      {% unless page_has_products %}
-        {% break %}
-      {% endunless %}
+    {% for debug_product in collections.all.products limit: 50 %}
+      {% assign debug_model = debug_product.metafields.global.product_additional_modelno %}
+      {% if debug_model != blank %}
+        <li style="background: lightgreen; padding: 3px;">
+          {{ debug_product.title }} (ID: {{ debug_product.id }}) - Model: "{{ debug_model }}"
+          {% if debug_model == 'P98U' %}
+            <strong style="background: yellow;"> ← P98U MATCH!</strong>
+          {% endif %}
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
   
-  <p><strong>PAGINATION TEST:</strong></p>
+  <p><strong>COLLECTION COMPARISON:</strong></p>
   <ul>
-    {% for page in (1..10) %}
-      {% assign offset = page | minus: 1 | times: 50 %}
-      {% assign page_products = collections['all'].products | offset: offset | limit: 50 %}
-      <li>Page {{ page }} (offset {{ offset }}): {{ page_products.size }} products</li>
+    <li>Collections['all'] size: {{ collections['all'].products.size }}</li>
+    <li>Collections.all size: {{ collections.all.products.size }}</li>
+    <li>Current product collection: {{ product.collections.first.handle }}</li>
+  </ul>
+  
+  <p><strong>CURRENT PRODUCT'S COLLECTIONS:</strong></p>
+  <ul>
+    {% for collection in product.collections %}
+      <li>{{ collection.title }} (handle: {{ collection.handle }}) - {{ collection.products.size }} products</li>
     {% endfor %}
   </ul>
 </div>
