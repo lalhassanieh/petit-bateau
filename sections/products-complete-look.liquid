@@ -40,60 +40,64 @@
   assign products_with_model_numbers = 0
   
   if current_model_no != blank
-    # Method 1: Try multiple search query formats
-    assign search_query = 'metafields.global.product_additional_modelno:' | append: current_model_no
-    assign search_results = search.results | where: 'object_type', 'product'
+    # Method: Loop through ALL collections dynamically (no static names!)
+    assign collections_checked = 0
+    assign total_collections = 0
     
-    # Try alternative search formats if first one fails
-    if search_results.size == 0
-      assign search_query = 'product_additional_modelno:' | append: current_model_no
-      assign search_results = search.results | where: 'object_type', 'product'
-    endif
-    
-    if search_results.size == 0
-      assign search_query = current_model_no
-      assign search_results = search.results | where: 'object_type', 'product'
-    endif
-    
-    # Process search results
-    for search_product in search_results
-      assign total_products_checked = total_products_checked | plus: 1
-      assign check_model = search_product.metafields.global.product_additional_modelno
-      
-      if check_model != blank
-        assign products_with_model_numbers = products_with_model_numbers | plus: 1
-      endif
-      
-      if search_product.title contains 'TEE-SHIRTS MANCHES LONGUES BLANCS' or search_product.title contains 'DEBARDEURS RAYES'
-        assign debug_loop_info = debug_loop_info | append: 'SEARCH FOUND: ' | append: search_product.title | append: ' - Model: "' | append: check_model | append: '" | '
-      endif
-      
-      if check_model == current_model_no and search_product.id != product.id
-        assign has_matching_products = true
-        assign matching_products_count = matching_products_count | plus: 1
-        
-        if matching_product_ids == blank
-          assign matching_product_ids = search_product.id | append: ''
-        else
-          assign matching_product_ids = matching_product_ids | append: ',' | append: search_product.id
-        endif
-        
-        assign debug_loop_info = debug_loop_info | append: 'SEARCH MATCH: ' | append: search_product.title | append: ' | '
-        
-        if matching_products_count >= items_to_show
-          break
-        endif
-      endif
+    # Count total collections first
+    for collection in collections
+      assign total_collections = total_collections | plus: 1
     endfor
     
-    # Fallback: Check collections.all for debugging (limited to 50)
-    assign collections_all_checked = 0
-    for check_product in collections.all.products
-      assign collections_all_checked = collections_all_checked | plus: 1
-      assign check_model = check_product.metafields.global.product_additional_modelno
+    # Now loop through every collection in the shop
+    for collection in collections
+      assign collections_checked = collections_checked | plus: 1
       
-      if check_product.title contains 'TEE-SHIRTS MANCHES LONGUES BLANCS' or check_product.title contains 'DEBARDEURS RAYES'
-        assign debug_loop_info = debug_loop_info | append: 'COLLECTIONS.ALL FOUND: ' | append: check_product.title | append: ' - Model: "' | append: check_model | append: '" | '
+      # Debug collection info
+      if collections_checked <= 5
+        assign debug_loop_info = debug_loop_info | append: 'Checking collection: ' | append: collection.title | append: ' (' | append: collection.products_count | append: ' products) | '
+      endif
+      
+      # Check all products in this collection
+      for check_product in collection.products
+        assign total_products_checked = total_products_checked | plus: 1
+        assign check_model = check_product.metafields.global.product_additional_modelno
+        
+        # Count products with model numbers
+        if check_model != blank
+          assign products_with_model_numbers = products_with_model_numbers | plus: 1
+        endif
+        
+        # Debug specific products we're looking for
+        if check_product.title contains 'TEE-SHIRTS MANCHES LONGUES BLANCS' or check_product.title contains 'DEBARDEURS RAYES'
+          assign debug_loop_info = debug_loop_info | append: 'FOUND TARGET: ' | append: check_product.title | append: ' - Model: "' | append: check_model | append: '" | '
+        endif
+        
+        # Check for match
+        if check_model == current_model_no and check_product.id != product.id
+          assign has_matching_products = true
+          assign matching_products_count = matching_products_count | plus: 1
+          
+          # Store product ID for later use
+          if matching_product_ids == blank
+            assign matching_product_ids = check_product.id | append: ''
+          else
+            assign matching_product_ids = matching_product_ids | append: ',' | append: check_product.id
+          endif
+          
+          # Add to debug info
+          assign debug_loop_info = debug_loop_info | append: 'MATCH FOUND: ' | append: check_product.title | append: ' (Collection: ' | append: collection.title | append: ') | '
+          
+          # Stop after finding the number we want to show
+          if matching_products_count >= items_to_show
+            break
+          endif
+        endif
+      endfor
+      
+      # Break outer loop if we have enough matches
+      if matching_products_count >= items_to_show
+        break
       endif
     endfor
   endif
@@ -111,33 +115,29 @@
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #28a745;">
-    <strong>Search API Results:</strong><br>
-    • Search Query: "{{ search_query }}"<br>
-    • Search Results Found: {{ search_results.size }}<br>
-    • Raw search.results size: {{ search.results.size }}<br>
-    • All search results types: 
-    {% for result in search.results limit: 5 %}
-      {{ result.object_type }}{% unless forloop.last %}, {% endunless %}
-    {% endfor %}<br>
+    <strong>Dynamic Collection Search Results:</strong><br>
+    • Total Collections in Shop: {{ total_collections }}<br>
+    • Collections Checked: {{ collections_checked }}<br>
     • Total Products Checked: {{ total_products_checked }}<br>
     • Products with Model Numbers: {{ products_with_model_numbers }}<br>
     • Has Matching Products: {{ has_matching_products }}<br>
     • Matching Products Count: {{ matching_products_count }}<br>
     • Matching Product IDs: {{ matching_product_ids }}<br>
     • Debug Loop Info: {{ debug_loop_info }}<br>
-    • Collections.all checked: {{ collections_all_checked }} (limited to 50)<br>
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #e74c3c;">
-    <strong>Search API Debugging:</strong><br>
-    • Current URL: {{ request.path }}<br>
-    • Has search param: {% if request.path contains 'search' %}YES{% else %}NO{% endif %}<br>
-    • Search term: {{ search.terms }}<br>
-    • Alternative search queries to try:<br>
-    &nbsp;&nbsp;• product_additional_modelno:P98U<br>
-    &nbsp;&nbsp;• "P98U"<br>
-    &nbsp;&nbsp;• metafields:P98U<br>
-    • Try manual search: <a href="?q=metafields.global.product_additional_modelno:{{ current_model_no }}" target="_blank">Search Link</a><br>
+    <strong>All Collections in Shop:</strong><br>
+    {% assign collection_sample_count = 0 %}
+    {% for collection in collections %}
+      {% assign collection_sample_count = collection_sample_count | plus: 1 %}
+      {% if collection_sample_count <= 15 %}
+        • {{ collection.title }} ({{ collection.products_count }} products){% if collection.handle == 'all' %} ← ALL COLLECTION{% endif %}<br>
+      {% endif %}
+    {% endfor %}
+    {% if collection_sample_count > 15 %}
+      ... and {{ collection_sample_count | minus: 15 }} more collections
+    {% endif %}
   </div>
   
   <div style="background: #fff; padding: 10px; margin: 5px 0; border-left: 4px solid #dc3545;">
@@ -327,34 +327,37 @@
           {%- render 'swiper-navigation' -%}
         {% endif %}
         <div class="swiper-wrapper">
-          {% comment %} Use search results to display matching products {% endcomment %}
+          {% comment %} Loop through ALL collections dynamically to find matching products {% endcomment %}
           {% assign displayed_count = 0 %}
-          {% assign search_query = 'metafields.global.product_additional_modelno:' | append: current_model_no %}
-          {% assign search_results = search.results | where: 'object_type', 'product' %}
           
-          {% for item in search_results %}
-            {% assign item_model = item.metafields.global.product_additional_modelno %}
-            
-            {% if item_model == current_model_no and item.id != product.id %}
-              {% render 'product-item',
-                card_product: item,
-                section_id: section.id,
-                class: ' swiper-slide',
-                template_enable_action: true,
-                template_enable_product_vendor: true,
-                template_enable_rate: true,
-                template_enable_product_short_description: false,
-                template_enable_color_swatches: true,
-                template_enable_price: true,
-                template_enable_product_badges: true,
-                template_enable_add_cart: true,
-                scroll_animation: scroll_animation,
-                indexFor: forloop.index
-              %}
-              {% assign displayed_count = displayed_count | plus: 1 %}
-              {% if displayed_count >= items_to_show %}
-                {% break %}
+          {% for collection in collections %}
+            {% for item in collection.products %}
+              {% assign item_model = item.metafields.global.product_additional_modelno %}
+              
+              {% if item_model == current_model_no and item.id != product.id %}
+                {% render 'product-item',
+                  card_product: item,
+                  section_id: section.id,
+                  class: ' swiper-slide',
+                  template_enable_action: true,
+                  template_enable_product_vendor: true,
+                  template_enable_rate: true,
+                  template_enable_product_short_description: false,
+                  template_enable_color_swatches: true,
+                  template_enable_price: true,
+                  template_enable_product_badges: true,
+                  template_enable_add_cart: true,
+                  scroll_animation: scroll_animation,
+                  indexFor: forloop.index
+                %}
+                {% assign displayed_count = displayed_count | plus: 1 %}
+                {% if displayed_count >= items_to_show %}
+                  {% break %}
+                {% endif %}
               {% endif %}
+            {% endfor %}
+            {% if displayed_count >= items_to_show %}
+              {% break %}
             {% endif %}
           {% endfor %}
         </div>
