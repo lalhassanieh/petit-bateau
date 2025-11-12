@@ -5592,6 +5592,9 @@ class SwatchFunctions extends SwatchInit {
         }
       });
     } else {
+      // Add safety check for featured_media before accessing id
+      if (!this.currentVariant?.featured_media) return;
+      
       // mediaGalleries.setActiveMedia(
       //   `${this.dataset.section}-${this.currentVariant.featured_media.id}`,
       //   true
