@@ -101,96 +101,125 @@ const options = {
     }
   }
 
-  // Listen for variant changes from main product forms
+  // Completely independent variant detection system
   document.addEventListener('DOMContentLoaded', function() {
-    // Safer approach: Hook into existing theme variant change system
-    // Listen for the specific variant change events that the theme already fires
+    console.log('🚀 Metafield system initializing...');
     
-    // Method 1: Listen for form input changes with debouncing
-    function safeUpdateMetafield(variantId) {
-      try {
-        if (variantId && variantId !== '' && variantId !== 'undefined') {
-          setTimeout(() => updateVariantMetafield(variantId), 100);
-        }
-      } catch (error) {
-        console.log('Safe metafield update error:', error);
+    // Simple test first
+    setTimeout(() => {
+      console.log('🔍 Testing metafield system...');
+      const testContainer = document.getElementById('variant-metafield-content');
+      const testValue = document.getElementById('variant-metafield-value');
+      
+      if (testContainer && testValue) {
+        console.log('✅ Metafield containers found');
+        
+        // Show a test message
+        testValue.textContent = 'TEST - System Ready';
+        testContainer.style.display = 'block';
+        
+        // Hide after 2 seconds
+        setTimeout(() => {
+          testContainer.style.display = 'none';
+        }, 2000);
+      } else {
+        console.log('❌ Metafield containers NOT found');
       }
-    }
+    }, 2000);
     
-    // Listen for hidden input changes (most reliable method)
-    const hiddenInputs = document.querySelectorAll('input[name="id"][type="hidden"], input[name="id"]:not([type])');
-    hiddenInputs.forEach(input => {
-      if (input) {
-        // Use MutationObserver to watch for value changes
-        const observer = new MutationObserver(function(mutations) {
-          mutations.forEach(function(mutation) {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
-              safeUpdateMetafield(mutation.target.value);
-            }
-          });
-        });
+    // Method 1: Direct click monitoring on variant selectors
+    function setupClickMonitoring() {
+      console.log('Setting up click monitoring...');
+      
+      // Monitor all clickable elements that might change variants
+      document.addEventListener('click', function(e) {
+        const target = e.target;
         
-        observer.observe(input, {
-          attributes: true,
-          attributeFilter: ['value']
-        });
-        
-        // Also listen for direct property changes
-        let lastValue = input.value;
-        setInterval(() => {
-          if (input.value !== lastValue) {
-            lastValue = input.value;
-            safeUpdateMetafield(input.value);
+        // Check if it's a variant option
+        if (target.matches('option[data-variant-id], .product-sticky-js option, select.product-sticky-js option')) {
+          const variantId = target.dataset.variantId || target.getAttribute('data-variant-id');
+          console.log('📱 Clicked variant option:', variantId);
+          
+          if (variantId) {
+            setTimeout(() => updateVariantMetafield(variantId), 200);
           }
-        }, 500);
-      }
-    });
-    
-    // Method 2: Listen for select changes in variant selectors
-    const selectors = document.querySelectorAll('select.product-sticky-js, select[data-variants]');
-    selectors.forEach(select => {
-      if (select) {
-        select.addEventListener('change', function(e) {
-          try {
-            const selectedOption = e.target.selectedOptions[0];
+        }
+        
+        // Check if it's a select element
+        if (target.matches('select.product-sticky-js, select[name="id"]')) {
+          setTimeout(() => {
+            const selectedOption = target.selectedOptions[0];
             if (selectedOption) {
               const variantId = selectedOption.dataset.variantId || selectedOption.getAttribute('data-variant-id');
-              safeUpdateMetafield(variantId);
+              console.log('📋 Selected from dropdown:', variantId);
+              
+              if (variantId) {
+                updateVariantMetafield(variantId);
+              }
             }
-          } catch (error) {
-            console.log('Select change error:', error);
-          }
-        });
-      }
-    });
-    
-    // Method 3: Listen for custom events that might be fired by the theme
-    const eventNames = ['variant:change', 'variant:changed', 'variantChange', 'product:variant-change'];
-    eventNames.forEach(eventName => {
-      document.addEventListener(eventName, function(e) {
-        try {
-          let variantId = null;
-          if (e.detail) {
-            variantId = e.detail.variant?.id || e.detail.variantId || e.detail.id;
-          }
-          if (variantId) {
-            safeUpdateMetafield(variantId);
-          }
-        } catch (error) {
-          console.log('Custom event error:', error);
+          }, 100);
         }
       });
-    });
-    
-    // Initialize with current variant (safely)
-    try {
-      setTimeout(() => {
-        const hiddenInput = document.querySelector('input[name="id"]');
-        if (hiddenInput && hiddenInput.value) {
-          safeUpdateMetafield(hiddenInput.value);
-        }
-      }, 1000); // Wait for theme to initialize
-    } catch (error) {
-      console.log('Initialization error:', error);
     }
+    
+    // Method 2: Watch for DOM changes (when variant inputs update)
+    function setupDOMWatcher() {
+      console.log('Setting up DOM watcher...');
+      
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          // Watch for changes to hidden inputs
+          if (mutation.target.name === 'id' && mutation.target.type === 'hidden') {
+            console.log('🔄 Hidden input changed:', mutation.target.value);
+            updateVariantMetafield(mutation.target.value);
+          }
+          
+          // Watch for attribute changes
+          if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
+            if (mutation.target.name === 'id') {
+              console.log('🔄 Input value changed:', mutation.target.value);
+              updateVariantMetafield(mutation.target.value);
+            }
+          }
+        });
+      });
+      
+      // Observe the entire document for changes
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['value']
+      });
+    }
+    
+    // Method 3: Manual polling as ultimate fallback
+    function setupPolling() {
+      console.log('Setting up polling fallback...');
+      
+      let lastVariantId = null;
+      
+      setInterval(() => {
+        const hiddenInput = document.querySelector('input[name="id"]');
+        if (hiddenInput && hiddenInput.value && hiddenInput.value !== lastVariantId) {
+          console.log('🔄 Polling detected change:', hiddenInput.value);
+          lastVariantId = hiddenInput.value;
+          updateVariantMetafield(hiddenInput.value);
+        }
+      }, 1000);
+    }
+    
+    // Initialize all methods
+    setTimeout(() => {
+      setupClickMonitoring();
+      setupDOMWatcher();  
+      setupPolling();
+      
+      // Try to get initial variant
+      const initialInput = document.querySelector('input[name="id"]');
+      if (initialInput && initialInput.value) {
+        console.log('🎯 Initial variant:', initialInput.value);
+        updateVariantMetafield(initialInput.value);
+      }
+    }, 1500);
   });
