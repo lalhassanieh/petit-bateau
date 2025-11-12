@@ -149,6 +149,19 @@
                           {% else %}
                             {{ bk_st.content_rich }}
                           {% endif %}
+                          
+                          {%- comment -%} DEBUG: Also add to custom content mode {%- endcomment -%}
+                          <div style="background: orange; color: white; padding: 15px; margin: 15px 0; font-weight: bold;">
+                            🧡 CUSTOM CONTENT MODE DEBUG - This is the rich text content area
+                          </div>
+                          
+                          {%- comment -%} METAFIELD CONTAINERS - For custom content mode {%- endcomment -%}
+                          <div id="variant-metafield-content-custom" class="variant-metafield-content" style="background: #e8f5e8; padding: 15px; margin: 15px 0; border: 2px solid green;">
+                            <div class="variant-metafield-wrapper">
+                              <strong>ERP Code (Custom):</strong> 
+                              <span id="variant-metafield-value-custom" style="color: #003366; font-weight: bold;">No variant selected</span>
+                            </div>
+                          </div>
                         {%- when 'content_page' -%}
                           {%- if bk_st.page != blank -%}
                             {{ pages[bk_st.page].content }}
