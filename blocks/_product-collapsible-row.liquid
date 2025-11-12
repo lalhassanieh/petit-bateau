@@ -28,7 +28,7 @@
           
           {%- comment -%} Add REF with variant metafield {%- endcomment -%}
           <div id="variant-ref-container" style="margin-top: 15px;">
-            <strong>REF</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span>
+            <strong>Ref</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span>
           </div>
         {%- else -%}
           {{ 'onboarding.default_description' | t }}
