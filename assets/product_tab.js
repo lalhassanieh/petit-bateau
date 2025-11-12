@@ -101,31 +101,65 @@ const options = {
     }
   }
 
-  // Completely independent variant detection system
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Metafield system initializing...');
+  // Completely independent variant detection system - Initialize immediately
+  console.log('🚀 SCRIPT LOADED - Metafield system starting...');
+  
+  // Test immediately without waiting for DOM
+  function initializeMetafieldSystem() {
+    console.log('🔍 Initializing metafield system...');
     
-    // Simple test first
-    setTimeout(() => {
-      console.log('🔍 Testing metafield system...');
-      const testContainer = document.getElementById('variant-metafield-content');
-      const testValue = document.getElementById('variant-metafield-value');
+    // Test containers immediately
+    const testContainer = document.getElementById('variant-metafield-content');
+    const testValue = document.getElementById('variant-metafield-value');
+    
+    console.log('Container check:', testContainer ? 'FOUND' : 'NOT FOUND');
+    console.log('Value check:', testValue ? 'FOUND' : 'NOT FOUND');
+    
+    if (testContainer && testValue) {
+      console.log('✅ Metafield containers found');
       
-      if (testContainer && testValue) {
-        console.log('✅ Metafield containers found');
-        
-        // Show a test message
-        testValue.textContent = 'TEST - System Ready';
-        testContainer.style.display = 'block';
-        
-        // Hide after 2 seconds
-        setTimeout(() => {
-          testContainer.style.display = 'none';
-        }, 2000);
-      } else {
-        console.log('❌ Metafield containers NOT found');
-      }
-    }, 2000);
+      // Show a test message immediately
+      testValue.textContent = 'TEST - System Ready';
+      testContainer.style.display = 'block';
+      
+      // Hide after 3 seconds
+      setTimeout(() => {
+        testContainer.style.display = 'none';
+        console.log('Test message hidden');
+      }, 3000);
+    } else {
+      console.log('❌ Metafield containers NOT found');
+      // Show all elements with IDs containing 'variant' or 'metafield'
+      const allElements = document.querySelectorAll('[id*="variant"], [id*="metafield"]');
+      console.log('Found elements with variant/metafield IDs:', allElements);
+    }
+    
+    return testContainer && testValue;
+  }
+
+      setupVariantDetection();
+    } else {
+      // Retry after DOM loads
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('📋 DOM Loaded - Retrying...');
+        if (initializeMetafieldSystem()) {
+          setupVariantDetection();
+        }
+      });
+      
+      // Also try after window loads  
+      window.addEventListener('load', function() {
+        console.log('🌐 Window Loaded - Final retry...');
+        if (initializeMetafieldSystem()) {
+          setupVariantDetection();
+        }
+      });
+    }
+  }
+  
+  // Setup variant detection methods
+  function setupVariantDetection() {
+    console.log('🔧 Setting up variant detection...');
     
     // Method 1: Direct click monitoring on variant selectors
     function setupClickMonitoring() {
@@ -210,16 +244,17 @@ const options = {
     }
     
     // Initialize all methods
-    setTimeout(() => {
-      setupClickMonitoring();
-      setupDOMWatcher();  
-      setupPolling();
-      
-      // Try to get initial variant
-      const initialInput = document.querySelector('input[name="id"]');
-      if (initialInput && initialInput.value) {
-        console.log('🎯 Initial variant:', initialInput.value);
-        updateVariantMetafield(initialInput.value);
-      }
-    }, 1500);
-  });
+    setupClickMonitoring();
+    setupDOMWatcher();  
+    setupPolling();
+    
+    // Try to get initial variant
+    const initialInput = document.querySelector('input[name="id"]');
+    if (initialInput && initialInput.value) {
+      console.log('🎯 Initial variant:', initialInput.value);
+      updateVariantMetafield(initialInput.value);
+    }
+  }
+  
+  // Start the initialization process immediately
+  tryInitialization();
