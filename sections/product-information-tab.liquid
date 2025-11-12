@@ -72,6 +72,28 @@
                     {%- when 'description' -%}
                       {{ product.description }}
                       
+                      {%- comment -%} VISIBLE TEST - This should always be visible {%- endcomment -%}
+                      <div style="background: red; color: white; padding: 20px; margin: 20px 0; font-size: 16px; font-weight: bold;">
+                        🚨 TEST: If you see this RED BOX, the template is working! 🚨
+                      </div>
+                      
+                      {%- comment -%} METAFIELD CONTAINERS - Always visible for testing {%- endcomment -%}
+                      <div id="variant-metafield-content" class="variant-metafield-content" style="background: #e8f5e8; padding: 15px; margin: 15px 0; border: 2px solid green;">
+                        <div class="variant-metafield-wrapper">
+                          <strong>ERP Code:</strong> 
+                          <span id="variant-metafield-value" style="color: #003366; font-weight: bold;">No variant selected</span>
+                        </div>
+                      </div>
+                      
+                      {%- comment -%} DEBUG STATUS - Always visible {%- endcomment -%}
+                      <div style="background: #f0f8ff; padding: 15px; margin: 15px 0; font-size: 14px; border: 2px solid blue;">
+                        <strong>🔍 METAFIELD SYSTEM STATUS:</strong><br>
+                        Script Status: <span id="debug-script-status" style="color: orange; font-weight: bold;">Not loaded</span><br>
+                        Current Variant ID: <span id="debug-current-variant" style="color: blue; font-weight: bold;">Loading...</span><br>
+                        Container Check: variant-metafield-content ✓<br>
+                        Value Check: variant-metafield-value ✓
+                      </div>
+                      
                       {%- comment -%} DEBUG: Check available metafields {%- endcomment -%}
                       <div style="border: 1px solid red; padding: 10px; margin: 10px 0; font-size: 12px;">
                         <strong>DEBUG - Available Variant Metafields:</strong><br>
