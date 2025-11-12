@@ -83,12 +83,32 @@
             assign other_sizes = other_sizes | append: ',' | append: val
           endif
         endif
-      # Check for letter sizes XS, S, M, L, etc.
-      elsif val_lower == 'xs' or val_lower == 's' or val_lower == 'm' or val_lower == 'l' or val_lower == 'xl' or val_lower == 'xxl' or val_lower == 'xxxl'
+      # Check for letter sizes XXS, XS, S, M, L, XL, XXL, 3XL, etc.
+      elsif val_lower == 'xxs' or val_lower == 'xs' or val_lower == 's' or val_lower == 'm' or val_lower == 'l' or val_lower == 'xl' or val_lower == 'xxl' or val_lower == 'xxxl' or val_lower == '3xl'
+        # Assign numeric values for sorting: XXS=1, XS=2, S=3, M=4, L=5, XL=6, XXL=7, 3XL/XXXL=8
+        assign size_order = 0
+        if val_lower == 'xxs'
+          assign size_order = 1
+        elsif val_lower == 'xs'
+          assign size_order = 2
+        elsif val_lower == 's'
+          assign size_order = 3
+        elsif val_lower == 'm'
+          assign size_order = 4
+        elsif val_lower == 'l'
+          assign size_order = 5
+        elsif val_lower == 'xl'
+          assign size_order = 6
+        elsif val_lower == 'xxl'
+          assign size_order = 7
+        elsif val_lower == 'xxxl' or val_lower == '3xl'
+          assign size_order = 8
+        endif
+        
         if letter_sizes == ''
-          assign letter_sizes = val
+          assign letter_sizes = val | append: ':' | append: size_order
         else
-          assign letter_sizes = letter_sizes | append: ',' | append: val
+          assign letter_sizes = letter_sizes | append: ',' | append: val | append: ':' | append: size_order
         endif
       else
         if other_sizes == ''
@@ -139,6 +159,26 @@
       endfor
     endif
     
+    # Sort letter sizes (XXS, XS, S, M, L, XL, XXL, 3XL)
+    assign sorted_letters = ''
+    if letter_sizes != ''
+      assign letter_array = letter_sizes | split: ','
+      # Sort by order: XXS=1, XS=2, S=3, M=4, L=5, XL=6, XXL=7, 3XL/XXXL=8
+      for i in (1..8)
+        for item in letter_array
+          assign parts = item | split: ':'
+          assign item_order = parts[1] | plus: 0
+          if item_order == i
+            if sorted_letters == ''
+              assign sorted_letters = parts[0]
+            else
+              assign sorted_letters = sorted_letters | append: ',' | append: parts[0]
+            endif
+          endif
+        endfor
+      endfor
+    endif
+
     # Combine all sorted sizes in order: numerical, ranges, letters, others
     assign sorted_values = ''
     if sorted_numerical != ''
@@ -151,11 +191,11 @@
         assign sorted_values = sorted_values | append: ',' | append: sorted_ranges
       endif
     endif
-    if letter_sizes != ''
+    if sorted_letters != ''
       if sorted_values == ''
-        assign sorted_values = letter_sizes
+        assign sorted_values = sorted_letters
       else
-        assign sorted_values = sorted_values | append: ',' | append: letter_sizes
+        assign sorted_values = sorted_values | append: ',' | append: sorted_letters
       endif
     endif
     if other_sizes != ''
