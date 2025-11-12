@@ -101,160 +101,81 @@ const options = {
     }
   }
 
-  // Completely independent variant detection system - Initialize immediately
+  // Immediate initialization - No waiting for DOM
   console.log('🚀 SCRIPT LOADED - Metafield system starting...');
   
-  // Test immediately without waiting for DOM
-  function initializeMetafieldSystem() {
-    console.log('🔍 Initializing metafield system...');
+  // Simple immediate test
+  setTimeout(function() {
+    console.log('🔍 Testing metafield containers...');
     
-    // Test containers immediately
     const testContainer = document.getElementById('variant-metafield-content');
     const testValue = document.getElementById('variant-metafield-value');
     
-    console.log('Container check:', testContainer ? 'FOUND' : 'NOT FOUND');
-    console.log('Value check:', testValue ? 'FOUND' : 'NOT FOUND');
+    console.log('Container found:', testContainer ? 'YES' : 'NO');
+    console.log('Value element found:', testValue ? 'YES' : 'NO');
     
     if (testContainer && testValue) {
-      console.log('✅ Metafield containers found');
-      
-      // Show a test message immediately
-      testValue.textContent = 'TEST - System Ready';
+      console.log('✅ SUCCESS - Containers found');
+      testValue.textContent = 'METAFIELD SYSTEM READY';
       testContainer.style.display = 'block';
       
-      // Hide after 3 seconds
       setTimeout(() => {
         testContainer.style.display = 'none';
-        console.log('Test message hidden');
       }, 3000);
-    } else {
-      console.log('❌ Metafield containers NOT found');
-      // Show all elements with IDs containing 'variant' or 'metafield'
-      const allElements = document.querySelectorAll('[id*="variant"], [id*="metafield"]');
-      console.log('Found elements with variant/metafield IDs:', allElements);
-    }
-    
-    return testContainer && testValue;
-  }
-
+      
+      // Setup variant detection
       setupVariantDetection();
     } else {
-      // Retry after DOM loads
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log('📋 DOM Loaded - Retrying...');
-        if (initializeMetafieldSystem()) {
-          setupVariantDetection();
-        }
-      });
-      
-      // Also try after window loads  
-      window.addEventListener('load', function() {
-        console.log('🌐 Window Loaded - Final retry...');
-        if (initializeMetafieldSystem()) {
-          setupVariantDetection();
-        }
-      });
+      console.log('❌ FAILED - Containers not found');
+      console.log('All elements with ID:', document.querySelectorAll('[id]'));
     }
-  }
+  }, 2000);
   
-  // Setup variant detection methods
+  // Setup variant detection function
   function setupVariantDetection() {
     console.log('🔧 Setting up variant detection...');
     
-    // Method 1: Direct click monitoring on variant selectors
-    function setupClickMonitoring() {
-      console.log('Setting up click monitoring...');
-      
-      // Monitor all clickable elements that might change variants
-      document.addEventListener('click', function(e) {
-        const target = e.target;
-        
-        // Check if it's a variant option
-        if (target.matches('option[data-variant-id], .product-sticky-js option, select.product-sticky-js option')) {
-          const variantId = target.dataset.variantId || target.getAttribute('data-variant-id');
-          console.log('📱 Clicked variant option:', variantId);
-          
-          if (variantId) {
-            setTimeout(() => updateVariantMetafield(variantId), 200);
-          }
+    // Method 1: Monitor select changes
+    document.addEventListener('change', function(e) {
+      if (e.target.name === 'id' || e.target.classList.contains('product-sticky-js')) {
+        const variantId = e.target.value;
+        console.log('📋 Select changed to:', variantId);
+        if (variantId) {
+          updateVariantMetafield(variantId);
         }
-        
-        // Check if it's a select element
-        if (target.matches('select.product-sticky-js, select[name="id"]')) {
-          setTimeout(() => {
-            const selectedOption = target.selectedOptions[0];
-            if (selectedOption) {
-              const variantId = selectedOption.dataset.variantId || selectedOption.getAttribute('data-variant-id');
-              console.log('📋 Selected from dropdown:', variantId);
-              
-              if (variantId) {
-                updateVariantMetafield(variantId);
-              }
-            }
-          }, 100);
+      }
+    });
+    
+    // Method 2: Monitor input changes
+    document.addEventListener('input', function(e) {
+      if (e.target.name === 'id') {
+        const variantId = e.target.value;
+        console.log('⌨️ Input changed to:', variantId);
+        if (variantId) {
+          updateVariantMetafield(variantId);
         }
-      });
-    }
+      }
+    });
     
-    // Method 2: Watch for DOM changes (when variant inputs update)
-    function setupDOMWatcher() {
-      console.log('Setting up DOM watcher...');
-      
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          // Watch for changes to hidden inputs
-          if (mutation.target.name === 'id' && mutation.target.type === 'hidden') {
-            console.log('🔄 Hidden input changed:', mutation.target.value);
-            updateVariantMetafield(mutation.target.value);
-          }
-          
-          // Watch for attribute changes
-          if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
-            if (mutation.target.name === 'id') {
-              console.log('🔄 Input value changed:', mutation.target.value);
-              updateVariantMetafield(mutation.target.value);
-            }
-          }
-        });
-      });
-      
-      // Observe the entire document for changes
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['value']
-      });
-    }
-    
-    // Method 3: Manual polling as ultimate fallback
-    function setupPolling() {
-      console.log('Setting up polling fallback...');
-      
-      let lastVariantId = null;
-      
-      setInterval(() => {
-        const hiddenInput = document.querySelector('input[name="id"]');
-        if (hiddenInput && hiddenInput.value && hiddenInput.value !== lastVariantId) {
-          console.log('🔄 Polling detected change:', hiddenInput.value);
-          lastVariantId = hiddenInput.value;
-          updateVariantMetafield(hiddenInput.value);
+    // Method 3: Polling fallback
+    let lastVariantId = null;
+    setInterval(() => {
+      const input = document.querySelector('input[name="id"]');
+      if (input && input.value !== lastVariantId) {
+        console.log('🔄 Polling detected:', input.value);
+        lastVariantId = input.value;
+        if (input.value) {
+          updateVariantMetafield(input.value);
         }
-      }, 1000);
-    }
+      }
+    }, 2000);
     
-    // Initialize all methods
-    setupClickMonitoring();
-    setupDOMWatcher();  
-    setupPolling();
-    
-    // Try to get initial variant
-    const initialInput = document.querySelector('input[name="id"]');
-    if (initialInput && initialInput.value) {
-      console.log('🎯 Initial variant:', initialInput.value);
-      updateVariantMetafield(initialInput.value);
-    }
+    // Get initial variant
+    setTimeout(() => {
+      const initialInput = document.querySelector('input[name="id"]');
+      if (initialInput && initialInput.value) {
+        console.log('🎯 Initial variant found:', initialInput.value);
+        updateVariantMetafield(initialInput.value);
+      }
+    }, 1000);
   }
-  
-  // Start the initialization process immediately
-  tryInitialization();
