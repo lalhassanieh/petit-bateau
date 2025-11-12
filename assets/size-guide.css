@@ -1,0 +1,281 @@
+.size-guide-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.08);
+  align-items: center;
+  justify-content: center;
+}
+.size-guide-modal[aria-hidden=false] {
+  display: flex;
+}
+
+.size-guide-content {
+  background: #fff;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  max-width: 900px;
+  width: 95vw;
+  position: relative;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  min-height: 480px;
+  font-family: "Oswald-Medium";
+}
+.size-guide-content h2 {
+  font-family: Oswald-Bold !important;
+  letter-spacing: 0.2px !important;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 2.8rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-btn:hover {
+  color: #003366;
+}
+
+.size-guide-nav {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  gap: 0.5rem;
+  color: #bdbdbd;
+}
+.size-guide-nav .nav-step {
+  color: #bdbdbd;
+}
+.size-guide-nav .nav-step.active {
+  color: #003366;
+  border-bottom: 3px solid #003366;
+  padding-bottom: 0.2em;
+}
+.size-guide-nav .nav-arrow {
+  font-size: 1.2em;
+  color: #bdbdbd;
+  margin: 0 0.2em;
+}
+
+.univers-list {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.univers-list li {
+  flex: 1 1 180px;
+  min-width: 180px;
+  max-width: 220px;
+  display: flex;
+  justify-content: center;
+}
+.univers-list button {
+  background: #fff;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.1em;
+  padding: 1.5rem 0.5rem 1rem 0.5rem;
+  width: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  transition: border 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.univers-list button:hover, .univers-list button:focus {
+  border: 2px solid #003366;
+  box-shadow: 0 2px 12px rgba(0, 51, 102, 0.08);
+  outline: none;
+}
+.univers-list button img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-bottom: 1.2rem;
+  border-radius: 0.5rem;
+  display: block;
+}
+.univers-list button span {
+  display: block;
+  margin-top: 0.7em;
+  font-size: 1.08em;
+  font-family: "Oswald-Bold", Arial, sans-serif;
+  font-weight: 700;
+  color: #003366;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+.univers-list button span, .univers-list button {
+  font-weight: 700;
+  color: #003366;
+  font-size: 14px;
+  margin-top: 0.5em;
+}
+
+.category-list {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 0;
+  margin: 0 0 32px 0;
+  list-style: none;
+}
+
+.category-list li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+}
+
+.category-list button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 180px;
+  height: 260px;
+  background: #fff;
+  border: 2px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: none;
+  padding: 24px 8px 8px 8px;
+  margin: 0;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.category-list button:hover,
+.category-list button:focus {
+  border-color: #0055a5;
+}
+
+.category-list img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-bottom: 16px;
+}
+
+.category-list span {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  color: #003366;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.sizeguide-step3-content table {
+  width: 100%;
+  font-size: 12px;
+}
+.sizeguide-step3-content table th {
+  text-align: center;
+  background: #f7f7f7;
+  border-left: 0.1rem solid #fff;
+  font-weight: 500;
+  padding: 0.9rem 1.5rem 0.8rem;
+  white-space: nowrap;
+}
+.sizeguide-step3-content table td {
+  text-align: center;
+  border-bottom: 0.1rem solid #f7f7f7;
+  padding: 0.8rem 0.5rem 0.7rem;
+  color: #4a4a4a;
+}
+.sizeguide-step3-content table .ref {
+  display: inline-block;
+  border-radius: 50%;
+  width: 1.4rem;
+  font-size: 1rem;
+  line-height: 1.3rem;
+  padding-top: 0.1rem;
+  text-align: center;
+  color: #fff;
+  background: #c22032;
+  margin-right: 0.3rem;
+  vertical-align: top;
+}
+.sizeguide-step3-content table .th-flex {
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .size-guide-content {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    min-height: 0;
+  }
+  .univers-list {
+    gap: 1rem;
+  }
+  .univers-list li {
+    min-width: 120px;
+    max-width: 160px;
+  }
+  .univers-list button img {
+    width: 70px;
+    height: 120px;
+  }
+}
+@media (max-width: 600px) {
+  .size-guide-content {
+    padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+    min-width: 0;
+  }
+  .univers-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+  .univers-list li {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .univers-list button img {
+    width: 60px;
+    height: 90px;
+  }
+}
+.univers-list button:focus {
+  outline: none;
+}
+
+.size-guide-btn {
+  background: #fff;
+  color: #003366;
+  border: 2px solid #003366;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 0.7em 2em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background 0.2s, color 0.2s;
+}
+.size-guide-btn:hover {
+  background: #003366;
+  color: #fff;
+}/*# sourceMappingURL=size-guide.css.map */
