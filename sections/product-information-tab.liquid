@@ -72,6 +72,32 @@
                     {%- when 'description' -%}
                       {{ product.description }}
                       
+                      {%- comment -%} DEBUG: Check available metafields {%- endcomment -%}
+                      <div style="border: 1px solid red; padding: 10px; margin: 10px 0; font-size: 12px;">
+                        <strong>DEBUG - Available Variant Metafields:</strong><br>
+                        {% for variant in product.variants limit: 1 %}
+                          <strong>Variant {{ variant.id }}:</strong><br>
+                          {% if variant.metafields.global.product_additional_erp_variantcode %}
+                            ✅ global.product_additional_erp_variantcode: {{ variant.metafields.global.product_additional_erp_variantcode }}<br>
+                          {% else %}
+                            ❌ global.product_additional_erp_variantcode: NOT FOUND<br>
+                          {% endif %}
+                          
+                          <strong>All Global Metafields:</strong><br>
+                          {% for metafield in variant.metafields.global %}
+                            - {{ metafield[0] }}: {{ metafield[1] }}<br>
+                          {% endfor %}
+                          
+                          <strong>All Metafields:</strong><br>
+                          {% for namespace in variant.metafields %}
+                            Namespace: {{ namespace[0] }}<br>
+                            {% for metafield in namespace[1] %}
+                              - {{ metafield[0] }}: {{ metafield[1] }}<br>
+                            {% endfor %}
+                          {% endfor %}
+                        {% endfor %}
+                      </div>
+                      
                       {%- comment -%} Dynamic variant metafield content area {%- endcomment -%}
                       <div id="variant-metafield-content" class="variant-metafield-content mt-20 p-15 border border-color rounded-5" style="display: none;">
                         <div class="variant-metafield-wrapper text-size">
