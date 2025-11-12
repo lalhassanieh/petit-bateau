@@ -67,6 +67,22 @@
             assign other_sizes = other_sizes | append: ',' | append: val
           endif
         endif
+      # Check for number+letter sizes like 3A, 4A, 5A, 6A
+      elsif val_lower contains 'a' and val_lower != 'xs' and val_lower != 'xl' and val_lower != 'xxl' and val_lower != 'xxxl'
+        assign number = val_lower | replace: 'a', '' | plus: 0
+        if number > 0
+          if numerical_sizes == ''
+            assign numerical_sizes = val | append: ':' | append: number
+          else
+            assign numerical_sizes = numerical_sizes | append: ',' | append: val | append: ':' | append: number
+          endif
+        else
+          if other_sizes == ''
+            assign other_sizes = val
+          else
+            assign other_sizes = other_sizes | append: ',' | append: val
+          endif
+        endif
       # Check for letter sizes XS, S, M, L, etc.
       elsif val_lower == 'xs' or val_lower == 's' or val_lower == 'm' or val_lower == 'l' or val_lower == 'xl' or val_lower == 'xxl' or val_lower == 'xxxl'
         if letter_sizes == ''
