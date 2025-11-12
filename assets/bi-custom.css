@@ -450,3 +450,11 @@
     width: 100%;
   }
 }/*# sourceMappingURL=bi-custom.css.map */
+
+
+.button_buy-now{
+  background-color: #ffce00;
+  color:#002e5e;
+  border:none;
+  box-shadow:none;
+}
