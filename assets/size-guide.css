@@ -226,6 +226,10 @@
 .table-step {
   font-family: "Work Sans", sans-serif;
 }
+.table-step h3 {
+  font-family: Oswald-Bold;
+  font-size: 19px;
+}
 
 @media (max-width: 900px) {
   .size-guide-content {

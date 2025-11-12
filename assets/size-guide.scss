@@ -224,7 +224,8 @@ $shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
     table {
         width: 100%;
         font-size: 12px;
-    font-family: "Work Sans", sans-serif;
+        font-family: "Work Sans", sans-serif;
+
         th {
             text-align: center;
             background: #f7f7f7;
@@ -265,6 +266,11 @@ $shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
 
 .table-step {
     font-family: "Work Sans", sans-serif;
+
+    h3{
+        font-family: Oswald-Bold;
+        font-size: 19px;
+    }
 }
 
 // Responsive
