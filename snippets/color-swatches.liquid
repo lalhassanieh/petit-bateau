@@ -157,6 +157,16 @@
           assign op_value = product.selected_or_first_available_variant[op]
           assign option_name_nospace = option.name | replace: ' ', ''
         -%}
+        <!-- DEBUG: Size Chart Vars (always visible)-->
+        <div style="background:#e0f7fa;color:#00796b;padding:6px 10px;font-size:12px;margin-bottom:4px;">
+          <strong>DEBUG:</strong><br>
+          block.settings.size_guide_page: <code>{{ block.settings.size_guide_page }}</code><br>
+          product.metafields.custom.size_chart: <code>{{ product.metafields.custom.size_chart }}</code><br>
+          block.settings.show_size_guide: <code>{{ block.settings.show_size_guide }}</code><br>
+          option_name_nospace: <code>{{ option_name_nospace }}</code><br>
+          option_size: <code>{{ option_size | join: ',' }}</code><br>
+          type: <code>{{ type }}</code>
+        </div>
         <fieldset class="product-form__input product-form__input--dropdown flex flex-wrap gap-15 row-gap-0 mb-22 relative p-0 border-0 m-0">
           <div class="flex align-center gap-15 flex-wrap w-full justify-between row-gap-0">
             <div
