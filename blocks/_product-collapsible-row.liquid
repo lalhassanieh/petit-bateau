@@ -30,31 +30,6 @@
           <div id="variant-ref-container" style="margin-top: 15px;">
             <strong>REF</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span>
           </div>
-          
-          {%- comment -%} Debug: Check what metafields are available {%- endcomment -%}
-          <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; font-size: 12px; border: 1px solid #ccc;">
-            <strong>DEBUG - First Variant Metafields:</strong><br>
-            {% assign first_variant = product.variants.first %}
-            Variant ID: {{ first_variant.id }}<br>
-            {% if first_variant.metafields.global.product_additional_erp_variantcode %}
-              ✅ global.product_additional_erp_variantcode: {{ first_variant.metafields.global.product_additional_erp_variantcode }}<br>
-            {% else %}
-              ❌ global.product_additional_erp_variantcode: NOT FOUND<br>
-            {% endif %}
-            
-            <strong>All Global Metafields:</strong><br>
-            {% for metafield in first_variant.metafields.global %}
-              - {{ metafield[0] }}: {{ metafield[1] }}<br>
-            {% endfor %}
-            
-            <strong>All Metafield Namespaces:</strong><br>
-            {% for namespace in first_variant.metafields %}
-              Namespace: {{ namespace[0] }}<br>
-              {% for metafield in namespace[1] %}
-                - {{ metafield[0] }}: {{ metafield[1] }}<br>
-              {% endfor %}
-            {% endfor %}
-          </div>
         {%- else -%}
           {{ 'onboarding.default_description' | t }}
         {% endif %}
