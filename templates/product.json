@@ -95,10 +95,10 @@
         "variant_picker_tcCihG": {
           "type": "_product-variant-picker",
           "settings": {
-            "variant_type": "swatches",
+            "variant_type": "dropdown",
             "show_size_guide": true,
-            "size_guide_label": "Size guide",
-            "size_guide_page": "guide-des-tailles-size-guide"
+            "size_guide_label": "Size guide test",
+            "size_guide_page": "size-guide"
           },
           "blocks": {}
         },
