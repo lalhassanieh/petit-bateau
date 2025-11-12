@@ -52,7 +52,8 @@
 -%}
 
 {% if parent_collection != null and complementary_products.size > 0 %}
-  <div class="swiper block mb-25{% if enable_skeleton_loading %} skeleton-loading{% endif %}{% if block_st.heading == blank %} mt-30{% endif %}"
+  <product-recommendations
+    class="swiper block mb-25{% if enable_skeleton_loading %} skeleton-loading{% endif %}{% if block_st.heading == blank %} mt-30{% endif %}"
     data-section-id="{{ section.id }}"
     data-effect="slide"
     data-speed="500"
@@ -88,7 +89,7 @@
         class="swiper-pagination position-bottom"
       ></div>
     {% endif %}
-  </div>
+  </product-recommendations>
 {% else %}
   {% comment %} Fallback to Shopify's automatic complementary recommendations {% endcomment %}
   <product-recommendations
