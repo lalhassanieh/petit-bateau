@@ -5,50 +5,157 @@
   assign variants_option_3_arr = product.variants | map: 'option3'
   assign product_form_id = 'product-form-' | append: section.id
   
-  # Sort option values - always sort if they look like sizes
+  # Sort size options numerically
   assign sorted_values = option.values
-  assign should_sort = false
   
-  # Check if values contain size patterns like "8A", "10A", "XS", "M", "L", etc.
-  for val in option.values limit: 3
-    assign val_clean = val | strip | downcase
-    if val_clean contains 'a' or val_clean contains 'xs' or val_clean contains 'xl' or val_clean == 's' or val_clean == 'm' or val_clean == 'l'
-      assign should_sort = true
+  # Check if this option contains size-like values
+  assign is_size_option = false
+  for val in option.values limit: 2
+    assign val_lower = val | downcase | strip
+    if val_lower contains 'm' or val_lower contains '-' or val_lower == 'xs' or val_lower == 's' or val_lower == 'l' or val_lower == 'xl' or val_lower == 'xxl' or val_lower == 'xxxl'
+      assign is_size_option = true
+      break
+    endif
+    assign val_number = val | plus: 0
+    if val_number > 0
+      assign is_size_option = true
       break
     endif
   endfor
   
-  # Sort if detected as sizes
-  if should_sort
-    # Create a custom sorted array for better size ordering
-    assign size_order = '1A,2A,3A,4A,5A,6A,7A,8A,9A,10A,11A,12A,13A,14A,15A,16A,XS,S,M,L,XL,XXL' | split: ','
-    assign sorted_values = ''
+  # Only sort if this is a size option
+  if is_size_option
+    # Simple numerical sort for month sizes like 3M, 6M, 12M, 18M, 24M
+    assign numerical_sizes = ''
+    assign range_sizes = ''
+    assign letter_sizes = ''
+    assign other_sizes = ''
     
-    # Add values in the predefined order
-    for predefined_size in size_order
-      for original_value in option.values
-        if original_value == predefined_size
-          if sorted_values == ''
-            assign sorted_values = original_value
+    # Separate different types of sizes
+    for val in option.values
+      assign val_lower = val | downcase | strip
+      
+      # Check for month sizes like 3M, 6M, 12M
+      if val_lower contains 'm' and val_lower != 'm' and val_lower != 'xl' and val_lower != 'xxl' and val_lower != 'xxxl'
+        assign number = val_lower | replace: 'm', '' | replace: '-', '' | split: '-' | first | plus: 0
+        if number > 0
+          if numerical_sizes == ''
+            assign numerical_sizes = val | append: ':' | append: number
           else
-            assign sorted_values = sorted_values | append: ',' | append: original_value
+            assign numerical_sizes = numerical_sizes | append: ',' | append: val | append: ':' | append: number
+          endif
+        else
+          if other_sizes == ''
+            assign other_sizes = val
+          else
+            assign other_sizes = other_sizes | append: ',' | append: val
           endif
         endif
-      endfor
-    endfor
-    
-    # Add any remaining values that werent in the predefined list
-    for original_value in option.values
-      unless sorted_values contains original_value
-        if sorted_values == ''
-          assign sorted_values = original_value
+      # Check for range sizes like 3-6M, 12-18M
+      elsif val_lower contains '-'
+        assign first_number = val_lower | split: '-' | first | replace: 'm', '' | plus: 0
+        if first_number > 0
+          if range_sizes == ''
+            assign range_sizes = val | append: ':' | append: first_number
+          else
+            assign range_sizes = range_sizes | append: ',' | append: val | append: ':' | append: first_number
+          endif
         else
-          assign sorted_values = sorted_values | append: ',' | append: original_value
+          if other_sizes == ''
+            assign other_sizes = val
+          else
+            assign other_sizes = other_sizes | append: ',' | append: val
+          endif
         endif
-      endunless
+      # Check for letter sizes XS, S, M, L, etc.
+      elsif val_lower == 'xs' or val_lower == 's' or val_lower == 'm' or val_lower == 'l' or val_lower == 'xl' or val_lower == 'xxl' or val_lower == 'xxxl'
+        if letter_sizes == ''
+          assign letter_sizes = val
+        else
+          assign letter_sizes = letter_sizes | append: ',' | append: val
+        endif
+      else
+        if other_sizes == ''
+          assign other_sizes = val
+        else
+          assign other_sizes = other_sizes | append: ',' | append: val
+        endif
+      endif
     endfor
     
-    assign sorted_values = sorted_values | split: ','
+    # Sort numerical sizes (3M, 6M, 12M, etc.)
+    assign sorted_numerical = ''
+    if numerical_sizes != ''
+      assign num_array = numerical_sizes | split: ','
+      # Sort by extracting numbers and ordering them
+      for i in (1..48)
+        for item in num_array
+          assign parts = item | split: ':'
+          assign item_number = parts[1] | plus: 0
+          if item_number == i
+            if sorted_numerical == ''
+              assign sorted_numerical = parts[0]
+            else
+              assign sorted_numerical = sorted_numerical | append: ',' | append: parts[0]
+            endif
+          endif
+        endfor
+      endfor
+    endif
+    
+    # Sort range sizes (3-6M, 12-18M, etc.)
+    assign sorted_ranges = ''
+    if range_sizes != ''
+      assign range_array = range_sizes | split: ','
+      # Sort by extracting first numbers and ordering them
+      for i in (1..48)
+        for item in range_array
+          assign parts = item | split: ':'
+          assign item_number = parts[1] | plus: 0
+          if item_number == i
+            if sorted_ranges == ''
+              assign sorted_ranges = parts[0]
+            else
+              assign sorted_ranges = sorted_ranges | append: ',' | append: parts[0]
+            endif
+          endif
+        endfor
+      endfor
+    endif
+    
+    # Combine all sorted sizes in order: numerical, ranges, letters, others
+    assign sorted_values = ''
+    if sorted_numerical != ''
+      assign sorted_values = sorted_numerical
+    endif
+    if sorted_ranges != ''
+      if sorted_values == ''
+        assign sorted_values = sorted_ranges
+      else
+        assign sorted_values = sorted_values | append: ',' | append: sorted_ranges
+      endif
+    endif
+    if letter_sizes != ''
+      if sorted_values == ''
+        assign sorted_values = letter_sizes
+      else
+        assign sorted_values = sorted_values | append: ',' | append: letter_sizes
+      endif
+    endif
+    if other_sizes != ''
+      if sorted_values == ''
+        assign sorted_values = other_sizes
+      else
+        assign sorted_values = sorted_values | append: ',' | append: other_sizes
+      endif
+    endif
+    
+    # Convert back to array
+    if sorted_values != ''
+      assign sorted_values = sorted_values | split: ','
+    else
+      assign sorted_values = option.values
+    endif
   endif
 -%}
 {%- for value in sorted_values -%}
