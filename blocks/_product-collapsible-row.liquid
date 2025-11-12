@@ -25,22 +25,75 @@
       {% if block_st.use_product_description == true %}
         {%- if product != blank -%}
           {{ product.description }}
+          
+          {%- comment -%} Add REF with variant metafield {%- endcomment -%}
+          <div id="variant-ref-container" style="margin-top: 15px;">
+            <strong>REF</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span>
+          </div>
         {%- else -%}
           {{ 'onboarding.default_description' | t }}
-
         {% endif %}
-        
-        {%- if product.metafields.global.product_additional_VendorItemNo != blank -%}
-          <div class="vendor-item-no mt-12">
-            <strong>Ref </strong> {{ product.metafields.global.product_additional_VendorItemNo }}
-          </div>
-        {%- endif -%}
       {% else %}
         {{ block_st.content }}
+        
+        {%- comment -%} Add REF for custom content too {%- endcomment -%}
+        <div id="variant-ref-container" style="margin-top: 15px;">
+          <strong>REF</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span>
+        </div>
       {% endif %}
     </div>
   </div>
 </collapsible-block>
+
+{%- comment -%} JavaScript to update REF value when variant changes {%- endcomment -%}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to update the REF value
+  function updateVariantRef(variantId) {
+    const refContainer = document.getElementById('variant-ref-value');
+    if (!refContainer || !variantId) return;
+    
+    // Try to get metafield from product JSON
+    const productJson = document.querySelector('[data-product-json]');
+    if (productJson) {
+      try {
+        const product = JSON.parse(productJson.textContent);
+        const variant = product.variants.find(v => v.id == variantId);
+        
+        if (variant && variant.metafields && variant.metafields.global && variant.metafields.global.product_additional_erp_variantcode) {
+          refContainer.textContent = variant.metafields.global.product_additional_erp_variantcode;
+        } else {
+          refContainer.textContent = 'N/A';
+        }
+      } catch (error) {
+        console.log('Error parsing product JSON:', error);
+      }
+    }
+  }
+  
+  // Listen for variant changes
+  document.addEventListener('change', function(e) {
+    if (e.target.name === 'id' || e.target.classList.contains('product-sticky-js')) {
+      updateVariantRef(e.target.value);
+    }
+  });
+  
+  // Also listen for any variant input changes
+  document.addEventListener('input', function(e) {
+    if (e.target.name === 'id') {
+      updateVariantRef(e.target.value);
+    }
+  });
+  
+  // Get initial variant on page load
+  setTimeout(() => {
+    const initialInput = document.querySelector('input[name="id"]');
+    if (initialInput && initialInput.value) {
+      updateVariantRef(initialInput.value);
+    }
+  }, 500);
+});
+</script>
 {% schema %}
 {
   "name": "t:blocks.general.collapsible_row.name",
