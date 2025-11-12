@@ -42,11 +42,17 @@ const options = {
   // Handle variant changes for metafield display
   function updateVariantMetafield(variantId) {
     try {
-      const metafieldContainer = document.getElementById('variant-metafield-content');
-      const metafieldValue = document.getElementById('variant-metafield-value');
+      // Try both container types (product description and custom content)
+      const metafieldContainer = document.getElementById('variant-metafield-content') || document.getElementById('variant-metafield-content-custom');
+      const metafieldValue = document.getElementById('variant-metafield-value') || document.getElementById('variant-metafield-value-custom');
+      
+      console.log('Checking containers:', {
+        main: document.getElementById('variant-metafield-content') ? 'FOUND' : 'NOT FOUND',
+        custom: document.getElementById('variant-metafield-content-custom') ? 'FOUND' : 'NOT FOUND'
+      });
       
       if (!metafieldContainer || !metafieldValue) {
-        console.log('Metafield containers not found');
+        console.log('❌ No metafield containers found at all');
         return;
       }
       
