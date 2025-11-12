@@ -8,32 +8,76 @@
     {{ block_st.heading }}
   </h2>
 {% endif %}
-<product-recommendations
-  class="test-recommendations swiper block mb-25{% if enable_skeleton_loading %} skeleton-loading{% endif %}{% if block_st.heading == blank %} mt-30{% endif %}"
-  data-section-id="{{ section.id }}"
-  data-effect="slide"
-  data-speed="500"
-  data-desktop="{{ block_st.products_per_page }}"
-  data-mobile="2"
-  data-tablet="3"
-  {{ block.shopify_attributes }}
-  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&intent=complementary&limit={{ block.settings.product_list_limit }}"
->
-  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+{%- liquid
+  # Get products from same parent collection for complementary products
+  assign parent_collection = null
+  assign complementary_products = null
+  
+  # Find the main/parent collection
+  if product.collections.size > 0
+    assign largest_collection = product.collections.first
+    assign largest_size = product.collections.first.products.size
+    
+    for collection in product.collections
+      if collection.products.size > largest_size
+        assign largest_collection = collection
+        assign largest_size = collection.products.size
+      endif
+    endfor
+    
+    assign parent_collection = largest_collection
+  endif
+  
+  # Get products from the same parent collection, excluding current product
+  if parent_collection != null
+    assign collection_products = parent_collection.products | where: 'available', true
+    assign filtered_handles = ''
+    assign comp_count = 0
+    
+    for comp_product in collection_products
+      if comp_product.id != product.id and comp_count < block_st.product_list_limit
+        if filtered_handles == ''
+          assign filtered_handles = comp_product.handle
+        else
+          assign filtered_handles = filtered_handles | append: ',' | append: comp_product.handle
+        endif
+        assign comp_count = comp_count | plus: 1
+      endif
+    endfor
+    
+    if filtered_handles != ''
+      assign complementary_products = filtered_handles | split: ','
+    endif
+  endif
+-%}
+
+{% if parent_collection != null and complementary_products.size > 0 %}
+  <div class="swiper block mb-25{% if enable_skeleton_loading %} skeleton-loading{% endif %}{% if block_st.heading == blank %} mt-30{% endif %}"
+    data-section-id="{{ section.id }}"
+    data-effect="slide"
+    data-speed="500"
+    data-desktop="{{ block_st.products_per_page }}"
+    data-mobile="2"
+    data-tablet="3"
+    {{ block.shopify_attributes }}
+  >
     <div class="swiper-wrapper">
-      {%- for product in recommendations.products limit: block_st.product_list_limit %}
-        {% render 'product-item',
-          card_product: product,
-          section_id: section.id,
-          template_enable_product_vendor: false,
-          template_enable_rate: false,
-          template_enable_product_short_description: false,
-          template_enable_color_swatches: false,
-          template_enable_add_cart: block_st.enable_quick_add,
-          template_enable_action: block_st.enable_quick_add,
-          template_enable_price: true,
-          class: ' swiper-slide'
-        %}
+      {%- for product_handle in complementary_products limit: block_st.product_list_limit %}
+        {%- assign comp_product = all_products[product_handle] -%}
+        {% if comp_product.available %}
+          {% render 'product-item',
+            card_product: comp_product,
+            section_id: section.id,
+            template_enable_product_vendor: false,
+            template_enable_rate: false,
+            template_enable_product_short_description: false,
+            template_enable_color_swatches: false,
+            template_enable_add_cart: block_st.enable_quick_add,
+            template_enable_action: block_st.enable_quick_add,
+            template_enable_price: true,
+            class: ' swiper-slide'
+          %}
+        {% endif %}
       {%- endfor -%}
     </div>
     {% if block_st.show_navigation %}
@@ -44,8 +88,48 @@
         class="swiper-pagination position-bottom"
       ></div>
     {% endif %}
-  {% endif %}
-</product-recommendations>
+  </div>
+{% else %}
+  {% comment %} Fallback to Shopify's automatic complementary recommendations {% endcomment %}
+  <product-recommendations
+    class="swiper block mb-25{% if enable_skeleton_loading %} skeleton-loading{% endif %}{% if block_st.heading == blank %} mt-30{% endif %}"
+    data-section-id="{{ section.id }}"
+    data-effect="slide"
+    data-speed="500"
+    data-desktop="{{ block_st.products_per_page }}"
+    data-mobile="2"
+    data-tablet="3"
+    {{ block.shopify_attributes }}
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&intent=complementary&limit={{ block.settings.product_list_limit }}"
+  >
+    {%- if recommendations.performed and recommendations.products_count > 0 -%}
+      <div class="swiper-wrapper">
+        {%- for product in recommendations.products limit: block_st.product_list_limit %}
+          {% render 'product-item',
+            card_product: product,
+            section_id: section.id,
+            template_enable_product_vendor: false,
+            template_enable_rate: false,
+            template_enable_product_short_description: false,
+            template_enable_color_swatches: false,
+            template_enable_add_cart: block_st.enable_quick_add,
+            template_enable_action: block_st.enable_quick_add,
+            template_enable_price: true,
+            class: ' swiper-slide'
+          %}
+        {%- endfor -%}
+      </div>
+      {% if block_st.show_navigation %}
+        {%- render 'swiper-navigation' -%}
+      {% endif %}
+      {%- if block_st.show_pagination -%}
+        <div
+          class="swiper-pagination position-bottom"
+        ></div>
+      {% endif %}
+    {% endif %}
+  </product-recommendations>
+{% endif %}
 {% schema %}
 {
   "name": "t:blocks.product.complementary_products.name",
