@@ -71,6 +71,14 @@
                       {% render block %}
                     {%- when 'description' -%}
                       {{ product.description }}
+                      
+                      {%- comment -%} Dynamic variant metafield content area {%- endcomment -%}
+                      <div id="variant-metafield-content" class="variant-metafield-content mt-20 p-15 border border-color rounded-5" style="display: none;">
+                        <div class="variant-metafield-wrapper text-size">
+                          <strong class="heading-color">Ref</strong> 
+                          <span id="variant-metafield-value" class="text-color"></span>
+                        </div>
+                      </div>
                     {%- when 'review' -%}
                       <div id="shopify-product-reviews" data-id="{{ product.id }}">
                         {{ product.metafields.spr.reviews }}
@@ -105,6 +113,22 @@
     </div>
   </div>
 {%- endif -%}
+
+<style>
+  .variant-metafield-content {
+    background-color: #f8f9fa;
+    border-color: #003366;
+    transition: all 0.3s ease;
+  }
+  
+  .variant-metafield-content:hover {
+    background-color: #e9ecef;
+  }
+  
+  .variant-metafield-wrapper {
+    color: #003366;
+  }
+</style>
 
 <script src="{{ 'product_tab.js' | asset_url }}" defer></script>
 {% schema %}
