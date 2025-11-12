@@ -328,6 +328,14 @@
                     endif
                   endfor
                 -%}
+                <!-- DEBUG: Size Chart Logic -->
+                <div style="background:#ffe4e1;color:#c00;padding:6px 10px;font-size:12px;margin-bottom:4px;">
+                  <strong>Size Chart Debug:</strong><br>
+                  show_size_guide: {{ block.settings.show_size_guide }}<br>
+                  size_guide_page: {{ block.settings.size_guide_page }}<br>
+                  product.metafields.custom.size_chart: {{ product.metafields.custom.size_chart }}<br>
+                  collection_size_chart: {{ collection_size_chart }}<br>
+                </div>
                 {% if block.settings.size_guide_page != blank
                   or product.metafields.custom.size_chart != blank
                   or collection_size_chart != ''
@@ -347,6 +355,10 @@
                       {% endif %}
                     </div>
                   </product-addons>
+                {% else %}
+                  <div style="background:#fff3cd;color:#856404;padding:6px 10px;font-size:12px;margin-bottom:4px;">
+                    <strong>Size chart not shown:</strong> No page or metafield set.
+                  </div>
                 {% endif %}
               {%- endif -%}
 
