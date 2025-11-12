@@ -385,8 +385,7 @@
     "related_products": {
       "type": "related-products",
       "custom_css": [
-        "@media (max-width: 480px) {.product__badges-sale {display: none; }}",
-        ".section__header-heading {text-transform: capitalize !important;}"
+        "@media (max-width: 480px) {.product__badges-sale {display: none; }}"
       ],
       "settings": {
         "section_width": "fluid_container",
