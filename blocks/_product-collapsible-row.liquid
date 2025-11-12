@@ -30,6 +30,31 @@
           <div id="variant-ref-container" style="margin-top: 15px;">
             <strong>REF</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span>
           </div>
+          
+          {%- comment -%} Debug: Check what metafields are available {%- endcomment -%}
+          <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; font-size: 12px; border: 1px solid #ccc;">
+            <strong>DEBUG - First Variant Metafields:</strong><br>
+            {% assign first_variant = product.variants.first %}
+            Variant ID: {{ first_variant.id }}<br>
+            {% if first_variant.metafields.global.product_additional_erp_variantcode %}
+              ✅ global.product_additional_erp_variantcode: {{ first_variant.metafields.global.product_additional_erp_variantcode }}<br>
+            {% else %}
+              ❌ global.product_additional_erp_variantcode: NOT FOUND<br>
+            {% endif %}
+            
+            <strong>All Global Metafields:</strong><br>
+            {% for metafield in first_variant.metafields.global %}
+              - {{ metafield[0] }}: {{ metafield[1] }}<br>
+            {% endfor %}
+            
+            <strong>All Metafield Namespaces:</strong><br>
+            {% for namespace in first_variant.metafields %}
+              Namespace: {{ namespace[0] }}<br>
+              {% for metafield in namespace[1] %}
+                - {{ metafield[0] }}: {{ metafield[1] }}<br>
+              {% endfor %}
+            {% endfor %}
+          </div>
         {%- else -%}
           {{ 'onboarding.default_description' | t }}
         {% endif %}
@@ -51,7 +76,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to update the REF value
   function updateVariantRef(variantId) {
     const refContainer = document.getElementById('variant-ref-value');
-    if (!refContainer || !variantId) return;
+    if (!refContainer || !variantId) {
+      console.log('REF Debug: Missing container or variant ID', {refContainer, variantId});
+      return;
+    }
+    
+    console.log('REF Debug: Updating for variant ID:', variantId);
     
     // Try to get metafield from product JSON
     const productJson = document.querySelector('[data-product-json]');
@@ -60,14 +90,48 @@ document.addEventListener('DOMContentLoaded', function() {
         const product = JSON.parse(productJson.textContent);
         const variant = product.variants.find(v => v.id == variantId);
         
-        if (variant && variant.metafields && variant.metafields.global && variant.metafields.global.product_additional_erp_variantcode) {
-          refContainer.textContent = variant.metafields.global.product_additional_erp_variantcode;
+        console.log('REF Debug: Found variant:', variant);
+        console.log('REF Debug: Variant metafields:', variant ? variant.metafields : 'No variant found');
+        
+        if (variant) {
+          // Try multiple possible metafield paths
+          let erpCode = null;
+          
+          // Method 1: global.product_additional_erp_variantcode
+          if (variant.metafields && variant.metafields.global && variant.metafields.global.product_additional_erp_variantcode) {
+            erpCode = variant.metafields.global.product_additional_erp_variantcode;
+            console.log('REF Debug: Found via global.product_additional_erp_variantcode:', erpCode);
+          }
+          
+          // Method 2: Try custom namespace
+          else if (variant.metafields && variant.metafields.custom && variant.metafields.custom.product_additional_erp_variantcode) {
+            erpCode = variant.metafields.custom.product_additional_erp_variantcode;
+            console.log('REF Debug: Found via custom.product_additional_erp_variantcode:', erpCode);
+          }
+          
+          // Method 3: Check variant SKU as fallback
+          else if (variant.sku) {
+            erpCode = variant.sku;
+            console.log('REF Debug: Using SKU as fallback:', erpCode);
+          }
+          
+          if (erpCode) {
+            refContainer.textContent = erpCode;
+          } else {
+            refContainer.textContent = 'N/A';
+            console.log('REF Debug: No metafield or SKU found for variant');
+          }
         } else {
           refContainer.textContent = 'N/A';
+          console.log('REF Debug: Variant not found in product JSON');
         }
       } catch (error) {
-        console.log('Error parsing product JSON:', error);
+        console.log('REF Debug: Error parsing product JSON:', error);
+        refContainer.textContent = 'Error';
       }
+    } else {
+      console.log('REF Debug: Product JSON not found');
+      refContainer.textContent = 'No JSON';
     }
   }
   
