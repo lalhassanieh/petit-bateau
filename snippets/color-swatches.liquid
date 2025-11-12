@@ -328,14 +328,19 @@
                     endif
                   endfor
                 -%}
+                  <!-- DEBUG: Size Chart Vars -->
+                  <div style="background:#e0f7fa;color:#00796b;padding:6px 10px;font-size:12px;margin-bottom:4px;">
+                    <strong>DEBUG:</strong><br>
+                    block.settings.size_guide_page: <code>{{ block.settings.size_guide_page }}</code><br>
+                    product.metafields.custom.size_chart: <code>{{ product.metafields.custom.size_chart }}</code><br>
+                    collection_size_chart: <code>{{ collection_size_chart }}</code><br>
+                    block.settings.show_size_guide: <code>{{ block.settings.show_size_guide }}</code><br>
+                    option_name_nospace: <code>{{ option_name_nospace }}</code><br>
+                    option_size: <code>{{ option_size | join: ',' }}</code>
+                  </div>
                 <!-- DEBUG: Size Chart Logic -->
                 <div style="background:#ffe4e1;color:#c00;padding:6px 10px;font-size:12px;margin-bottom:4px;">
-                  <strong>Size Chart Debug:</strong><br>
-                  show_size_guide: {{ block.settings.show_size_guide }}<br>
-                  size_guide_page: {{ block.settings.size_guide_page }}<br>
-                  product.metafields.custom.size_chart: {{ product.metafields.custom.size_chart }}<br>
-                  collection_size_chart: {{ collection_size_chart }}<br>
-                </div>
+               
                 {% if block.settings.size_guide_page != blank
                   or product.metafields.custom.size_chart != blank
                   or collection_size_chart != ''
