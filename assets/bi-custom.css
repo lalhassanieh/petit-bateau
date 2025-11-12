@@ -459,3 +459,7 @@
   box-shadow:none;
   font-size:14px;
 }
+
+.section__header-heading {
+    text-transform: none !important;
+}
