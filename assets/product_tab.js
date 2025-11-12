@@ -57,6 +57,7 @@ const options = {
       }
       
       console.log('Updating metafield for variant:', variantId);
+      updateDebugVariant(variantId);
       
       // Try to get metafield from data attributes on variant options first
       let variantOption = document.querySelector(`option[data-variant-id="${variantId}"]`);
@@ -66,6 +67,7 @@ const options = {
         metafieldValue.textContent = erpCode;
         metafieldContainer.style.display = 'block';
         console.log('✅ Variant metafield found via data attribute:', erpCode);
+        updateDebugStatus('SUCCESS - Metafield displayed');
         return;
       }
       
@@ -104,9 +106,27 @@ const options = {
   // Immediate initialization - No waiting for DOM
   console.log('🚀 SCRIPT LOADED - Metafield system starting...');
   
+  // Update debug status immediately
+  function updateDebugStatus(message) {
+    const debugStatus = document.getElementById('debug-script-status');
+    if (debugStatus) {
+      debugStatus.textContent = message;
+      debugStatus.style.color = message.includes('SUCCESS') ? 'green' : 'orange';
+    }
+  }
+  
+  // Update debug current variant
+  function updateDebugVariant(variantId) {
+    const debugVariant = document.getElementById('debug-current-variant');
+    if (debugVariant) {
+      debugVariant.textContent = variantId || 'None';
+    }
+  }
+  
   // Simple immediate test
   setTimeout(function() {
     console.log('🔍 Testing metafield containers...');
+    updateDebugStatus('Testing containers...');
     
     const testContainer = document.getElementById('variant-metafield-content');
     const testValue = document.getElementById('variant-metafield-value');
@@ -116,6 +136,8 @@ const options = {
     
     if (testContainer && testValue) {
       console.log('✅ SUCCESS - Containers found');
+      updateDebugStatus('SUCCESS - System ready');
+      
       testValue.textContent = 'METAFIELD SYSTEM READY';
       testContainer.style.display = 'block';
       
@@ -127,6 +149,7 @@ const options = {
       setupVariantDetection();
     } else {
       console.log('❌ FAILED - Containers not found');
+      updateDebugStatus('FAILED - Containers not found');
       console.log('All elements with ID:', document.querySelectorAll('[id]'));
     }
   }, 2000);
