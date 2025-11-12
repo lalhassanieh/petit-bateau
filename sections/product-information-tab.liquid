@@ -71,71 +71,6 @@
                       {% render block %}
                     {%- when 'description' -%}
                       {{ product.description }}
-                      
-                      {%- comment -%} VISIBLE TEST - This should always be visible {%- endcomment -%}
-                      <div style="background: red; color: white; padding: 20px; margin: 20px 0; font-size: 16px; font-weight: bold;">
-                        🚨 TEST: If you see this RED BOX, the template is working! 🚨
-                      </div>
-                      
-                      {%- comment -%} METAFIELD CONTAINERS - Always visible for testing {%- endcomment -%}
-                      <div id="variant-metafield-content" class="variant-metafield-content" style="background: #e8f5e8; padding: 15px; margin: 15px 0; border: 2px solid green;">
-                        <div class="variant-metafield-wrapper">
-                          <strong>ERP Code:</strong> 
-                          <span id="variant-metafield-value" style="color: #003366; font-weight: bold;">No variant selected</span>
-                        </div>
-                      </div>
-                      
-                      {%- comment -%} DEBUG STATUS - Always visible {%- endcomment -%}
-                      <div style="background: #f0f8ff; padding: 15px; margin: 15px 0; font-size: 14px; border: 2px solid blue;">
-                        <strong>🔍 METAFIELD SYSTEM STATUS:</strong><br>
-                        Script Status: <span id="debug-script-status" style="color: orange; font-weight: bold;">Not loaded</span><br>
-                        Current Variant ID: <span id="debug-current-variant" style="color: blue; font-weight: bold;">Loading...</span><br>
-                        Container Check: variant-metafield-content ✓<br>
-                        Value Check: variant-metafield-value ✓
-                      </div>
-                      
-                      {%- comment -%} DEBUG: Check available metafields {%- endcomment -%}
-                      <div style="border: 1px solid red; padding: 10px; margin: 10px 0; font-size: 12px;">
-                        <strong>DEBUG - Available Variant Metafields:</strong><br>
-                        {% for variant in product.variants limit: 1 %}
-                          <strong>Variant {{ variant.id }}:</strong><br>
-                          {% if variant.metafields.global.product_additional_erp_variantcode %}
-                            ✅ global.product_additional_erp_variantcode: {{ variant.metafields.global.product_additional_erp_variantcode }}<br>
-                          {% else %}
-                            ❌ global.product_additional_erp_variantcode: NOT FOUND<br>
-                          {% endif %}
-                          
-                          <strong>All Global Metafields:</strong><br>
-                          {% for metafield in variant.metafields.global %}
-                            - {{ metafield[0] }}: {{ metafield[1] }}<br>
-                          {% endfor %}
-                          
-                          <strong>All Metafields:</strong><br>
-                          {% for namespace in variant.metafields %}
-                            Namespace: {{ namespace[0] }}<br>
-                            {% for metafield in namespace[1] %}
-                              - {{ metafield[0] }}: {{ metafield[1] }}<br>
-                            {% endfor %}
-                          {% endfor %}
-                        {% endfor %}
-                      </div>
-                      
-                      {%- comment -%} Dynamic variant metafield content area {%- endcomment -%}
-                      <div id="variant-metafield-content" class="variant-metafield-content mt-20 p-15 border border-color rounded-5" style="display: none;">
-                        <div class="variant-metafield-wrapper text-size">
-                          <strong class="heading-color">Ref</strong> 
-                          <span id="variant-metafield-value" class="text-color"></span>
-                        </div>
-                      </div>
-                      
-                      {%- comment -%} Simple test to verify containers exist {%- endcomment -%}
-                      <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; font-size: 12px; border: 1px solid #ccc;">
-                        <strong>DEBUG INFO:</strong><br>
-                        Container ID: variant-metafield-content ✓<br>
-                        Value ID: variant-metafield-value ✓<br>
-                        Current Variant ID: <span id="debug-current-variant">Loading...</span><br>
-                        Script Status: <span id="debug-script-status">Not loaded</span>
-                      </div>
                     {%- when 'review' -%}
                       <div id="shopify-product-reviews" data-id="{{ product.id }}">
                         {{ product.metafields.spr.reviews }}
@@ -149,19 +84,6 @@
                           {% else %}
                             {{ bk_st.content_rich }}
                           {% endif %}
-                          
-                          {%- comment -%} DEBUG: Also add to custom content mode {%- endcomment -%}
-                          <div style="background: orange; color: white; padding: 15px; margin: 15px 0; font-weight: bold;">
-                            🧡 CUSTOM CONTENT MODE DEBUG - This is the rich text content area
-                          </div>
-                          
-                          {%- comment -%} METAFIELD CONTAINERS - For custom content mode {%- endcomment -%}
-                          <div id="variant-metafield-content-custom" class="variant-metafield-content" style="background: #e8f5e8; padding: 15px; margin: 15px 0; border: 2px solid green;">
-                            <div class="variant-metafield-wrapper">
-                              <strong>ERP Code (Custom):</strong> 
-                              <span id="variant-metafield-value-custom" style="color: #003366; font-weight: bold;">No variant selected</span>
-                            </div>
-                          </div>
                         {%- when 'content_page' -%}
                           {%- if bk_st.page != blank -%}
                             {{ pages[bk_st.page].content }}
@@ -183,22 +105,6 @@
     </div>
   </div>
 {%- endif -%}
-
-<style>
-  .variant-metafield-content {
-    background-color: #f8f9fa;
-    border-color: #003366;
-    transition: all 0.3s ease;
-  }
-  
-  .variant-metafield-content:hover {
-    background-color: #e9ecef;
-  }
-  
-  .variant-metafield-wrapper {
-    color: #003366;
-  }
-</style>
 
 <script src="{{ 'product_tab.js' | asset_url }}" defer></script>
 {% schema %}
