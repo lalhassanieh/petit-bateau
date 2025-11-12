@@ -105,6 +105,15 @@
                           <span id="variant-metafield-value" class="text-color"></span>
                         </div>
                       </div>
+                      
+                      {%- comment -%} Simple test to verify containers exist {%- endcomment -%}
+                      <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; font-size: 12px; border: 1px solid #ccc;">
+                        <strong>DEBUG INFO:</strong><br>
+                        Container ID: variant-metafield-content ✓<br>
+                        Value ID: variant-metafield-value ✓<br>
+                        Current Variant ID: <span id="debug-current-variant">Loading...</span><br>
+                        Script Status: <span id="debug-script-status">Not loaded</span>
+                      </div>
                     {%- when 'review' -%}
                       <div id="shopify-product-reviews" data-id="{{ product.id }}">
                         {{ product.metafields.spr.reviews }}
