@@ -17,15 +17,15 @@ function goBack() {
   }
 }
 
-document.getElementById('openSizeGuide').onclick = () => {
-  document.getElementById('sizeGuideModal').setAttribute('aria-hidden', 'false');
-  showStep('univers-step');
-  updateNav('univers');
-};
+// document.getElementById('openSizeGuide').onclick = () => {
+//   document.getElementById('sizeGuideModal').setAttribute('aria-hidden', 'false');
+//   showStep('univers-step');
+//   updateNav('univers');
+// };
 
-document.getElementById('closeSizeGuide').onclick = () => {
-  document.getElementById('sizeGuideModal').setAttribute('aria-hidden', 'true');
-};
+// document.getElementById('closeSizeGuide').onclick = () => {
+//   document.getElementById('sizeGuideModal').setAttribute('aria-hidden', 'true');
+// };
 
 window.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') document.getElementById('sizeGuideModal').setAttribute('aria-hidden', 'true');
