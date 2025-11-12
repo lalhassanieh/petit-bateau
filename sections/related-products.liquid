@@ -73,38 +73,143 @@
         {% endif %}
       </div>
     {% endif %}
-    <product-recommendations
+    {%- liquid
+      # Get the current product's collections
+      assign parent_collection = null
+      assign related_products = null
+      assign related_count = 0
+      
+      # Find the main/parent collection (usually the first one or most specific)
+      if product.collections.size > 0
+        # Priority: use the collection with most products, or first collection as fallback
+        assign largest_collection = product.collections.first
+        assign largest_size = product.collections.first.products.size
+        
+        for collection in product.collections
+          if collection.products.size > largest_size
+            assign largest_collection = collection
+            assign largest_size = collection.products.size
+          endif
+        endfor
+        
+        assign parent_collection = largest_collection
+      endif
+      
+      # Get products from the same parent collection, excluding current product
+      if parent_collection != null
+        assign related_products = parent_collection.products | where: 'available', true
+        assign filtered_products = ''
+        assign related_count = 0
+        
+        # Filter out current product and limit results
+        for related_product in related_products
+          if related_product.id != product.id and related_count < items_to_show
+            if filtered_products == ''
+              assign filtered_products = related_product.handle
+            else
+              assign filtered_products = filtered_products | append: ',' | append: related_product.handle
+            endif
+            assign related_count = related_count | plus: 1
+          endif
+        endfor
+        
+        if filtered_products != ''
+          assign related_products_array = filtered_products | split: ','
+        else
+          assign related_products_array = null
+        endif
+      endif
+    -%}
+
+    <div
       data-section-id="{{ section.id }}"
       {% if data_free_scroll != blank %}
         data-free-scroll="{{ data_free_scroll }}"
       {% endif %}
       style="{{ col_style | strip | strip_newlines }}"
       class="products-grid__items flex flex-cols{% if column_gap < 31 %} row-gap-20 row-gap-md-30{% endif %} flex-wrap {% if section_st.items_per_row_mobile > 1 and section_st.items_per_row_mobile < 2 %} grid_scroll{% endif %}"
-      data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ items_to_show }}"
       data-arrow-centerimage="1"
     >
-      {% if recommendations.performed and recommendations.products_count > 0 %}
-        {% for recommendation in recommendations.products %}
-          {% render 'product-item',
-            card_product: recommendation,
-            section_id: section.id,
-            is_compare: false,
-            template_enable_action: true,
-            template_enable_product_vendor: true,
-            template_enable_rate: true,
-            template_enable_product_short_description: false,
-            template_enable_color_swatches: true,
-            template_enable_price: true,
-            template_enable_add_cart: true,
-            template_enable_product_badges: true,
-            indexFor: forloop.index,
-            scroll_animation: scroll_animation
-          %}
+      {% if parent_collection != null and related_products_array.size > 0 %}
+        {% comment %} Show products from same parent collection {% endcomment %}
+        {% for product_handle in related_products_array limit: items_to_show %}
+          {%- assign related_product = all_products[product_handle] -%}
+          {% if related_product.available %}
+            {% assign animate_delay = animate_delay | plus: 50 %}
+            <motion-element
+              data-motion="{{ scroll_animation }}"
+              data-motion-delay="{{ animate_delay }}"
+              {% if scroll_animation == 'none' %}
+                hold
+              {% endif %}
+              class="block"
+            >
+              {% render 'product-item',
+                card_product: related_product,
+                section_id: section.id,
+                is_compare: false,
+                template_enable_action: true,
+                template_enable_product_vendor: true,
+                template_enable_rate: true,
+                template_enable_product_short_description: false,
+                template_enable_color_swatches: true,
+                template_enable_price: true,
+                template_enable_add_cart: true,
+                template_enable_product_badges: true,
+                indexFor: forloop.index,
+                scroll_animation: scroll_animation
+              %}
+            </motion-element>
+          {% endif %}
         {% endfor %}
       {% else %}
-        <p>{{ 'sections.related_products.no_product' | t }}</p>
+        {% comment %} Fallback to Shopify's automatic recommendations {% endcomment %}
+        <product-recommendations
+          data-section-id="{{ section.id }}"
+          {% if data_free_scroll != blank %}
+            data-free-scroll="{{ data_free_scroll }}"
+          {% endif %}
+          style="{{ col_style | strip | strip_newlines }}"
+          class="w-full"
+          data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ items_to_show }}"
+          data-arrow-centerimage="1"
+        >
+          {% if recommendations.performed and recommendations.products_count > 0 %}
+            {% for recommendation in recommendations.products %}
+              {% assign animate_delay = animate_delay | plus: 50 %}
+              <motion-element
+                data-motion="{{ scroll_animation }}"
+                data-motion-delay="{{ animate_delay }}"
+                {% if scroll_animation == 'none' %}
+                  hold
+                {% endif %}
+                class="block"
+              >
+                {% render 'product-item',
+                  card_product: recommendation,
+                  section_id: section.id,
+                  is_compare: false,
+                  template_enable_action: true,
+                  template_enable_product_vendor: true,
+                  template_enable_rate: true,
+                  template_enable_product_short_description: false,
+                  template_enable_color_swatches: true,
+                  template_enable_price: true,
+                  template_enable_add_cart: true,
+                  template_enable_product_badges: true,
+                  indexFor: forloop.index,
+                  scroll_animation: scroll_animation
+                %}
+              </motion-element>
+            {% endfor %}
+          {% else %}
+            <div class="w-full text-center py-40">
+              <p>{{ 'sections.related_products.no_product' | t }}</p>
+            </div>
+          {% endif %}
+        </product-recommendations>
       {% endif %}
-    </product-recommendations>
+    </div>
   </div>
 </div>
 
