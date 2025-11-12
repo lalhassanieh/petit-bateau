@@ -443,6 +443,9 @@
         data-color-value="{{ color_value }}"
         data-value="{{ variant.title }}"
         value="{{ variant.title }}"
+        {% if variant.metafields.global.product_additional_erp_variantcode %}
+          data-variant-metafield="{{ variant.metafields.global.product_additional_erp_variantcode }}"
+        {% endif %}
         {% if variant.id == product.selected_or_first_available_variant.id %}
           selected="true"
         {% endif %}
