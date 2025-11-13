@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
           }
           
           // Method 2: Try custom namespace
-          else if (variant.metafields && variant.metafields.custom && variant.metafields.custom.product_additional_erp_variantcode) {
-            erpCode = variant.metafields.custom.product_additional_erp_variantcode;
-            console.log('REF Debug: Found via custom.product_additional_erp_variantcode:', erpCode);
+          else if (variant.metafields && variant.metafields.custom && variant.metafields.custom.product_additional_VendorItemNo) {
+            erpCode = variant.metafields.custom.product_additional_VendorItemNo;
+            console.log('REF Debug: Found via custom.product_additional_VendorItemNo:', erpCode);
           }
           
           // Method 3: Check variant SKU as fallback
