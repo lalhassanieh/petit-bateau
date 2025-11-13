@@ -293,11 +293,12 @@
                   or product.metafields.custom.size_chart != blank
                   or collection_size_chart != ''
                 %}
-                  <!-- DEBUG: Size guide should show here -->
+                  <!-- SIZE GUIDE FOUND: Rendering size guide link -->
                   <product-addons
                     data-text-header="{{ 'general.product.size_guide' | t }}"
                     data-custom-class="size_chart"
                     class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
+                    style="color: red; font-weight: bold; text-decoration: underline;"
                   >
                     {{ block.settings.size_guide_label }}
                     <div class="product-addons__content ask-question__content hidden">
@@ -312,7 +313,7 @@
                     </div>
                   </product-addons>
                 {% else %}
-                  <!-- DEBUG: No size guide content sources available -->
+                  <!-- SIZE GUIDE DEBUG: No content sources - page: {{ block.settings.size_guide_page }}, product: {{ product.metafields.custom.size_chart }}, collection: {{ collection_size_chart }} -->
                 {% endif %}
               {% else %}
                 <!-- DEBUG: show_size_guide is disabled -->
