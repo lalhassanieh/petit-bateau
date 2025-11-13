@@ -290,31 +290,17 @@
                   endfor
                 -%}
 
-                {% if block.settings.size_guide_page != blank
-                  or product.metafields.custom.size_chart != blank
-                  or collection_size_chart != ''
-                %}
-
+                {% if block.settings.size_guide_page != blank %}
                   <product-addons
                     data-text-header="{{ 'general.product.size_guide' | t }}"
                     data-custom-class="size_chart"
                     class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
-
                   >
                     {{ block.settings.size_guide_label }}
                     <div class="product-addons__content ask-question__content hidden">
-                      {% if product.metafields.custom.size_chart != blank %}
-                        {% assign size_chart_html = product.metafields.custom.size_chart %}
-                        {{ pages[size_chart_html].content }}
-                      {% elsif collection_size_chart != '' %}
-                        {{ pages[collection_size_chart].content }}
-                      {%- else -%}
-                        {{ pages[block.settings.size_guide_page].content }}
-                      {% endif %}
+                      {{ pages[block.settings.size_guide_page].content }}
                     </div>
                   </product-addons>
-                {% else %}
-
                 {% endif %}
               {% else %}
 
