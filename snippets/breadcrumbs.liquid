@@ -49,7 +49,7 @@
           {%- comment -%}Find collections by priority{%- endcomment -%}
           {%- for coll in product.collections -%}
             {%- comment -%}Age/Gender collections{%- endcomment -%}
-            {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'ans' or coll.title contains 'Nouveau-né' or coll.title contains 'mois' -%}
+            {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'Femme' or coll.title contains 'Homme' or coll.title contains 'Bébé' or coll.title contains 'ans' or coll.title contains 'Nouveau-né' or coll.title contains 'mois' -%}
               {%- assign age_coll = coll -%}
             {%- comment -%}Category collections (priority: specific > general){%- endcomment -%}
             {%- elsif coll.title contains 'Sous-vêtements et nuit' or coll.title contains 'Sous' -%}
@@ -68,7 +68,7 @@
             {%- assign is_generic = false -%}
             
             {%- comment -%}Check if this is an age collection{%- endcomment -%}
-            {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'ans' or coll.title contains 'Nouveau-né' or coll.title contains 'mois' -%}
+            {%- if coll.title contains 'Fille' or coll.title contains 'Garçon' or coll.title contains 'Femme' or coll.title contains 'Homme' or coll.title contains 'Bébé' or coll.title contains 'ans' or coll.title contains 'Nouveau-né' or coll.title contains 'mois' -%}
               {%- assign is_age = true -%}
             {%- endif -%}
             
