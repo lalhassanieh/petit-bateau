@@ -273,6 +273,10 @@
             >
 
             {%- if option_size contains option_name_nospace -%}
+              <!-- DEBUG: Size option detected: {{ option.name }} -->
+              <!-- DEBUG: Block settings show_size_guide: {{ block.settings.show_size_guide }} -->
+              <!-- DEBUG: Block settings size_guide_label: {{ block.settings.size_guide_label }} -->
+              <!-- DEBUG: Block settings size_guide_page: {{ block.settings.size_guide_page }} -->
               {%- if block.settings.show_size_guide -%}
                 {%- liquid
                   assign product_collections = product.collections
@@ -283,10 +287,13 @@
                     endif
                   endfor
                 -%}
+                <!-- DEBUG: Product size chart: {{ product.metafields.custom.size_chart }} -->
+                <!-- DEBUG: Collection size chart: {{ collection_size_chart }} -->
                 {% if block.settings.size_guide_page != blank
                   or product.metafields.custom.size_chart != blank
                   or collection_size_chart != ''
                 %}
+                  <!-- DEBUG: Size guide should show here -->
                   <product-addons
                     data-text-header="{{ 'general.product.size_guide' | t }}"
                     data-custom-class="size_chart"
@@ -304,7 +311,11 @@
                       {% endif %}
                     </div>
                   </product-addons>
+                {% else %}
+                  <!-- DEBUG: No size guide content sources available -->
                 {% endif %}
+              {% else %}
+                <!-- DEBUG: show_size_guide is disabled -->
               {%- endif -%}
 
               {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
