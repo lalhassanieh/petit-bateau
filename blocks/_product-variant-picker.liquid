@@ -12,6 +12,9 @@
     {{ block.shopify_attributes }}
     data-type="{{ block.settings.variant_type }}"
   >
+    <!-- VARIANT PICKER DEBUG: show_size_guide = {{ block.settings.show_size_guide }} -->
+    <!-- VARIANT PICKER DEBUG: size_guide_label = {{ block.settings.size_guide_label }} -->
+    <!-- VARIANT PICKER DEBUG: size_guide_page = {{ block.settings.size_guide_page }} -->
     {% if user_variants_image_group %}
       {%- render 'color-swatches', product: product, type: 'group', block: block -%}
     {% else %}
