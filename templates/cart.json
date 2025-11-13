@@ -51,7 +51,7 @@
       "type": "main-cart-items",
       "settings": {
         "section_width": "fluid_container",
-        "enable_cart_note": false,
+        "enable_cart_note": true,
         "enable_discount_code": false,
         "show_estimate_shipping": false,
         "icon_svg_1": "none",
