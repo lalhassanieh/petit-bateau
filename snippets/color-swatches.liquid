@@ -266,36 +266,7 @@
           assign op_value = product.selected_or_first_available_variant[op]
           assign option_name_nospace = option.name | replace: ' ', ''
         -%}
-        <!-- FORCE DEBUG: Always show this for every option -->
-        <div style="background: red; color: white; padding: 15px; margin: 10px 0; border: 3px solid black; font-weight: bold;">
-          <p>🔍 DEBUGGING OPTION: {{ option.name }}</p>
-          <p>Size triggers setting: [{{ settings.size_trigger }}]</p>
-          <p>Processed size_trigger: [{{ option_size | join: '|' }}]</p>
-          <p>Option name no space: [{{ option_name_nospace }}]</p>
-          <p>Block settings available: {{ block.settings.show_size_guide }}</p>
-        </div>
 
-        <!-- FORCE SIZE GUIDE TEST: This should always show -->
-        <div style="background: lime; padding: 15px; margin: 10px 0; border: 2px solid green;">
-          <strong>🧪 TESTING SIZE GUIDE COMPONENT:</strong><br>
-          <product-addons
-            data-text-header="Test Size Guide"
-            data-custom-class="size_chart"
-            class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
-            style="display: inline-block; color: blue; text-decoration: underline; font-weight: bold; margin: 10px 0;"
-          >
-            Click here - Force Test Size Guide
-            <div class="product-addons__content ask-question__content hidden">
-              <h3>Test Size Guide Content</h3>
-              <p>If you can see this popup, the product-addons component is working.</p>
-              {% if pages['size-guide'] %}
-                {{ pages['size-guide'].content }}
-              {% else %}
-                <p>size-guide page not found - Available pages: {{ pages | map: 'handle' | join: ', ' }}</p>
-              {% endif %}
-            </div>
-          </product-addons>
-        </div>
 
         <fieldset class="js product-form__input flex flex-wrap mb-25 mx-0 p-0 border-0{% if is_color_option == true %} product-form__input_color{% if settings.enable_color_swatches %} gap-20{% else %} gap-10{% endif %}{% else %} gap-10{% endif %}{% if option_size contains option_name_nospace %} product-form__input_size{% endif %}">
           <div class="form__label gap-10 w-full lh-normal flex gap-15 justify-between">
@@ -303,31 +274,11 @@
               {{- option.name }}: <span class="option_value heading-style capitalize">{{ op_value }}</span></span
             >
 
-            <!-- SIZE DEBUG START -->
-            <!-- Current Option: "{{ option.name }}" -->
-            <!-- option_name_nospace = "{{ option_name_nospace }}" -->
-            <!-- option_size array = [{{ option_size | join: ',' }}] -->
-            {%- assign contains_check = false -%}
-            {%- if option_size contains option_name_nospace -%}
-              {%- assign contains_check = true -%}
-            {%- endif -%}
-            <!-- Contains check result = {{ contains_check }} -->
-            <!-- SIZE DEBUG END -->
-            <!-- TESTING: Force show size guide for debugging -->
-            {%- if true -%}
-              <div style="background: yellow; padding: 10px; margin: 10px 0; border: 2px solid red;">
-                <strong>SIZE GUIDE TEST:</strong> This should always show
-                <br>Option: {{ option.name }}
-                <br>Size triggers: {{ option_size | join: ',' }}
-                <br>Contains check: {{ contains_check }}
-              </div>
-            {%- endif -%}
+
+
 
             {%- if option_size contains option_name_nospace -%}
-              <!-- DEBUG: Size option detected: {{ option.name }} -->
-              <!-- DEBUG: Block settings show_size_guide: {{ block.settings.show_size_guide }} -->
-              <!-- DEBUG: Block settings size_guide_label: {{ block.settings.size_guide_label }} -->
-              <!-- DEBUG: Block settings size_guide_page: {{ block.settings.size_guide_page }} -->
+
               {%- if block.settings.show_size_guide -%}
                 {%- liquid
                   assign product_collections = product.collections
@@ -338,18 +289,17 @@
                     endif
                   endfor
                 -%}
-                <!-- DEBUG: Product size chart: {{ product.metafields.custom.size_chart }} -->
-                <!-- DEBUG: Collection size chart: {{ collection_size_chart }} -->
+
                 {% if block.settings.size_guide_page != blank
                   or product.metafields.custom.size_chart != blank
                   or collection_size_chart != ''
                 %}
-                  <!-- SIZE GUIDE FOUND: Rendering size guide link -->
+
                   <product-addons
                     data-text-header="{{ 'general.product.size_guide' | t }}"
                     data-custom-class="size_chart"
                     class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
-                    style="color: red; font-weight: bold; text-decoration: underline;"
+
                   >
                     {{ block.settings.size_guide_label }}
                     <div class="product-addons__content ask-question__content hidden">
@@ -364,10 +314,10 @@
                     </div>
                   </product-addons>
                 {% else %}
-                  <!-- SIZE GUIDE DEBUG: No content sources - page: {{ block.settings.size_guide_page }}, product: {{ product.metafields.custom.size_chart }}, collection: {{ collection_size_chart }} -->
+
                 {% endif %}
               {% else %}
-                <!-- DEBUG: show_size_guide is disabled -->
+
               {%- endif -%}
 
               {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
