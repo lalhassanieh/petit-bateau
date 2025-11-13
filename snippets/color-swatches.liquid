@@ -318,6 +318,10 @@
               {{- option.name }}: <span class="option_value heading-style capitalize">{{ op_value }}</span></span
             >
             {%- if option_size contains option_name_nospace -%}
+              {%- comment -%} DEBUG: Size Guide Conditions Check {%- endcomment -%}
+              {%- comment -%} show_size_guide: {{ block.settings.show_size_guide }} {%- endcomment -%}
+              {%- comment -%} size_guide_page: {{ block.settings.size_guide_page }} {%- endcomment -%}
+              {%- comment -%} size_guide_label: {{ block.settings.size_guide_label }} {%- endcomment -%}
               {%- if block.settings.show_size_guide -%}
                 {%- liquid
                   assign product_collections = product.collections
@@ -328,6 +332,8 @@
                     endif
                   endfor
                 -%}
+                {%- comment -%} product.metafields.custom.size_chart: {{ product.metafields.custom.size_chart }} {%- endcomment -%}
+                {%- comment -%} collection_size_chart: {{ collection_size_chart }} {%- endcomment -%}
                 {% if block.settings.size_guide_page != blank
                   or product.metafields.custom.size_chart != blank
                   or collection_size_chart != ''
