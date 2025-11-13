@@ -25,21 +25,32 @@
       {% if block_st.use_product_description == true %}
         {%- if product != blank -%}
           {{ product.description }}
-          
-          {%- comment -%} Add REF with variant metafield {%- endcomment -%}
-          <div id="variant-ref-container" style="margin-top: 15px;">
-            <strong>Ref</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span>
-          </div>
+          {%- if product.selected_or_first_available_variant != blank and product.selected_or_first_available_variant.metafields != blank -%}
+            <div id="variant-ref-container" style="margin-top: 15px;">
+              <strong>Ref</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
+            </div>
+          {%- else -%}
+            <div id="variant-ref-container" style="margin-top: 15px; color: #c00;">
+              <strong>Ref</strong> <span id="variant-ref-value">N/A (variant/metafields missing)</span>
+            </div>
+          {%- endif -%}
         {%- else -%}
           {{ 'onboarding.default_description' | t }}
+          <div id="variant-ref-container" style="margin-top: 15px; color: #c00;">
+            <strong>Ref</strong> <span id="variant-ref-value">N/A (product missing)</span>
+          </div>
         {% endif %}
       {% else %}
         {{ block_st.content }}
-        
-        {%- comment -%} Add REF for custom content too {%- endcomment -%}
-        <div id="variant-ref-container" style="margin-top: 15px;">
-          <strong>REF</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span>
-        </div>
+        {%- if product != blank and product.selected_or_first_available_variant != blank and product.selected_or_first_available_variant.metafields != blank -%}
+          <div id="variant-ref-container" style="margin-top: 15px;">
+            <strong>REF</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
+          </div>
+        {%- else -%}
+          <div id="variant-ref-container" style="margin-top: 15px; color: #c00;">
+            <strong>REF</strong> <span id="variant-ref-value">N/A (product/variant/metafields missing)</span>
+          </div>
+        {%- endif -%}
       {% endif %}
     </div>
   </div>
@@ -72,10 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
           // Try multiple possible metafield paths
           let erpCode = null;
           
-          // Method 1: global.product_additional_erp_variantcode
-          if (variant.metafields && variant.metafields.global && variant.metafields.global.product_additional_erp_variantcode) {
-            erpCode = variant.metafields.global.product_additional_erp_variantcode;
-            console.log('REF Debug: Found via global.product_additional_erp_variantcode:', erpCode);
+          // Method 1: global.product_additional_VendorItemNo
+          if (variant.metafields && variant.metafields.global && variant.metafields.global.product_additional_VendorItemNo) {
+            erpCode = variant.metafields.global.product_additional_VendorItemNo;
+            console.log('REF Debug: Found via global.product_additional_VendorItemNo:', erpCode);
           }
           
           // Method 2: Try custom namespace
