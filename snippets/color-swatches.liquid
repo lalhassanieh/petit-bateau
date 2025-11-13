@@ -275,6 +275,28 @@
           <p>Block settings available: {{ block.settings.show_size_guide }}</p>
         </div>
 
+        <!-- FORCE SIZE GUIDE TEST: This should always show -->
+        <div style="background: lime; padding: 15px; margin: 10px 0; border: 2px solid green;">
+          <strong>🧪 TESTING SIZE GUIDE COMPONENT:</strong><br>
+          <product-addons
+            data-text-header="Test Size Guide"
+            data-custom-class="size_chart"
+            class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
+            style="display: inline-block; color: blue; text-decoration: underline; font-weight: bold; margin: 10px 0;"
+          >
+            Click here - Force Test Size Guide
+            <div class="product-addons__content ask-question__content hidden">
+              <h3>Test Size Guide Content</h3>
+              <p>If you can see this popup, the product-addons component is working.</p>
+              {% if pages['size-guide'] %}
+                {{ pages['size-guide'].content }}
+              {% else %}
+                <p>size-guide page not found - Available pages: {{ pages | map: 'handle' | join: ', ' }}</p>
+              {% endif %}
+            </div>
+          </product-addons>
+        </div>
+
         <fieldset class="js product-form__input flex flex-wrap mb-25 mx-0 p-0 border-0{% if is_color_option == true %} product-form__input_color{% if settings.enable_color_swatches %} gap-20{% else %} gap-10{% endif %}{% else %} gap-10{% endif %}{% if option_size contains option_name_nospace %} product-form__input_size{% endif %}">
           <div class="form__label gap-10 w-full lh-normal flex gap-15 justify-between">
             <span>
