@@ -382,6 +382,20 @@
   fill: #002e5e;
 }
 
+/*# Added by Carla*/
+.button_buy-now .product_submit_button {
+  background-color: #ffce00;
+  color: #002e5e;
+  border: none;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+.section__header-heading {
+  text-transform: none !important;
+}
+
+/*# END Added by Carla*/
 @media (min-width: 1024px) {
   #topbar .text-slide {
     width: auto !important;
@@ -450,16 +464,3 @@
     width: 100%;
   }
 }/*# sourceMappingURL=bi-custom.css.map */
-
-
-.button_buy-now .product_submit_button{
-  background-color: #ffce00;
-  color:#002e5e;
-  border:none;
-  box-shadow:none;
-  font-size:14px;
-}
-
-.section__header-heading {
-    text-transform: none !important;
-}
