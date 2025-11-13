@@ -27,6 +27,7 @@
           {{ product.description }}
           
           {%- comment -%} Add REF with variant metafield {%- endcomment -%}
+          {%- comment -%} Debug: {{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo }} {%- endcomment -%}
           <div id="variant-ref-container" style="margin-top: 15px;">
             <strong>Ref</strong> <span id="variant-vendor-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
           </div>
@@ -63,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (productJson) {
       try {
         const product = JSON.parse(productJson.textContent);
+        console.log('REF Debug: Full product JSON:', product);
+        console.log('REF Debug: Product variants array:', product.variants);
         const variant = product.variants.find(v => v.id == variantId);
         
         console.log('REF Debug: Found variant:', variant);
