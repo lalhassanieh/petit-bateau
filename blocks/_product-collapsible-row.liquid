@@ -68,37 +68,79 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log('REF Debug: Found variant:', variant);
         console.log('REF Debug: Variant metafields:', variant ? variant.metafields : 'No variant found');
+        console.log('REF Debug: Full variant object:', variant);
         
         if (variant) {
           // Try multiple possible metafield paths
           let erpCode = null;
           let vendorCode = null;
           
-          // Method 1: global.product_additional_erp_variantcode
-          if (variant.metafields && variant.metafields.global && variant.metafields.global.product_additional_erp_variantcode) {
+          // Check if metafields exist at all
+          console.log('REF Debug: Variant has metafields?', variant.metafields ? 'Yes' : 'No');
+          if (variant.metafields) {
+            console.log('REF Debug: Available metafield namespaces:', Object.keys(variant.metafields));
+          }
+          
+          // Method 1: Try different possible paths for ERP code
+          if (variant.metafields?.global?.product_additional_erp_variantcode) {
             erpCode = variant.metafields.global.product_additional_erp_variantcode;
-            console.log('REF Debug: Found via global.product_additional_erp_variantcode:', erpCode);
-          }
-          
-          // Method 2: Try custom namespace
-          else if (variant.metafields && variant.metafields.custom && variant.metafields.custom.product_additional_erp_variantcode) {
+            console.log('REF Debug: Found ERP via global.product_additional_erp_variantcode:', erpCode);
+          } else if (variant.metafields?.custom?.product_additional_erp_variantcode) {
             erpCode = variant.metafields.custom.product_additional_erp_variantcode;
-            console.log('REF Debug: Found via custom.product_additional_erp_variantcode:', erpCode);
-          }
-          
-          // Method 3: Check variant SKU as fallback
-          else if (variant.sku) {
+            console.log('REF Debug: Found ERP via custom.product_additional_erp_variantcode:', erpCode);
+          } else if (variant.metafields?.app?.product_additional_erp_variantcode) {
+            erpCode = variant.metafields.app.product_additional_erp_variantcode;
+            console.log('REF Debug: Found ERP via app.product_additional_erp_variantcode:', erpCode);
+          } else if (variant.sku) {
             erpCode = variant.sku;
-            console.log('REF Debug: Using SKU as fallback:', erpCode);
+            console.log('REF Debug: Using SKU as ERP fallback:', erpCode);
           }
           
-          // Get VendorItemNo metafield
-          if (variant.metafields && variant.metafields.global && variant.metafields.global.product_additional_VendorItemNo) {
+          // Method 2: Try different possible paths for VendorItemNo
+          if (variant.metafields?.global?.product_additional_VendorItemNo) {
             vendorCode = variant.metafields.global.product_additional_VendorItemNo;
-            console.log('REF Debug: Found VendorItemNo:', vendorCode);
-          } else if (variant.metafields && variant.metafields.custom && variant.metafields.custom.product_additional_VendorItemNo) {
+            console.log('REF Debug: Found Vendor via global.product_additional_VendorItemNo:', vendorCode);
+          } else if (variant.metafields?.custom?.product_additional_VendorItemNo) {
             vendorCode = variant.metafields.custom.product_additional_VendorItemNo;
-            console.log('REF Debug: Found VendorItemNo via custom:', vendorCode);
+            console.log('REF Debug: Found Vendor via custom.product_additional_VendorItemNo:', vendorCode);
+          } else if (variant.metafields?.app?.product_additional_VendorItemNo) {
+            vendorCode = variant.metafields.app.product_additional_VendorItemNo;
+            console.log('REF Debug: Found Vendor via app.product_additional_VendorItemNo:', vendorCode);
+          }
+          
+          // Try alternative approaches - check if metafields are stored as strings or in different formats
+          if (!erpCode && variant.metafields) {
+            // Search through all metafield namespaces for anything containing 'erp' or 'variant'
+            for (const [namespace, fields] of Object.entries(variant.metafields)) {
+              console.log(`REF Debug: Checking namespace ${namespace}:`, fields);
+              if (fields && typeof fields === 'object') {
+                for (const [key, value] of Object.entries(fields)) {
+                  console.log(`REF Debug: Field ${namespace}.${key}:`, value);
+                  if (key.toLowerCase().includes('erp') || key.toLowerCase().includes('variant')) {
+                    erpCode = value;
+                    console.log(`REF Debug: Found ERP in ${namespace}.${key}:`, erpCode);
+                    break;
+                  }
+                }
+              }
+              if (erpCode) break;
+            }
+          }
+          
+          if (!vendorCode && variant.metafields) {
+            // Search for vendor-related metafields
+            for (const [namespace, fields] of Object.entries(variant.metafields)) {
+              if (fields && typeof fields === 'object') {
+                for (const [key, value] of Object.entries(fields)) {
+                  if (key.toLowerCase().includes('vendor') || key.toLowerCase().includes('item')) {
+                    vendorCode = value;
+                    console.log(`REF Debug: Found Vendor in ${namespace}.${key}:`, vendorCode);
+                    break;
+                  }
+                }
+              }
+              if (vendorCode) break;
+            }
           }
           
           // Update both containers
