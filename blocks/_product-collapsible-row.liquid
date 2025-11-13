@@ -28,7 +28,7 @@
           
           {%- comment -%} Add REF with variant metafield {%- endcomment -%}
           <div id="variant-ref-container" style="margin-top: 15px;">
-            <strong>Ref</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span> - <span id="variant-vendor-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
+            <strong>Ref</strong> <span id="variant-vendor-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
           </div>
         {%- else -%}
           {{ 'onboarding.default_description' | t }}
@@ -38,7 +38,7 @@
         
         {%- comment -%} Add REF for custom content too {%- endcomment -%}
         <div id="variant-ref-container" style="margin-top: 15px;">
-          <strong>REF</strong> <span id="variant-ref-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_erp_variantcode | default: 'N/A' }}</span> - <span id="variant-vendor-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
+          <strong>REF</strong> <span id="variant-vendor-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
         </div>
       {% endif %}
     </div>
@@ -50,10 +50,9 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Function to update the REF value
   function updateVariantRef(variantId) {
-    const refContainer = document.getElementById('variant-ref-value');
     const vendorContainer = document.getElementById('variant-vendor-value');
-    if (!refContainer || !vendorContainer || !variantId) {
-      console.log('REF Debug: Missing container or variant ID', {refContainer, vendorContainer, variantId});
+    if (!vendorContainer || !variantId) {
+      console.log('REF Debug: Missing container or variant ID', {vendorContainer, variantId});
       return;
     }
     
@@ -72,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (variant) {
           // Try multiple possible metafield paths
-          let erpCode = null;
           let vendorCode = null;
           
           // Check if metafields exist at all
@@ -81,22 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('REF Debug: Available metafield namespaces:', Object.keys(variant.metafields));
           }
           
-          // Method 1: Try different possible paths for ERP code
-          if (variant.metafields?.global?.product_additional_erp_variantcode) {
-            erpCode = variant.metafields.global.product_additional_erp_variantcode;
-            console.log('REF Debug: Found ERP via global.product_additional_erp_variantcode:', erpCode);
-          } else if (variant.metafields?.custom?.product_additional_erp_variantcode) {
-            erpCode = variant.metafields.custom.product_additional_erp_variantcode;
-            console.log('REF Debug: Found ERP via custom.product_additional_erp_variantcode:', erpCode);
-          } else if (variant.metafields?.app?.product_additional_erp_variantcode) {
-            erpCode = variant.metafields.app.product_additional_erp_variantcode;
-            console.log('REF Debug: Found ERP via app.product_additional_erp_variantcode:', erpCode);
-          } else if (variant.sku) {
-            erpCode = variant.sku;
-            console.log('REF Debug: Using SKU as ERP fallback:', erpCode);
-          }
-          
-          // Method 2: Try different possible paths for VendorItemNo
+          // Try different possible paths for VendorItemNo
           if (variant.metafields?.global?.product_additional_VendorItemNo) {
             vendorCode = variant.metafields.global.product_additional_VendorItemNo;
             console.log('REF Debug: Found Vendor via global.product_additional_VendorItemNo:', vendorCode);
@@ -106,25 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
           } else if (variant.metafields?.app?.product_additional_VendorItemNo) {
             vendorCode = variant.metafields.app.product_additional_VendorItemNo;
             console.log('REF Debug: Found Vendor via app.product_additional_VendorItemNo:', vendorCode);
-          }
-          
-          // Try alternative approaches - check if metafields are stored as strings or in different formats
-          if (!erpCode && variant.metafields) {
-            // Search through all metafield namespaces for anything containing 'erp' or 'variant'
-            for (const [namespace, fields] of Object.entries(variant.metafields)) {
-              console.log(`REF Debug: Checking namespace ${namespace}:`, fields);
-              if (fields && typeof fields === 'object') {
-                for (const [key, value] of Object.entries(fields)) {
-                  console.log(`REF Debug: Field ${namespace}.${key}:`, value);
-                  if (key.toLowerCase().includes('erp') || key.toLowerCase().includes('variant')) {
-                    erpCode = value;
-                    console.log(`REF Debug: Found ERP in ${namespace}.${key}:`, erpCode);
-                    break;
-                  }
-                }
-              }
-              if (erpCode) break;
-            }
           }
           
           if (!vendorCode && variant.metafields) {
@@ -143,14 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
           }
           
-          // Update both containers
-          if (erpCode) {
-            refContainer.textContent = erpCode;
-          } else {
-            refContainer.textContent = 'N/A';
-            console.log('REF Debug: No metafield or SKU found for variant');
-          }
-          
+          // Update vendor container
           if (vendorCode) {
             vendorContainer.textContent = vendorCode;
           } else {
@@ -158,18 +115,15 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('REF Debug: No VendorItemNo found for variant');
           }
         } else {
-          refContainer.textContent = 'N/A';
           vendorContainer.textContent = 'N/A';
           console.log('REF Debug: Variant not found in product JSON');
         }
       } catch (error) {
         console.log('REF Debug: Error parsing product JSON:', error);
-        refContainer.textContent = 'Error';
         vendorContainer.textContent = 'Error';
       }
     } else {
       console.log('REF Debug: Product JSON not found');
-      refContainer.textContent = 'No JSON';
       vendorContainer.textContent = 'No JSON';
     }
   }
