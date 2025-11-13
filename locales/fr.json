@@ -146,8 +146,8 @@
       "heading_delivery": "Informations de livraison",
       "heading_guarantee": "Jusqu'à 30 jours de garantie",
       "note": {
-        "title": "Ajouter une note de commande ",
-        "placeholder": "Comment pouvons-nous vous aider ?"
+        "title": "Souhaitez-vous un emballage cadeau gratuit ? Indiquez simplement dans les commentaires le ou les produits que vous souhaitez faire emballer. ",
+        "placeholder": ""
       },
       "gift": {
         "title": "Ajouter un cadeau",
