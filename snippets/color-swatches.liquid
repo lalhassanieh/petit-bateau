@@ -272,6 +272,9 @@
               {{- option.name }}: <span class="option_value heading-style capitalize">{{ op_value }}</span></span
             >
 
+            <!-- SIZE DEBUG: option_name_nospace = "{{ option_name_nospace }}" -->
+            <!-- SIZE DEBUG: option_size array = {{ option_size | join: ',' }} -->
+            <!-- SIZE DEBUG: Contains check = {{ option_size contains option_name_nospace }} -->
             {%- if option_size contains option_name_nospace -%}
               <!-- DEBUG: Size option detected: {{ option.name }} -->
               <!-- DEBUG: Block settings show_size_guide: {{ block.settings.show_size_guide }} -->
