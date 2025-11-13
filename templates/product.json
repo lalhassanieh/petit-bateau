@@ -274,7 +274,7 @@
         "color_scheme": "",
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": false,
-        "desktop_media_width": 59,
+        "desktop_media_width": 60,
         "desktop_layout": "grid_2_column",
         "image_zoom": "open_lightbox",
         "enable_video_looping": true,
