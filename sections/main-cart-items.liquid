@@ -737,7 +737,7 @@
                       placeholder="{{- 'general.cart.note.placeholder' | t -}}"
                     >{{ cart.note }}</textarea>
                     <label class="field__label" for="cart">
-                      {{ 'general.cart.note.placeholder' | t }}
+                      {% comment %} {{ 'general.cart.note.placeholder' | t }} {% endcomment %}
                     </label>
                   </div>
                 </cart-note>
