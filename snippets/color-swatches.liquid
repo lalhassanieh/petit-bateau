@@ -94,7 +94,7 @@
             <span class="tooltip-content invisible rounded-3 absolute pointer-none">{{ value }}</span>
           </div>
         {%- endfor -%}
-        {% if limit_color != "default" and color_left > 0 and is_compare != true  %}
+        {% if limit_color != 'default' and color_left > 0 and is_compare != true %}
           <span class="show_color_swatch pointer"> + {{ color_left }} </span>
         {% endif %}
       {%- endif -%}
@@ -155,7 +155,7 @@
           endfor
           assign op = 'option' | append: option.position
           assign op_value = product.selected_or_first_available_variant[op]
-          assign option_name_nospace = option.name | replace: ' ' , ''
+          assign option_name_nospace = option.name | replace: ' ', ''
         -%}
         <fieldset class="product-form__input product-form__input--dropdown flex flex-wrap gap-15 row-gap-0 mb-22 relative p-0 border-0 m-0">
           <div class="flex align-center gap-15 flex-wrap w-full justify-between row-gap-0">
@@ -170,8 +170,49 @@
             </div>
 
             {%- if option_size contains option_name_nospace -%}
-              {%- comment -%} Add Petit Bateau Style Size Guide Modal {%- endcomment -%}
-              {% render 'size-guide-modal' %}
+              {%- if block.settings.show_size_guide -%}
+                {%- liquid
+                  assign product_collections = product.collections
+                  assign collection_size_chart = ''
+                  for productCollection in product_collections
+                    if productCollection.metafields.custom.size_chart != blank
+                      assign collection_size_chart = productCollection.metafields.custom.size_chart
+                    endif
+                  endfor
+                -%}
+                {% if block.settings.size_guide_page != blank
+                  or product.metafields.custom.size_chart != blank
+                  or collection_size_chart != ''
+                %}
+                  <product-addons
+                    data-text-header="{{ 'general.product.size_guide' | t }}"
+                    data-custom-class="size_chart"
+                    class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
+                  >
+                    {{ block.settings.size_guide_label }}
+                    <div class="product-addons__content ask-question__content hidden">
+                      {% if product.metafields.custom.size_chart != blank %}
+                        {% assign size_chart_html = product.metafields.custom.size_chart %}
+                        {{ pages[size_chart_html].content }}
+                      {% elsif collection_size_chart != '' %}
+                        {{ pages[collection_size_chart].content }}
+                      {%- else -%}
+                        {{ pages[block.settings.size_guide_page].content }}
+                      {% endif %}
+                    </div>
+                  </product-addons>
+                {% endif %}
+              {%- endif -%}
+              
+              {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
+              {% liquid
+                assign wishlist = pages.wishlist
+                assign action_when_click_added_wishlist = settings.action_when_click_added_wishlist
+                if wishlist == empty
+                  assign action_when_click_added_wishlist = 'remove'
+                endif
+              %}
+            
             {%- endif -%}
           </div>
           <swatch-dropdown
@@ -223,7 +264,7 @@
           endfor
           assign op = 'option' | append: option.position
           assign op_value = product.selected_or_first_available_variant[op]
-          assign option_name_nospace = option.name | replace: ' ' , ''
+          assign option_name_nospace = option.name | replace: ' ', ''
         -%}
         <fieldset class="js product-form__input flex flex-wrap mb-25 mx-0 p-0 border-0{% if is_color_option == true %} product-form__input_color{% if settings.enable_color_swatches %} gap-20{% else %} gap-10{% endif %}{% else %} gap-10{% endif %}{% if option_size contains option_name_nospace %} product-form__input_size{% endif %}">
           <div class="form__label gap-10 w-full lh-normal flex gap-15 justify-between">
@@ -232,8 +273,76 @@
             >
 
             {%- if option_size contains option_name_nospace -%}
-              {%- comment -%} Add Petit Bateau Style Size Guide Modal {%- endcomment -%}
-              {% render 'size-guide-modal' %}
+              <!-- DEBUG: Size option detected: {{ option.name }} -->
+              <!-- DEBUG: Block settings show_size_guide: {{ block.settings.show_size_guide }} -->
+              <!-- DEBUG: Block settings size_guide_label: {{ block.settings.size_guide_label }} -->
+              <!-- DEBUG: Block settings size_guide_page: {{ block.settings.size_guide_page }} -->
+              {%- if block.settings.show_size_guide -%}
+                {%- liquid
+                  assign product_collections = product.collections
+                  assign collection_size_chart = ''
+                  for productCollection in product_collections
+                    if productCollection.metafields.custom.size_chart != blank
+                      assign collection_size_chart = productCollection.metafields.custom.size_chart
+                    endif
+                  endfor
+                -%}
+                <!-- DEBUG: Product size chart: {{ product.metafields.custom.size_chart }} -->
+                <!-- DEBUG: Collection size chart: {{ collection_size_chart }} -->
+                {% if block.settings.size_guide_page != blank
+                  or product.metafields.custom.size_chart != blank
+                  or collection_size_chart != ''
+                %}
+                  <!-- DEBUG: Size guide should show here -->
+                  <product-addons
+                    data-text-header="{{ 'general.product.size_guide' | t }}"
+                    data-custom-class="size_chart"
+                    class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
+                  >
+                    {{ block.settings.size_guide_label }}
+                    <div class="product-addons__content ask-question__content hidden">
+                      {% if product.metafields.custom.size_chart != blank %}
+                        {% assign size_chart_html = product.metafields.custom.size_chart %}
+                        {{ pages[size_chart_html].content }}
+                      {% elsif collection_size_chart != '' %}
+                        {{ pages[collection_size_chart].content }}
+                      {%- else -%}
+                        {{ pages[block.settings.size_guide_page].content }}
+                      {% endif %}
+                    </div>
+                  </product-addons>
+                {% else %}
+                  <!-- DEBUG: No size guide content sources available -->
+                {% endif %}
+              {% else %}
+                <!-- DEBUG: show_size_guide is disabled -->
+              {%- endif -%}
+
+              {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
+              {% liquid
+                assign wishlist = pages.wishlist
+                assign action_when_click_added_wishlist = settings.action_when_click_added_wishlist
+                if wishlist == empty
+                  assign action_when_click_added_wishlist = 'remove'
+                endif
+              %}
+              <div class="wishlist-section mt-15">
+                <button-wishlist
+                  tabindex="0"
+                  class="wishlist-button flex align-center gap-10 pointer text-color-primary"
+                  data-product-id="{{ product.id }}"
+                  data-action="{{ action_when_click_added_wishlist }}"
+                  data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
+                  data-tooltip-add="{{ 'products.product.actions.wishlist.add' | t }}"
+                  data-tooltip-redirect="{{ 'products.product.actions.wishlist.redirect' | t }}"
+                  style="background: none; border: none; padding: 0; font-size: 14px;"
+                >
+                  <svg width="16" height="15" fill="none" style="color: #003366;">
+                    <use href="#icon-wishlist" />
+                  </svg>
+                  <span style="color: #003366;">Ajouter à ma wishlist</span>
+                </button-wishlist>
+              </div>
             {%- endif -%}
           </div>
           {% render 'product-variant-options',
@@ -280,7 +389,7 @@
           endfor
           assign op = 'option' | append: option.position
           assign op_value = product.selected_or_first_available_variant[op]
-          assign option_name_nospace = option.name | replace: ' ' , ''
+          assign option_name_nospace = option.name | replace: ' ', ''
         -%}
         <fieldset class="js product-form__input flex flex-wrap mb-20 mx-0 p-0 border-0{% if is_color_option == true %} product-form__input_color gap-20{% else %} gap-10{% endif %}{% if option_size contains option_name_nospace %} product-form__input_size{% endif %}">
           <div class="form__label gap-10 w-full lh-normal flex gap-15 justify-between">
@@ -288,6 +397,10 @@
               {{- option.name }}: <span class="option_value heading-style capitalize">{{ op_value }}</span></span
             >
             {%- if option_size contains option_name_nospace -%}
+              {%- comment -%} DEBUG: Size Guide Conditions Check {%- endcomment -%}
+              {%- comment -%} show_size_guide: {{ block.settings.show_size_guide }} {%- endcomment -%}
+              {%- comment -%} size_guide_page: {{ block.settings.size_guide_page }} {%- endcomment -%}
+              {%- comment -%} size_guide_label: {{ block.settings.size_guide_label }} {%- endcomment -%}
               {%- if block.settings.show_size_guide -%}
                 {%- liquid
                   assign product_collections = product.collections
@@ -298,6 +411,8 @@
                     endif
                   endfor
                 -%}
+                {%- comment -%} product.metafields.custom.size_chart: {{ product.metafields.custom.size_chart }} {%- endcomment -%}
+                {%- comment -%} collection_size_chart: {{ collection_size_chart }} {%- endcomment -%}
                 {% if block.settings.size_guide_page != blank
                   or product.metafields.custom.size_chart != blank
                   or collection_size_chart != ''
@@ -319,6 +434,32 @@
                   </product-addons>
                 {% endif %}
               {%- endif -%}
+
+              {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
+              {% liquid
+                assign wishlist = pages.wishlist
+                assign action_when_click_added_wishlist = settings.action_when_click_added_wishlist
+                if wishlist == empty
+                  assign action_when_click_added_wishlist = 'remove'
+                endif
+              %}
+              <div class="wishlist-section mt-15">
+                <button-wishlist
+                  tabindex="0"
+                  class="wishlist-button flex align-center gap-10 pointer text-color-primary"
+                  data-product-id="{{ product.id }}"
+                  data-action="{{ action_when_click_added_wishlist }}"
+                  data-tooltip-remove="{{ 'products.product.actions.wishlist.remove' | t }}"
+                  data-tooltip-add="{{ 'products.product.actions.wishlist.add' | t }}"
+                  data-tooltip-redirect="{{ 'products.product.actions.wishlist.redirect' | t }}"
+                  style="background: none; border: none; padding: 0; font-size: 14px;"
+                >
+                  <svg width="16" height="15" fill="none" style="color: #003366;">
+                    <use href="#icon-wishlist" />
+                  </svg>
+                  <span style="color: #003366;">Ajouter à ma wishlist</span>
+                </button-wishlist>
+              </div>
             {%- endif -%}
           </div>
           {% render 'product-variant-options',
@@ -387,6 +528,9 @@
         data-color-value="{{ color_value }}"
         data-value="{{ variant.title }}"
         value="{{ variant.title }}"
+        {% if variant.metafields.global.product_additional_erp_variantcode %}
+          data-variant-metafield="{{ variant.metafields.global.product_additional_erp_variantcode }}"
+        {% endif %}
         {% if variant.id == product.selected_or_first_available_variant.id %}
           selected="true"
         {% endif %}
