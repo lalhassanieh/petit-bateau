@@ -35,11 +35,6 @@
         {% endif %}
       {% else %}
         {{ block_st.content }}
-        
-        {%- comment -%} Add REF for custom content too {%- endcomment -%}
-        <div id="variant-ref-container" style="margin-top: 15px;">
-          <strong>REF</strong> <span id="variant-vendor-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
-        </div>
       {% endif %}
     </div>
   </div>
