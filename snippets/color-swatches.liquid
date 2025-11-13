@@ -258,31 +258,17 @@
 
             {%- if option_size contains option_name_nospace -%}
 
-              {%- if block.settings.show_size_guide -%}
-                {%- liquid
-                  assign product_collections = product.collections
-                  assign collection_size_chart = ''
-                  for productCollection in product_collections
-                    if productCollection.metafields.custom.size_chart != blank
-                      assign collection_size_chart = productCollection.metafields.custom.size_chart
-                    endif
-                  endfor
-                -%}
-
-                {% if block.settings.size_guide_page != blank %}
-                  <product-addons
-                    data-text-header="{{ 'general.product.size_guide' | t }}"
-                    data-custom-class="size_chart"
-                    class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
-                  >
-                    {{ block.settings.size_guide_label }}
-                    <div class="product-addons__content ask-question__content hidden">
-                      {{ pages[block.settings.size_guide_page].content }}
-                    </div>
-                  </product-addons>
-                {% endif %}
-              {% else %}
-
+              {%- if block.settings.show_size_guide and block.settings.size_guide_page != blank -%}
+                <product-addons
+                  data-text-header="{{ 'general.product.size_guide' | t }}"
+                  data-custom-class="size_chart"
+                  class="product-addons__ask-question pointer underline hover-heading-color transition skeleton-loading"
+                >
+                  {{ block.settings.size_guide_label }}
+                  <div class="product-addons__content ask-question__content hidden">
+                    {{ pages[block.settings.size_guide_page].content }}
+                  </div>
+                </product-addons>
               {%- endif -%}
 
               {%- comment -%} Add Wishlist after Size Guide {%- endcomment -%}
