@@ -100,6 +100,7 @@
         ".back-to-top span {background-color: #002e5e;}",
         ".footer-block:nth-child(5),.footer-block:nth-child(6),.footer-block:nth-child(7) {padding-top: 2rem; margin-top: 2rem; border-top: 0.1rem solid #ebebeb;}",
         "social-icon {margin-top: -5px;}",
+        ".footer-block:nth-child(1) .list-social {display: none;}",
         "@media screen and (max-width: 767px) {.footer-block:nth-child(5), .footer-block:nth-child(6), .footer-block:nth-child(7) {border-top: 0.1rem solid transparent; }}"
       ],
       "settings": {
