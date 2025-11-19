@@ -226,6 +226,7 @@
         },
         "complementary_products_Wip9YG": {
           "type": "_product-complementary-products",
+          "disabled": true,
           "settings": {
             "heading": "Pairs well with",
             "product_list_limit": 10,
