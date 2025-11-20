@@ -16,6 +16,14 @@
       assign is_size_option = true
       break
     endif
+    # Check for T-sizes (T0, T1, T2, etc.)
+    if val_lower contains 't' and val_lower != 'xs' and val_lower != 'xl' and val_lower != 'xxl' and val_lower != 'xxxl' and val_lower != '3xl'
+      assign t_number = val_lower | replace: 't', '' | plus: 0
+      if t_number >= 0
+        assign is_size_option = true
+        break
+      endif
+    endif
     assign val_number = val | plus: 0
     if val_number > 0
       assign is_size_option = true
