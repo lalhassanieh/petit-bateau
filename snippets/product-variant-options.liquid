@@ -35,8 +35,24 @@
     for val in option.values
       assign val_lower = val | downcase | strip
       
-      # Check for range sizes FIRST (like 3-6M, 12-18M, 24-36M)
-      if val_lower contains '-'
+      # Check for T-sizes FIRST (T0, T1, T2, etc.)
+      if val_lower contains 't' and val_lower != 'xs' and val_lower != 'xl' and val_lower != 'xxl' and val_lower != 'xxxl' and val_lower != '3xl'
+        assign t_number = val_lower | replace: 't', '' | plus: 0
+        if t_number >= 0
+          if numerical_sizes == ''
+            assign numerical_sizes = val | append: ':' | append: t_number
+          else
+            assign numerical_sizes = numerical_sizes | append: ',' | append: val | append: ':' | append: t_number
+          endif
+        else
+          if other_sizes == ''
+            assign other_sizes = val
+          else
+            assign other_sizes = other_sizes | append: ',' | append: val
+          endif
+        endif
+      # Check for range sizes (like 3-6M, 12-18M, 24-36M)
+      elsif val_lower contains '-'
         assign first_number = val_lower | split: '-' | first | plus: 0
         if first_number > 0
           if range_sizes == ''
@@ -119,12 +135,12 @@
       endif
     endfor
     
-    # Sort numerical sizes (3M, 6M, 12M, etc.)
+    # Sort numerical sizes (T0, T1, T2, 3M, 6M, 12M, etc.)
     assign sorted_numerical = ''
     if numerical_sizes != ''
       assign num_array = numerical_sizes | split: ','
-      # Sort by extracting numbers and ordering them
-      for i in (1..48)
+      # Sort by extracting numbers and ordering them (starting from 0 for T0)
+      for i in (0..48)
         for item in num_array
           assign parts = item | split: ':'
           assign item_number = parts[1] | plus: 0
