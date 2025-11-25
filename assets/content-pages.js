@@ -76,19 +76,19 @@ function initReadMore() {
 }
 
 function setupAccordion(accordionClass) {
-  document.querySelectorAll(accordionClass).forEach(function(button) {
-    button.addEventListener('click', function() {
-      this.classList.toggle('open');
-
-      var content = this.nextElementSibling;
-
-      if (this.classList.contains('open')) {
-        content.style.maxHeight = content.scrollHeight + 'px'; 
-      } else {
-        content.style.maxHeight = '0';
-      }
-    });
+  document.querySelectorAll('.accordion').forEach(function(button) {
+  button.addEventListener('click', function() {
+    this.classList.toggle('is-open');
+    
+    var content = this.nextElementSibling;
+    if (this.classList.contains('is-open')) {
+      content.style.maxHeight = content.scrollHeight + 'px'; 
+    } else {
+      content.style.maxHeight = '0'; 
+    }
   });
+});
+
 }
 
 
