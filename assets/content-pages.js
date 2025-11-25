@@ -28,26 +28,32 @@ function initReadMore() {
   var btn  = document.querySelector(".read-more");
   if (!text || !btn) return;
 
-  if (window.innerWidth > 1023) {
-    btn.style.display = "none";
-    text.style.maxHeight = "none";
-    return;
-  }
+  function setupReadMore() {
+    var isMobile = window.innerWidth <= 1023;
 
-  requestAnimationFrame(function () {
+    text.style.maxHeight = "none";
+    text.style.overflow  = "visible";
+    btn.style.display    = "none";
+    btn.textContent      = "lire plus";
+
+    if (!isMobile) return;
+
     var fullHeight = text.scrollHeight;
-    if (!fullHeight || fullHeight < 150) {
-      btn.style.display = "none";
+
+    if (!fullHeight || fullHeight < 140) {
       return;
     }
 
-    var collapsedHeight = fullHeight * 0.5;
+    var collapsedHeight = 140; 
     text.style.maxHeight = collapsedHeight + "px";
-    btn.style.display = "block";
-    btn.textContent = "lire plus";
+    text.style.overflow  = "hidden";
+    btn.style.display    = "block";
+
+    var newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+    btn = newBtn;
 
     var expanded = false;
-
     btn.addEventListener("click", function (e) {
       e.preventDefault();
       expanded = !expanded;
@@ -60,6 +66,12 @@ function initReadMore() {
         btn.textContent = "lire plus";
       }
     });
+  }
+
+  requestAnimationFrame(setupReadMore);
+
+  window.addEventListener("resize", function () {
+    setupReadMore();
   });
 }
 
