@@ -1,15 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
- 
+function initSwiperSlider() {
   var sliderEl = document.querySelector(".swiper-pleinpoint");
-  if (!sliderEl) {
-    console.warn("Swiper: .swiper-pleinpoint not found on this page.");
-    return;
-  }
-
-  if (typeof Swiper === "undefined") {
-    console.error("Swiper is not loaded. Check swiper-bundle.min.js include in theme.liquid.");
-    return;
-  }
 
   var swiper = new Swiper(".swiper-pleinpoint", {
     loop: true,
@@ -33,6 +23,44 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  console.log("Swiper initialized:", swiper);
-});
+}
 
+
+function initReadMore() {
+  var text = document.getElementById("rmjs-1");
+  var btn = document.querySelector(".read-more");
+
+  if (!text || !btn) return;
+
+  if (window.innerWidth > 1023) return;
+
+  var fullHeight = text.scrollHeight;
+
+  var collapsedHeight = fullHeight * 0.5;
+
+  text.style.maxHeight = collapsedHeight + "px";
+  text.style.overflow = "hidden";
+  btn.style.display = "block";
+
+  var expanded = false;
+
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    if (!expanded) {
+      text.style.maxHeight = fullHeight + "px";
+      btn.textContent = "lire moins";
+    } else {
+      text.style.maxHeight = collapsedHeight + "px";
+      btn.textContent = "lire plus";
+    }
+
+    expanded = !expanded;
+  });
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  initSwiperSlider();
+  initReadMore();
+});
