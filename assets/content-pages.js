@@ -75,7 +75,30 @@ function initReadMore() {
   });
 }
 
+function setupAccordion(accordionClass) {
+  document.querySelectorAll(accordionClass).forEach(function(button) {
+    button.addEventListener('click', function() {
+      // Toggle the 'open' class to expand/collapse the content
+      this.classList.toggle('open');
+
+      // Get the content of the accordion
+      var content = this.nextElementSibling;
+
+      // Toggle the max-height for smooth expand/collapse
+      if (this.classList.contains('open')) {
+        content.style.maxHeight = content.scrollHeight + 'px'; // Expand the content
+      } else {
+        content.style.maxHeight = '0'; // Collapse the content
+      }
+    });
+  });
+}
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
   initSwiperSlider();
   initReadMore();
+  setupAccordion('.accordion');
 });
