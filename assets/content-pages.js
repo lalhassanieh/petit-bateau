@@ -22,12 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
       prevEl: ".swiper-button-prev",
     },
 
-    /*
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
     },
-    */
 
     breakpoints: {
       768: { slidesPerView: 1 },
