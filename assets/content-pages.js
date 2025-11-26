@@ -99,32 +99,49 @@ function initCategoryCarousel(container) {
 
     if (!prevBtn || !nextBtn) return;
 
-    var swiper = new Swiper(container, {
-        slidesPerView: "auto",
-        spaceBetween: 20,
-        resistanceRatio: 0.2,
-        navigation: {
-            nextEl: nextBtn,
-            prevEl: prevBtn
-        },
-        on: {
-            init: function () { updateArrows(this); },
-            slideChange: function () { updateArrows(this); },
-            reachBeginning: function () { prevBtn.classList.add("cd-swiper-button-disabled"); },
-            reachEnd: function () { nextBtn.classList.add("cd-swiper-button-disabled"); }
+    var SCROLL_STEP = container.clientWidth * 0.8;
+
+    function updateArrows() {
+        var maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+        if (maxScrollLeft <= 0) {
+            prevBtn.classList.add("cd-swiper-button-disabled");
+            nextBtn.classList.add("cd-swiper-button-disabled");
+            return;
         }
-    });
 
-    function updateArrows(swiperInstance) {
-        if (swiperInstance.isBeginning) prevBtn.classList.add("cd-swiper-button-disabled");
-        else prevBtn.classList.remove("cd-swiper-button-disabled");
+        if (container.scrollLeft <= 1) {
+            prevBtn.classList.add("cd-swiper-button-disabled");
+        } else {
+            prevBtn.classList.remove("cd-swiper-button-disabled");
+        }
 
-        if (swiperInstance.isEnd) nextBtn.classList.add("cd-swiper-button-disabled");
-        else nextBtn.classList.remove("cd-swiper-button-disabled");
+        if (container.scrollLeft >= maxScrollLeft - 1) {
+            nextBtn.classList.add("cd-swiper-button-disabled");
+        } else {
+            nextBtn.classList.remove("cd-swiper-button-disabled");
+        }
     }
 
-    return swiper;
+    prevBtn.addEventListener("click", function () {
+        container.scrollBy({
+            left: -SCROLL_STEP,
+            behavior: "smooth"
+        });
+    });
+
+    nextBtn.addEventListener("click", function () {
+        container.scrollBy({
+            left: SCROLL_STEP,
+            behavior: "smooth"
+        });
+    });
+
+    container.addEventListener("scroll", updateArrows);
+
+    updateArrows();
 }
+
 
 
 
@@ -133,9 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
   initReadMore();
   setupAccordion('.accordion');
 
-  document.querySelectorAll(".carousel-section .carousel-container")
-    .forEach(function (container) {
-        initCategoryCarousel(container);
-    });
+  document.querySelectorAll(".carousel-section .carousel-container").forEach(function (el) {
+      initCategoryCarousel(el);
+  });
 });
 
