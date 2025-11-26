@@ -91,11 +91,47 @@ function setupAccordion(accordionClass) {
 
 }
 
+function initCategoryCarousel(containerSelector) {
 
+    var container = document.querySelector(containerSelector);
+    if (!container) return;
+
+    var prevBtn = container.parentElement.querySelector(".cd-swiper-button-prev");
+    var nextBtn = container.parentElement.querySelector(".cd-swiper-button-next");
+
+    if (!prevBtn || !nextBtn) return;
+
+    var swiper = new Swiper(containerSelector, {
+        slidesPerView: "auto",
+        spaceBetween: 20,
+        resistanceRatio: 0.2,
+        navigation: {
+            nextEl: nextBtn,
+            prevEl: prevBtn
+        },
+        on: {
+            init: function () { updateArrows(this); },
+            slideChange: function () { updateArrows(this); },
+            reachBeginning: function () { prevBtn.classList.add("cd-swiper-button-disabled"); },
+            reachEnd: function () { nextBtn.classList.add("cd-swiper-button-disabled"); }
+        }
+    });
+
+    function updateArrows(swiperInstance) {
+        if (swiperInstance.isBeginning) prevBtn.classList.add("cd-swiper-button-disabled");
+        else prevBtn.classList.remove("cd-swiper-button-disabled");
+
+        if (swiperInstance.isEnd) nextBtn.classList.add("cd-swiper-button-disabled");
+        else nextBtn.classList.remove("cd-swiper-button-disabled");
+    }
+
+    return swiper;
+}
 
 
 document.addEventListener("DOMContentLoaded", function () {
   initSwiperSlider();
   initReadMore();
   setupAccordion('.accordion');
+  initCategoryCarousel(".carousel-section .carousel-container");
 });
