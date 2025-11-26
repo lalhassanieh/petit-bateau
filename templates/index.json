@@ -216,6 +216,7 @@
         },
         "collection_ctTBpd": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection": "blouses",
             "collection_title": "Blouses"
