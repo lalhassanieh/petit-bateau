@@ -91,9 +91,7 @@ function setupAccordion(accordionClass) {
 
 }
 
-function initCategoryCarousel(containerSelector) {
-
-    var container = document.querySelector(containerSelector);
+function initCategoryCarousel(container) {
     if (!container) return;
 
     var prevBtn = container.parentElement.querySelector(".cd-swiper-button-prev");
@@ -101,7 +99,7 @@ function initCategoryCarousel(containerSelector) {
 
     if (!prevBtn || !nextBtn) return;
 
-    var swiper = new Swiper(containerSelector, {
+    var swiper = new Swiper(container, {
         slidesPerView: "auto",
         spaceBetween: 20,
         resistanceRatio: 0.2,
@@ -129,9 +127,15 @@ function initCategoryCarousel(containerSelector) {
 }
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
   initSwiperSlider();
   initReadMore();
   setupAccordion('.accordion');
-  initCategoryCarousel(".carousel-section .carousel-container");
+
+  document.querySelectorAll(".carousel-section .carousel-container")
+    .forEach(function (container) {
+        initCategoryCarousel(container);
+    });
 });
+
