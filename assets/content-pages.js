@@ -92,7 +92,7 @@ function setupAccordion(accordionClass) {
 }
 
 function initCategoryCarousel(container) {
-    if (!container) return;
+    if (!container || window.innerWidth < 768) return;
 
     const prevBtn = container.parentElement.querySelector(".cd-swiper-button-prev");
     const nextBtn = container.parentElement.querySelector(".cd-swiper-button-next");
@@ -102,13 +102,19 @@ function initCategoryCarousel(container) {
     const slides = container.querySelectorAll(".swiper-slide");
     if (!slides.length) return;
 
+    if (slides.length < 5) {
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+        return;
+    }
+
     let SCROLL_STEP;
 
     function calculateStep() {
         if (slides.length >= 2) {
             const r1 = slides[0].getBoundingClientRect();
             const r2 = slides[1].getBoundingClientRect();
-            SCROLL_STEP = r2.left - r1.left;
+            SCROLL_STEP = r2.left - r1.left;  
         } else {
             SCROLL_STEP = slides[0].getBoundingClientRect().width;
         }
@@ -154,7 +160,6 @@ function initCategoryCarousel(container) {
     });
 
     container.addEventListener("scroll", updateArrows);
-
     window.addEventListener("resize", () => {
         calculateStep();
         updateArrows();
@@ -162,6 +167,7 @@ function initCategoryCarousel(container) {
 
     updateArrows();
 }
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
