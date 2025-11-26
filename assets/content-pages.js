@@ -94,92 +94,74 @@ function setupAccordion(accordionClass) {
 function initCategoryCarousel(container) {
     if (!container) return;
 
-    var slides = container.querySelectorAll(".swiper-slide");
-    if (!slides.length) return;
-
-    var prevBtn = container.parentElement.querySelector(".cd-swiper-button-prev");
-    var nextBtn = container.parentElement.querySelector(".cd-swiper-button-next");
+    const prevBtn = container.parentElement.querySelector(".cd-swiper-button-prev");
+    const nextBtn = container.parentElement.querySelector(".cd-swiper-button-next");
 
     if (!prevBtn || !nextBtn) return;
 
-    var SCROLL_STEP;
+    const slides = container.querySelectorAll(".swiper-slide");
+    if (!slides.length) return;
 
-    if (slides.length >= 2) {
-        var rect1 = slides[0].getBoundingClientRect();
-        var rect2 = slides[1].getBoundingClientRect();
-        SCROLL_STEP = rect2.left - rect1.left; 
-    } else {
-        SCROLL_STEP = slides[0].getBoundingClientRect().width;
+    let SCROLL_STEP;
+
+    function calculateStep() {
+        if (slides.length >= 2) {
+            const r1 = slides[0].getBoundingClientRect();
+            const r2 = slides[1].getBoundingClientRect();
+            SCROLL_STEP = r2.left - r1.left;
+        } else {
+            SCROLL_STEP = slides[0].getBoundingClientRect().width;
+        }
+
+        if (!SCROLL_STEP || SCROLL_STEP <= 0) {
+            SCROLL_STEP = container.clientWidth * 0.8;
+        }
     }
 
-    if (!SCROLL_STEP || SCROLL_STEP <= 0) {
-        SCROLL_STEP = container.clientWidth * 0.8;
-    }
+    calculateStep();
 
     function updateArrows() {
-        var maxScrollLeft = container.scrollWidth - container.clientWidth;
+        const maxScroll = container.scrollWidth - container.clientWidth;
 
-        if (maxScrollLeft <= 0) {
-            prevBtn.classList.add("cd-swiper-button-disabled");
-            nextBtn.classList.add("cd-swiper-button-disabled");
+        if (maxScroll <= 0) {
+            prevBtn.style.display = "none";
+            nextBtn.style.display = "none";
             return;
         }
 
-        if (container.scrollLeft <= 1) {
+        prevBtn.style.display = "flex";
+        nextBtn.style.display = "flex";
+
+        if (container.scrollLeft <= 2) {
             prevBtn.classList.add("cd-swiper-button-disabled");
         } else {
             prevBtn.classList.remove("cd-swiper-button-disabled");
         }
 
-        if (container.scrollLeft >= maxScrollLeft - 1) {
+        if (container.scrollLeft >= maxScroll - 2) {
             nextBtn.classList.add("cd-swiper-button-disabled");
         } else {
             nextBtn.classList.remove("cd-swiper-button-disabled");
         }
     }
 
-    prevBtn.addEventListener("click", function () {
-        container.scrollBy({
-            left: SCROLL_STEP,
-            behavior: "smooth"
-        });
+    prevBtn.addEventListener("click", () => {
+        container.scrollBy({ left: -SCROLL_STEP, behavior: "smooth" });
     });
 
-    prevBtn.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            container.scrollBy({
-                left: -SCROLL_STEP,
-                behavior: "smooth"
-            });
-        }
-    });
-
-    nextBtn.addEventListener("click", function () {
-        container.scrollBy({
-            left: SCROLL_STEP,
-            behavior: "smooth"
-        });
-    });
-
-    nextBtn.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            container.scrollBy({
-                left: SCROLL_STEP,
-                behavior: "smooth"
-            });
-        }
+    nextBtn.addEventListener("click", () => {
+        container.scrollBy({ left: SCROLL_STEP, behavior: "smooth" });
     });
 
     container.addEventListener("scroll", updateArrows);
 
+    window.addEventListener("resize", () => {
+        calculateStep();
+        updateArrows();
+    });
+
     updateArrows();
 }
-
-
-
-
 
 
 document.addEventListener("DOMContentLoaded", function () {
