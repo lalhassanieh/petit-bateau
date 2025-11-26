@@ -50,9 +50,10 @@
       "blocks": {
         "categories_gYgLVH": {
           "type": "categories",
+          "disabled": true,
           "settings": {
             "title": "Blog Categories",
-            "menu": "our-company"
+            "menu": ""
           }
         },
         "recent_post_KiffBB": {
@@ -66,6 +67,7 @@
         },
         "tags_fxDYtj": {
           "type": "tags",
+          "disabled": true,
           "settings": {
             "title": "Tags"
           }
@@ -73,7 +75,6 @@
         "image_banner_mhPKkQ": {
           "type": "image_banner",
           "settings": {
-            "image": "shopify://shop_images/blog_banner.jpg",
             "url": "shopify://collections/all",
             "open_link": true
           }
