@@ -12,6 +12,34 @@
     "slideshow_WUADqE": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_z8VbgF": {
+          "type": "slider_item",
+          "settings": {
+            "image": "shopify://shop_images/1.jpg",
+            "image_mobile": "shopify://shop_images/1.jpg",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeindown",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "bottom-center",
+            "content_width": "container",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 30,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_8mcJBj": {
           "type": "slider_item",
           "settings": {
@@ -97,6 +125,7 @@
         }
       },
       "block_order": [
+        "slider_item_z8VbgF",
         "slider_item_8mcJBj",
         "slider_item_fRcjwc",
         "slider_item_QGDKFa"
@@ -149,36 +178,40 @@
         "collection_r7aTxN": {
           "type": "collection",
           "settings": {
-            "collection": "anoraks",
-            "collection_title": "Anoraks"
+            "collection": "fille-3-18a-sous-vetements-et-nuit-pyjamas",
+            "collection_title": "Pyjamas"
           }
         },
         "collection_FUAzK4": {
           "type": "collection",
           "settings": {
-            "collection": "bonnets",
-            "collection_title": "Bonnets"
+            "collection": "nouveau-ne-0-12m-vetements-robes",
+            "collection_image": "shopify://shop_images/3.jpg",
+            "collection_title": "Robes"
           }
         },
         "collection_3cyDDE": {
           "type": "collection",
           "settings": {
-            "collection": "gants",
-            "collection_title": "Gants"
+            "collection": "pulls",
+            "collection_image": "shopify://shop_images/4.jpg",
+            "collection_title": "Pulls"
           }
         },
         "collection_TVQR9f": {
           "type": "collection",
           "settings": {
-            "collection": "snoods",
-            "collection_title": "Snoods"
+            "collection": "blousons",
+            "collection_image": "shopify://shop_images/5.jpg",
+            "collection_title": "Blouson"
           }
         },
         "collection_kUA3MH": {
           "type": "collection",
           "settings": {
             "collection": "collants-chaussettes",
-            "collection_title": "Collants-chaussettes"
+            "collection_image": "shopify://shop_images/6.jpg",
+            "collection_title": "Accessoires"
           }
         },
         "collection_ctTBpd": {
