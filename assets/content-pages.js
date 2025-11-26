@@ -99,12 +99,31 @@ function initCategoryCarousel(container) {
 
     if (!prevBtn || !nextBtn) return;
 
-    var SCROLL_STEP = container.clientWidth * 0.8;
+    var slides = container.querySelectorAll(".swiper-slide");
+    if (!slides.length) return;
+
+    // === ШАГ СКРОЛЛА = расстояние между первой и второй карточкой ===
+    var SCROLL_STEP;
+
+    if (slides.length >= 2) {
+        var rect1 = slides[0].getBoundingClientRect();
+        var rect2 = slides[1].getBoundingClientRect();
+        SCROLL_STEP = rect2.left - rect1.left;   // ширина + margin-right
+    } else {
+        // если одна карточка — берём её ширину
+        SCROLL_STEP = slides[0].getBoundingClientRect().width;
+    }
+
+    // запасной вариант, если что-то пошло не так
+    if (!SCROLL_STEP || SCROLL_STEP <= 0) {
+        SCROLL_STEP = container.clientWidth * 0.8;
+    }
 
     function updateArrows() {
         var maxScrollLeft = container.scrollWidth - container.clientWidth;
 
         if (maxScrollLeft <= 0) {
+            // всё влазит — обе стрелки выключены
             prevBtn.classList.add("cd-swiper-button-disabled");
             nextBtn.classList.add("cd-swiper-button-disabled");
             return;
@@ -141,6 +160,7 @@ function initCategoryCarousel(container) {
 
     updateArrows();
 }
+
 
 
 
