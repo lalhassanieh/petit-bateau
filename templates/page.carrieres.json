@@ -51,8 +51,8 @@
         "description_Qb3LLT"
       ],
       "custom_css": [
-        "h2 {font-family: Oswald-Bold !important;}",
-        "p {font-family: 'Work Sans', 'Work Sans Regular Roman', sans-serif !important;}"
+        "h2 {font-family: Oswald-Bold !important; margin: 40px 0 20px;}",
+        "p {font-family: \"Work Sans\", \"Work Sans Regular Roman\", sans-serif !important;}"
       ],
       "name": "t:sections.rich_text.name",
       "settings": {
@@ -77,7 +77,7 @@
             "form_settings": true,
             "font_color": "#002e5e",
             "size": 16,
-            "input_background_color": "#FFF",
+            "input_background_color": "#ffffff",
             "input_background_color_focus": "#ffffff",
             "input_border_radius": 1,
             "input_border_color": "#002e5e",
@@ -87,14 +87,14 @@
             "border_color": "#002e5e",
             "border_radius": 2,
             "border": 1,
-            "fill_color": "#fff",
+            "fill_color": "#ffffff",
             "padding": 35,
             "form_width": 600,
             "btn_text": "SUBMIT",
-            "sub_btn_txt_color": "#F3F3F3",
+            "sub_btn_txt_color": "#f3f3f3",
             "sub_btn_bg_color": "#002e5e",
             "sub_btn_font_size": 16,
-            "sub_btn_bdr_color": "#FFFFFF",
+            "sub_btn_bdr_color": "#ffffff",
             "sub_btn_bdr_rad": 3,
             "sub_btn_bdr_width": 1,
             "fonts": "Times New Roman"
