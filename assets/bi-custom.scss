@@ -121,7 +121,6 @@
      }
  }
 
-
  /* Global Buttons Fixed Positioning */
  .slideshow-global-buttons-fixed {
      position: absolute !important;
@@ -495,6 +494,11 @@
  }
 
  /*# END Added by Carla*/
+ .collapsible-content {
+     .hidden-text {
+         display: none;
+     }
+ }
 
  @media (min-width: 1024px) {
      #topbar {
