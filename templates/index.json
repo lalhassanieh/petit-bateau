@@ -885,6 +885,7 @@
         },
         "icon_box_BPN3tm": {
           "type": "icon_box",
+          "disabled": true,
           "settings": {
             "icon_image": "shopify://shop_images/Icon_9.svg",
             "icon_svg": "message_communications",
