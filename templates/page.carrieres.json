@@ -24,30 +24,30 @@
     "17641665056129759c": {
       "type": "apps",
       "blocks": {
-        "hulk_form_builder_form_block_zj3wbB": {
+        "hulk_form_builder_form_block_wTh8tN": {
           "type": "shopify://apps/hulk-form-builder/blocks/form-block/b6b8dd14-356b-4725-a4ed-77232212b3c3",
           "settings": {
             "form_uuid": "TxyPwbfSe8s-1_Qh19Ky-A",
-            "form_settings": false,
-            "font_color": "#000000",
-            "size": 14,
+            "form_settings": true,
+            "font_color": "#002e5e",
+            "size": 16,
             "input_background_color": "#FFF",
-            "input_background_color_focus": "#F4DADA",
+            "input_background_color_focus": "#ffffff",
             "input_border_radius": 1,
-            "input_border_color": "#ebe9e9",
-            "input_border_color_focus": "#2D2727",
-            "input_font_color": "#3D3131",
-            "input_size": 14,
-            "border_color": "#121212",
+            "input_border_color": "#002e5e",
+            "input_border_color_focus": "#02264b",
+            "input_font_color": "#002e5e",
+            "input_size": 15,
+            "border_color": "#002e5e",
             "border_radius": 2,
             "border": 1,
-            "fill_color": "#EBE9E9",
+            "fill_color": "#fff",
             "padding": 35,
             "form_width": 600,
-            "btn_text": "Submit",
+            "btn_text": "SUBMIT",
             "sub_btn_txt_color": "#F3F3F3",
-            "sub_btn_bg_color": "#3F3333",
-            "sub_btn_font_size": 14,
+            "sub_btn_bg_color": "#002e5e",
+            "sub_btn_font_size": 16,
             "sub_btn_bdr_color": "#FFFFFF",
             "sub_btn_bdr_rad": 3,
             "sub_btn_bdr_width": 1,
@@ -56,7 +56,7 @@
         }
       },
       "block_order": [
-        "hulk_form_builder_form_block_zj3wbB"
+        "hulk_form_builder_form_block_wTh8tN"
       ],
       "settings": {}
     }
