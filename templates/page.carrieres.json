@@ -51,7 +51,8 @@
         "description_Qb3LLT"
       ],
       "custom_css": [
-        "h1 {font-family: Oswald-Bold !important; }"
+        "h2 {font-family: Oswald-Bold !important;}",
+        "p {font-family: 'Work Sans', 'Work Sans Regular Roman', sans-serif !important;}"
       ],
       "name": "t:sections.rich_text.name",
       "settings": {
