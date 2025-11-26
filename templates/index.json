@@ -179,6 +179,7 @@
           "type": "collection",
           "settings": {
             "collection": "fille-3-18a-sous-vetements-et-nuit-pyjamas",
+            "collection_image": "shopify://shop_images/2.jpg",
             "collection_title": "Pyjamas"
           }
         },
