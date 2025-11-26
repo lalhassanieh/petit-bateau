@@ -496,7 +496,8 @@
  /*# END Added by Carla*/
  .collapsible-content {
      .hidden-text {
-         display: none;
+         opacity: 0;
+         visibility: hidden
      }
  }
 
