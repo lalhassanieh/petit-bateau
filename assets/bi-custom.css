@@ -160,8 +160,8 @@
 
 .product__badges_holder {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 10px;
+  left: 10px;
   z-index: 1;
   margin: 0;
 }
