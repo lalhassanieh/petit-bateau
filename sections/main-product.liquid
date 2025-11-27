@@ -212,17 +212,11 @@
         <div class="zoom-external-area"></div>
       {% endif %}
       {% content_for 'blocks' %}
-      {% if enable_sticky_content_on_desktop %}</div>{% endif %}
-      <div id="variant-ref-container" style="margin-top: 15px;">
-        <strong>Ref</strong>
-        <span id="variant-vendor-value">
-          {{-
-            product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo
-            | default: 'N/A'
-          -}}
-        </span>
-      </div>
+      {% if enable_sticky_content_on_desktop %}     <div id="variant-ref-container" style="margin-top: 15px;">
+            <strong>Ref</strong> <span id="variant-vendor-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
+          </div></div>{% endif %}
     </motion-element>
+ 
   </div>
   {% assign products_bought_together = product.metafields.custom.bought_together | split: ',' | uniq %}
   {% if enable_frequently_bought_together and products_bought_together.size > 0 %}
