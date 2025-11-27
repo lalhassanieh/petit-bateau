@@ -17,7 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/1_093a8fac-22d8-4b4f-b631-a438fb49f5fa.jpg",
             "image_mobile": "shopify://shop_images/1_4cba94ae-4555-44ab-9d97-226ee68dc3c7.jpg",
-            "overlay_opacity": 0,
+            "overlay_opacity": 20,
             "slider_effect": "effect_fadein",
             "subheading": "CAP SUR DES NUITS",
             "heading": "ENCHANTÉES",
@@ -146,7 +146,7 @@
         "show_arrow": false,
         "carousel_pagination": "show_dots",
         "pagination_position": "center",
-        "autoplay": false,
+        "autoplay": true,
         "autorotate_speed": 5,
         "subheading_font_size": 60,
         "subheading_font_weight": "body_weight",
