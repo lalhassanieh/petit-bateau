@@ -225,6 +225,15 @@
                 endif
               -%}
             {% endif %}
+                 {% if template_enable_product_badges == true %}
+                  {% render 'product-badges',
+                    card_product: card_product,
+                    type: 'product_item',
+                    class: 'ml-10 flex gap-5',
+                    sticky: type,
+                    exclude_sold_out: true
+                  %}
+                {% endif %}
           </a>
         {%- else -%}
           {% comment %} Case product has no image show placeholder {% endcomment %}
@@ -567,15 +576,7 @@
               >
                 {%- render 'price', scope: 'item', product: card_product, show_badges: false, class: priceclass -%}
                 {% comment %} Add badges beside price (excluding sold out) {% endcomment %}
-                {% if template_enable_product_badges == true %}
-                  {% render 'product-badges',
-                    card_product: card_product,
-                    type: 'product_item',
-                    class: 'ml-10 flex gap-5',
-                    sticky: type,
-                    exclude_sold_out: true
-                  %}
-                {% endif %}
+           
               </div>
               {% comment %} Quick add to cart button beside price {% endcomment %}
               {% if type != 'list' and type != 'sticky' and product_style != 'morden' %}
