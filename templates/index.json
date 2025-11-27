@@ -708,6 +708,7 @@
       "blocks": {
         "product_banner_8DMA74": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BLOC_COM_MOBILE_seconde_main_mob.jpg",
             "content_background_color": "#bdd4e5",
@@ -731,6 +732,7 @@
         },
         "product_banner_B8BE79": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BLOC_COM_MOBILE_cagnotte_mob.jpg",
             "content_background_color": "#bdd4e5",
@@ -755,13 +757,13 @@
         "product_banner_7Y89zX": {
           "type": "product_banner",
           "settings": {
-            "image": "shopify://shop_images/BLOC_COM_MOBILE_carte_cadeau_mob.jpg",
+            "image": "shopify://shop_images/69283612d1066.jpg",
             "content_background_color": "#bdd4e5",
             "subheading": "",
             "subheading_font_size": 12,
             "subheading_font_weight": "heading_weight",
             "subheading_spacing_bottom": 10,
-            "heading": "La carte cadeau",
+            "heading": "Écart",
             "heading_font_size": 28,
             "heading_font_weight": "heading_weight",
             "heading_spacing_bottom": 30,
