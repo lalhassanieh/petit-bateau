@@ -70,8 +70,10 @@
             "full_width": false,
             "promotion_position": "right",
             "promotion_image_width": 41,
+            "promotion_image_1": "shopify://shop_images/bloc_com_cartecadeau_noel_mobile.jpg",
             "promotion_link_1": "https://themeforest.net/item/glozin-multipurpose-shopify-theme-os-20/53006461?s_rank=1",
             "promotion_link_newtab_1": false,
+            "promotion_image_2": "shopify://shop_images/1_4cba94ae-4555-44ab-9d97-226ee68dc3c7.jpg",
             "promotion_link_2": "",
             "promotion_link_newtab_2": true
           }
@@ -88,8 +90,9 @@
             "full_width": true,
             "promotion_position": "right",
             "promotion_image_width": 27,
+            "promotion_image_1": "shopify://shop_images/1_4cba94ae-4555-44ab-9d97-226ee68dc3c7.jpg",
             "promotion_link_1": "",
-            "promotion_link_newtab_1": false,
+            "promotion_link_newtab_1": true,
             "promotion_link_2": "",
             "promotion_link_newtab_2": true
           }
