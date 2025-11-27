@@ -158,10 +158,12 @@
     endif
     
     assign discount_percentage = card_product.metafields.global.product_discountpercentage
-    if discount_percentage != blank and discount_percentage > 0
-      assign sale = true
-    else
-      assign sale = false
+    assign sale = false
+    if discount_percentage != blank and discount_percentage != empty and discount_percentage != null
+      assign discount_number = discount_percentage | plus: 0
+      if discount_number > 0
+        assign sale = true
+      endif
     endif
   endif
 
@@ -218,12 +220,12 @@
           style="--badges-color: {{ settings.sale_color }};--badges-bg:{{ settings.sale_background }};"
         >
           {% if sale_badge_type == 'price' %}
-            {%- assign discount_amount = compare_at_price | times: discount_percentage | divided_by: 100 -%}
+            {%- assign discount_amount = compare_at_price | times: discount_number | divided_by: 100 -%}
             {{ 'products.product.save' | t }}
             {{- discount_amount | money -}}
           {% elsif sale_badge_type == 'percent' %}
             -
-            {{- discount_percentage | round -}}
+            {{- discount_number | round -}}
             %
           {% else %}
             {{ 'products.product.label.sale_label' | t }}
@@ -293,7 +295,7 @@
       {% if sale and sale_badge_addons == 'scrolling' and scrolling_text != blank %}
         {{ 'marquee.css' | asset_url | stylesheet_tag }}
         {% liquid
-          assign percent_number = discount_percentage | round | append: '%'
+          assign percent_number = discount_number | round | append: '%'
         %}
         <div
           class="product__badges-sale-scrolling marquee flex overflow-hidden w-full justify-center fs-custom absolute inset-x-0 bottom-0 pointer-none py-10 uppercase heading_weight"
