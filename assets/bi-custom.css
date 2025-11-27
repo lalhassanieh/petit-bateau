@@ -158,6 +158,14 @@
   margin-inline-start: 4px;
 }
 
+.product__badges_holder {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  margin: 0;
+}
+
 .product-item__information .product-item__name {
   margin-bottom: 12px;
 }
