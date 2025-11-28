@@ -145,7 +145,19 @@
               // Handle custom tags processing
               const tags = [];
               
-              // Add fidelite-card-member tag if checkbox is checked
+              // Check all marketing checkboxes and add corresponding tags
+              const emailMarketingCheckbox = document.getElementById('email-marketing');
+              const smsMarketingCheckbox = document.getElementById('sms-marketing');
+              const fideliteCheckbox = document.getElementById('fidelite-card');
+              
+              if (emailMarketingCheckbox && emailMarketingCheckbox.checked) {
+                tags.push('email-marketing-consent');
+              }
+              
+              if (smsMarketingCheckbox && smsMarketingCheckbox.checked) {
+                tags.push('sms-marketing-consent');
+              }
+              
               if (fideliteCheckbox && fideliteCheckbox.checked) {
                 tags.push('fidelite-card-member');
               }
