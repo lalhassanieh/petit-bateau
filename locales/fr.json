@@ -477,7 +477,10 @@
       "submit": "Créer un compte",
       "title_content": "Nouveau client",
       "content": "Inscrivez-vous pour bénéficier d'un accès anticipé aux soldes ainsi que de nouveautés, tendances et promotions personnalisées. ",
-      "content_form_html": "Vos données personnelles seront utilisées pour soutenir votre expérience sur ce site Web, pour gérer l'accès à votre compte et à d'autres fins décrites dans notre <a href=\"{{ link }}\">politique de confidentialité.</a>"
+      "content_form_html": "Vos données personnelles seront utilisées pour soutenir votre expérience sur ce site Web, pour gérer l'accès à votre compte et à d'autres fins décrites dans notre <a href=\"{{ link }}\">politique de confidentialité.</a>",
+      "email_marketing": "Je souhaite recevoir des communications marketing par e-mail",
+      "sms_marketing": "Je souhaite recevoir des communications marketing par SMS",
+      "fidelite_card": "Je veux être membre de la carte fidélité"
     },
     "reset_password": {
       "title": "Réinitialiser le mot de passe du compte",

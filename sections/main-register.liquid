@@ -78,6 +78,51 @@
             <span class="required">*</span></label
           > 
         </div>
+        
+        <!-- Marketing Consent Section -->
+        <div class="form-group mb-20 marketing-consent">
+          <div class="checkbox-group">
+            <div class="checkbox-item mb-15">
+              <input 
+                type="checkbox" 
+                id="email-marketing" 
+                name="customer[accepts_marketing]" 
+                value="1"
+                class="marketing-checkbox"
+              >
+              <label for="email-marketing" class="checkbox-label">
+                {{ 'customer.register.email_marketing' | t | default: 'I would like to receive email marketing communications' }}
+              </label>
+            </div>
+            
+            <div class="checkbox-item mb-15">
+              <input 
+                type="checkbox" 
+                id="sms-marketing" 
+                name="customer[sms_marketing_consent]" 
+                value="1"
+                class="marketing-checkbox"
+              >
+              <label for="sms-marketing" class="checkbox-label">
+                {{ 'customer.register.sms_marketing' | t | default: 'I would like to receive SMS marketing communications' }}
+              </label>
+            </div>
+            
+            <div class="checkbox-item mb-15">
+              <input 
+                type="checkbox" 
+                id="fidelite-card" 
+                name="customer[tags][]" 
+                value="fidelite-card-member"
+                class="marketing-checkbox"
+              >
+              <label for="fidelite-card" class="checkbox-label">
+                {{ 'customer.register.fidelite_card' | t | default: 'I want to be a fidelite card member' }}
+              </label>
+            </div>
+          </div>
+        </div>
+        
         <p>
           {% assign policy = shop.privacy_policy.url %}
           {{ 'customer.register.content_form_html' | t: link: policy }}
@@ -89,6 +134,39 @@
           </a>
         </div>
       {% endform %}
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const form = document.querySelector('.custormer-register-form');
+          const fideliteCheckbox = document.getElementById('fidelite-card');
+          
+          if (form) {
+            form.addEventListener('submit', function(e) {
+              // Handle custom tags processing
+              const tags = [];
+              
+              // Add fidelite-card-member tag if checkbox is checked
+              if (fideliteCheckbox && fideliteCheckbox.checked) {
+                tags.push('fidelite-card-member');
+              }
+              
+              // Create hidden input for tags if any tags are selected
+              if (tags.length > 0) {
+                // Remove existing tag inputs to avoid duplicates
+                const existingTagInputs = form.querySelectorAll('input[name="customer[tags]"]');
+                existingTagInputs.forEach(input => input.remove());
+                
+                // Create new hidden input with comma-separated tags
+                const tagInput = document.createElement('input');
+                tagInput.type = 'hidden';
+                tagInput.name = 'customer[tags]';
+                tagInput.value = tags.join(',');
+                form.appendChild(tagInput);
+              }
+            });
+          }
+        });
+      </script>
     </div>
   </div>
 </div>

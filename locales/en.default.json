@@ -468,7 +468,10 @@
       "submit": "Create Account",
       "title_content": "New Customer",
       "content": "Sign up for early Sale access plus tailored new arrivals, trends and promotions. To opt out, click unsubscribe in our emails.",
-      "content_form_html": "Your personal data will be used to support your experience throughout this website, to manage access to your account and for other purposes described in our <a href=\"{{ link }}\">privacy policy.<\/a>"
+      "content_form_html": "Your personal data will be used to support your experience throughout this website, to manage access to your account and for other purposes described in our <a href=\"{{ link }}\">privacy policy.<\/a>",
+      "email_marketing": "I would like to receive email marketing communications",
+      "sms_marketing": "I would like to receive SMS marketing communications",
+      "fidelite_card": "I want to be a fidelite card member"
     },
     "reset_password": {
       "title": "Reset account password",

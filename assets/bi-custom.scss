@@ -502,6 +502,39 @@
  }
 
  /*# END Added by Carla*/
+
+ /* Registration Form Marketing Checkboxes */
+ .marketing-consent {
+     .checkbox-group {
+         .checkbox-item {
+             display: flex;
+             align-items: flex-start;
+             gap: 10px;
+             
+             .marketing-checkbox {
+                 width: 18px;
+                 height: 18px;
+                 margin-top: 2px;
+                 accent-color: #002E5E;
+                 cursor: pointer;
+             }
+             
+             .checkbox-label {
+                 font-size: 14px;
+                 line-height: 1.4;
+                 cursor: pointer;
+                 flex: 1;
+                 margin: 0;
+                 color: #333;
+                 
+                 &:hover {
+                     color: #002E5E;
+                 }
+             }
+         }
+     }
+ }
+
 //  .collapsible-content {
 //      .hidden-text {
 //          opacity: 0;
