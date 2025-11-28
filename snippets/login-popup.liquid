@@ -158,6 +158,51 @@
               {{ 'customer.login_page.placeholder_pass' | t }}
             </label>
           </div>
+          
+          <!-- Marketing Consent Section -->
+          <div class="form-group mb-20 marketing-consent">
+            <div class="checkbox-group">
+              <div class="checkbox-item mb-15">
+                <input 
+                  type="checkbox" 
+                  id="popup-email-marketing" 
+                  name="customer[accepts_marketing]" 
+                  value="1"
+                  class="marketing-checkbox"
+                >
+                <label for="popup-email-marketing" class="checkbox-label">
+                  {{ 'customer.register.email_marketing' | t | default: 'I would like to receive email marketing communications' }}
+                </label>
+              </div>
+              
+              <div class="checkbox-item mb-15">
+                <input 
+                  type="checkbox" 
+                  id="popup-sms-marketing" 
+                  name="customer[sms_marketing_consent]" 
+                  value="1"
+                  class="marketing-checkbox"
+                >
+                <label for="popup-sms-marketing" class="checkbox-label">
+                  {{ 'customer.register.sms_marketing' | t | default: 'I would like to receive SMS marketing communications' }}
+                </label>
+              </div>
+              
+              <div class="checkbox-item mb-15">
+                <input 
+                  type="checkbox" 
+                  id="popup-fidelite-card" 
+                  name="customer[tags][]" 
+                  value="fidelite-card-member"
+                  class="marketing-checkbox"
+                >
+                <label for="popup-fidelite-card" class="checkbox-label">
+                  {{ 'customer.register.fidelite_card' | t | default: 'I want to be a fidelite card member' }}
+                </label>
+              </div>
+            </div>
+          </div>
+          
           <p class="lable-policy mt-25 lh-small">
             {{ 'customer.register.content_form_html' | t: link: shop.privacy_policy.url }}
           </p>
@@ -180,6 +225,39 @@
             </a>
           </div>
         {% endform %}
+        
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const popupForm = document.querySelector('#tab_register form');
+            const popupFideliteCheckbox = document.getElementById('popup-fidelite-card');
+            
+            if (popupForm) {
+              popupForm.addEventListener('submit', function(e) {
+                // Handle custom tags processing for popup form
+                const tags = [];
+                
+                // Add fidelite-card-member tag if checkbox is checked
+                if (popupFideliteCheckbox && popupFideliteCheckbox.checked) {
+                  tags.push('fidelite-card-member');
+                }
+                
+                // Create hidden input for tags if any tags are selected
+                if (tags.length > 0) {
+                  // Remove existing tag inputs to avoid duplicates
+                  const existingTagInputs = popupForm.querySelectorAll('input[name="customer[tags]"]');
+                  existingTagInputs.forEach(input => input.remove());
+                  
+                  // Create new hidden input with comma-separated tags
+                  const tagInput = document.createElement('input');
+                  tagInput.type = 'hidden';
+                  tagInput.name = 'customer[tags]';
+                  tagInput.value = tags.join(',');
+                  popupForm.appendChild(tagInput);
+                }
+              });
+            }
+          });
+        </script>
       </div>
       <div
         id="forgot-password"
