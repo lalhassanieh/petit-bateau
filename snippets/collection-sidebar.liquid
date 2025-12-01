@@ -281,6 +281,10 @@
                                 >
                                   {%- liquid
                                     assign checkbox_color = ''
+                                    assign debug_found_product = ''
+                                    assign debug_variant_options = ''
+                                    assign debug_hexcode_found = false
+                                    
                                     # Find the first product with matching value to get the hexcode from product metafield
                                     for product in collection.products limit: 50
                                       for variant in product.variants
@@ -295,6 +299,8 @@
                                         
                                         if variant_option_name == value.label and product.metafields.global.product_hexcode != blank
                                           assign checkbox_color = product.metafields.global.product_hexcode
+                                          assign debug_found_product = product.title
+                                          assign debug_hexcode_found = true
                                           break
                                         endif
                                       endfor
@@ -312,6 +318,8 @@
                                       endif
                                     endif
                                   -%}
+                                  
+                                  <!-- DEBUG: Filter: {{ filter.label }} | Value: {{ value.label }} | Found Product: {{ debug_found_product }} | Hexcode Found: {{ debug_hexcode_found }} | Color: {{ checkbox_color }} -->
                                   
                                   <span
                                     class="checkbox border rounded-2 bg-white inline-flex content-center transition relative{% if value.active %} checked{% endif %}"
