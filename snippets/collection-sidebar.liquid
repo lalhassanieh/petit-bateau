@@ -284,11 +284,20 @@
                                     assign debug_found_product = ''
                                     assign debug_variant_options = ''
                                     assign debug_hexcode_found = false
+                                    assign debug_products_checked = 0
+                                    assign debug_variants_checked = 0
+                                    assign debug_metafield_value = ''
                                     
                                     # Find the first product with matching value to get the hexcode from product metafield
                                     for product in collection.products limit: 50
+                                      assign debug_products_checked = debug_products_checked | plus: 1
                                       for variant in product.variants
+                                        assign debug_variants_checked = debug_variants_checked | plus: 1
                                         assign variant_option_name = ''
+                                        
+                                        # Check each option and build debug info
+                                        assign current_variant_options = variant.option1 | append: '|' | append: variant.option2 | append: '|' | append: variant.option3
+                                        
                                         if variant.option1 == value.label
                                           assign variant_option_name = variant.option1
                                         elsif variant.option2 == value.label  
@@ -297,11 +306,29 @@
                                           assign variant_option_name = variant.option3
                                         endif
                                         
-                                        if variant_option_name == value.label and product.metafields.global.product_hexcode != blank
-                                          assign checkbox_color = product.metafields.global.product_hexcode
-                                          assign debug_found_product = product.title
-                                          assign debug_hexcode_found = true
-                                          break
+                                        # Check for case-insensitive match as well
+                                        assign value_label_lower = value.label | downcase
+                                        assign option1_lower = variant.option1 | downcase
+                                        assign option2_lower = variant.option2 | downcase
+                                        assign option3_lower = variant.option3 | downcase
+                                        
+                                        if option1_lower == value_label_lower
+                                          assign variant_option_name = variant.option1
+                                        elsif option2_lower == value_label_lower
+                                          assign variant_option_name = variant.option2
+                                        elsif option3_lower == value_label_lower
+                                          assign variant_option_name = variant.option3
+                                        endif
+                                        
+                                        if variant_option_name != blank
+                                          assign debug_metafield_value = product.metafields.global.product_hexcode
+                                          if product.metafields.global.product_hexcode != blank
+                                            assign checkbox_color = product.metafields.global.product_hexcode
+                                            assign debug_found_product = product.title
+                                            assign debug_hexcode_found = true
+                                            assign debug_variant_options = current_variant_options
+                                            break
+                                          endif
                                         endif
                                       endfor
                                       if checkbox_color != blank
@@ -319,7 +346,7 @@
                                     endif
                                   -%}
                                   
-                                  <!-- DEBUG: Filter: {{ filter.label }} | Value: {{ value.label }} | Found Product: {{ debug_found_product }} | Hexcode Found: {{ debug_hexcode_found }} | Color: {{ checkbox_color }} -->
+                                  <!-- DEBUG DETAILED: Filter: {{ filter.label }} | Value: "{{ value.label }}" | Products Checked: {{ debug_products_checked }} | Variants Checked: {{ debug_variants_checked }} | Found Product: "{{ debug_found_product }}" | Variant Options: "{{ debug_variant_options }}" | Metafield Value: "{{ debug_metafield_value }}" | Hexcode Found: {{ debug_hexcode_found }} | Final Color: {{ checkbox_color }} -->
                                   
                                   <span
                                     class="checkbox border rounded-2 bg-white inline-flex content-center transition relative{% if value.active %} checked{% endif %}"
