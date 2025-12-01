@@ -115,7 +115,7 @@
             </div>
           {%- when 'filter' -%}
             {%- liquid
-              # Create color lookup  object for efficient color matching (uses all collection products)
+              # Create color lookup object for efficient color matching (uses all collection products)
               assign color_lookup = ''
               # Use collections[collection.handle].products to get all products, not filtered ones
               assign all_collection_products = collections[collection.handle].products
@@ -272,7 +272,7 @@
                                     assign debug_matched_part = ''
                                     assign debug_extracted_color = ''
                                     
-                                    # Efficient lookup using the pre-built color lookup
+                                    # Direct lookup using normalized filter value
                                     if color_lookup contains search_pattern
                                       assign debug_found_in_lookup = true
                                       assign color_parts = color_lookup | split: '|'
@@ -303,7 +303,7 @@
                                       assign is_beige = true
                                     endif
                                   -%}
-                                  <!-- DEBUG BEIGE: Filter: "{{ value.label }}" | Is Beige: {{ is_beige }} | Normalized: "{{ normalized_filter_value }}" | Search Pattern: "{{ search_pattern }}" | Found in Lookup: {{ debug_found_in_lookup }} | Matched Part: "{{ debug_matched_part }}" | Extracted Color: "{{ debug_extracted_color }}" | Final Color: {{ checkbox_color }} -->
+                                  <!-- DEBUG: Filter: "{{ value.label }}" | Normalized: "{{ normalized_filter_value }}" | Search Pattern: "{{ search_pattern }}" | Found in Lookup: {{ debug_found_in_lookup }} | Matched Part: "{{ debug_matched_part }}" | Extracted Color: "{{ debug_extracted_color }}" | Final Color: {{ checkbox_color }} -->
                                   {% if value.label == 'Beige' %}<!-- BEIGE LOOKUP DETAIL: "{{ color_lookup }}" -->{% endif %}
                                   
                                   <span
