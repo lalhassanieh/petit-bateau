@@ -204,7 +204,7 @@
                                       {% if iscolor %}
                                         {%- liquid
                                           assign color_hex = ''
-                                          comment 'Find the first product with this color to get the hexcode from product metafield'
+                                          # Find the first product with this color to get the hexcode from product metafield
                                           for product in collection.products limit: 50
                                             for variant in product.variants
                                               assign variant_option_name = ''
@@ -226,7 +226,7 @@
                                             endif
                                           endfor
                                           
-                                          comment 'Fallback to basic color name if no hexcode found'
+                                          # Fallback to basic color name if no hexcode found
                                           if color_hex == blank
                                             assign color_hex = value.value | downcase
                                           endif
