@@ -37,7 +37,9 @@
     "scrolling_background": "#fece00",
     "show_new": false,
     "new_background": "#3456e6",
+    "show_pre_order": false,
     "pre_order_background": "#6a33d8",
+    "show_sold_out": false,
     "sold_out_background": "#666666",
     "custom_badge_background": "#14854e",
     "product_style": "card",
@@ -376,7 +378,7 @@
           "background": "#ffffff",
           "background_gradient": "",
           "primary_color": "#e14a5c",
-          "text_color": "#fff",
+          "text_color": "#ffffff",
           "heading_color": "#002e5e",
           "border_color": "#ebebeb",
           "btn_primary_color": "#ffffff",
@@ -387,7 +389,7 @@
           "btn_primary_hover_background_gradient": "",
           "btn_outline_color": "#063970",
           "btn_outline_border_color": "#111111",
-          "button_link_color": "#fff",
+          "button_link_color": "#ffffff",
           "button_link_hover_color": "#111111"
         }
       }
