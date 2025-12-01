@@ -272,12 +272,38 @@
                                   {%- liquid
                                     assign checkbox_color = ''
                                     assign normalized_filter_value = value.label | downcase | replace: ' ', '_'
-                                    assign search_pattern = normalized_filter_value | append: ':'
+                                    
+                                    # Map English filter names to French metafield values
+                                    assign search_color = normalized_filter_value
+                                    case normalized_filter_value
+                                      when 'beige'
+                                        assign search_color = 'ecru'
+                                      when 'white'
+                                        assign search_color = 'blanc'
+                                      when 'blue'
+                                        assign search_color = 'bleu'
+                                      when 'green'
+                                        assign search_color = 'vert'
+                                      when 'red'
+                                        assign search_color = 'rouge'
+                                      when 'pink'
+                                        assign search_color = 'rose'
+                                      when 'gray', 'grey'
+                                        assign search_color = 'gris'
+                                      when 'black'
+                                        assign search_color = 'noir'
+                                      when 'navy'
+                                        assign search_color = 'marine'
+                                      when 'yellow'
+                                        assign search_color = 'jaune'
+                                    endcase
+                                    
+                                    assign search_pattern = search_color | append: ':'
                                     assign debug_found_in_lookup = false
                                     assign debug_matched_part = ''
                                     assign debug_extracted_color = ''
                                     
-                                    # Direct lookup using normalized filter value
+                                    # Lookup using mapped color name
                                     if color_lookup contains search_pattern
                                       assign debug_found_in_lookup = true
                                       assign color_parts = color_lookup | split: '|'
@@ -308,7 +334,7 @@
                                       assign is_beige = true
                                     endif
                                   -%}
-                                  <!-- DEBUG: Filter: "{{ value.label }}" | Normalized: "{{ normalized_filter_value }}" | Search Pattern: "{{ search_pattern }}" | Found in Lookup: {{ debug_found_in_lookup }} | Matched Part: "{{ debug_matched_part }}" | Extracted Color: "{{ debug_extracted_color }}" | Final Color: {{ checkbox_color }} -->
+                                  <!-- DEBUG: Filter: "{{ value.label }}" | Normalized: "{{ normalized_filter_value }}" | Mapped To: "{{ search_color }}" | Search Pattern: "{{ search_pattern }}" | Found in Lookup: {{ debug_found_in_lookup }} | Matched Part: "{{ debug_matched_part }}" | Extracted Color: "{{ debug_extracted_color }}" | Final Color: {{ checkbox_color }} -->
                                   {% if value.label == 'Beige' %}<!-- BEIGE METAFIELDS DEBUG: {{ debug_metafields }} -->{% endif %}
                                   {% if value.label == 'Beige' %}<!-- BEIGE LOOKUP DETAIL: "{{ color_lookup }}" -->{% endif %}
                                   
