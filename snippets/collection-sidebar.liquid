@@ -263,14 +263,20 @@
                                     assign checkbox_color = ''
                                     assign normalized_filter_value = value.label | downcase | replace: ' ', '_'
                                     assign search_pattern = normalized_filter_value | append: ':'
+                                    assign debug_found_in_lookup = false
+                                    assign debug_matched_part = ''
+                                    assign debug_extracted_color = ''
                                     
                                     # Efficient lookup using the pre-built color lookup
                                     if color_lookup contains search_pattern
+                                      assign debug_found_in_lookup = true
                                       assign color_parts = color_lookup | split: '|'
                                       for color_part in color_parts
                                         if color_part contains search_pattern
+                                          assign debug_matched_part = color_part
                                           assign hexcode_parts = color_part | split: ':'
                                           assign checkbox_color = hexcode_parts[1]
+                                          assign debug_extracted_color = hexcode_parts[1]
                                           break
                                         endif
                                       endfor
@@ -285,6 +291,8 @@
                                       endif
                                     endif
                                   -%}
+                                  
+                                  <!-- DEBUG: Filter: "{{ value.label }}" | Normalized: "{{ normalized_filter_value }}" | Search Pattern: "{{ search_pattern }}" | Found in Lookup: {{ debug_found_in_lookup }} | Matched Part: "{{ debug_matched_part }}" | Extracted Color: "{{ debug_extracted_color }}" | Final Color: {{ checkbox_color }} | Color Lookup: "{{ color_lookup }}" -->
                                   
                                   <span
                                     class="checkbox border rounded-2 bg-white inline-flex content-center transition relative{% if value.active %} checked{% endif %}"
