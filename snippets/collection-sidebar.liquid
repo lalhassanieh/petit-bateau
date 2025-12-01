@@ -121,7 +121,7 @@
               # Use collections[collection.handle].products to get all products, not filtered ones
               assign all_collection_products = collections[collection.handle].products
               for product in all_collection_products limit: 50
-                # Handle single color products
+                # Always handle single color products first (primary method)
                 if product.metafields.global.product_additional_color != blank and product.metafields.global.product_hexcode != blank
                   assign normalized_color = product.metafields.global.product_additional_color | downcase | replace: ' ', '_'
                   assign hexcode = product.metafields.global.product_hexcode
@@ -131,39 +131,6 @@
                     assign debug_metafields = debug_metafields | append: 'Product[' | append: forloop.index | append: ']:' | append: product.metafields.global.product_additional_color | append: '=' | append: product.metafields.global.product_hexcode | append: ' | '
                   endif
                 endif
-                
-                # Handle multi-color products - check if variants have color options
-                for variant in product.variants
-                  # Check if variant has color option and corresponding metafields
-                  assign variant_color = ''
-                  assign variant_hexcode = ''
-                  
-                  # Look for color in variant options
-                  for option in variant.options
-                    assign option_lower = option | downcase
-                    if option_lower contains 'bleu' or option_lower contains 'rouge' or option_lower contains 'blanc' or option_lower contains 'noir' or option_lower contains 'vert' or option_lower contains 'rose' or option_lower contains 'gris' or option_lower contains 'ecru' or option_lower contains 'marine' or option_lower contains 'beige'
-                      assign variant_color = option
-                      break
-                    endif
-                  endfor
-                  
-                  # If variant has color, try to find corresponding hexcode
-                  if variant_color != blank
-                    # Check if product has multiple color metafields or individual variant metafields
-                    if variant.metafields.custom.color_hex != blank
-                      assign variant_hexcode = variant.metafields.custom.color_hex
-                    elsif product.metafields.global.product_hexcode != blank
-                      # Use main product hexcode as fallback
-                      assign variant_hexcode = product.metafields.global.product_hexcode
-                    endif
-                    
-                    # Add to lookup if we have both color and hexcode
-                    if variant_hexcode != blank
-                      assign normalized_variant_color = variant_color | downcase | replace: ' ', '_'
-                      assign color_lookup = color_lookup | append: normalized_variant_color | append: ':' | append: variant_hexcode | append: '|'
-                    endif
-                  endif
-                endfor
               endfor
             -%}
             {%- assign filters = collection.filters -%}
@@ -317,10 +284,12 @@
                                     assign search_pattern = metafield_color_name | append: ':'
                                     
                                     # Look up hexcode for this color
+                                    assign debug_all_matches = ''
                                     if color_lookup contains search_pattern
                                       assign color_parts = color_lookup | split: '|'
                                       for color_part in color_parts
                                         if color_part contains search_pattern
+                                          assign debug_all_matches = debug_all_matches | append: color_part | append: ' // '
                                           assign hexcode_parts = color_part | split: ':'
                                           assign checkbox_color = hexcode_parts[1]
                                           break
@@ -344,11 +313,13 @@
                                       assign is_beige = true
                                     endif
                                   -%}
-                                  <!-- DEBUG: "{{ value.label }}" → "{{ metafield_color_name }}" | Pattern: "{{ search_pattern }}" | Color: {{ checkbox_color }} -->
+                                  <!-- DEBUG: "{{ value.label }}" → "{{ metafield_color_name }}" | Pattern: "{{ search_pattern }}" | Matches: {{ debug_all_matches }} | Final Color: {{ checkbox_color }} -->
                                   {% if value.label == 'Beige' %}
-                                    <!-- BEIGE DEBUG: Mapping "beige" → "{{ metafield_color_name }}" | Available colors: {{ color_lookup }} -->
+                                    <!-- BEIGE DETAILED: All colors: {{ color_lookup }} -->
                                   {% endif %}
-                                  {% if value.label == 'Beige' %}<!-- BEIGE LOOKUP DETAIL: "{{ color_lookup }}" -->{% endif %}
+                                  {% if value.label == 'Ecru' %}
+                                    <!-- ECRU DETAILED: All colors: {{ color_lookup }} -->
+                                  {% endif %}
                                   
                                   <span
                                     class="checkbox border rounded-2 bg-white inline-flex content-center transition relative{% if value.active %} checked{% endif %}"
