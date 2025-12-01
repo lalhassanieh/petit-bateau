@@ -117,6 +117,7 @@
             {%- liquid
               # Create color lookup object for efficient color matching (uses all collection products)
               assign color_lookup = ''
+              assign debug_metafields = ''
               # Use collections[collection.handle].products to get all products, not filtered ones
               assign all_collection_products = collections[collection.handle].products
               for product in all_collection_products limit: 50
@@ -124,6 +125,10 @@
                   assign normalized_color = product.metafields.global.product_additional_color | downcase | replace: ' ', '_'
                   assign hexcode = product.metafields.global.product_hexcode
                   assign color_lookup = color_lookup | append: normalized_color | append: ':' | append: hexcode | append: '|'
+                  # Add debug info for first few products
+                  if forloop.index <= 5
+                    assign debug_metafields = debug_metafields | append: 'Product[' | append: forloop.index | append: ']:' | append: product.metafields.global.product_additional_color | append: '=' | append: product.metafields.global.product_hexcode | append: ' | '
+                  endif
                 endif
               endfor
             -%}
@@ -304,6 +309,7 @@
                                     endif
                                   -%}
                                   <!-- DEBUG: Filter: "{{ value.label }}" | Normalized: "{{ normalized_filter_value }}" | Search Pattern: "{{ search_pattern }}" | Found in Lookup: {{ debug_found_in_lookup }} | Matched Part: "{{ debug_matched_part }}" | Extracted Color: "{{ debug_extracted_color }}" | Final Color: {{ checkbox_color }} -->
+                                  {% if value.label == 'Beige' %}<!-- BEIGE METAFIELDS DEBUG: {{ debug_metafields }} -->{% endif %}
                                   {% if value.label == 'Beige' %}<!-- BEIGE LOOKUP DETAIL: "{{ color_lookup }}" -->{% endif %}
                                   
                                   <span
