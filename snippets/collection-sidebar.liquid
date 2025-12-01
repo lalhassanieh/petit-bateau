@@ -203,8 +203,8 @@
                                     <div class="tooltip swatch-option pointer{{ attribute }}{% if value.active %} current-filter{% endif %}{% if iscolor %} relative{% endif %}{% if is_size %} rounded-3 border px-15 py-10 lh-1 text-center btn-hover transition{% if value.count == 0 and value.active == false %} grey-bg{% endif %}{% endif %}">
                                       {% if iscolor %}
                                         {%- liquid
-                                          assign color_hex = ' '
-                                          comment 'Find the first product variant with this color to get the hexcode'
+                                          assign color_hex = ''
+                                          comment 'Find the first product with this color to get the hexcode from product metafield'
                                           for product in collection.products limit: 50
                                             for variant in product.variants
                                               assign variant_option_name = ''
@@ -216,8 +216,8 @@
                                                 assign variant_option_name = variant.option3
                                               endif
                                               
-                                              if variant_option_name == value.label and variant.metafields.global.product_hexcode != blank
-                                                assign color_hex = variant.metafields.global.product_hexcode
+                                              if variant_option_name == value.label and product.metafields.global.product_hexcode != blank
+                                                assign color_hex = product.metafields.global.product_hexcode
                                                 break
                                               endif
                                             endfor
