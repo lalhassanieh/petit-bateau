@@ -115,9 +115,11 @@
             </div>
           {%- when 'filter' -%}
             {%- liquid
-              # Create color lookup object for efficient color matching (updates with AJAX)
+              # Create color lookup object for efficient color matching (uses all collection products)
               assign color_lookup = ''
-              for product in collection.products limit: 50
+              # Use collections[collection.handle].products to get all products, not filtered ones
+              assign all_collection_products = collections[collection.handle].products
+              for product in all_collection_products limit: 50
                 if product.metafields.global.product_additional_color != blank and product.metafields.global.product_hexcode != blank
                   assign normalized_color = product.metafields.global.product_additional_color | downcase | replace: ' ', '_'
                   assign hexcode = product.metafields.global.product_hexcode
