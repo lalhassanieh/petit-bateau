@@ -21,6 +21,16 @@
   if theme_st.size_trigger != blank
     assign size_options = theme_st.size_trigger | split: ','
   endif
+  
+  # Create color lookup object for efficient color matching
+  assign color_lookup = ''
+  for product in collection.products limit: 50
+    if product.metafields.global.product_additional_color != blank and product.metafields.global.product_hexcode != blank
+      assign normalized_color = product.metafields.global.product_additional_color | downcase | replace: ' ', '_'
+      assign hexcode = product.metafields.global.product_hexcode
+      assign color_lookup = color_lookup | append: normalized_color | append: ':' | append: hexcode | append: '|'
+    endif
+  endfor
 -%}
 {% liquid
   assign enable_rtl = settings.rtl
@@ -251,33 +261,20 @@
                                 >
                                   {%- liquid
                                     assign checkbox_color = ''
-                                    assign debug_found_match = false
-                                    assign debug_products_checked = 0
-                                    assign debug_matching_product = ''
-                                    assign debug_product_color_raw = ''
-                                    assign debug_hexcode_raw = ''
-                                    
-                                    # Normalize the filter value: lowercase and replace spaces with underscores
                                     assign normalized_filter_value = value.label | downcase | replace: ' ', '_'
+                                    assign search_pattern = normalized_filter_value | append: ':'
                                     
-                                    # Search through collection products to find matching color
-                                    for product in collection.products limit: 50
-                                      assign debug_products_checked = debug_products_checked | plus: 1
-                                      if product.metafields.global.product_additional_color != blank
-                                        # Normalize the product color: lowercase and replace spaces with underscores
-                                        assign normalized_product_color = product.metafields.global.product_additional_color | downcase | replace: ' ', '_'
-                                        
-                                        # If colors match, get the hexcode
-                                        if normalized_filter_value == normalized_product_color and product.metafields.global.product_hexcode != blank
-                                          assign checkbox_color = product.metafields.global.product_hexcode
-                                          assign debug_found_match = true
-                                          assign debug_matching_product = product.title
-                                          assign debug_product_color_raw = product.metafields.global.product_additional_color
-                                          assign debug_hexcode_raw = product.metafields.global.product_hexcode
+                                    # Efficient lookup using the pre-built color lookup
+                                    if color_lookup contains search_pattern
+                                      assign color_parts = color_lookup | split: '|'
+                                      for color_part in color_parts
+                                        if color_part contains search_pattern
+                                          assign hexcode_parts = color_part | split: ':'
+                                          assign checkbox_color = hexcode_parts[1]
                                           break
                                         endif
-                                      endif
-                                    endfor
+                                      endfor
+                                    endif
                                     
                                     # Fallback colors if no matching hexcode found
                                     if checkbox_color == blank
@@ -288,8 +285,6 @@
                                       endif
                                     endif
                                   -%}
-                                  
-                                  <!-- DEBUG: Filter Value: "{{ value.label }}" | Normalized: "{{ normalized_filter_value }}" | Products Checked: {{ debug_products_checked }} | Match Found: {{ debug_found_match }} | Matching Product: "{{ debug_matching_product }}" | Product Color: "{{ debug_product_color_raw }}" | Hexcode: "{{ debug_hexcode_raw }}" | Final Color: {{ checkbox_color }} -->
                                   
                                   <span
                                     class="checkbox border rounded-2 bg-white inline-flex content-center transition relative{% if value.active %} checked{% endif %}"
