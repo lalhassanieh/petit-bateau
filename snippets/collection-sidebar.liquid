@@ -297,7 +297,13 @@
                                     endif
                                   -%}
                                   
-                                  <!-- DEBUG BEIGE: Filter: "{{ value.label }}" | Is Beige: {{ value.label == 'Beige' }} | Normalized: "{{ normalized_filter_value }}" | Search Pattern: "{{ search_pattern }}" | Found in Lookup: {{ debug_found_in_lookup }} | Matched Part: "{{ debug_matched_part }}" | Extracted Color: "{{ debug_extracted_color }}" | Final Color: {{ checkbox_color }} -->
+                                  {%- liquid
+                                    assign is_beige = false
+                                    if value.label == 'Beige'
+                                      assign is_beige = true
+                                    endif
+                                  -%}
+                                  <!-- DEBUG BEIGE: Filter: "{{ value.label }}" | Is Beige: {{ is_beige }} | Normalized: "{{ normalized_filter_value }}" | Search Pattern: "{{ search_pattern }}" | Found in Lookup: {{ debug_found_in_lookup }} | Matched Part: "{{ debug_matched_part }}" | Extracted Color: "{{ debug_extracted_color }}" | Final Color: {{ checkbox_color }} -->
                                   {% if value.label == 'Beige' %}<!-- BEIGE LOOKUP DETAIL: "{{ color_lookup }}" -->{% endif %}
                                   
                                   <span
