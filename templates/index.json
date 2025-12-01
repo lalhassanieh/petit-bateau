@@ -617,36 +617,49 @@
         "collection_aGRhHH": {
           "type": "collection",
           "settings": {
-            "collection": "douce-nuit",
-            "collection_title": ""
+            "collection": "bebe-fille-6-24m",
+            "collection_image": "shopify://shop_images/13.jpg",
+            "collection_title": "Fille Modèle"
           }
         },
         "collection_AXraYd": {
           "type": "collection",
           "settings": {
-            "collection": "douce-nuit-1",
-            "collection_title": ""
+            "collection": "bebe-garcon-6-24m",
+            "collection_image": "shopify://shop_images/14.jpg",
+            "collection_title": "Irrésistible"
           }
         },
         "collection_djaj9w": {
           "type": "collection",
           "settings": {
-            "collection": "dans-la-savane",
-            "collection_title": ""
+            "collection": "bebe-fille-6-24m-vetements-robes-jupes",
+            "collection_image": "shopify://shop_images/15.jpg",
+            "collection_title": "Soirée festive"
           }
         },
         "collection_kaqgdM": {
           "type": "collection",
           "settings": {
-            "collection": "nuit-reposante",
-            "collection_title": ""
+            "collection": "garcon-3-18a-vetements-pulls-sweatshirts-marinieres",
+            "collection_image": "shopify://shop_images/16.jpg",
+            "collection_title": "Noël chic"
           }
         },
         "collection_JBAnm8": {
           "type": "collection",
           "settings": {
-            "collection": "petit-bonheur",
-            "collection_title": ""
+            "collection": "nouveau-ne-0-12m",
+            "collection_image": "shopify://shop_images/17.jpg",
+            "collection_title": "Tout pour rêver"
+          }
+        },
+        "collection_kyU3Pw": {
+          "type": "collection",
+          "settings": {
+            "collection": "bebe-fille-6-24m",
+            "collection_image": "shopify://shop_images/18.jpg",
+            "collection_title": "Tenue de fête"
           }
         }
       },
@@ -655,7 +668,8 @@
         "collection_AXraYd",
         "collection_djaj9w",
         "collection_kaqgdM",
-        "collection_JBAnm8"
+        "collection_JBAnm8",
+        "collection_kyU3Pw"
       ],
       "custom_css": [
         ".collection-item__information {left: 30px;}",
