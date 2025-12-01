@@ -321,7 +321,11 @@
                                     <!-- ECRU DETAILED: All colors: {{ color_lookup }} -->
                                   {% endif %}
                                   {% if value.label == 'Vert' %}
-                                    <!-- VERT DETAILED: Looking for "vert:" in: {{ color_lookup }} | Contains "vert"? {{ color_lookup contains 'vert' }} -->
+                                    {% if color_lookup contains 'vert' %}
+                                      <!-- VERT DETAILED: Found "vert" in lookup: {{ color_lookup }} -->
+                                    {% else %}
+                                      <!-- VERT DETAILED: "vert" NOT found in lookup: {{ color_lookup }} -->
+                                    {% endif %}
                                   {% endif %}
                                   
                                   <span
