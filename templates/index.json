@@ -683,7 +683,7 @@
       "name": "t:sections.collection-list.name",
       "settings": {
         "section_width": "fluid_container",
-        "color_scheme": "",
+        "color_scheme": "scheme-af038f0f-2079-418d-8ab6-f5d222736ef3",
         "heading": "Looks du moment!",
         "description": "",
         "show_view_all_button": false,
