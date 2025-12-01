@@ -516,6 +516,7 @@
         "collection_eU9Nb4",
         "collection_MmtDiJ"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-item__information {left: 30px;}",
         ".collection-item__name {text-align: left; padding: 0; color: #fff; border: none; background-color: transparent;}",
