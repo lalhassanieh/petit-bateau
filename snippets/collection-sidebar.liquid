@@ -272,53 +272,21 @@
                                   {%- liquid
                                     assign checkbox_color = ''
                                     assign normalized_filter_value = value.label | downcase | replace: ' ', '_'
+                                    assign search_pattern = normalized_filter_value | append: ':'
                                     
-                                    # Map English filter names to French metafield values
-                                    assign search_color = normalized_filter_value
-                                    case normalized_filter_value
-                                      when 'beige'
-                                        assign search_color = 'ecru'
-                                      when 'white'
-                                        assign search_color = 'blanc'
-                                      when 'blue'
-                                        assign search_color = 'bleu'
-                                      when 'green'
-                                        assign search_color = 'vert'
-                                      when 'red'
-                                        assign search_color = 'rouge'
-                                      when 'pink'
-                                        assign search_color = 'rose'
-                                      when 'gray', 'grey'
-                                        assign search_color = 'gris'
-                                      when 'black'
-                                        assign search_color = 'noir'
-                                      when 'navy'
-                                        assign search_color = 'marine'
-                                      when 'yellow'
-                                        assign search_color = 'jaune'
-                                    endcase
-                                    
-                                    assign search_pattern = search_color | append: ':'
-                                    assign debug_found_in_lookup = false
-                                    assign debug_matched_part = ''
-                                    assign debug_extracted_color = ''
-                                    
-                                    # Lookup using mapped color name
+                                    # Look up hexcode for this color
                                     if color_lookup contains search_pattern
-                                      assign debug_found_in_lookup = true
                                       assign color_parts = color_lookup | split: '|'
                                       for color_part in color_parts
                                         if color_part contains search_pattern
-                                          assign debug_matched_part = color_part
                                           assign hexcode_parts = color_part | split: ':'
                                           assign checkbox_color = hexcode_parts[1]
-                                          assign debug_extracted_color = hexcode_parts[1]
                                           break
                                         endif
                                       endfor
                                     endif
                                     
-                                    # Fallback colors if no matching hexcode found
+                                    # Default fallback colors
                                     if checkbox_color == blank
                                       if value.active
                                         assign checkbox_color = '#007bff'
@@ -334,8 +302,10 @@
                                       assign is_beige = true
                                     endif
                                   -%}
-                                  <!-- DEBUG: Filter: "{{ value.label }}" | Normalized: "{{ normalized_filter_value }}" | Mapped To: "{{ search_color }}" | Search Pattern: "{{ search_pattern }}" | Found in Lookup: {{ debug_found_in_lookup }} | Matched Part: "{{ debug_matched_part }}" | Extracted Color: "{{ debug_extracted_color }}" | Final Color: {{ checkbox_color }} -->
-                                  {% if value.label == 'Beige' %}<!-- BEIGE METAFIELDS DEBUG: {{ debug_metafields }} -->{% endif %}
+                                  <!-- DEBUG: "{{ value.label }}" | Pattern: "{{ search_pattern }}" | Color: {{ checkbox_color }} -->
+                                  {% if value.label == 'Beige' %}
+                                    <!-- BEIGE DEBUG: Available colors: {{ color_lookup }} -->
+                                  {% endif %}
                                   {% if value.label == 'Beige' %}<!-- BEIGE LOOKUP DETAIL: "{{ color_lookup }}" -->{% endif %}
                                   
                                   <span
