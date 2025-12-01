@@ -202,40 +202,10 @@
                                   >
                                     <div class="tooltip swatch-option pointer{{ attribute }}{% if value.active %} current-filter{% endif %}{% if iscolor %} relative{% endif %}{% if is_size %} rounded-3 border px-15 py-10 lh-1 text-center btn-hover transition{% if value.count == 0 and value.active == false %} grey-bg{% endif %}{% endif %}">
                                       {% if iscolor %}
-                                        {%- liquid
-                                          assign color_hex = ''
-                                          # Find the first product with this color to get the hexcode from product metafield
-                                          for product in collection.products limit: 50
-                                            for variant in product.variants
-                                              assign variant_option_name = ''
-                                              if variant.option1 == value.label
-                                                assign variant_option_name = variant.option1
-                                              elsif variant.option2 == value.label  
-                                                assign variant_option_name = variant.option2
-                                              elsif variant.option3 == value.label
-                                                assign variant_option_name = variant.option3
-                                              endif
-                                              
-                                              if variant_option_name == value.label and product.metafields.global.product_hexcode != blank
-                                                assign color_hex = product.metafields.global.product_hexcode
-                                                break
-                                              endif
-                                            endfor
-                                            if color_hex != blank
-                                              break
-                                            endif
-                                          endfor
-                                          
-                                          # Fallback to basic color name if no hexcode found
-                                          if color_hex == blank
-                                            assign color_hex = value.value | downcase
-                                          endif
-                                        -%}
-                                        
                                         <span
                                           class="product__color-swatches--js custom__color-swatches--{{ value.label | handleize }} {{ value.value | handleize }} clrbox product__color-swatch relative block rounded-50"
                                           data-color="{{ value.label | downcase }}"
-                                          style="background-color: {{ color_hex }};"
+                                          style="background-color:{{ value.value | downcase }};"
                                         ></span>
                                       {% else %}
                                         <span class="relative z-2">
@@ -281,62 +251,24 @@
                                 >
                                   {%- liquid
                                     assign checkbox_color = ''
-                                    assign debug_found_product = ''
-                                    assign debug_variant_options = ''
-                                    assign debug_hexcode_found = false
-                                    assign debug_products_checked = 0
-                                    assign debug_variants_checked = 0
-                                    assign debug_metafield_value = ''
+                                    # Normalize the filter value: lowercase and replace spaces with underscores
+                                    assign normalized_filter_value = value.label | downcase | replace: ' ', '_'
                                     
-                                    # Find the first product with matching value to get the hexcode from product metafield
+                                    # Search through collection products to find matching color
                                     for product in collection.products limit: 50
-                                      assign debug_products_checked = debug_products_checked | plus: 1
-                                      for variant in product.variants
-                                        assign debug_variants_checked = debug_variants_checked | plus: 1
-                                        assign variant_option_name = ''
+                                      if product.metafields.global.product_additional_color != blank
+                                        # Normalize the product color: lowercase and replace spaces with underscores
+                                        assign normalized_product_color = product.metafields.global.product_additional_color | downcase | replace: ' ', '_'
                                         
-                                        # Check each option and build debug info
-                                        assign current_variant_options = variant.option1 | append: '|' | append: variant.option2 | append: '|' | append: variant.option3
-                                        
-                                        if variant.option1 == value.label
-                                          assign variant_option_name = variant.option1
-                                        elsif variant.option2 == value.label  
-                                          assign variant_option_name = variant.option2
-                                        elsif variant.option3 == value.label
-                                          assign variant_option_name = variant.option3
+                                        # If colors match, get the hexcode
+                                        if normalized_filter_value == normalized_product_color and product.metafields.global.product_hexcode != blank
+                                          assign checkbox_color = product.metafields.global.product_hexcode
+                                          break
                                         endif
-                                        
-                                        # Check for case-insensitive match as well
-                                        assign value_label_lower = value.label | downcase
-                                        assign option1_lower = variant.option1 | downcase
-                                        assign option2_lower = variant.option2 | downcase
-                                        assign option3_lower = variant.option3 | downcase
-                                        
-                                        if option1_lower == value_label_lower
-                                          assign variant_option_name = variant.option1
-                                        elsif option2_lower == value_label_lower
-                                          assign variant_option_name = variant.option2
-                                        elsif option3_lower == value_label_lower
-                                          assign variant_option_name = variant.option3
-                                        endif
-                                        
-                                        if variant_option_name != blank
-                                          assign debug_metafield_value = product.metafields.global.product_hexcode
-                                          if product.metafields.global.product_hexcode != blank
-                                            assign checkbox_color = product.metafields.global.product_hexcode
-                                            assign debug_found_product = product.title
-                                            assign debug_hexcode_found = true
-                                            assign debug_variant_options = current_variant_options
-                                            break
-                                          endif
-                                        endif
-                                      endfor
-                                      if checkbox_color != blank
-                                        break
                                       endif
                                     endfor
                                     
-                                    # Fallback colors
+                                    # Fallback colors if no matching hexcode found
                                     if checkbox_color == blank
                                       if value.active
                                         assign checkbox_color = '#007bff'
@@ -345,8 +277,6 @@
                                       endif
                                     endif
                                   -%}
-                                  
-                                  <!-- DEBUG DETAILED: Filter: {{ filter.label }} | Value: "{{ value.label }}" | Products Checked: {{ debug_products_checked }} | Variants Checked: {{ debug_variants_checked }} | Found Product: "{{ debug_found_product }}" | Variant Options: "{{ debug_variant_options }}" | Metafield Value: "{{ debug_metafield_value }}" | Hexcode Found: {{ debug_hexcode_found }} | Final Color: {{ checkbox_color }} -->
                                   
                                   <span
                                     class="checkbox border rounded-2 bg-white inline-flex content-center transition relative{% if value.active %} checked{% endif %}"
