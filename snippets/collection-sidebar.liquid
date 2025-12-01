@@ -274,12 +274,8 @@
                                     assign checkbox_color = ''
                                     assign normalized_filter_value = value.label | downcase | replace: ' ', '_'
                                     
-                                    # Map variant option names to metafield names
+                                    # Use the filter value directly (no mapping needed)
                                     assign metafield_color_name = normalized_filter_value
-                                    case normalized_filter_value
-                                      when 'beige'
-                                        assign metafield_color_name = 'ecru'
-                                    endcase
                                     
                                     assign search_pattern = metafield_color_name | append: ':'
                                     
