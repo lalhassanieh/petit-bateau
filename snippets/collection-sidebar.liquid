@@ -115,7 +115,7 @@
             </div>
           {%- when 'filter' -%}
             {%- liquid
-              # Create color lookup object for efficient color matching (uses all collection products)
+              # Create color lookup  object for efficient color matching (uses all collection products)
               assign color_lookup = ''
               # Use collections[collection.handle].products to get all products, not filtered ones
               assign all_collection_products = collections[collection.handle].products
