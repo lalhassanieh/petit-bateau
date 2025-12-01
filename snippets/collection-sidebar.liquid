@@ -22,15 +22,7 @@
     assign size_options = theme_st.size_trigger | split: ','
   endif
   
-  # Create color lookup object for efficient color matching
-  assign color_lookup = ''
-  for product in collection.products limit: 50
-    if product.metafields.global.product_additional_color != blank and product.metafields.global.product_hexcode != blank
-      assign normalized_color = product.metafields.global.product_additional_color | downcase | replace: ' ', '_'
-      assign hexcode = product.metafields.global.product_hexcode
-      assign color_lookup = color_lookup | append: normalized_color | append: ':' | append: hexcode | append: '|'
-    endif
-  endfor
+
 -%}
 {% liquid
   assign enable_rtl = settings.rtl
@@ -122,6 +114,17 @@
               </collapsible-block>
             </div>
           {%- when 'filter' -%}
+            {%- liquid
+              # Create color lookup object for efficient color matching (updates with AJAX)
+              assign color_lookup = ''
+              for product in collection.products limit: 50
+                if product.metafields.global.product_additional_color != blank and product.metafields.global.product_hexcode != blank
+                  assign normalized_color = product.metafields.global.product_additional_color | downcase | replace: ' ', '_'
+                  assign hexcode = product.metafields.global.product_hexcode
+                  assign color_lookup = color_lookup | append: normalized_color | append: ':' | append: hexcode | append: '|'
+                endif
+              endfor
+            -%}
             {%- assign filters = collection.filters -%}
             {%- assign total_active_values = 0 -%}
             {%- for filter in filters -%}
