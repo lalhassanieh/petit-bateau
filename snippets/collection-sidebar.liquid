@@ -204,7 +204,7 @@
                                       {% if iscolor %}
                                         {%- liquid
                                           assign color_hex = ''
-                                          comment 'Find the  first product with this color to get the hexcode from product metafield'
+                                          comment 'Find the first product with this color to get the hexcode from product metafield'
                                           for product in collection.products limit: 50
                                             for variant in product.variants
                                               assign variant_option_name = ''
