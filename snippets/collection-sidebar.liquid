@@ -279,8 +279,43 @@
                                   data-href="{% if value.active %}{{ value.url_to_remove }}{% else %}{{ value.url_to_add }}{% endif %}"
                                   class="link-filter pointer inline-flex lh-normal gap-10 hover-heading-color transition"
                                 >
+                                  {%- liquid
+                                    assign checkbox_color = ''
+                                    # Find the first product with matching value to get the hexcode from product metafield
+                                    for product in collection.products limit: 50
+                                      for variant in product.variants
+                                        assign variant_option_name = ''
+                                        if variant.option1 == value.label
+                                          assign variant_option_name = variant.option1
+                                        elsif variant.option2 == value.label  
+                                          assign variant_option_name = variant.option2
+                                        elsif variant.option3 == value.label
+                                          assign variant_option_name = variant.option3
+                                        endif
+                                        
+                                        if variant_option_name == value.label and product.metafields.global.product_hexcode != blank
+                                          assign checkbox_color = product.metafields.global.product_hexcode
+                                          break
+                                        endif
+                                      endfor
+                                      if checkbox_color != blank
+                                        break
+                                      endif
+                                    endfor
+                                    
+                                    # Fallback colors
+                                    if checkbox_color == blank
+                                      if value.active
+                                        assign checkbox_color = '#007bff'
+                                      else
+                                        assign checkbox_color = '#ffffff'
+                                      endif
+                                    endif
+                                  -%}
+                                  
                                   <span
                                     class="checkbox border rounded-2 bg-white inline-flex content-center transition relative{% if value.active %} checked{% endif %}"
+                                    style="background-color: {{ checkbox_color }};"
                                   >
                                     <svg
                                       width="10"
