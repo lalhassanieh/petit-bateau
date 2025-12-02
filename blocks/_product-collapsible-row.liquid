@@ -3,7 +3,25 @@
   assign product = closest.product
   assign section_st = section.settings
   assign enable_skeleton_loading = section_st.enable_skeleton_loading
+  
+  # Check if content is empty
+  assign has_content = false
+  assign content_to_check = ''
+  
+  if block_st.use_product_description == true
+    assign content_to_check = product.description
+  else
+    assign content_to_check = block_st.content
+  endif
+  
+  # Remove HTML tags and whitespace to check if content is actually empty
+  assign content_stripped = content_to_check | strip_html | strip
+  if content_stripped != blank and content_stripped != ''
+    assign has_content = true
+  endif
 %}
+
+{% if has_content %}
 <collapsible-block
   tabindex="0"
   {{ block.shopify_attributes }}
@@ -37,6 +55,7 @@
     </div>
   </div>
 </collapsible-block>
+{% endif %}
 
 {%- comment -%} JavaScript to update REF value when variant changes {%- endcomment -%}
 <script>
