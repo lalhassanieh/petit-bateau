@@ -130,7 +130,7 @@
               {% else %}
                 {{ item.final_price | money }}
               {% endif %}
-              <span style="font-size: 12px; ">Prix inclus taxes</span>
+              {% comment %} <span style="font-size: 12px; ">Prix inclus taxes</span> {% endcomment %}
             </span>
             <s class="minicart__item-original-price">
               {% if show_currency_code %}
@@ -138,7 +138,7 @@
               {% else %}
                 {{ item.original_price | money }}
               {% endif %}
-              <span style="font-size: 12px; ">Prix inclus taxes</span>
+              {% comment %} <span style="font-size: 12px; ">Prix inclus taxes</span> {% endcomment %}
             </s>
           </div>
         {%- elsif current_variant.compare_at_price > current_variant.price -%}
@@ -148,7 +148,7 @@
             {% else %}
               {{ current_variant.price | money }}
             {% endif %}
-            <span style="font-size: 12px; ">Prix inclus taxes</span>
+            {% comment %} <span style="font-size: 12px; ">Prix inclus taxes</span> {% endcomment %}
           </span>
           <s class="minicart__item-original-price">
             {% if show_currency_code %}
@@ -156,7 +156,7 @@
             {% else %}
               {{ current_variant.compare_at_price | money }}
             {% endif %}
-            <span style="font-size: 12px; ">Prix inclus taxes</span>
+            {% comment %} <span style="font-size: 12px; ">Prix inclus taxes</span> {% endcomment %}
           </s>
         {%- else -%}
           <span class="minicart__item-price text-color-original-price heading-style">
@@ -165,7 +165,7 @@
             {% else %}
               {{ item.original_price | money }}
             {% endif %}
-            <span style="font-size: 12px; ">Prix inclus taxes</span>
+            {% comment %} <span style="font-size: 12px; ">Prix inclus taxes</span> {% endcomment %}
           </span>
         {%- endif -%}
         {%- if item.variant.available and item.unit_price_measurement -%}
