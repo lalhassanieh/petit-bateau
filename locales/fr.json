@@ -92,7 +92,7 @@
       "result": "Vous avez consulté {{ amount }} de {{ count }} résultat"
     },
     "breadcrumb": {
-      "home": "Acceuil"
+      "home": "Accueil"
     },
     "placeholder": {
       "label": "Aucune image"
@@ -781,7 +781,7 @@
   },
   "mobile_navbar": {
     "shop": "Boutique",
-    "homepage": "Acceuil",
+    "homepage": "Accueil",
     "account": "Compte",
     "cart": "Panier",
     "wishlist": "Liste de souhaits"
