@@ -48,8 +48,8 @@
       "discount_code_already": "Discount code already applied"
     },
     "outfit-idea": {
-         "view_products" : "View Products",
-         "shop_the_look" : "Shop the Look"
+      "view_products": "View Products",
+      "shop_the_look": "Shop the Look"
     },
     "password_page": {
       "login_form_heading": "Enter store using password:",
@@ -147,7 +147,8 @@
       "heading_guarantee": "Up to 30-Day Guarantee",
       "note": {
         "title": "Add Order Note",
-        "placeholder": "How can we help you?"
+        "placeholder": "How can we help you?",
+        "description": ""
       },
       "gift": {
         "title": "Add Gift",
@@ -570,7 +571,7 @@
           "label_bundle_added": "Added to Bundle",
           "label_add_all": "Add all to Cart"
         },
-        "property" : {
+        "property": {
           "custom_text": "Custom text",
           "custom_image": "Custom image"
         }
@@ -645,8 +646,7 @@
         "model_weight": "Weight:",
         "model_shoulder_width": "Shoulder width:",
         "model_bust_waist_hips": "Bust/waist/hips:"
-      }
-      ,
+      },
       "inventory_status": {
         "incoming": "Stock in transit",
         "incoming_with_date": "The stock will arrive on {{ date }}"
