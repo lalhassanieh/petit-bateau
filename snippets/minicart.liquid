@@ -320,7 +320,7 @@
                     {{ cart.total_price | money }}
                   {% endif %}
                 </span>
-                <span style="font-size: 12px;">Prix inclus taxes</span>
+                {% comment %} <span style="font-size: 12px;">Prix inclus taxes</span> {% endcomment %}
                 
               </div>
               {%- if theme_st.show_check_box_in_cart and theme_st.enable_catalog_mode == false -%}
