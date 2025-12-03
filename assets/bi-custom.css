@@ -183,6 +183,7 @@
 
 .product-item__wrapper .items-center {
   align-items: center;
+  justify-content: space-between;
 }
 
 .product-item__button {
@@ -401,6 +402,31 @@
 }
 
 /*# END Added by Carla*/
+/* Registration Form Marketing Checkboxes */
+.marketing-consent .checkbox-group .checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.marketing-consent .checkbox-group .checkbox-item .marketing-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #002E5E;
+  cursor: pointer;
+}
+.marketing-consent .checkbox-group .checkbox-item .checkbox-label {
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+  flex: 1;
+  margin: 0;
+  color: #333;
+}
+.marketing-consent .checkbox-group .checkbox-item .checkbox-label:hover {
+  color: #002E5E;
+}
+
 .collection-item__media {
   position: relative;
 }
