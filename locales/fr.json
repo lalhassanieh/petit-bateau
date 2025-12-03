@@ -809,6 +809,9 @@
         "billing_address_title": "Adresse de Livraison",
         "same_billing_address_label": "Identique à l’adresse de facturation",
         "different_billing_address_label": "Utiliser une autre adresse de Livraison "
+      },
+      "thank_you": {
+        "thank_you_title": "Votre commande est maintenant confirmée"
       }
     }
   }
