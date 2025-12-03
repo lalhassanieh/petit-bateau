@@ -284,69 +284,88 @@
 </template>
 
 <script>
+  // Use event delegation to handle form submission even if popup is loaded dynamically
+  document.addEventListener('submit', function(e) {
+    // Check if this is the popup registration form
+    if (e.target.closest('#tab_register')) {
+      console.log('🚀 Popup registration form submitted!');
+      
+      const popupForm = e.target;
+      
+      // Always remove existing tag inputs to start fresh
+      const existingTagInputs = popupForm.querySelectorAll('input[name="customer[tags]"]');
+      existingTagInputs.forEach(input => input.remove());
+      console.log('Removed existing tag inputs:', existingTagInputs.length);
+      
+      // Handle custom tags processing for popup form
+      const tags = [];
+      
+      // Check EMAIL MARKETING checkbox and add tag
+      const emailMarketingCheckbox = popupForm.querySelector('#popup-email-marketing');
+      console.log('Email marketing checkbox element:', emailMarketingCheckbox);
+      if (emailMarketingCheckbox) {
+        console.log('Email marketing checkbox found, checked:', emailMarketingCheckbox.checked);
+        if (emailMarketingCheckbox.checked) {
+          tags.push('email-marketing-consent');
+          console.log('✅ Added email-marketing-consent tag');
+        }
+      } else {
+        console.log('❌ Email marketing checkbox NOT found in form');
+      }
+      
+      // Check FIDELITE CARD checkbox and add tag
+      const fideliteCheckbox = popupForm.querySelector('#popup-fidelite-card');
+      console.log('Fidelite card checkbox element:', fideliteCheckbox);
+      if (fideliteCheckbox) {
+        console.log('Fidelite card checkbox found, checked:', fideliteCheckbox.checked);
+        if (fideliteCheckbox.checked) {
+          tags.push('fidelite-card-member');
+          console.log('✅ Added fidelite-card-member tag');
+        }
+      } else {
+        console.log('❌ Fidelite card checkbox NOT found in form');
+      }
+      
+      console.log('📋 Final tags to add:', tags);
+      
+      // ALWAYS create tag input, even if empty
+      const tagInput = document.createElement('input');
+      tagInput.type = 'hidden';
+      tagInput.name = 'customer[tags]';
+      tagInput.value = tags.length > 0 ? tags.join(',') : '';
+      popupForm.appendChild(tagInput);
+      
+      console.log('✅ Created customer[tags] input with value:', `"${tagInput.value}"`);
+      
+      // Log the final form HTML to see the hidden input
+      console.log('📝 Form HTML with tag input:', popupForm.outerHTML.substring(0, 500) + '...');
+      
+      // Don't prevent form submission - let it continue normally
+      console.log('🎯 Allowing form to submit to Shopify...');
+    }
+  });
+  
+  // Also add a backup method using DOMContentLoaded with longer timeout
   document.addEventListener('DOMContentLoaded', function() {
-    // Wait for popup to be loaded into DOM
-    setTimeout(function() {
+    console.log('🔍 DOM loaded, checking for popup form...');
+    
+    // Check every 1 second for up to 10 seconds
+    let attempts = 0;
+    const maxAttempts = 10;
+    
+    const checkForPopup = setInterval(function() {
+      attempts++;
       const popupForm = document.querySelector('#tab_register form');
       
       if (popupForm) {
-        console.log('Popup form found, adding event listener');
-        
-        popupForm.addEventListener('submit', function(e) {
-          console.log('Popup form submitted');
-          
-          // Always remove existing tag inputs to start fresh
-          const existingTagInputs = popupForm.querySelectorAll('input[name="customer[tags]"]');
-          existingTagInputs.forEach(input => input.remove());
-          
-          // Handle custom tags processing for popup form
-          const tags = [];
-          
-          // Check EMAIL MARKETING checkbox and add tag
-          const emailMarketingCheckbox = document.getElementById('popup-email-marketing');
-          if (emailMarketingCheckbox) {
-            console.log('Email marketing checkbox found, checked:', emailMarketingCheckbox.checked);
-            if (emailMarketingCheckbox.checked) {
-              tags.push('email-marketing-consent');
-              console.log('✓ Added email-marketing-consent tag');
-            }
-          } else {
-            console.log('❌ Email marketing checkbox NOT found');
-          }
-          
-          // Check FIDELITE CARD checkbox and add tag
-          const fideliteCheckbox = document.getElementById('popup-fidelite-card');
-          if (fideliteCheckbox) {
-            console.log('Fidelite card checkbox found, checked:', fideliteCheckbox.checked);
-            if (fideliteCheckbox.checked) {
-              tags.push('fidelite-card-member');
-              console.log('✓ Added fidelite-card-member tag');
-            }
-          } else {
-            console.log('❌ Fidelite card checkbox NOT found');
-          }
-          
-          console.log('Final tags to add:', tags);
-          
-          // ALWAYS create tag input, even if empty (Shopify will ignore empty tags)
-          const tagInput = document.createElement('input');
-          tagInput.type = 'hidden';
-          tagInput.name = 'customer[tags]';
-          tagInput.value = tags.length > 0 ? tags.join(',') : '';
-          popupForm.appendChild(tagInput);
-          
-          console.log('✓ Created customer[tags] input with value:', tagInput.value || '(empty)');
-          
-          // Also log all form data being submitted
-          const formData = new FormData(popupForm);
-          console.log('All form data being submitted:');
-          for (let [key, value] of formData.entries()) {
-            console.log(`  ${key}: ${value}`);
-          }
-        });
+        console.log(`✅ Found popup form on attempt ${attempts}`);
+        clearInterval(checkForPopup);
+      } else if (attempts >= maxAttempts) {
+        console.log('❌ Never found popup form after 10 attempts');
+        clearInterval(checkForPopup);
       } else {
-        console.log('Popup form not found');
+        console.log(`🔍 Attempt ${attempts}: Popup form not found yet...`);
       }
-    }, 500); // Wait 500ms for popup to load
+    }, 1000);
   });
 </script>
