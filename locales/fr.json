@@ -804,6 +804,9 @@
       "delivery_options": {
         "ship": "Livraison à Domicile",
         "pick_up": "Retrait en Boutique"
+      },
+      "payment": {
+        "billing_address_title": "Adresse de Livraison"
       }
     }
   }
