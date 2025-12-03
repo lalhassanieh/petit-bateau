@@ -225,50 +225,7 @@
           </div>
         {% endform %}
         
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const popupForm = document.querySelector('#tab_register form');
-            const popupFideliteCheckbox = document.getElementById('popup-fidelite-card');
-            
-            if (popupForm) {
-              popupForm.addEventListener('submit', function(e) {
-                // Handle custom tags processing for popup form
-                const tags = [];
-                
-                // Check all marketing checkboxes and add corresponding tags
-                const emailMarketingCheckbox = document.getElementById('popup-email-marketing');
-                const smsMarketingCheckbox = document.getElementById('popup-sms-marketing');
-                const fideliteCheckbox = document.getElementById('popup-fidelite-card');
-                
-                if (emailMarketingCheckbox && emailMarketingCheckbox.checked) {
-                  tags.push('email-marketing-consent');
-                }
-                
-                if (smsMarketingCheckbox && smsMarketingCheckbox.checked) {
-                  tags.push('sms-marketing-consent');
-                }
-                
-                if (fideliteCheckbox && fideliteCheckbox.checked) {
-                  tags.push('fidelite-card-member');
-                }
-                
-                // Create hidden input for tags if any tags are selected
-                if (tags.length > 0) {
-                  // Remove existing tag inputs to avoid duplicates
-                  const existingTagInputs = popupForm.querySelectorAll('input[name="customer[tags]"]');
-                  existingTagInputs.forEach(input => input.remove());
-                  
-                  // Create new hidden input with comma-separated tags
-                  const tagInput = document.createElement('input');
-                  tagInput.type = 'hidden';
-                  tagInput.name = 'customer[tags]';
-                  tagInput.value = tags.join(',');
-                  popupForm.appendChild(tagInput);
-                }
-              });
-            }
-          });
-        </script>
+
       </div>
       <div
         id="forgot-password"
@@ -325,3 +282,71 @@
     </div>
   </div>
 </template>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Wait for popup to be loaded into DOM
+    setTimeout(function() {
+      const popupForm = document.querySelector('#tab_register form');
+      
+      if (popupForm) {
+        console.log('Popup form found, adding event listener');
+        
+        popupForm.addEventListener('submit', function(e) {
+          console.log('Popup form submitted');
+          
+          // Always remove existing tag inputs to start fresh
+          const existingTagInputs = popupForm.querySelectorAll('input[name="customer[tags]"]');
+          existingTagInputs.forEach(input => input.remove());
+          
+          // Handle custom tags processing for popup form
+          const tags = [];
+          
+          // Check EMAIL MARKETING checkbox and add tag
+          const emailMarketingCheckbox = document.getElementById('popup-email-marketing');
+          if (emailMarketingCheckbox) {
+            console.log('Email marketing checkbox found, checked:', emailMarketingCheckbox.checked);
+            if (emailMarketingCheckbox.checked) {
+              tags.push('email-marketing-consent');
+              console.log('✓ Added email-marketing-consent tag');
+            }
+          } else {
+            console.log('❌ Email marketing checkbox NOT found');
+          }
+          
+          // Check FIDELITE CARD checkbox and add tag
+          const fideliteCheckbox = document.getElementById('popup-fidelite-card');
+          if (fideliteCheckbox) {
+            console.log('Fidelite card checkbox found, checked:', fideliteCheckbox.checked);
+            if (fideliteCheckbox.checked) {
+              tags.push('fidelite-card-member');
+              console.log('✓ Added fidelite-card-member tag');
+            }
+          } else {
+            console.log('❌ Fidelite card checkbox NOT found');
+          }
+          
+          console.log('Final tags to add:', tags);
+          
+          // ALWAYS create tag input, even if empty (Shopify will ignore empty tags)
+          const tagInput = document.createElement('input');
+          tagInput.type = 'hidden';
+          tagInput.name = 'customer[tags]';
+          tagInput.value = tags.length > 0 ? tags.join(',') : '';
+          popupForm.appendChild(tagInput);
+          
+          console.log('✓ Created customer[tags] input with value:', tagInput.value || '(empty)');
+          
+          // Also log all form data being submitted
+          const formData = new FormData(popupForm);
+          console.log('All form data being submitted:');
+          for (let [key, value] of formData.entries()) {
+            console.log(`  ${key}: ${value}`);
+          }
+        });
+      } else {
+        console.log('Popup form not found');
+      }
+    }, 500); // Wait 500ms for popup to load
+  });
+</script>
