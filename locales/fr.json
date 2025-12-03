@@ -800,6 +800,9 @@
     "checkout": {
       "shipping": {
         "delivery_title": "Addressee de Facturation - Livraison"
+      },
+      "delivery_options": {
+        "ship": "Livraison à Domicile"
       }
     }
   }
