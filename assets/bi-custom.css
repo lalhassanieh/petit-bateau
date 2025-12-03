@@ -384,7 +384,7 @@
   font-size: 1.2rem;
 }
 
-.wishlist-button.active path, .product-item__button-wishlist path {
+.wishlist-button.active path, .product-item__button-wishlist.active path {
   fill: #002e5e;
 }
 
