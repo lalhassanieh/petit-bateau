@@ -76,7 +76,7 @@
     data-update-url="false"
   >
     <div
-      class="product-item__wrapper block {% if direction == 'horizontal' %} flex-column  {% endif %} {{settings.product_hover_effect }}{% if type == 'list' or type == 'sticky' %} flex gap-custom align-center{% else %} product-grid{% endif %}"
+      class="1 product-item__wrapper block {% if direction == 'horizontal' %} flex-column  {% endif %} {{settings.product_hover_effect }}{% if type == 'list' or type == 'sticky' %} flex gap-custom align-center{% else %} product-grid{% endif %}"
       {% if collection_product == true %}
         data-margin="0px 0px 5 0px"
       {% endif %}
@@ -1027,7 +1027,7 @@
   <div class="product-item {{ class }} {{ product_style }}">
     <div
       style="{% if type == 'list' %}--gap: 15{% endif %}"
-      class="product-item__wrapper  {% if type == 'list' or type == 'sticky' %} flex gap-15{% else %} product-grid block{% endif %} {% if direction == 'horizontal' %} flex-column {% endif %}"
+      class="2 product-item__wrapper  {% if type == 'list' or type == 'sticky' %} flex gap-15{% else %} product-grid block{% endif %} {% if direction == 'horizontal' %} flex-column {% endif %}"
     >
       <div class="product-item__inner relative{% if type == 'list' or type == 'sticky' %} col-w-custom{% endif %}">
         <div class="product-item__media">
