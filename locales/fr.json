@@ -802,7 +802,8 @@
         "delivery_title": "Addressee de Facturation - Livraison"
       },
       "delivery_options": {
-        "ship": "Livraison à Domicile"
+        "ship": "Livraison à Domicile",
+        "pick_up": "Retrait en Boutique"
       }
     }
   }
