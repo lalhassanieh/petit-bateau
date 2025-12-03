@@ -803,7 +803,8 @@
       },
       "delivery_options": {
         "ship": "Livraison à Domicile",
-        "pick_up": "Retrait en Boutique"
+        "pick_up": "Retrait en Boutique",
+        "free_total_label": "FREEEE"
       }
     }
   }
