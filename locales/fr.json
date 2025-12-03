@@ -804,9 +804,6 @@
       "delivery_options": {
         "ship": "Livraison à Domicile",
         "pick_up": "Retrait en Boutique"
-      },
-      "thank_you": {
-        "shipping_method_title": "retra"
       }
     }
   }
