@@ -79,20 +79,38 @@
       assign related_products = null
       assign related_count = 0
       
-      # Find the main/parent collection (usually the first one or most specific)
+      # Find the main/parent collection (prioritize more specific collections)
       if product.collections.size > 0
-        # Priority: use the collection with most products, or first collection as fallback
-        assign largest_collection = product.collections.first
-        assign largest_size = product.collections.first.products.size
+        # First, try to find a collection that's not too large (avoid "All products" type collections)
+        assign best_collection = null
+        assign best_size = 999999
         
+        # Look for collections with reasonable size (not too big, not too small)
         for collection in product.collections
-          if collection.products.size > largest_size
-            assign largest_collection = collection
-            assign largest_size = collection.products.size
+          assign collection_size = collection.products.size
+          # Prefer collections with 5-200 products (specific enough but with variety)
+          if collection_size >= 5 and collection_size <= 200
+            if collection_size < best_size
+              assign best_collection = collection
+              assign best_size = collection_size
+            endif
           endif
         endfor
         
-        assign parent_collection = largest_collection
+        # If no ideal collection found, use the smallest collection available
+        if best_collection == null
+          assign best_collection = product.collections.first
+          assign best_size = product.collections.first.products.size
+          
+          for collection in product.collections
+            if collection.products.size < best_size
+              assign best_collection = collection
+              assign best_size = collection.products.size
+            endif
+          endfor
+        endif
+        
+        assign parent_collection = best_collection
       endif
       
       # Get products from the same parent collection, excluding current product
@@ -101,15 +119,18 @@
         assign filtered_products = ''
         assign related_count = 0
         
-        # Filter out current product and limit results
+        # Filter out current product and prioritize newer or featured products
         for related_product in related_products
           if related_product.id != product.id and related_count < items_to_show
-            if filtered_products == ''
-              assign filtered_products = related_product.handle
-            else
-              assign filtered_products = filtered_products | append: ',' | append: related_product.handle
-            endif
-            assign related_count = related_count | plus: 1
+            # Skip products that are exactly the same (same handle/type)
+            unless related_product.handle == product.handle
+              if filtered_products == ''
+                assign filtered_products = related_product.handle
+              else
+                assign filtered_products = filtered_products | append: ',' | append: related_product.handle
+              endif
+              assign related_count = related_count | plus: 1
+            endunless
           endif
         endfor
         
