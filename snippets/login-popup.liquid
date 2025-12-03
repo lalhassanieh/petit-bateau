@@ -225,7 +225,50 @@
           </div>
         {% endform %}
         
-
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const popupForm = document.querySelector('#tab_register form');
+            const popupFideliteCheckbox = document.getElementById('popup-fidelite-card');
+            
+            if (popupForm) {
+              popupForm.addEventListener('submit', function(e) {
+                // Handle custom tags processing for popup form
+                const tags = [];
+                
+                // Check all marketing checkboxes and add corresponding tags
+                const emailMarketingCheckbox = document.getElementById('popup-email-marketing');
+                const smsMarketingCheckbox = document.getElementById('popup-sms-marketing');
+                const fideliteCheckbox = document.getElementById('popup-fidelite-card');
+                
+                if (emailMarketingCheckbox && emailMarketingCheckbox.checked) {
+                  tags.push('email-marketing-consent');
+                }
+                
+                if (smsMarketingCheckbox && smsMarketingCheckbox.checked) {
+                  tags.push('sms-marketing-consent');
+                }
+                
+                if (fideliteCheckbox && fideliteCheckbox.checked) {
+                  tags.push('fidelite-card-member');
+                }
+                
+                // Create hidden input for tags if any tags are selected
+                if (tags.length > 0) {
+                  // Remove existing tag inputs to avoid duplicates
+                  const existingTagInputs = popupForm.querySelectorAll('input[name="customer[tags]"]');
+                  existingTagInputs.forEach(input => input.remove());
+                  
+                  // Create new hidden input with comma-separated tags
+                  const tagInput = document.createElement('input');
+                  tagInput.type = 'hidden';
+                  tagInput.name = 'customer[tags]';
+                  tagInput.value = tags.join(',');
+                  popupForm.appendChild(tagInput);
+                }
+              });
+            }
+          });
+        </script>
       </div>
       <div
         id="forgot-password"
@@ -282,62 +325,3 @@
     </div>
   </div>
 </template>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Wait for popup to be loaded into DOM
-    setTimeout(function() {
-      const popupForm = document.querySelector('#tab_register form');
-      
-      if (popupForm) {
-        console.log('Popup form found, adding event listener');
-        
-        popupForm.addEventListener('submit', function(e) {
-          console.log('Popup form submitted');
-          
-          // Handle custom tags processing for popup form
-          const tags = [];
-          
-          // Check marketing checkboxes and add corresponding tags
-          const emailMarketingCheckbox = document.getElementById('popup-email-marketing');
-          const fideliteCheckbox = document.getElementById('popup-fidelite-card');
-          
-          console.log('Email checkbox:', emailMarketingCheckbox ? emailMarketingCheckbox.checked : 'not found');
-          console.log('Fidelite checkbox:', fideliteCheckbox ? fideliteCheckbox.checked : 'not found');
-          
-          if (emailMarketingCheckbox && emailMarketingCheckbox.checked) {
-            tags.push('email-marketing-consent');
-            console.log('Added email-marketing-consent tag');
-          }
-          
-          if (fideliteCheckbox && fideliteCheckbox.checked) {
-            tags.push('fidelite-card-member');
-            console.log('Added fidelite-card-member tag');
-          }
-          
-          console.log('Final tags array:', tags);
-          
-          // Create hidden input for tags if any tags are selected
-          if (tags.length > 0) {
-            // Remove existing tag inputs to avoid duplicates
-            const existingTagInputs = popupForm.querySelectorAll('input[name="customer[tags]"]');
-            existingTagInputs.forEach(input => input.remove());
-            
-            // Create new hidden input with comma-separated tags
-            const tagInput = document.createElement('input');
-            tagInput.type = 'hidden';
-            tagInput.name = 'customer[tags]';
-            tagInput.value = tags.join(',');
-            popupForm.appendChild(tagInput);
-            
-            console.log('Created tag input with value:', tags.join(','));
-          } else {
-            console.log('No tags to add');
-          }
-        });
-      } else {
-        console.log('Popup form not found');
-      }
-    }, 500); // Wait 500ms for popup to load
-  });
-</script>
