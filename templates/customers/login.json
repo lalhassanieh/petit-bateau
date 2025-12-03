@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "page-heading": {
@@ -14,20 +14,19 @@
       "blocks": {
         "breadcrumb_4wr7m6": {
           "type": "breadcrumb",
-          "settings": {
-          }
+          "settings": {}
         },
         "heading_38YawG": {
           "type": "heading",
           "settings": {
-            "page_title": "Great to have you back!",
+            "page_title": "Ravi de te revoir !",
             "header_size": "default"
           }
         },
         "description_3QxrG4": {
           "type": "description",
           "settings": {
-            "description": "<p>Log in to manage your account, track orders, and enjoy exclusive member benefits.<\/p>"
+            "description": "<p>Connectez-vous pour gérer votre compte, suivre vos commandes et profiter d’avantages exclusifs réservés aux membres.</p>"
           }
         }
       },
@@ -48,8 +47,7 @@
     },
     "main": {
       "type": "main-login",
-      "settings": {
-      }
+      "settings": {}
     }
   },
   "order": [
