@@ -235,17 +235,12 @@
                 // Handle custom tags processing for popup form
                 const tags = [];
                 
-                // Check all marketing checkboxes and add corresponding tags
+                // Check marketing checkboxes and add corresponding tags
                 const emailMarketingCheckbox = document.getElementById('popup-email-marketing');
-                const smsMarketingCheckbox = document.getElementById('popup-sms-marketing');
                 const fideliteCheckbox = document.getElementById('popup-fidelite-card');
                 
                 if (emailMarketingCheckbox && emailMarketingCheckbox.checked) {
                   tags.push('email-marketing-consent');
-                }
-                
-                if (smsMarketingCheckbox && smsMarketingCheckbox.checked) {
-                  tags.push('sms-marketing-consent');
                 }
                 
                 if (fideliteCheckbox && fideliteCheckbox.checked) {
