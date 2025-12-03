@@ -138,7 +138,7 @@
       "settings": {
         "section_width": "full_width",
         "slide_height": "custom",
-        "desktop_height": 640,
+        "desktop_height": 750,
         "mobile_height": 300,
         "color_scheme": "",
         "slide_effect": "fade",
