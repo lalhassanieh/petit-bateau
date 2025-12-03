@@ -808,14 +808,14 @@
       "payment": {
         "billing_address_title": "Adresse de Livraison",
         "same_billing_address_label": "Identique à l’adresse de facturation",
-        "different_billing_address_label": "Utiliser une autre adresse de Livraison ",
-        "payment_method": "En espèce"
+        "different_billing_address_label": "Utiliser une autre adresse de Livraison "
       },
       "thank_you": {
         "thank_you_title": "Prise en compte par nos équipes.",
         "thank_you_confirmed_with_email_description": {
           "single_store": "Confirmée et prête pour être livrée."
-        }
+        },
+        "choose_payment_method_later": "En espèce"
       }
     }
   }
