@@ -804,6 +804,11 @@
       "delivery_options": {
         "ship": "Livraison à Domicile",
         "pick_up": "Retrait en Boutique"
+      },
+      "review": {
+        "blocks": {
+          "change_shipping_method_link_label": "retrait"
+        }
       }
     }
   }
