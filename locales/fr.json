@@ -799,14 +799,15 @@
   "shopify": {
     "checkout": {
       "shipping": {
-        "delivery_title": "Addressee de Facturation - Livraison"
+        "delivery_title": "Adressee de Facturation - Livraison"
       },
       "delivery_options": {
         "ship": "Livraison à Domicile",
         "pick_up": "Retrait en Boutique"
       },
       "payment": {
-        "billing_address_title": "Adresse de Livraison"
+        "billing_address_title": "Adresse de Livraison",
+        "same_billing_address_label": "Identique à l’adresse de facturation"
       }
     }
   }
