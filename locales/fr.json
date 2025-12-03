@@ -815,9 +815,6 @@
         "thank_you_confirmed_with_email_description": {
           "single_store": "Confirmée et prête pour être livrée."
         }
-      },
-      "general": {
-        "choose_payment_method": "En espèce"
       }
     }
   }
