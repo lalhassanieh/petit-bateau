@@ -18,7 +18,7 @@
     "error": "Erreur",
     "close": "Fermer",
     "complementary_products": "Produits complémentaires",
-     "promotion_banner": "Bannière de promotion"
+    "promotion_banner": "Bannière de promotion"
   },
   "page_sale": {
     "use_code": "Utiliser le code :"
@@ -178,7 +178,8 @@
       "login": {
         "title": "Vous avez un compte ?",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Se connecter</a> pour vérifier plus rapidement."
-      }
+      },
+      "taxes_included_and_shipping_policy_html": ""
     },
     "page_cart": {
       "checkout": "Vérifier"
@@ -794,5 +795,12 @@
     "purchased": "acheté",
     "time_minutes": "il y a quelques minutes",
     "product_name": "Glozin par Blueskytechco"
+  },
+  "shopify": {
+    "checkout": {
+      "shipping": {
+        "delivery_title": "ADRESSE DE FACTURATION - Livraison"
+      }
+    }
   }
 }
