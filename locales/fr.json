@@ -807,7 +807,8 @@
       },
       "payment": {
         "billing_address_title": "Adresse de Livraison",
-        "same_billing_address_label": "Identique à l’adresse de facturation"
+        "same_billing_address_label": "Identique à l’adresse de facturation",
+        "different_billing_address_label": "Utiliser une adresse de Livraison différente"
       }
     }
   }
