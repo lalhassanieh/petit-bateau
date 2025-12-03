@@ -177,7 +177,7 @@
         "carousel_pagination": "show_dots",
         "pagination_position": "center",
         "autoplay": true,
-        "autorotate_speed": 5,
+        "autorotate_speed": 6,
         "subheading_font_size": 60,
         "subheading_font_weight": "body_weight",
         "subheading_spacing_bottom": 10,
