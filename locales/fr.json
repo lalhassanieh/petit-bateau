@@ -799,7 +799,7 @@
   "shopify": {
     "checkout": {
       "shipping": {
-        "delivery_title": "ADRESSE DE FACTURATION - Livraison"
+        "delivery_title": "Addressee de Facturation - Livraison"
       }
     }
   }
