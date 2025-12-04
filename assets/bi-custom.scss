@@ -311,8 +311,8 @@
  #icon-edit path {
      transform: scale(1.3);
  }
-  #icon-trash svg,
- #icon-edit svg {
+svg.remove-icon,
+ svg.edit-icon  {
   width: 20px !important;
  }
 
