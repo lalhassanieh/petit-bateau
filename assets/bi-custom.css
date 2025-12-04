@@ -260,7 +260,7 @@
 
 #icon-trash svg,
 #icon-edit svg {
-  width: 20px;
+  width: 20px !important;
 }
 
 .sec__newsletter {
