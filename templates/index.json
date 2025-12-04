@@ -167,7 +167,7 @@
       "name": "t:sections.slideshow.name",
       "settings": {
         "section_width": "fluid_container",
-        "slide_height": "custom",
+        "slide_height": "adapt",
         "desktop_height": 540,
         "mobile_height": 300,
         "color_scheme": "",
