@@ -475,6 +475,7 @@
       "last_name": "Nom de famille",
       "email": "E-mail",
       "password": "Mot de passe",
+      "phone": "Téléphone",
       "submit": "Créer un compte",
       "title_content": "Nouveau client",
       "content": "Inscrivez-vous pour bénéficier d'un accès anticipé aux soldes ainsi que de nouveautés, tendances et promotions personnalisées. ",

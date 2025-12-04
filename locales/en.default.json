@@ -476,6 +476,7 @@
       "email": "Email",
       "password": "Password",
       "submit": "Create Account",
+      "phone": "Phone number",
       "title_content": "New Customer",
       "content": "Sign up for early Sale access plus tailored new arrivals, trends and promotions. To opt out, click unsubscribe in our emails.",
       "content_form_html": "Your personal data will be used to support your experience throughout this website, to manage access to your account and for other purposes described in our <a href=\"{{ link }}\">privacy policy.<\/a>",
