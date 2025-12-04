@@ -151,8 +151,9 @@
                 class="hover-effect product-banner__image{% if forloop.first %} active{% endif %}"
                 data-block-id="{{ block.id }}"
                 data-index="{{ forloop.index0 }}"
-                style="--aspect-ratio: {{ ratio }};"
+                style="--aspect-ratio: {{ ratio }}; cursor: pointer;"
                 data-background-color="{{ block_st.content_background_color }}"
+                onclick="{% if block_st.button_link and block_st.button_link != blank %}window.location.href='{{ block_st.button_link }}';{% endif %}"
               >
                 {%- if block_st.image != blank -%}
                   {%- assign image_alt = block_st.image.alt | escape | default: 'Images' -%}
@@ -284,7 +285,7 @@
                             <a
                               href="{{- block_st.product.url -}}"
                               class="rounded-5 fs-0 "
-                              style=" --aspect-ratio: 1/1;"
+                              style=" --aspect-ratio: 1/1; cursor: pointer !important; position: relative; z-index: 10; pointer-events: auto !important;"
                               aria-label="{{ block_st.product.title | escape }}"
                             >
                               {%- assign image_alt = block_st.product.featured_media.alt

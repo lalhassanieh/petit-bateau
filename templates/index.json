@@ -327,7 +327,7 @@
             "product": "portable-wireless-speakers-music-speakers-new-2025",
             "product_spacing_bottom": 25,
             "button_label": "Découvrir",
-            "button_link": "",
+            "button_link": "shopify://collections/nos-nouveaux-arrivages",
             "button_type": "primary"
           }
         },
@@ -356,6 +356,7 @@
         },
         "product_banner_xTyA4d": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Property_1_2.jpg",
             "content_background_color": "#bdd4e5",
@@ -379,6 +380,7 @@
         },
         "product_banner_3b6Q6P": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Property_1_3_1.jpg",
             "content_background_color": "#bdd4e5",
@@ -402,6 +404,7 @@
         },
         "product_banner_P4xJFy": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Property_1_4.jpg",
             "content_background_color": "#bdd4e5",
@@ -425,6 +428,7 @@
         },
         "product_banner_rH6JEf": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Property_1_5.jpg",
             "content_background_color": "#bdd4e5",
@@ -448,6 +452,7 @@
         },
         "product_banner_dt8aGe": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/image_19_1.jpg",
             "content_background_color": "#bdd4e5",
@@ -818,7 +823,7 @@
             "product": "portable-wireless-speakers-music-speakers-new-2025",
             "product_spacing_bottom": 25,
             "button_label": "Découvrir la carte cadeau",
-            "button_link": "",
+            "button_link": "shopify://pages/carte-cadeau",
             "button_type": "primary"
           }
         },
@@ -841,7 +846,7 @@
             "product": "portable-wireless-speakers-music-speakers-new-2025",
             "product_spacing_bottom": 25,
             "button_label": "En savoir plus",
-            "button_link": "",
+            "button_link": "shopify://pages/l-emballage-cadeau",
             "button_type": "primary"
           }
         }

@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "page-heading": {
@@ -14,20 +14,19 @@
       "blocks": {
         "breadcrumb_BXeJNz": {
           "type": "breadcrumb",
-          "settings": {
-          }
+          "settings": {}
         },
         "heading_RzfXCG": {
           "type": "heading",
           "settings": {
-            "page_title": "Create account",
+            "page_title": "Créer Un Compte",
             "header_size": "default"
           }
         },
         "description_APQ9Vd": {
           "type": "description",
           "settings": {
-            "description": "<p>Join now for exclusive deals, personalized recommendations, and early sale access.<\/p>"
+            "description": "<p>Rejoignez-nous pour accéder à des offres exclusives, recevoir des recommandations personnalisées et profiter d’un accès anticipé aux promotions.</p>"
           }
         }
       },
@@ -48,8 +47,7 @@
     },
     "main": {
       "type": "main-register",
-      "settings": {
-      }
+      "settings": {}
     }
   },
   "order": [
