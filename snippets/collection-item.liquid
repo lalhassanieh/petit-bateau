@@ -79,7 +79,7 @@
         draggable="false"
         href="{{ card_collection.url }}"
         aria-label="{{- card_collection.title -}}"
-        style="--aspect-ratio: {{ ratio }};"
+        style="--aspect-ratio: {{ ratio }}; cursor: pointer; position: relative; z-index: 1;"
       >
         {% assign collection_media = card_collection.featured_image %}
 
