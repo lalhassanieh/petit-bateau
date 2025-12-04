@@ -808,7 +808,8 @@
       "payment": {
         "billing_address_title": "Adresse de Livraison",
         "same_billing_address_label": "Identique à l’adresse de facturation",
-        "different_billing_address_label": "Utiliser une autre adresse de Livraison "
+        "different_billing_address_label": "Utiliser une autre adresse de Livraison ",
+        "card_security_notice": "En espèces"
       },
       "thank_you": {
         "thank_you_title": "Prise en compte par nos équipes.",
