@@ -800,7 +800,8 @@
   "shopify": {
     "checkout": {
       "shipping": {
-        "delivery_title": "Adressee de Facturation - Livraison"
+        "delivery_title": "Adressee de Facturation - Livraison",
+        "add_address": "Une autre adresse de Livraison "
       },
       "delivery_options": {
         "ship": "Livraison à Domicile",
@@ -809,13 +810,18 @@
       "payment": {
         "billing_address_title": "Adresse de Livraison",
         "same_billing_address_label": "Identique à l’adresse de facturation",
-        "different_billing_address_label": "Utiliser une autre adresse de Livraison "
+        "different_billing_address_label": "Utiliser une autre adresse de Livraison ",
+        "card_security_notice": " "
       },
       "thank_you": {
         "thank_you_title": "Prise en compte par nos équipes.",
         "thank_you_confirmed_with_email_description": {
           "single_store": "Confirmée et prête pour être livrée."
         }
+      },
+      "order_summary": {
+        "vat_label_html": "TVA de {{amount}} incluses",
+        "shipping_label": "Livraison"
       }
     }
   }
