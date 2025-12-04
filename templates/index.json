@@ -71,7 +71,6 @@
         },
         "slider_item_fRcjwc": {
           "type": "slider_item",
-          "disabled": true,
           "settings": {
             "local_video": "shopify://files/videos/Vidéo.mov",
             "overlay_opacity": 0,
@@ -99,7 +98,6 @@
         },
         "slider_item_QGDKFa": {
           "type": "slider_item",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/1-01.jpg",
             "image_mobile": "shopify://shop_images/1-01.jpg",
