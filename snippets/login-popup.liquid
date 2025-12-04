@@ -25,7 +25,7 @@
         data-login-hidden="{{ 'customer.login_page.title' | t }}"
         aria-hidden="false"
       >
-        {% comment %} <p class="mt-8 mb-22 mx-0 text-center">{{ 'customer.login_page.sign_in_info' | t }}</p> {% endcomment %}
+       <p class="mt-8 mb-22 mx-0 text-center">{{ 'customer.login_page.sign_in_info' | t }}</p> 
         <form
           accept-charset="UTF-8"
           action="{{ routes.account_login_url }}"
@@ -103,7 +103,7 @@
         data-login-hidden="{{ 'customer.register.title' | t }}"
         aria-hidden="true"
       >
-        <p class="mt-8 mb-22 mx-0 text-center">{{ 'customer.login_page.create_account_info' | t }}</p>
+        {% comment %} <p class="mt-8 mb-22 mx-0 text-center">{{ 'customer.login_page.create_account_info' | t }}</p> {% endcomment %}
         {% form 'create_customer' %}
           {{ form.errors | default_errors }}
           <div class="first-name form-group mb-10 form-floating">
