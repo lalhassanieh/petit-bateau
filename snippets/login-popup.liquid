@@ -143,9 +143,9 @@
           </div>
 
           <div class="phone form-group mb-10">
-            <label class="field__label mb-5 block">
+            {% comment %} <label class="field__label mb-5 block">
               {{ 'customer.register.phone' | t | default: 'Téléphone' }}
-            </label>
+            </label> {% endcomment %}
             <div class="phone-input-wrapper flex gap-2">
               <select name="customer[phone_country]" class="country-select form-control" style="flex: 0 0 120px;">
                 <option value="+961" selected>🇱🇧 +961</option>

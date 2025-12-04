@@ -64,6 +64,157 @@
             <span class="required">*</span></label
           >
         </div>
+        <div class="form-group mb-20 flex flex-column phone">
+          <label class="form-label pb-5">
+            {{ 'customer.register.phone' | t | default: 'Téléphone' }}
+          </label>
+          <div class="phone-input-wrapper flex gap-2">
+            <select name="customer[phone_country]" class="country-select form-control" style="flex: 0 0 120px;">
+              <option value="+961" selected>🇱🇧 +961</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+1">🇨🇦 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+49">🇩🇪 +49</option>
+              <option value="+39">🇮🇹 +39</option>
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+31">🇳🇱 +31</option>
+              <option value="+32">🇧🇪 +32</option>
+              <option value="+41">🇨🇭 +41</option>
+              <option value="+43">🇦🇹 +43</option>
+              <option value="+351">🇵🇹 +351</option>
+              <option value="+352">🇱🇺 +352</option>
+              <option value="+45">🇩🇰 +45</option>
+              <option value="+46">🇸🇪 +46</option>
+              <option value="+47">🇳🇴 +47</option>
+              <option value="+358">🇫🇮 +358</option>
+              <option value="+354">🇮🇸 +354</option>
+              <option value="+353">🇮🇪 +353</option>
+              <option value="+48">🇵🇱 +48</option>
+              <option value="+420">🇨🇿 +420</option>
+              <option value="+421">🇸🇰 +421</option>
+              <option value="+36">🇭🇺 +36</option>
+              <option value="+385">🇭🇷 +385</option>
+              <option value="+386">🇸🇮 +386</option>
+              <option value="+372">🇪🇪 +372</option>
+              <option value="+371">🇱🇻 +371</option>
+              <option value="+370">🇱🇹 +370</option>
+              <option value="+30">🇬🇷 +30</option>
+              <option value="+90">🇹🇷 +90</option>
+              <option value="+7">🇷🇺 +7</option>
+              <option value="+380">🇺🇦 +380</option>
+              <option value="+375">🇧🇾 +375</option>
+              <option value="+40">🇷🇴 +40</option>
+              <option value="+359">🇧🇬 +359</option>
+              <option value="+381">🇷🇸 +381</option>
+              <option value="+382">🇲🇪 +382</option>
+              <option value="+387">🇧🇦 +387</option>
+              <option value="+389">🇲🇰 +389</option>
+              <option value="+383">🇽🇰 +383</option>
+              <option value="+355">🇦🇱 +355</option>
+              <option value="+377">🇲🇨 +377</option>
+              <option value="+378">🇸🇲 +378</option>
+              <option value="+379">🇻🇦 +379</option>
+              <option value="+376">🇦🇩 +376</option>
+              <option value="+423">🇱🇮 +423</option>
+              <option value="+298">🇫🇴 +298</option>
+              <option value="+299">🇬🇱 +299</option>
+              <option value="+508">🇵🇲 +508</option>
+              <option value="+590">🇬🇵 +590</option>
+              <option value="+594">🇬🇫 +594</option>
+              <option value="+596">🇲🇶 +596</option>
+              <option value="+262">🇷🇪 +262</option>
+              <option value="+262">🇾🇹 +262</option>
+              <option value="+687">🇳🇨 +687</option>
+              <option value="+689">🇵🇫 +689</option>
+              <option value="+681">🇼🇫 +681</option>
+              <option value="+685">🇼🇸 +685</option>
+              <option value="+684">🇦🇸 +684</option>
+              <option value="+683">🇳🇺 +683</option>
+              <option value="+682">🇨🇰 +682</option>
+              <option value="+680">🇵🇼 +680</option>
+              <option value="+679">🇫🇯 +679</option>
+              <option value="+678">🇻🇺 +678</option>
+              <option value="+677">🇸🇧 +677</option>
+              <option value="+676">🇹🇴 +676</option>
+              <option value="+675">🇵🇬 +675</option>
+              <option value="+674">🇳🇷 +674</option>
+              <option value="+673">🇧🇳 +673</option>
+              <option value="+672">🇦🇶 +672</option>
+              <option value="+670">🇹🇱 +670</option>
+              <option value="+668">🇵🇲 +668</option>
+              <option value="+667">🇬🇺 +667</option>
+              <option value="+666">🇵🇲 +666</option>
+              <option value="+665">🇵🇲 +665</option>
+              <option value="+664">🇲🇸 +664</option>
+              <option value="+91">🇮🇳 +91</option>
+              <option value="+86">🇨🇳 +86</option>
+              <option value="+81">🇯🇵 +81</option>
+              <option value="+82">🇰🇷 +82</option>
+              <option value="+852">🇭🇰 +852</option>
+              <option value="+853">🇲🇴 +853</option>
+              <option value="+886">🇹🇼 +886</option>
+              <option value="+65">🇸🇬 +65</option>
+              <option value="+60">🇲🇾 +60</option>
+              <option value="+66">🇹🇭 +66</option>
+              <option value="+84">🇻🇳 +84</option>
+              <option value="+62">🇮🇩 +62</option>
+              <option value="+63">🇵🇭 +63</option>
+              <option value="+61">🇦🇺 +61</option>
+              <option value="+64">🇳🇿 +64</option>
+              <option value="+27">🇿🇦 +27</option>
+              <option value="+212">🇲🇦 +212</option>
+              <option value="+213">🇩🇿 +213</option>
+              <option value="+216">🇹🇳 +216</option>
+              <option value="+218">🇱🇾 +218</option>
+              <option value="+222">🇲🇷 +222</option>
+              <option value="+253">🇩🇯 +253</option>
+              <option value="+252">🇸🇴 +252</option>
+              <option value="+269">🇰🇲 +269</option>
+              <option value="+20">🇪🇬 +20</option>
+              <option value="+966">🇸🇦 +966</option>
+              <option value="+971">🇦🇪 +971</option>
+              <option value="+965">🇰🇼 +965</option>
+              <option value="+974">🇶🇦 +974</option>
+              <option value="+968">🇴🇲 +968</option>
+              <option value="+973">🇧🇭 +973</option>
+              <option value="+964">🇮🇶 +964</option>
+              <option value="+962">🇯🇴 +962</option>
+              <option value="+963">🇸🇾 +963</option>
+              <option value="+970">🇵🇸 +970</option>
+              <option value="+967">🇾🇪 +967</option>
+              <option value="+249">🇸🇩 +249</option>
+              <option value="+251">🇪🇹 +251</option>
+              <option value="+254">🇰🇪 +254</option>
+              <option value="+255">🇹🇿 +255</option>
+              <option value="+256">🇺🇬 +256</option>
+              <option value="+250">🇷🇼 +250</option>
+              <option value="+257">🇧🇮 +257</option>
+              <option value="+258">🇲🇿 +258</option>
+              <option value="+260">🇿🇲 +260</option>
+              <option value="+263">🇿🇼 +263</option>
+              <option value="+264">🇳🇦 +264</option>
+              <option value="+266">🇱🇸 +266</option>
+              <option value="+267">🇧🇼 +267</option>
+              <option value="+268">🇸🇿 +268</option>
+              <option value="+269">🇰🇲 +269</option>
+              <option value="+290">🇸🇭 +290</option>
+              <option value="+291">🇪🇷 +291</option>
+              <option value="+297">🇦🇼 +297</option>
+              <option value="+298">🇫🇴 +298</option>
+            </select>
+            <input
+              type="tel"
+              id="phone-number"
+              placeholder="6 12 34 56 78"
+              name="customer[phone_number]"
+              class="phone-number-input form-control"
+              pattern="[0-9\s\-\(\)]+"
+              style="flex: 1;"
+            >
+          </div>
+        </div>
+        
         <div class="form-group mb-20 flex flex-column password form-floating">
           <input
             type="password"
@@ -137,10 +288,35 @@
       <script>
         document.addEventListener('DOMContentLoaded', function() {
           const form = document.querySelector('.custormer-register-form');
-          const fideliteCheckbox = document.getElementById('fidelite-card');
           
           if (form) {
             form.addEventListener('submit', function(e) {
+              console.log('🚀 Main registration form submitted!');
+              
+              // Remove existing inputs to avoid duplicates
+              const existingTagInputs = form.querySelectorAll('input[name="customer[tags]"]');
+              existingTagInputs.forEach(input => input.remove());
+              console.log('Removed existing tag inputs:', existingTagInputs.length);
+              
+              // Handle phone number combination
+              const countrySelect = form.querySelector('select[name="customer[phone_country]"]');
+              const phoneNumberInput = form.querySelector('input[name="customer[phone_number]"]');
+              
+              if (countrySelect && phoneNumberInput && phoneNumberInput.value.trim()) {
+                // Remove existing phone inputs
+                const existingPhoneInputs = form.querySelectorAll('input[name="customer[phone]"]');
+                existingPhoneInputs.forEach(input => input.remove());
+                
+                // Create combined phone input
+                const combinedPhoneInput = document.createElement('input');
+                combinedPhoneInput.type = 'hidden';
+                combinedPhoneInput.name = 'customer[phone]';
+                combinedPhoneInput.value = countrySelect.value + phoneNumberInput.value.replace(/\s/g, '');
+                form.appendChild(combinedPhoneInput);
+                
+                console.log('📱 Created combined phone:', combinedPhoneInput.value);
+              }
+              
               // Handle custom tags processing
               const tags = [];
               
@@ -149,31 +325,35 @@
               const smsMarketingCheckbox = document.getElementById('sms-marketing');
               const fideliteCheckbox = document.getElementById('fidelite-card');
               
+              console.log('Email marketing checkbox:', emailMarketingCheckbox);
               if (emailMarketingCheckbox && emailMarketingCheckbox.checked) {
                 tags.push('email-marketing-consent');
+                console.log('✅ Added email-marketing-consent tag');
               }
               
+              console.log('SMS marketing checkbox:', smsMarketingCheckbox);
               if (smsMarketingCheckbox && smsMarketingCheckbox.checked) {
                 tags.push('sms-marketing-consent');
+                console.log('✅ Added sms-marketing-consent tag');
               }
               
+              console.log('Fidelite card checkbox:', fideliteCheckbox);
               if (fideliteCheckbox && fideliteCheckbox.checked) {
                 tags.push('fidelite-card-member');
+                console.log('✅ Added fidelite-card-member tag');
               }
               
-              // Create hidden input for tags if any tags are selected
-              if (tags.length > 0) {
-                // Remove existing tag inputs to avoid duplicates
-                const existingTagInputs = form.querySelectorAll('input[name="customer[tags]"]');
-                existingTagInputs.forEach(input => input.remove());
-                
-                // Create new hidden input with comma-separated tags
-                const tagInput = document.createElement('input');
-                tagInput.type = 'hidden';
-                tagInput.name = 'customer[tags]';
-                tagInput.value = tags.join(',');
-                form.appendChild(tagInput);
-              }
+              console.log('📋 Final tags to add:', tags);
+              
+              // ALWAYS create tag input, even if empty
+              const tagInput = document.createElement('input');
+              tagInput.type = 'hidden';
+              tagInput.name = 'customer[tags]';
+              tagInput.value = tags.length > 0 ? tags.join(',') : '';
+              form.appendChild(tagInput);
+              
+              console.log('✅ Created customer[tags] input with value:', `"${tagInput.value}"`);
+              console.log('🎯 Allowing form to submit to Shopify...');
             });
           }
         });
