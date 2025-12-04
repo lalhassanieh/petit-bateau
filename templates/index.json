@@ -162,7 +162,8 @@
       ],
       "custom_css": [
         ".sec__inner {text-decoration: none;}",
-        "@media only screen and (max-width: 768px) {.sec__content-btn a {background: #002e5e; }}"
+        "@media only screen and (max-width: 768px) {.sec__content-btn a {background: #002e5e; }}",
+        ".sec__inner .banner__media :is(picture,source,img){border-radius: 0px;}"
       ],
       "name": "t:sections.slideshow.name",
       "settings": {
