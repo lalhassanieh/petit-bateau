@@ -172,7 +172,7 @@
                         <td
                           class="cart-item__media border-0 px-0 flex align-center gap-10 border-bottom py-30 w-custom"
                         >
-                          <div class="cart-items-action flex align-center flex-column gap-10">
+                          <div class="cart-items-action flex align-center flex-column gap-10" style="--icon-size: 20px;">
                             {%- unless item.product.has_only_default_variant -%}
                               <cart-item-edit
                                 data-text-header="{{ 'general.cart.cart_edit' | t }}"
@@ -182,13 +182,14 @@
                                 data-id="{{ item.id }}"
                                 data-key="{{ item.key }}"
                                 data-quantity="{{ item.quantity }}"
+                                style="width: auto !important; height: auto !important; min-width: 20px !important; min-height: 20px !important;"
                               >
                                 <svg
-                                  width="18"
-                                  height="18"
+                                  width="20"
+                                  height="20"
                                   fill="none"
                                   class="dark-grey edit-icon hover-heading-color transition"
-                                  style="min-width: 18px !important; min-height: 18px !important; width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important;"
+                                  style="width: 20px !important; height: 20px !important; min-width: 20px !important; min-height: 20px !important; max-width: none !important; max-height: none !important; flex-shrink: 0 !important;"
                                 >
                                   <use href="#icon-edit" />
                                 </svg>
@@ -206,13 +207,14 @@
                                 class="cart-remove button--tertiary relative fs-small light-dark-grey hover-heading-color inline-flex align-center"
                                 aria-label="{{ 'general.cart.remove_title' | t: title: item.title }}"
                                 name="{{ 'general.cart.remove_title' | t: title: item.title }}"
+                                style="width: auto !important; height: auto !important; min-width: 20px !important; min-height: 20px !important;"
                               >
                                 <span class="remove-icon inline-flex align-center">
                                   <svg
-                                    width="18"
-                                    height="18"
+                                    width="20"
+                                    height="20"
                                     class="dark-grey remove-icon hover-heading-color transition"
-                                    style="min-width: 18px !important; min-height: 18px !important; width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important;"
+                                    style="width: 20px !important; height: 20px !important; min-width: 20px !important; min-height: 20px !important; max-width: none !important; max-height: none !important; flex-shrink: 0 !important;"
                                   >
                                     <use href="#icon-trash" />
                                   </svg>
