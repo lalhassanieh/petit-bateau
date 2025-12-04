@@ -67,8 +67,8 @@
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
-        "heading": "Recently Viewed",
-        "description": "Explore your recently viewed items, blending quality and style for a refined living experience.",
+        "heading": "Récemment consultés",
+        "description": "Explorez vos articles récemment consultés, alliant qualité et style pour une expérience de vie raffinée.",
         "header_size": "medium",
         "header_alignment": "center",
         "items_to_show": 5,
