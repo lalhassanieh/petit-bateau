@@ -213,9 +213,8 @@
               style="flex: 1;"
             >
           </div>
-          <!-- Hidden inputs for phone data that will be saved to customer attributes -->
-          <input type="hidden" name="customer[note][phone]" id="combined-phone-hidden" value="">
-          <input type="hidden" name="customer[note][phone_country]" id="phone-country-hidden" value="+961">
+          <!-- Hidden input for phone data that will be saved to customer note -->
+          <input type="hidden" name="customer[note]" id="customer-note-hidden" value="">
         </div>
         
         <div class="form-group mb-20 flex flex-column password form-floating">
@@ -293,39 +292,33 @@
           const form = document.querySelector('.custormer-register-form');
           const countrySelect = form.querySelector('select[name="customer[phone_country]"]');
           const phoneNumberInput = form.querySelector('input[name="customer[phone_number]"]');
-          const hiddenPhoneInput = form.querySelector('#combined-phone-hidden');
+          const customerNoteInput = form.querySelector('#customer-note-hidden');
           
-          // Function to update the combined phone number
-          function updateCombinedPhone() {
-            if (countrySelect && phoneNumberInput && hiddenPhoneInput) {
+          // Function to update the customer note with phone information
+          function updateCustomerNote() {
+            const customerNoteInput = form.querySelector('#customer-note-hidden');
+            if (countrySelect && phoneNumberInput && customerNoteInput) {
               const phoneNumber = phoneNumberInput.value.trim();
-              const phoneCountryHidden = form.querySelector('#phone-country-hidden');
               
               if (phoneNumber) {
                 const combinedPhone = countrySelect.value + phoneNumber.replace(/\s/g, '');
-                hiddenPhoneInput.value = combinedPhone;
-                if (phoneCountryHidden) {
-                  phoneCountryHidden.value = countrySelect.value;
-                }
-                console.log('📱 Updated combined phone:', combinedPhone);
-                console.log('🌍 Updated country code:', countrySelect.value);
+                const noteText = `Phone: ${combinedPhone} (Country: ${countrySelect.value})`;
+                customerNoteInput.value = noteText;
+                console.log('📱 Updated customer note:', noteText);
               } else {
-                hiddenPhoneInput.value = '';
-                if (phoneCountryHidden) {
-                  phoneCountryHidden.value = countrySelect.value;
-                }
+                customerNoteInput.value = '';
               }
             }
           }
           
-          // Update phone on country change
+          // Update customer note on country change
           if (countrySelect) {
-            countrySelect.addEventListener('change', updateCombinedPhone);
+            countrySelect.addEventListener('change', updateCustomerNote);
           }
           
-          // Update phone on number input
+          // Update customer note on number input
           if (phoneNumberInput) {
-            phoneNumberInput.addEventListener('input', updateCombinedPhone);
+            phoneNumberInput.addEventListener('input', updateCustomerNote);
           }
           
           if (form) {
@@ -337,8 +330,8 @@
               existingTagInputs.forEach(input => input.remove());
               console.log('Removed existing tag inputs:', existingTagInputs.length);
               
-              // Ensure phone is properly set one final time before submission
-              updateCombinedPhone();
+              // Ensure customer note is properly set one final time before submission
+              updateCustomerNote();
               
               // Handle phone number as tag for easier retrieval
               if (phoneNumberInput && phoneNumberInput.value.trim()) {
@@ -350,10 +343,10 @@
                 tags.push('phone:' + fullPhone);
                 console.log('📱 Added phone tag:', 'phone:' + fullPhone);
                 
-                // Verify phone is set in hidden inputs
-                if (hiddenPhoneInput) {
-                  hiddenPhoneInput.value = fullPhone;
-                  console.log('📱 Final phone value for submission:', fullPhone);
+                // Verify customer note is set
+                const customerNoteInput = form.querySelector('#customer-note-hidden');
+                if (customerNoteInput && customerNoteInput.value) {
+                  console.log('📝 Final customer note for submission:', customerNoteInput.value);
                 }
               }
               

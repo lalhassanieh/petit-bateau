@@ -291,9 +291,8 @@
                 style="flex: 1;"
               >
             </div>
-            <!-- Hidden inputs for phone data -->
-            <input type="hidden" name="customer[note][phone]" id="popup-combined-phone-hidden" value="">
-            <input type="hidden" name="customer[note][phone_country]" id="popup-phone-country-hidden" value="+961">
+            <!-- Hidden input for phone data in customer note -->
+            <input type="hidden" name="customer[note]" id="popup-customer-note-hidden" value="">
           </div>
 
           <div class="form-field password form-group mb-10 relative form-floating">
@@ -451,26 +450,22 @@
       existingTagInputs.forEach(input => input.remove());
       console.log('Removed existing tag input  :', existingTagInputs.length);
       
-      // Handle phone number combination and save to customer attributes
+      // Handle phone number and save to customer note
       const countrySelect = popupForm.querySelector('select[name="customer[phone_country]"]');
       const phoneNumberInput = popupForm.querySelector('input[name="customer[phone_number]"]');
-      const hiddenPhoneInput = popupForm.querySelector('#popup-combined-phone-hidden');
-      const phoneCountryHidden = popupForm.querySelector('#popup-phone-country-hidden');
+      const customerNoteInput = popupForm.querySelector('#popup-customer-note-hidden');
       
       if (countrySelect && phoneNumberInput && phoneNumberInput.value.trim()) {
         const phoneNumber = phoneNumberInput.value.replace(/\s/g, '');
         const countryCode = countrySelect.value;
         const fullPhone = countryCode + phoneNumber;
         
-        // Update hidden inputs for customer attributes
-        if (hiddenPhoneInput) {
-          hiddenPhoneInput.value = fullPhone;
+        // Update customer note with phone information
+        if (customerNoteInput) {
+          const noteText = `Phone: ${fullPhone} (Country: ${countryCode})`;
+          customerNoteInput.value = noteText;
+          console.log('📱 Updated popup customer note:', noteText);
         }
-        if (phoneCountryHidden) {
-          phoneCountryHidden.value = countryCode;
-        }
-        
-        console.log('📱 Updated popup phone attributes:', fullPhone);
       }
       
       // Handle custom tags processing for popup form
