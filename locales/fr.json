@@ -818,7 +818,8 @@
         }
       },
       "order_summary": {
-        "vat_label_html": "TVA de {{amount}} incluses"
+        "vat_label_html": "TVA de {{amount}} incluses",
+        "shipping_label": "Livraison"
       }
     }
   }
