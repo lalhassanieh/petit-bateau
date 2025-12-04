@@ -155,10 +155,10 @@
                 data-background-color="{{ block_st.content_background_color }}"
               >
                 <a
-                  href="{% if block_st.product %}{{ block_st.product.url }}{% else %}#{% endif %}"
+                  href="{% if block_st.button_link and block_st.button_link != blank %}{{ block_st.button_link }}{% else %}#{% endif %}"
                   class="block w-full h-full"
                   style="cursor: pointer; position: relative; z-index: 1;"
-                  aria-label="{% if block_st.product %}{{ block_st.product.title | escape }}{% else %}Banner image{% endif %}"
+                  aria-label="{% if block_st.button_label %}{{ block_st.button_label | escape }}{% else %}Banner image{% endif %}"
                 >
                   {%- if block_st.image != blank -%}
                     {%- assign image_alt = block_st.image.alt | escape | default: 'Images' -%}
