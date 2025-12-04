@@ -28,8 +28,8 @@
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "bottom-center",
+            "content_alignment": "left",
+            "content_position": "bottom-left",
             "content_width": "container",
             "content_max_width": 100,
             "content_padding_block": 120,
@@ -99,7 +99,6 @@
         },
         "slider_item_QGDKFa": {
           "type": "slider_item",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/1-01.jpg",
             "image_mobile": "shopify://shop_images/1-01.jpg",
@@ -128,7 +127,6 @@
         },
         "slider_item_Pkmxxe": {
           "type": "slider_item",
-          "disabled": true,
           "settings": {
             "local_video": "shopify://files/videos/1-02.mp4",
             "overlay_opacity": 0,
