@@ -291,6 +291,9 @@
                 style="flex: 1;"
               >
             </div>
+            <!-- Hidden inputs for phone data -->
+            <input type="hidden" name="customer[note][phone]" id="popup-combined-phone-hidden" value="">
+            <input type="hidden" name="customer[note][phone_country]" id="popup-phone-country-hidden" value="+961">
           </div>
 
           <div class="form-field password form-group mb-10 relative form-floating">
@@ -448,23 +451,26 @@
       existingTagInputs.forEach(input => input.remove());
       console.log('Removed existing tag input  :', existingTagInputs.length);
       
-      // Handle phone number combination
+      // Handle phone number combination and save to customer attributes
       const countrySelect = popupForm.querySelector('select[name="customer[phone_country]"]');
       const phoneNumberInput = popupForm.querySelector('input[name="customer[phone_number]"]');
+      const hiddenPhoneInput = popupForm.querySelector('#popup-combined-phone-hidden');
+      const phoneCountryHidden = popupForm.querySelector('#popup-phone-country-hidden');
       
       if (countrySelect && phoneNumberInput && phoneNumberInput.value.trim()) {
-        // Remove existing phone inputs
-        const existingPhoneInputs = popupForm.querySelectorAll('input[name="customer[phone]"]');
-        existingPhoneInputs.forEach(input => input.remove());
+        const phoneNumber = phoneNumberInput.value.replace(/\s/g, '');
+        const countryCode = countrySelect.value;
+        const fullPhone = countryCode + phoneNumber;
         
-        // Create combined phone input
-        const combinedPhoneInput = document.createElement('input');
-        combinedPhoneInput.type = 'hidden';
-        combinedPhoneInput.name = 'customer[phone]';
-        combinedPhoneInput.value = countrySelect.value + phoneNumberInput.value.replace(/\s/g, '');
-        popupForm.appendChild(combinedPhoneInput);
+        // Update hidden inputs for customer attributes
+        if (hiddenPhoneInput) {
+          hiddenPhoneInput.value = fullPhone;
+        }
+        if (phoneCountryHidden) {
+          phoneCountryHidden.value = countryCode;
+        }
         
-        console.log('📱 Created combined phone:', combinedPhoneInput.value);
+        console.log('📱 Updated popup phone attributes:', fullPhone);
       }
       
       // Handle custom tags processing for popup form
@@ -494,6 +500,15 @@
         }
       } else {
         console.log('❌ Fidelite card checkbox NOT found in form');
+      }
+      
+      // Add phone number as tag if provided
+      if (phoneNumberInput && phoneNumberInput.value.trim()) {
+        const phoneNumber = phoneNumberInput.value.replace(/\s/g, '');
+        const countryCode = countrySelect ? countrySelect.value : '+961';
+        const fullPhone = countryCode + phoneNumber;
+        tags.push('phone:' + fullPhone);
+        console.log('✅ Added phone tag:', 'phone:' + fullPhone);
       }
       
       console.log('📋 Final tags to add:', tags);

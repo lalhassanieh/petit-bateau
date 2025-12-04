@@ -213,8 +213,9 @@
               style="flex: 1;"
             >
           </div>
-          <!-- Hidden input for combined phone number that will be populated by JavaScript -->
-          <input type="hidden" name="customer[phone]" id="combined-phone-hidden" value="">
+          <!-- Hidden inputs for phone data that will be saved to customer attributes -->
+          <input type="hidden" name="customer[note][phone]" id="combined-phone-hidden" value="">
+          <input type="hidden" name="customer[note][phone_country]" id="phone-country-hidden" value="+961">
         </div>
         
         <div class="form-group mb-20 flex flex-column password form-floating">
@@ -298,12 +299,21 @@
           function updateCombinedPhone() {
             if (countrySelect && phoneNumberInput && hiddenPhoneInput) {
               const phoneNumber = phoneNumberInput.value.trim();
+              const phoneCountryHidden = form.querySelector('#phone-country-hidden');
+              
               if (phoneNumber) {
                 const combinedPhone = countrySelect.value + phoneNumber.replace(/\s/g, '');
                 hiddenPhoneInput.value = combinedPhone;
+                if (phoneCountryHidden) {
+                  phoneCountryHidden.value = countrySelect.value;
+                }
                 console.log('📱 Updated combined phone:', combinedPhone);
+                console.log('🌍 Updated country code:', countrySelect.value);
               } else {
                 hiddenPhoneInput.value = '';
+                if (phoneCountryHidden) {
+                  phoneCountryHidden.value = countrySelect.value;
+                }
               }
             }
           }
@@ -330,17 +340,21 @@
               // Ensure phone is properly set one final time before submission
               updateCombinedPhone();
               
-              // Verify phone is set
-              if (hiddenPhoneInput && hiddenPhoneInput.value) {
-                console.log('📱 Final phone value for submission:', hiddenPhoneInput.value);
-              } else if (phoneNumberInput && phoneNumberInput.value.trim()) {
-                // Backup: create additional phone input if hidden input failed
-                const backupPhoneInput = document.createElement('input');
-                backupPhoneInput.type = 'hidden';
-                backupPhoneInput.name = 'customer[phone]';
-                backupPhoneInput.value = (countrySelect ? countrySelect.value : '+961') + phoneNumberInput.value.replace(/\s/g, '');
-                form.appendChild(backupPhoneInput);
-                console.log('📱 Created backup phone input:', backupPhoneInput.value);
+              // Handle phone number as tag for easier retrieval
+              if (phoneNumberInput && phoneNumberInput.value.trim()) {
+                const phoneNumber = phoneNumberInput.value.replace(/\s/g, '');
+                const countryCode = countrySelect ? countrySelect.value : '+961';
+                const fullPhone = countryCode + phoneNumber;
+                
+                // Add phone as a tag (prefixed with 'phone:' for easy identification)
+                tags.push('phone:' + fullPhone);
+                console.log('📱 Added phone tag:', 'phone:' + fullPhone);
+                
+                // Verify phone is set in hidden inputs
+                if (hiddenPhoneInput) {
+                  hiddenPhoneInput.value = fullPhone;
+                  console.log('📱 Final phone value for submission:', fullPhone);
+                }
               }
               
               // Handle custom tags processing
