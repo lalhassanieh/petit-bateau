@@ -799,7 +799,8 @@
   "shopify": {
     "checkout": {
       "shipping": {
-        "delivery_title": "Adressee de Facturation - Livraison"
+        "delivery_title": "Adressee de Facturation - Livraison",
+        "add_address": "Une autre adresse de Livraison "
       },
       "delivery_options": {
         "ship": "Livraison à Domicile",
