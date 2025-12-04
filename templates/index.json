@@ -99,6 +99,7 @@
         },
         "slider_item_QGDKFa": {
           "type": "slider_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/1-01.jpg",
             "image_mobile": "shopify://shop_images/1-01.jpg",
@@ -127,6 +128,7 @@
         },
         "slider_item_Pkmxxe": {
           "type": "slider_item",
+          "disabled": true,
           "settings": {
             "local_video": "shopify://files/videos/1-02.mp4",
             "overlay_opacity": 0,
