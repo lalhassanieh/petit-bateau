@@ -233,11 +233,10 @@
       {% endif %}
     >
       <a
-        class="block collection-item__media--ratio hover-effect "
-        role="link"
-        aria-disabled="true"
-        title="{{- 'onboarding.collection_title' | t -}}"
-        aria-label="{{- 'onboarding.collection_title' | t -}}"
+        class="block collection-item__media--ratio hover-effect"
+        {% if block_st.collection %}href="{{ collections[block_st.collection].url }}"{% else %}href="#"{% endif %}
+        title="{% if collection_title != blank %}{{ collection_title }}{% else %}{{- 'onboarding.collection_title' | t -}}{% endif %}"
+        aria-label="{% if collection_title != blank %}{{ collection_title }}{% else %}{{- 'onboarding.collection_title' | t -}}{% endif %}"
         style="--aspect-ratio: {{ ratio }};"
       >
         {% if collection_image != blank %}
@@ -264,9 +263,10 @@
       {% endif %}
 
       <a
-        aria-label="{{ card_collection.title }}"
+        aria-label="{% if collection_title != blank %}{{ collection_title }}{% else %}{{- 'onboarding.collection_title' | t -}}{% endif %}"
         class="collection-item__name no-underline word-break heading-color {{ section_st.font_weight }}{% if font_size > 14 %} fs-medium-list{% else %} fs-custom{% endif %}{% if collection_information_position == 'below_image' %} mb-10{% else %} inline-flex gap-5 align-center justify-content-{{ section_st.text_alignment }}{% endif %}{% if collection_information_position == 'overlay_image' and  design == 'default' %} btn btn-white{% endif %}"
         style="--font-size: {{ font_size }};--space-bottom: {{ section_st.spacing }}"
+        {% if block_st.collection %}href="{{ collections[block_st.collection].url }}"{% else %}href="#"{% endif %}
         role="link"
       >
         <span class="collection-item__name-inner lh-normal inline-block{% if collection_information_position == 'overlay_image' and design == 'morden' %} heading_weight{% endif %}">
