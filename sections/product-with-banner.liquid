@@ -154,18 +154,25 @@
                 style="--aspect-ratio: {{ ratio }};"
                 data-background-color="{{ block_st.content_background_color }}"
               >
-                {%- if block_st.image != blank -%}
-                  {%- assign image_alt = block_st.image.alt | escape | default: 'Images' -%}
-                  {% render 'responsive-image',
-                    type: 'banner',
-                    container: section_width,
-                    image: block_st.image,
-                    image_alt: image_alt,
-                    class: 'product-banner__image-element'
-                  %}
-                {%- else -%}
-                  {%- render 'placeholder-render' | class: 'product-banner__image-element' -%}
-                {% endif %}
+                <a
+                  href="{% if block_st.product %}{{ block_st.product.url }}{% else %}#{% endif %}"
+                  class="block w-full h-full"
+                  style="cursor: pointer; position: relative; z-index: 1;"
+                  aria-label="{% if block_st.product %}{{ block_st.product.title | escape }}{% else %}Banner image{% endif %}"
+                >
+                  {%- if block_st.image != blank -%}
+                    {%- assign image_alt = block_st.image.alt | escape | default: 'Images' -%}
+                    {% render 'responsive-image',
+                      type: 'banner',
+                      container: section_width,
+                      image: block_st.image,
+                      image_alt: image_alt,
+                      class: 'product-banner__image-element'
+                    %}
+                  {%- else -%}
+                    {%- render 'placeholder-render' | class: 'product-banner__image-element' -%}
+                  {% endif %}
+                </a>
               </div>
             {% endif %}
           {% endfor %}
