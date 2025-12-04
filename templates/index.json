@@ -17,7 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/1_1.jpg",
             "image_mobile": "shopify://shop_images/1_1.jpg",
-            "overlay_opacity": 20,
+            "overlay_opacity": 0,
             "slider_effect": "effect_fadein",
             "subheading": "CAP SUR DES NUITS",
             "heading": "ENCHANTÉES",
@@ -168,7 +168,7 @@
       "settings": {
         "section_width": "fluid_container",
         "slide_height": "custom",
-        "desktop_height": 750,
+        "desktop_height": 580,
         "mobile_height": 300,
         "color_scheme": "",
         "slide_effect": "fade",
