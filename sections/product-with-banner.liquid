@@ -151,28 +151,22 @@
                 class="hover-effect product-banner__image{% if forloop.first %} active{% endif %}"
                 data-block-id="{{ block.id }}"
                 data-index="{{ forloop.index0 }}"
-                style="--aspect-ratio: {{ ratio }};"
+                style="--aspect-ratio: {{ ratio }}; cursor: pointer;"
                 data-background-color="{{ block_st.content_background_color }}"
+                onclick="{% if block_st.button_link and block_st.button_link != blank %}window.location.href='{{ block_st.button_link }}';{% endif %}"
               >
-                <a
-                  href="{% if block_st.button_link and block_st.button_link != blank %}{{ block_st.button_link }}{% else %}#{% endif %}"
-                  class="block w-full h-full"
-                  style="cursor: pointer; position: relative; z-index: 1;"
-                  aria-label="{% if block_st.button_label %}{{ block_st.button_label | escape }}{% else %}Banner image{% endif %}"
-                >
-                  {%- if block_st.image != blank -%}
-                    {%- assign image_alt = block_st.image.alt | escape | default: 'Images' -%}
-                    {% render 'responsive-image',
-                      type: 'banner',
-                      container: section_width,
-                      image: block_st.image,
-                      image_alt: image_alt,
-                      class: 'product-banner__image-element'
-                    %}
-                  {%- else -%}
-                    {%- render 'placeholder-render' | class: 'product-banner__image-element' -%}
-                  {% endif %}
-                </a>
+                {%- if block_st.image != blank -%}
+                  {%- assign image_alt = block_st.image.alt | escape | default: 'Images' -%}
+                  {% render 'responsive-image',
+                    type: 'banner',
+                    container: section_width,
+                    image: block_st.image,
+                    image_alt: image_alt,
+                    class: 'product-banner__image-element'
+                  %}
+                {%- else -%}
+                  {%- render 'placeholder-render' | class: 'product-banner__image-element' -%}
+                {% endif %}
               </div>
             {% endif %}
           {% endfor %}
