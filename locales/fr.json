@@ -477,6 +477,7 @@
       "password": "Mot de passe",
       "phone": "Téléphone",
       "submit": "Créer un compte",
+      "submit_text": "Créer un compte",
       "title_content": "Nouveau client",
       "content": "Inscrivez-vous pour bénéficier d'un accès anticipé aux soldes ainsi que de nouveautés, tendances et promotions personnalisées. ",
       "content_form_html": "Vos données personnelles seront utilisées pour soutenir votre expérience sur ce site Web, pour gérer l'accès à votre compte et à d'autres fins décrites dans notre <a href=\"{{ link }}\">politique de confidentialité.</a>",
