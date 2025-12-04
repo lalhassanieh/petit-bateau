@@ -356,6 +356,7 @@
         },
         "product_banner_xTyA4d": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Property_1_2.jpg",
             "content_background_color": "#bdd4e5",
@@ -379,6 +380,7 @@
         },
         "product_banner_3b6Q6P": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Property_1_3_1.jpg",
             "content_background_color": "#bdd4e5",
@@ -402,6 +404,7 @@
         },
         "product_banner_P4xJFy": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Property_1_4.jpg",
             "content_background_color": "#bdd4e5",
@@ -425,6 +428,7 @@
         },
         "product_banner_rH6JEf": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Property_1_5.jpg",
             "content_background_color": "#bdd4e5",
@@ -448,6 +452,7 @@
         },
         "product_banner_dt8aGe": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/image_19_1.jpg",
             "content_background_color": "#bdd4e5",
