@@ -213,6 +213,8 @@
               style="flex: 1;"
             >
           </div>
+          <!-- Hidden input for combined phone number that will be populated by JavaScript -->
+          <input type="hidden" name="customer[phone]" id="combined-phone-hidden" value="">
         </div>
         
         <div class="form-group mb-20 flex flex-column password form-floating">
@@ -288,33 +290,57 @@
       <script>
         document.addEventListener('DOMContentLoaded', function() {
           const form = document.querySelector('.custormer-register-form');
+          const countrySelect = form.querySelector('select[name="customer[phone_country]"]');
+          const phoneNumberInput = form.querySelector('input[name="customer[phone_number]"]');
+          const hiddenPhoneInput = form.querySelector('#combined-phone-hidden');
+          
+          // Function to update the combined phone number
+          function updateCombinedPhone() {
+            if (countrySelect && phoneNumberInput && hiddenPhoneInput) {
+              const phoneNumber = phoneNumberInput.value.trim();
+              if (phoneNumber) {
+                const combinedPhone = countrySelect.value + phoneNumber.replace(/\s/g, '');
+                hiddenPhoneInput.value = combinedPhone;
+                console.log('📱 Updated combined phone:', combinedPhone);
+              } else {
+                hiddenPhoneInput.value = '';
+              }
+            }
+          }
+          
+          // Update phone on country change
+          if (countrySelect) {
+            countrySelect.addEventListener('change', updateCombinedPhone);
+          }
+          
+          // Update phone on number input
+          if (phoneNumberInput) {
+            phoneNumberInput.addEventListener('input', updateCombinedPhone);
+          }
           
           if (form) {
             form.addEventListener('submit', function(e) {
               console.log('🚀 Main registration form submitted!');
               
-              // Remove existing inputs to avoid duplicates
+              // Remove existing tag inputs to avoid duplicates
               const existingTagInputs = form.querySelectorAll('input[name="customer[tags]"]');
               existingTagInputs.forEach(input => input.remove());
               console.log('Removed existing tag inputs:', existingTagInputs.length);
               
-              // Handle phone number combination
-              const countrySelect = form.querySelector('select[name="customer[phone_country]"]');
-              const phoneNumberInput = form.querySelector('input[name="customer[phone_number]"]');
+              // Ensure phone is properly set one final time before submission
+              updateCombinedPhone();
               
-              if (countrySelect && phoneNumberInput && phoneNumberInput.value.trim()) {
-                // Remove existing phone inputs
-                const existingPhoneInputs = form.querySelectorAll('input[name="customer[phone]"]');
-                existingPhoneInputs.forEach(input => input.remove());
-                
-                // Create combined phone input
-                const combinedPhoneInput = document.createElement('input');
-                combinedPhoneInput.type = 'hidden';
-                combinedPhoneInput.name = 'customer[phone]';
-                combinedPhoneInput.value = countrySelect.value + phoneNumberInput.value.replace(/\s/g, '');
-                form.appendChild(combinedPhoneInput);
-                
-                console.log('📱 Created combined phone:', combinedPhoneInput.value);
+              // Verify phone is set
+              if (hiddenPhoneInput && hiddenPhoneInput.value) {
+                console.log('📱 Final phone value for submission:', hiddenPhoneInput.value);
+              } else if (phoneNumberInput && phoneNumberInput.value.trim()) {
+                // Backup: create additional phone input if hidden input failed
+                const backupPhoneInput = document.createElement('input');
+                backupPhoneInput.type = 'hidden';
+                backupPhoneInput.name = 'customer[phone]';
+                backupPhoneInput.value = (countrySelect ? countrySelect.value : '+961') + phoneNumberInput.value.replace(/\s/g, '');
+                form.appendChild(backupPhoneInput);
+                console.log('📱 Created backup phone input:', backupPhoneInput.value);
               }
               
               // Handle custom tags processing
