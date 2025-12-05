@@ -43,9 +43,18 @@
             <div class="inline-flex align-center col-logo">
               {%- render 'logo' -%}
             </div>
-            <div class="pb-desktop-menu-toggle">
-              {%- render 'toggle-menu' -%}
-            </div>
+            <div class="pb-desktop-menu-toggle pb-desktop-menu-toggle-visible">
+                <button class="pb-desktop-menu-toggle-btn" type="button" aria-label="Open menu">
+                  <svg class="pb-menu-icon" width="22" height="14" viewBox="0 0 22 14" aria-hidden="true">
+                    <rect x="0" y="0" width="22" height="2"></rect>
+                    <rect x="0" y="6" width="22" height="2"></rect>
+                    <rect x="0" y="12" width="16" height="2"></rect>
+                  </svg>
+                  
+                  <span class="pb-menu-label">Menu</span>
+                </button>
+              </div>
+
             <div class="header-search header-search__mega color-default flex-1">
               {%- liquid
                 if top_search
