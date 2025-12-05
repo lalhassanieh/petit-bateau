@@ -6,37 +6,44 @@ document.querySelectorAll('.tooltip-content').forEach(el => {
     if (color) el.textContent = color.charAt(0).toUpperCase() + color.slice(1);
   }
 });
-console.log("bi-custom.js loaded successfully");
 
-document.addEventListener('scroll', () => {
-    const scrollMenu = document.querySelector('.scroll-menu-wrapper');
 
-    if (scrollMenu) {
-        if (window.scrollY > 100) {
-            scrollMenu.classList.add('visible');
-        } else {
-            scrollMenu.classList.remove('visible');
-        }
+document.addEventListener("DOMContentLoaded", () => {
+
+  console.log("Topbar + Header scroll logic loaded");
+
+  const topbar = document.querySelector("#topbar");
+  const header = document.querySelector(".header");
+
+  if (!topbar || !header) {
+    console.warn("Topbar or header not found.");
+    return;
+  }
+
+  // Set static heights at load
+  const topbarHeight = topbar.offsetHeight;
+  const headerHeight = header.offsetHeight;
+
+  document.body.style.setProperty("--topbar-height", topbarHeight + "px");
+  document.body.style.setProperty("--header-height", headerHeight + "px");
+
+  // Scroll logic: show/hide topbar
+  let lastScroll = 0;
+
+  window.addEventListener("scroll", () => {
+    const current = window.scrollY;
+
+    if (current > lastScroll && current > 30) {
+      // scrolling DOWN → hide topbar
+      topbar.classList.add("hidden");
+      header.style.top = "0px";
+    } else {
+      // scrolling UP → show topbar
+      topbar.classList.remove("hidden");
+      header.style.top = `var(--topbar-height)`;
     }
-});
-console.log("Topbar scroll JS loaded");
 
-let lastScrollY = window.scrollY;
-const topbar = document.getElementById('topbar');
-const header = document.querySelector('.header');
+    lastScroll = current;
+  });
 
-window.addEventListener('scroll', () => {
-
-    // 1. Hide topbar when scrolling down
-    if (window.scrollY > lastScrollY && window.scrollY > 50) {
-        topbar?.classList.add("hidden");
-        header.style.top = "0px"; 
-    } 
-    // 2. Show topbar when scrolling up
-    else {
-        topbar?.classList.remove("hidden");
-        header.style.top = `var(--height-topbar)`; 
-    }
-
-    lastScrollY = window.scrollY;
 });
