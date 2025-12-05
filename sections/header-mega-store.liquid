@@ -43,10 +43,11 @@
             <div class="inline-flex align-center col-logo">
               {%- render 'logo' -%}
             </div>
-            <div class="block hidden-1025">
+           <div class="block hidden-1025">
               {%- render 'toggle-menu' -%}
+              <span class="desktop-only">MENU</span>
             </div>
-            
+
             <div class="header-search header-search__mega color-default flex-1">
               {%- liquid
                 if top_search
