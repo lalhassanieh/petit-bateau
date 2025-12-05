@@ -43,6 +43,9 @@
             <div class="inline-flex align-center col-logo">
               {%- render 'logo' -%}
             </div>
+            <div class="pb-desktop-menu-toggle">
+              {%- render 'toggle-menu' -%}
+            </div>
             <div class="header-search header-search__mega color-default flex-1">
               {%- liquid
                 if top_search
@@ -111,6 +114,10 @@
       </div>
     </div>
   </div>
+
+  <button class="pb-floating-menu" type="button" aria-label="Ouvrir le menu">
+    MENU
+  </button>
 </header>
 {% schema %}
 {
