@@ -527,7 +527,7 @@ svg.edit-icon {
        CSS For Navbar
 ===========================*/
 .pb-desktop-menu-toggle {
-  display: inline-block;
+  display: none;
   opacity: 0;
   transform: translateY(-5px);
   transition: opacity 0.2s ease, transform 0.2s ease;
