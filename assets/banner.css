@@ -123,7 +123,7 @@
   background-color: var(--content-bg);
   opacity: var(--opacity);
   pointer-events: none;
-  border-radius: var(--rounded-radius, 0);
+  /*border-radius: var(--rounded-radius, 0);*/
 }
 .content-box > * {
   position: relative;
@@ -145,7 +145,7 @@
   }
 }
 multi-content.rounded .remove-rounded {
-  border-radius: 0;
+ /* border-radius: 0;*/
 }
 video-section.h-full video {
   height: 100%;
@@ -249,7 +249,7 @@ video-section.h-full video {
   max-width: 340px;
   width: 100%;
   background-color: var(--color-white);
-  border-radius: var(--rounded-radius, 0);
+  /*border-radius: var(--rounded-radius, 0);*/
   overflow: hidden;
 }
 .product-carousel-banner .product-item__information{
