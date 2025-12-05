@@ -7,78 +7,58 @@ document.querySelectorAll('.tooltip-content').forEach(el => {
   }
 });
 
-function initDesktopScrollToggle() {
-  console.log('[initDesktopScrollToggle] called');
+document.addEventListener('DOMContentLoaded', function () {
+  var header = document.querySelector('header.header');
+  var desktopToggle = document.getElementById('desktopMenuToggle');
+  // mobile nav (the second <nav> with class "mobile")
+  var mobileNavDesktop = document.querySelector('nav.navigation.mobile');
 
-  const toggles = document.querySelectorAll('.pb-desktop-menu-toggle');
-  console.log('[initDesktopScrollToggle] found toggles:', toggles.length);
-
-  if (!toggles.length) {
-    console.warn('[initDesktopScrollToggle] No .pb-desktop-menu-toggle elements found');
+  if (!header || !desktopToggle || !mobileNavDesktop) {
+    // console.warn('Desktop nav elements not found');
     return;
   }
 
-  const SCROLL_THRESHOLD = 80; // px
-  let hasActivated = false;    // once true, we never hide again on this page load
+  var SCROLL_THRESHOLD = 150; // px – adjust if you want it earlier/later
 
-  function updateToggleVisibility() {
-    const isDesktop = window.innerWidth >= 1025;
-    const scrolled = window.scrollY > SCROLL_THRESHOLD;
+  function updateHeaderOnScroll() {
+    var isDesktop = window.innerWidth >= 1024;
+    var scrolledEnough = window.scrollY > SCROLL_THRESHOLD;
 
-    console.log(
-      '[updateToggleVisibility]',
-      'scrollY=', window.scrollY,
-      '| isDesktop=', isDesktop,
-      '| scrolledEnough=', scrolled,
-      '| hasActivated=', hasActivated
-    );
+    if (isDesktop && scrolledEnough) {
+      header.classList.add('header--scrolled');
+      desktopToggle.classList.add('scroll-active');
+    } else {
+      header.classList.remove('header--scrolled');
+      desktopToggle.classList.remove('scroll-active');
 
-    // On mobile: always hide (we only want this on desktop)
-    if (!isDesktop) {
-      toggles.forEach((toggle, index) => {
-        if (toggle.classList.contains('pb-desktop-menu-toggle--visible')) {
-          console.log(`[updateToggleVisibility] HIDE on mobile toggle #${index}`);
-        }
-        toggle.classList.remove('pb-desktop-menu-toggle--visible');
-      });
-      return;
+      // If user goes back to top, make sure overlay is closed
+      mobileNavDesktop.classList.remove('desktop-open');
+      document.documentElement.classList.remove('nav-overlay-open');
+      document.body.classList.remove('nav-overlay-open');
     }
-
-    // Desktop:
-    // - Before threshold: keep hidden
-    // - Once past threshold: show & remember (hasActivated = true)
-    // - After that: never hide again even if scroll back up
-    if (!hasActivated && scrolled) {
-      toggles.forEach((toggle, index) => {
-        console.log(`[updateToggleVisibility] FIRST TIME SHOW toggle #${index}`);
-        toggle.classList.add('pb-desktop-menu-toggle--visible');
-      });
-      hasActivated = true;
-    }
-
-    // If hasActivated is already true, do nothing (keep it visible)
   }
 
-  // Run once on load
-  updateToggleVisibility();
+  // When clicking the blue "Menu" pill on desktop
+  desktopToggle.addEventListener('click', function (e) {
+    var isDesktop = window.innerWidth >= 1024;
+    if (!isDesktop) return; // on mobile it should behave as usual
 
-  // Update on scroll and resize
-  window.addEventListener('scroll', updateToggleVisibility);
-  window.addEventListener('resize', updateToggleVisibility);
+    e.preventDefault();
 
-  console.log('[initDesktopScrollToggle] listeners attached');
-}
+    var isOpen = mobileNavDesktop.classList.toggle('desktop-open');
 
-// Init when DOM is ready
-document.addEventListener('DOMContentLoaded', function () {
-  console.log('[DOMContentLoaded] firing initDesktopScrollToggle');
-  initDesktopScrollToggle();
-});
+    if (isOpen) {
+      document.documentElement.classList.add('nav-overlay-open');
+      document.body.classList.add('nav-overlay-open');
+    } else {
+      document.documentElement.classList.remove('nav-overlay-open');
+      document.body.classList.remove('nav-overlay-open');
+    }
+  });
 
-// For Shopify Theme Editor preview (when reloading header section)
-document.addEventListener('shopify:section:load', function (event) {
-  if (event.target.querySelector('.pb-desktop-menu-toggle')) {
-    console.log('[shopify:section:load] header section reloaded, re-init toggle');
-    initDesktopScrollToggle();
-  }
+  window.addEventListener('scroll', updateHeaderOnScroll);
+  window.addEventListener('resize', updateHeaderOnScroll);
+
+  // initial state
+  updateHeaderOnScroll();
 });
