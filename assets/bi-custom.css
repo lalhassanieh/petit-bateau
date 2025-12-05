@@ -559,4 +559,13 @@ svg.edit-icon {
     }
 }
 
+.header--sticky {
+    position: sticky;          /* sticks to viewport */
+    top: 0;                    /* always at top */
+    z-index: 9999;             /* above everything */
+    background: #fff;          /* or transparent if needed */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08); /* slight shadow on scroll */
+}
+
+
 /*================*/
