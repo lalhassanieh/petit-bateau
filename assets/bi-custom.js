@@ -19,6 +19,7 @@ function initDesktopScrollToggle() {
   }
 
   const SCROLL_THRESHOLD = 80; // px
+  let hasActivated = false;    // once true, we never hide again on this page load
 
   function updateToggleVisibility() {
     const isDesktop = window.innerWidth >= 1025;
@@ -28,22 +29,34 @@ function initDesktopScrollToggle() {
       '[updateToggleVisibility]',
       'scrollY=', window.scrollY,
       '| isDesktop=', isDesktop,
-      '| scrolledEnough=', scrolled
+      '| scrolledEnough=', scrolled,
+      '| hasActivated=', hasActivated
     );
 
-    toggles.forEach((toggle, index) => {
-      if (isDesktop && scrolled) {
-        if (!toggle.classList.contains('pb-desktop-menu-toggle--visible')) {
-          console.log(`[updateToggleVisibility] SHOW toggle #${index}`);
-        }
-        toggle.classList.add('pb-desktop-menu-toggle--visible');
-      } else {
+    // On mobile: always hide (we only want this on desktop)
+    if (!isDesktop) {
+      toggles.forEach((toggle, index) => {
         if (toggle.classList.contains('pb-desktop-menu-toggle--visible')) {
-          console.log(`[updateToggleVisibility] HIDE toggle #${index}`);
+          console.log(`[updateToggleVisibility] HIDE on mobile toggle #${index}`);
         }
         toggle.classList.remove('pb-desktop-menu-toggle--visible');
-      }
-    });
+      });
+      return;
+    }
+
+    // Desktop:
+    // - Before threshold: keep hidden
+    // - Once past threshold: show & remember (hasActivated = true)
+    // - After that: never hide again even if scroll back up
+    if (!hasActivated && scrolled) {
+      toggles.forEach((toggle, index) => {
+        console.log(`[updateToggleVisibility] FIRST TIME SHOW toggle #${index}`);
+        toggle.classList.add('pb-desktop-menu-toggle--visible');
+      });
+      hasActivated = true;
+    }
+
+    // If hasActivated is already true, do nothing (keep it visible)
   }
 
   // Run once on load
@@ -62,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initDesktopScrollToggle();
 });
 
-// For Shopify Theme Editor preview (when you reload only the header section)
+// For Shopify Theme Editor preview (when reloading header section)
 document.addEventListener('shopify:section:load', function (event) {
   if (event.target.querySelector('.pb-desktop-menu-toggle')) {
     console.log('[shopify:section:load] header section reloaded, re-init toggle');
