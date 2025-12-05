@@ -559,29 +559,5 @@ svg.edit-icon {
     }
 }
 
-.header--sticky {
-    position: sticky;          /* sticks to viewport */
-    top: 0;                    /* always at top */
-    z-index: 9999;             /* above everything */
-    background: #fff;          /* or transparent if needed */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08); /* slight shadow on scroll */
-}
-
-/* Make entire header always visible */
-.header {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 99999 !important;
-    background: #ffffff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-/* Prevent content from jumping under the header */
-body {
-    padding-top: 150px; /* adjust this based on header height */
-}
 
 /*================*/
