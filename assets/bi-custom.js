@@ -19,3 +19,24 @@ document.addEventListener('scroll', () => {
         }
     }
 });
+console.log("Topbar scroll JS loaded");
+
+let lastScrollY = window.scrollY;
+const topbar = document.getElementById('topbar');
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+
+    // 1. Hide topbar when scrolling down
+    if (window.scrollY > lastScrollY && window.scrollY > 50) {
+        topbar?.classList.add("hidden");
+        header.style.top = "0px"; 
+    } 
+    // 2. Show topbar when scrolling up
+    else {
+        topbar?.classList.remove("hidden");
+        header.style.top = `var(--height-topbar)`; 
+    }
+
+    lastScrollY = window.scrollY;
+});
