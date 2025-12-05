@@ -45,11 +45,11 @@ function hideNavOnScroll() {
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
 
-    // If scrolling down → hide navbar
+    // scroll down → collapse
     if (currentScroll > lastScroll && currentScroll > 50) {
       navBar.classList.add('hide-on-scroll');
     } 
-    // If scrolling up → show navbar
+    // scroll up → expand
     else {
       navBar.classList.remove('hide-on-scroll');
     }
@@ -58,6 +58,5 @@ function hideNavOnScroll() {
   });
 }
 
-// initialize
 hideNavOnScroll();
-console.log("🔥 hideNavOnScroll() initialized");
+console.log("🔥 Navigation collapse on scroll initialized");

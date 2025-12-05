@@ -579,14 +579,15 @@ body {
 }
 
 .header-bottom__navigation {
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  transition: height 0.3s ease, opacity 0.2s ease;
+  overflow: hidden; /* Important: collapse space */
+  height: auto;
 }
 
 .header-bottom__navigation.hide-on-scroll {
+  height: 0 !important;
   opacity: 0;
-  visibility: hidden;
-  transform: translateY(-20px);
+  pointer-events: none;
 }
-
 
 /*================*/
