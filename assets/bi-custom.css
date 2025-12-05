@@ -559,22 +559,36 @@ svg.edit-icon {
     }
 }
 
-/* Main header sticky below topbar */
+/* TOPBAR always stays at the very top */
+#topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  transition: transform 0.3s ease;
+}
+
+/* Hide topbar on scroll down */
+#topbar.hidden {
+  transform: translateY(-100%);
+}
+
+/* HEADER always sits under the topbar */
 .header {
   position: fixed !important;
-  top: var(--height-topbar, 0px); /* respects topbar height */
+  top: var(--topbar-height, 0px); /* controlled by JS */
   left: 0;
   right: 0;
   width: 100%;
   z-index: 9999 !important;
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: top 0.25s ease;
+  transition: top 0.3s ease;
 }
 
-/* Prevent content from jumping under sticky header */
+/* Prevent content from hiding behind header */
 body {
-  padding-top: calc( var(--height-topbar) + 150px );
+  padding-top: calc( var(--topbar-height) + var(--header-height) );
 }
 
 /*================*/
