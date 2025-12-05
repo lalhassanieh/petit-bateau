@@ -34,3 +34,30 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
+function hideNavOnScroll() {
+  const navBar = document.querySelector('.header-bottom__navigation');
+  if (!navBar) return;
+
+  let lastScroll = window.scrollY;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    // If scrolling down → hide navbar
+    if (currentScroll > lastScroll && currentScroll > 50) {
+      navBar.classList.add('hide-on-scroll');
+    } 
+    // If scrolling up → show navbar
+    else {
+      navBar.classList.remove('hide-on-scroll');
+    }
+
+    lastScroll = currentScroll;
+  });
+}
+
+// initialize
+hideNavOnScroll();
+console.log("🔥 hideNavOnScroll() initialized");
