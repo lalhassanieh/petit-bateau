@@ -566,29 +566,23 @@ svg.edit-icon {
   left: 0;
   right: 0;
   z-index: 99999;
-  transition: transform 0.3s ease;
 }
 
-/* Hide topbar on scroll down */
-#topbar.hidden {
-  transform: translateY(-100%);
-}
-
-/* HEADER always sits under the topbar */
+/* HEADER always stays below topbar */
 .header {
   position: fixed !important;
-  top: var(--topbar-height, 0px); /* controlled by JS */
+  top: var(--topbar-height, 0px);
   left: 0;
   right: 0;
   width: 100%;
   z-index: 9999 !important;
   background: #fff;
-  transition: top 0.3s ease;
 }
 
-/* Prevent content from hiding behind header */
+/* Prevent page content from going behind header */
 body {
-  padding-top: calc( var(--topbar-height) + var(--header-height) );
+  padding-top: calc(var(--topbar-height) + var(--header-height));
 }
+
 
 /*================*/

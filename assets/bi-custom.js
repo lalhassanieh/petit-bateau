@@ -10,40 +10,27 @@ document.querySelectorAll('.tooltip-content').forEach(el => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  console.log("Topbar + Header scroll logic loaded");
+  console.log("Topbar/Header fixed mode loaded");
 
   const topbar = document.querySelector("#topbar");
   const header = document.querySelector(".header");
 
   if (!topbar || !header) {
-    console.warn("Topbar or header not found.");
+    console.warn("Topbar or header missing");
     return;
   }
 
-  // Set static heights at load
+  // Set heights on load
   const topbarHeight = topbar.offsetHeight;
   const headerHeight = header.offsetHeight;
 
   document.body.style.setProperty("--topbar-height", topbarHeight + "px");
   document.body.style.setProperty("--header-height", headerHeight + "px");
 
-  // Scroll logic: show/hide topbar
-  let lastScroll = 0;
-
-  window.addEventListener("scroll", () => {
-    const current = window.scrollY;
-
-    if (current > lastScroll && current > 30) {
-      // scrolling DOWN → hide topbar
-      topbar.classList.add("hidden");
-      header.style.top = "0px";
-    } else {
-      // scrolling UP → show topbar
-      topbar.classList.remove("hidden");
-      header.style.top = `var(--topbar-height)`;
-    }
-
-    lastScroll = current;
+  // Optional: fix heights again when resizing window
+  window.addEventListener("resize", () => {
+    document.body.style.setProperty("--topbar-height", topbar.offsetHeight + "px");
+    document.body.style.setProperty("--header-height", header.offsetHeight + "px");
   });
 
 });
