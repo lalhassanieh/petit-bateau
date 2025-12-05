@@ -574,6 +574,35 @@ svg.edit-icon {
         display: inline;
     }
 }
+@media only screen and (min-width: 1024px) {
+    /* When header is scrolled, hide the normal horizontal bar */
+    .header.header--scrolled .header-bottom__navigation {
+        display: none;
+    }
+}
+@media only screen and (min-width: 1024px) {
+
+    /* By default: hide mobile nav on desktop */
+    nav.navigation.mobile {
+        display: none !important;
+    }
+
+    /* When opened on desktop */
+    nav.navigation.mobile.desktop-open {
+        display: flex !important;
+        position: fixed;
+        inset: 0;                  /* full viewport */
+        z-index: 9999;
+        overflow-y: auto;          /* INTERNAL scroll bar (pinned) */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent page behind from scrolling when overlay is open */
+    html.nav-overlay-open,
+    body.nav-overlay-open {
+        overflow: hidden;
+    }
+}
 
 
 /*================*/
