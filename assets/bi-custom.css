@@ -546,6 +546,10 @@ svg.edit-icon {
     display: none !important;
   }
 }
-
+.hidden-sticky {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
 
 /*================*/
