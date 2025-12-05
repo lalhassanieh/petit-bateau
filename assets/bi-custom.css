@@ -526,5 +526,37 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
+/* Default hidden */
+.menu-toggle {
+    display: none;
+}
+
+/* Desktop only */
+@media only screen and (min-width: 1024px) {
+    .menu-toggle {
+        display: none; /* hide until scroll */
+        height: 4.2rem;
+        width: fit-content;
+        padding: 1.2rem 2rem;
+        justify-content: center;
+        align-items: center;
+        gap: .8rem;
+        border-radius: 20rem;
+        background: #002e5e;
+        color: white;
+        cursor: pointer;
+        transition: opacity .3s ease;
+    }
+
+    /* When scroll JS activates it */
+    .menu-toggle.active {
+        display: flex !important;
+    }
+
+    .scroll-menu-wrapper {
+        display: flex;
+        align-items: center;
+    }
+}
 
 /*================*/

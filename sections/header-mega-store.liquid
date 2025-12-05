@@ -43,10 +43,25 @@
             <div class="inline-flex align-center col-logo">
               {%- render 'logo' -%}
             </div>
-           <div class="block hidden-1025">
-              {%- render 'toggle-menu' -%}
-              <span class="desktop-only">MENU</span>
-            </div>
+            <div class="scroll-menu-wrapper hidden-1025">
+                <button class="menu-toggle">
+                  <svg class="menu-toggle-icon" viewBox="0 0 21 20">
+                    <path class="menu-toggle-icon-path" fill-rule="evenodd" clip-rule="evenodd"
+                          d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H18C18.2761 4.5
+                            18.5 4.72386 18.5 5C18.5 5.27614 18.2761 5.5 18
+                            5.5H3C2.72386 5.5 2.5 5.27614 2.5 5ZM2.5 10C2.5
+                            9.72386 2.72386 9.5 3 9.5H18C18.2761 9.5 18.5
+                            9.72386 18.5 10C18.5 10.2761 18.2761 10.5 18
+                            10.5H3C2.72386 10.5 2.5 10.2761 2.5 10ZM2.5
+                            15C2.5 14.7239 2.72386 14.5 3 14.5H18C18.2761
+                            14.5 18.5 14.7239 18.5 15C18.5 15.2761 18.2761
+                            15.5 18 15.5H3C2.72386 15.5 2.5 15.2761 2.5 15Z"
+                          fill="white"></path>
+                  </svg>
+                  <span class="desktop-only">Menu</span>
+                </button>
+              </div>
+
 
             <div class="header-search header-search__mega color-default flex-1">
               {%- liquid
