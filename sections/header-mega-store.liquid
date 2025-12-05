@@ -44,15 +44,20 @@
               {%- render 'logo' -%}
             </div>
             <div class="pb-desktop-menu-toggle pb-desktop-menu-toggle-visible">
-                <button class="pb-desktop-menu-toggle-btn" type="button" aria-label="Open menu">
-                  <svg class="pb-menu-icon" width="22" height="14" viewBox="0 0 22 14" aria-hidden="true">
-                    <rect x="0" y="0" width="22" height="2"></rect>
-                    <rect x="0" y="6" width="22" height="2"></rect>
-                    <rect x="0" y="12" width="16" height="2"></rect>
+                <button class="menu-toggle" 
+                        data-gtm='{"event":"accordion_open","event_data":{"area":"header"}}'
+                        data-gtm-type="event" 
+                        data-gtm-event="click">
+                  <svg class="menu-toggle-icon" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="menu-toggle-icon-path"
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H18C18.2761 4.5 18.5 4.72386 18.5 5C18.5 5.27614 18.2761 5.5 18 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5ZM2.5 10C2.5 9.72386 2.72386 9.5 3 9.5H18C18.2761 9.5 18.5 9.72386 18.5 10C18.5 10.2761 18.2761 10.5 18 10.5H3C2.72386 10.5 2.5 10.2761 2.5 10ZM2.5 15C2.5 14.7239 2.72386 14.5 3 14.5H18C18.2761 14.5 18.5 14.7239 18.5 15C18.5 15.2761 18.2761 15.5 18 15.5H3C2.72386 15.5 2.5 15.2761 2.5 15Z"
+                          fill="white"></path>
                   </svg>
-                  
-                  <span class="pb-menu-label">Menu</span>
+                  <span class="desktop-only">menu</span>
                 </button>
+
               </div>
 
             <div class="header-search header-search__mega color-default flex-1">
