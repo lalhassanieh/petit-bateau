@@ -526,15 +526,13 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
-/* Default hidden */
 .menu-toggle {
     display: none;
 }
 
-/* Desktop only */
 @media only screen and (min-width: 1025px) {
     .menu-toggle {
-        display: none; /* hide until scroll */
+        display: none; 
         height: 4.2rem;
         width: fit-content;
         padding: 1.2rem 2rem;
@@ -548,7 +546,6 @@ svg.edit-icon {
         transition: opacity .3s ease;
     }
 
-    /* When scroll JS activates it */
     .menu-toggle.active {
         display: flex !important;
     }
@@ -559,7 +556,6 @@ svg.edit-icon {
     }
 }
 
-/* TOPBAR always stays at the very top */
 #topbar {
   position: fixed;
   top: 0;
@@ -568,7 +564,6 @@ svg.edit-icon {
   z-index: 99999;
 }
 
-/* HEADER always stays below topbar */
 .header {
   position: fixed !important;
   top: var(--topbar-height, 0px);
@@ -579,9 +574,18 @@ svg.edit-icon {
   background: #fff;
 }
 
-/* Prevent page content from going behind header */
 body {
   padding-top: calc(var(--topbar-height) + var(--header-height));
+}
+
+.header-bottom__navigation {
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.header-bottom__navigation.hide-on-scroll {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
 }
 
 
