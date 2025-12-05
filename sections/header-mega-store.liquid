@@ -26,7 +26,7 @@
   {%- endstyle -%}
 {% endif %}
 <header
-  class="header relative gradient remove_spacing header--sticky color-{{ color_scheme }} {% if request.page_type == 'index' and section_st.separator_line == 'homepage' %} border-bottom{% endif %}{% if section_st.separator_line == 'all-page' %} border-bottom{% endif %}{% if request.page_type != 'index' and section_st.separator_line == 'inner_page' %} border-bottom{% endif %} popup-search-mobile"
+  class="header relative gradient remove_spacing color-{{ color_scheme }} {% if request.page_type == 'index' and section_st.separator_line == 'homepage' %} border-bottom{% endif %}{% if section_st.separator_line == 'all-page' %} border-bottom{% endif %}{% if request.page_type != 'index' and section_st.separator_line == 'inner_page' %} border-bottom{% endif %} popup-search-mobile"
   data-section-id="{{ section.id }}"
   data-sticky="{{ sticky_header_type }}"
   data-sticky-mobile="{{ sticky_mobile }}"
