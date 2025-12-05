@@ -526,7 +526,6 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
-/* Base styles (no display control here) */
 .menu-toggle {
     display: flex;
     margin-right: 1.2rem;
@@ -540,20 +539,18 @@ svg.edit-icon {
     transition: background-color .25s;
 }
 
-/* Desktop: hidden by default */
 @media only screen and (min-width: 1024px) {
     .menu-toggle {
         display: none;
     }
 }
 
-/* Desktop: visible + styled when scrolled */
 @media only screen and (min-width: 1024px) {
     .menu-toggle.scroll-active {
-        display: flex;              /* overrides display:none above */
-        position: fixed;            /* or absolute, as you like */
+        display: flex;        
+        position: fixed;         
         right: 2rem;
-        top: 1.5rem;                /* adjust position */
+        top: 1.5rem;        
         height: 4.2rem;
         width: fit-content;
         padding: 1.2rem 2rem;
@@ -564,11 +561,10 @@ svg.edit-icon {
         border-radius: 20rem;
         color: #fff;
         background: #002e5e;
-        z-index: 999;               /* make sure it’s above the video */
+        z-index: 999;           
     }
 }
 
-/* Optional: only show the “menu” text on desktop */
 .desktop-only {
     display: none;
 }
