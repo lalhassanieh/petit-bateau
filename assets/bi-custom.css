@@ -541,11 +541,6 @@ svg.edit-icon {
   cursor: pointer;
 }
 
-.pb-menu-icon rect {
-  /* uses current text color */
-  fill: currentColor;
-}
-
 .pb-menu-label {
   font-size: 13px;
   text-transform: uppercase;
