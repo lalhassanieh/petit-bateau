@@ -526,32 +526,57 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
-.pb-desktop-menu-toggle {
-  display: flex;
-  align-items: center;
+/* Base styles (no display control here) */
+.menu-toggle {
+    display: flex;
+    margin-right: 1.2rem;
+    padding: 0;
+    height: 4rem;
+    width: 4rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0);
+    transition: background-color .25s;
 }
 
-.pb-desktop-menu-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+/* Desktop: hidden by default */
+@media only screen and (min-width: 1024px) {
+    .menu-toggle {
+        display: none;
+    }
 }
 
-.pb-menu-label {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
+/* Desktop: visible + styled when scrolled */
+@media only screen and (min-width: 1024px) {
+    .menu-toggle.scroll-active {
+        display: flex;              /* overrides display:none above */
+        position: fixed;            /* or absolute, as you like */
+        right: 2rem;
+        top: 1.5rem;                /* adjust position */
+        height: 4.2rem;
+        width: fit-content;
+        padding: 1.2rem 2rem;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        gap: .8rem;
+        border-radius: 20rem;
+        color: #fff;
+        background: #002e5e;
+        z-index: 999;               /* make sure it’s above the video */
+    }
 }
 
-@media (max-width: 1024.98px) {
-  .pb-desktop-menu-toggle {
-    display: none !important;
-  }
+/* Optional: only show the “menu” text on desktop */
+.desktop-only {
+    display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+    .desktop-only {
+        display: inline;
+    }
 }
 
 
