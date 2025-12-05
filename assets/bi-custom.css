@@ -526,38 +526,26 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
-.floating-menu-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 9999;
-  padding: 10px 22px;
-  border-radius: 999px;
-  border: none;
-  background: #002e5e;     
-  color: #ffffff;
-  font-family: "Work Sans", sans-serif;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-
+.pb-desktop-menu-toggle {
+  display: none;
   opacity: 0;
-  pointer-events: none;
-  transform: translateY(16px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.floating-menu-btn.is-visible {
+.pb-desktop-menu-toggle.pb-desktop-menu-toggle--visible {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 16px;
   opacity: 1;
-  pointer-events: auto;
   transform: translateY(0);
 }
 
-@media (max-width: 1023px) {
-  .floating-menu-btn {
-    display: none;
+@media (max-width: 1024.98px) {
+  .pb-desktop-menu-toggle {
+    display: none !important;
   }
 }
+
 
 /*================*/
