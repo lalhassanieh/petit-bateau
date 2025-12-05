@@ -111,10 +111,6 @@
       </div>
     </div>
   </div>
-
-  <button class="floating-menu-btn" type="button" aria-label="Ouvrir le menu">
-    MENU
-  </button>
 </header>
 {% schema %}
 {
@@ -872,44 +868,3 @@
   ]
 }
 {% endschema %}
-{% javascript %}
-document.addEventListener('DOMContentLoaded', function () {
-  var floatBtn = document.querySelector('.floating-menu-btn');
-  if (!floatBtn) return;
-
-  // TODO: adjust this selector to match your existing MENU / toggle button
-  // Inspect your blue "MENU" button in DevTools and copy its selector here.
-  var mainMenuBtn = document.querySelector(
-    '.header__menu button, .header__menu .toggle-menu, .header__menu [data-open-drawer="menu"], .header__icon--menu'
-  );
-
-  function updateFloatingMenuVisibility() {
-    // Desktop only
-    if (window.innerWidth < 1025) {
-      floatBtn.classList.remove('is-visible');
-      return;
-    }
-
-    // Show button after scrolling down a bit
-    if (window.scrollY > 150) {
-      floatBtn.classList.add('is-visible');
-    } else {
-      floatBtn.classList.remove('is-visible');
-    }
-  }
-
-  // Click on floating button → trigger the normal MENU button
-  floatBtn.addEventListener('click', function () {
-    if (mainMenuBtn) {
-      mainMenuBtn.click();
-    } else {
-      // Fallback: scroll to top if we didn't find the toggle
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  });
-
-  window.addEventListener('scroll', updateFloatingMenuVisibility);
-  window.addEventListener('resize', updateFloatingMenuVisibility);
-  updateFloatingMenuVisibility();
-});
-{% endjavascript %}
