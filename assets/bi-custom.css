@@ -527,18 +527,30 @@ svg.edit-icon {
        CSS For Navbar
 ===========================*/
 .pb-desktop-menu-toggle {
-  display: none;
-  opacity: 0;
-  transform: translateY(-5px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
 }
 
-.pb-desktop-menu-toggle.pb-desktop-menu-toggle--visible {
+.pb-desktop-menu-toggle-btn {
   display: inline-flex;
   align-items: center;
-  margin: 0 16px;
-  opacity: 1;
-  transform: translateY(0);
+  gap: 8px;
+  padding: 6px 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.pb-menu-icon rect {
+  /* uses current text color */
+  fill: currentColor;
+}
+
+.pb-menu-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
 }
 
 @media (max-width: 1024.98px) {
