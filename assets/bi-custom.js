@@ -27,59 +27,41 @@ function initFixedTopbarHeader() {
 
 
 function initDesktopMenuToggle() {
-    const menuToggle      = document.querySelector('.menu-toggle');
-    const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-    const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
+  const menuToggle      = document.querySelector('.menu-toggle');
+  const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
+  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
 
-    const DESKTOP_MIN_WIDTH   = 1025;
-    const SHOW_AFTER_SCROLL_Y = 120;
+  const DESKTOP_MIN_WIDTH   = 1025;
+  const SHOW_AFTER_SCROLL_Y = 120;
 
-    if (!menuToggle || !nativeNavToggle) return;
 
-    function handleScrollOrResize() {
-      const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-      const scrollY   = window.scrollY || window.pageYOffset;
+  function handleScrollOrResize() {
+    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+    const scrollY   = window.scrollY || window.pageYOffset;
 
-      if (!isDesktop) {
-        menuToggle.classList.remove('scroll-active');
-        if (headerNav) headerNav.classList.remove('hide-on-scroll');
-        return;
-      }
-
-      if (scrollY > SHOW_AFTER_SCROLL_Y) {
-        if (headerNav) headerNav.classList.add('hide-on-scroll');
-        menuToggle.classList.add('scroll-active');
-      } else {
-        if (headerNav) headerNav.classList.remove('hide-on-scroll');
-        menuToggle.classList.remove('scroll-active');
-      }
+    if (!isDesktop) {
+      menuToggle.classList.remove('scroll-active');
+      if (headerNav) headerNav.classList.remove('hide-on-scroll');
+      return;
     }
 
-    window.addEventListener('scroll', handleScrollOrResize);
-    window.addEventListener('resize', handleScrollOrResize);
-    handleScrollOrResize();
+    if (scrollY > SHOW_AFTER_SCROLL_Y) {
+      if (headerNav) headerNav.classList.add('hide-on-scroll');
+      menuToggle.classList.add('scroll-active');
+    } else {
+      if (headerNav) headerNav.classList.remove('hide-on-scroll');
+      menuToggle.classList.remove('scroll-active');
+    }
+  }
 
-    menuToggle.addEventListener('click', function () {
-      const html      = document.documentElement;
-      const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-      if (!isDesktop) return;
+  window.addEventListener('scroll', handleScrollOrResize);
+  window.addEventListener('resize', handleScrollOrResize);
 
-      const willOpen = !html.classList.contains('nav-open');
-
-      nativeNavToggle.click();
-
-      if (willOpen) {
-        html.classList.add('nav-verticalmenu');
-
-        const verticalTab = document.querySelector(
-          '.menu-mobile-title [data-menu="verticalmenu-list"]'
-        );
-        if (verticalTab) {
-          verticalTab.click(); 
-        }
-      }
-    });
+  handleScrollOrResize();
 }
+
+
+
 
 
 document.addEventListener("DOMContentLoaded", () => {

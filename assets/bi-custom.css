@@ -639,39 +639,6 @@ svg.edit-icon {
   opacity: 0;
   pointer-events: none;
 }
-/* Unhide the mobile drawer container on desktop when we open the nav */
-@media (min-width: 1025px) {
-  html.nav-open.nav-verticalmenu .navigation__menu-content-mobile {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-  }
-
-  /* If the theme gave it those desktop-hide classes, neutralize them
-     ONLY when nav is open in vertical mode. */
-  html.nav-open.nav-verticalmenu .navigation__menu-content-mobile.hidden-1025 {
-    display: block !important;
-  }
-
-  html.nav-open.nav-verticalmenu .navigation__menu-content-mobile.invisible-1025 {
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
-  html.nav-open.nav-verticalmenu .navigation__menu-content-mobile.pointer-none-1025 {
-    pointer-events: auto !important;
-  }
-
-  /* Ensure the cloned vertical drawer itself shows */
-  html.nav-open.nav-verticalmenu
-  .navigation__menu-content-mobile .verticalmenu-mobile {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-  }
-}
 
 
 
