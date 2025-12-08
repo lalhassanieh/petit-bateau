@@ -24,9 +24,9 @@ function initFixedTopbarHeader() {
 
     window.addEventListener("resize", updateHeights);
 }
-function initDesktopMenuToggle() {
-  console.log('[initDesktopMenuToggle] START');
 
+
+function initDesktopMenuToggle() {
   const menuToggle      = document.querySelector('.menu-toggle');
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
   const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
@@ -34,84 +34,38 @@ function initDesktopMenuToggle() {
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
 
-  if (!menuToggle) {
-    console.warn('[initDesktopMenuToggle] ❌ menuToggle NOT FOUND');
-    return;
-  }
-
-  function isDesktop() {
-    const value = window.innerWidth >= DESKTOP_MIN_WIDTH;
-    console.log('[isDesktop] →', value, 'width=', window.innerWidth);
-    return value;
-  }
-
-  // 🔹 Всегда получаем актуальный vertical-menu из DOM
-  function getVerticalMenu() {
-    const el = document.querySelector('.vertical-menu');
-    console.log('[getVerticalMenu] found:', el);
-    return el;
-  }
 
   function handleScrollOrResize() {
-    const desktop = isDesktop();
-    const scrollY = window.scrollY || window.pageYOffset;
+    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+    const scrollY   = window.scrollY || window.pageYOffset;
 
-    console.log('[handleScrollOrResize]', { desktop, scrollY });
-
-    if (!desktop) {
+    if (!isDesktop) {
       menuToggle.classList.remove('scroll-active');
       if (headerNav) headerNav.classList.remove('hide-on-scroll');
-      console.log('[handleScrollOrResize] → MOBILE mode');
       return;
     }
 
     if (scrollY > SHOW_AFTER_SCROLL_Y) {
       if (headerNav) headerNav.classList.add('hide-on-scroll');
       menuToggle.classList.add('scroll-active');
-      console.log('[handleScrollOrResize] → DESKTOP: show button, hide nav');
     } else {
       if (headerNav) headerNav.classList.remove('hide-on-scroll');
       menuToggle.classList.remove('scroll-active');
-      console.log('[handleScrollOrResize] → DESKTOP: restore nav');
     }
-  }
-
-  function toggleVerticalMenuDesktop() {
-    console.log('[toggleVerticalMenuDesktop] CALLED');
-    const verticalMenu = getVerticalMenu();
-
-    if (!verticalMenu) {
-      console.warn('[toggleVerticalMenuDesktop] ❌ verticalMenu NOT FOUND');
-      return;
-    }
-
-    verticalMenu.classList.toggle('open-vertical');
-
-    console.log(
-      '[toggleVerticalMenuDesktop] open-vertical =',
-      verticalMenu.classList.contains('open-vertical')
-    );
   }
 
   menuToggle.addEventListener('click', function (e) {
     e.preventDefault();
-    console.log('[menuToggle] CLICK!');
-
-    if (isDesktop()) {
-      console.log('[menuToggle] Desktop click → toggling vertical menu');
-      toggleVerticalMenuDesktop();
-    } else {
-      console.log('[menuToggle] Mobile click → triggering nativeNavToggle');
-      if (nativeNavToggle) nativeNavToggle.click();
-    }
+    toggleMenu();
   });
 
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
 
-  console.log('[initDesktopMenuToggle] FIRST RUN handleScrollOrResize()');
   handleScrollOrResize();
 }
+
+
 
 
 
