@@ -8,39 +8,26 @@ document.querySelectorAll('.tooltip-content').forEach(el => {
 });
 
 
-document.addEventListener("DOMContentLoaded", () => {
+function initFixedTopbarHeader() {
+    const topbar = document.querySelector("#topbar");
+    const header = document.querySelector(".header");
 
-  console.log("Topbar/Header fixed mode loaded");
+    function updateHeights() {
+        const topbarHeight = topbar.offsetHeight;
+        const headerHeight = header.offsetHeight;
 
-  const topbar = document.querySelector("#topbar");
-  const header = document.querySelector(".header");
+        document.body.style.setProperty("--topbar-height", topbarHeight + "px");
+        document.body.style.setProperty("--header-height", headerHeight + "px");
+    }
 
-  if (!topbar || !header) {
-    console.warn("Topbar or header missing");
-    return;
-  }
+    updateHeights();
 
-  const topbarHeight = topbar.offsetHeight;
-  const headerHeight = header.offsetHeight;
-
-  document.body.style.setProperty("--topbar-height", topbarHeight + "px");
-  document.body.style.setProperty("--header-height", headerHeight + "px");
-
-  window.addEventListener("resize", () => {
-    document.body.style.setProperty("--topbar-height", topbar.offsetHeight + "px");
-    document.body.style.setProperty("--header-height", header.offsetHeight + "px");
-  });
-
-});
+    window.addEventListener("resize", updateHeights);
+}
 
 
 function initHeaderBottomShowOnlyOnTop() {
     const nav = document.querySelector('.header-bottom__navigation');
-
-    if (!nav) {
-        console.warn('No .header-bottom__navigation element found');
-        return;
-    }
 
     function updateHeaderNavVisibility() {
         const scrollY = window.scrollY || window.pageYOffset;
