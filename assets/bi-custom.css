@@ -574,4 +574,14 @@ svg.edit-icon {
   background: #fff;
 }
 
+
+
+.header-bottom__navigation.hide-on-scroll {
+  height: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
 /*================*/
