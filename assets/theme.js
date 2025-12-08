@@ -810,7 +810,6 @@ let BlsMainMenuShopify = (function () {
 
     updateMenuVerticalMobile: function (elements) {
       const windowWidth = window.innerWidth;
-      if (windowWidth <= 1024) {
         const headerVertical = document.querySelector(".header-vertical");
         const headerVerticalMobile = document.querySelector(
           ".verticalmenu-mobile"
@@ -860,7 +859,6 @@ let BlsMainMenuShopify = (function () {
           const cloneWrapper = wrapperVerticalmenu.cloneNode(true);
           navigationMenuContent.appendChild(cloneWrapper);
         }
-      }
     },
 
     updateMenuTabState: function (elements) {
@@ -1138,6 +1136,7 @@ let BlsMainMenuShopify = (function () {
   };
 })();
 BlsMainMenuShopify.init();
+
 var BlsSearchShopify = (function () {
   return {
     init: function () {
