@@ -50,4 +50,7 @@ function initHeaderBottomShowOnlyOnTop() {
     window.addEventListener('resize', updateHeaderNavVisibility);
 }
 
-document.addEventListener('DOMContentLoaded', initHeaderBottomShowOnlyOnTop);
+document.addEventListener("DOMContentLoaded", () => {
+    initHeaderBottomShowOnlyOnTop();
+    initFixedTopbarHeader();
+});
