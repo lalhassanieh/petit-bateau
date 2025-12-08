@@ -2372,31 +2372,6 @@ header.active li.visible .submenu:not(.submenu-vertical) {
     border-radius: var(--rounded-radius-lg);
   }
 }
-/* ====== ОВЕРРАЙДЫ ДЛЯ ДЕСКТОП-ДРОВЕРА С ВЕРТИКАЛЬНЫМ МЕНЮ ====== */
-
-@media (min-width: 1025px) {
-  /* Когда открыт нав (html.nav-open), не даём ему быть скрытым утилити-классами */
-  html.nav-open .navigation__menu-content-mobile {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-  }
-
-  /* Дополнительно, когда это наше вертикальное меню */
-  html.nav-open.nav-verticalmenu .navigation__menu-content-mobile {
-    display: block !important;
-  }
-
-  /* Вертикальное меню внутри дровера */
-  html.nav-open.nav-verticalmenu
-  .navigation__menu-content-mobile .verticalmenu-mobile {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-  }
-}
 
 @media (min-width: 1200px) {
   .static-xl {

@@ -777,21 +777,19 @@ let BlsMainMenuShopify = (function () {
       });
     },
 
-   showMenuForTab: function (tabId, elements) {
+    showMenuForTab: function (tabId, elements) {
       const { horizontalList, categoriesListMenuMobile } = elements;
-
-      const navigationMenuContent = document.querySelector(
-        ".navigation__menu-content-mobile"
+      const categoriesListMenuVerticalMobile = document.querySelector(
+        ".verticalmenu-mobile"
       );
-      const categoriesListMenuVerticalMobile = navigationMenuContent
-        ? navigationMenuContent.querySelector(".verticalmenu-mobile")
-        : null;
 
       if (!horizontalList) return;
 
+      // Hide horizontal list if we're showing a specific menu
       horizontalList.style.display =
         tabId !== "horizontal-list" ? "none" : "block";
 
+      // Show appropriate menu based on tab
       if (tabId === "categories-list") {
         if (categoriesListMenuMobile)
           categoriesListMenuMobile.style.display = "block";
@@ -811,50 +809,59 @@ let BlsMainMenuShopify = (function () {
     },
 
     updateMenuVerticalMobile: function (elements) {
-      const headerVerticalMobile = document.querySelector(".verticalmenu-mobile");
-      const titleVertical        = headerVerticalMobile?.dataset.title;
-      const menuMobileTitle      = document.querySelector(".menu-mobile-title");
-
-      if (!headerVerticalMobile || !menuMobileTitle) return;
-
-      if (!menuMobileTitle.querySelector('[data-menu="verticalmenu-list"]')) {
-        const contentAppendTitleVertical = `
-          <a
-            class="no-underline heading-style py-10"
-            data-menu="verticalmenu-list"
-            role="link"
-            aria-disabled="true"
-          >
-            ${titleVertical}
-          </a>
-        `;
-        menuMobileTitle.insertAdjacentHTML("beforeend", contentAppendTitleVertical);
-
-        const newTabButton = menuMobileTitle.querySelector(
-          '[data-menu="verticalmenu-list"]'
+      const windowWidth = window.innerWidth;
+      if (windowWidth <= 1024) {
+        const headerVertical = document.querySelector(".header-vertical");
+        const headerVerticalMobile = document.querySelector(
+          ".verticalmenu-mobile"
         );
-        if (newTabButton) {
-          newTabButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            document
-              .querySelectorAll(".menu-mobile-title a")
-              .forEach((item) => item.classList.remove("active"));
-            newTabButton.classList.add("active");
-            this.showMenuForTab("verticalmenu-list", elements);
-          });
+        const titleVertical = headerVerticalMobile?.dataset.title;
+        const menuMobileTitle = document.querySelector(".menu-mobile-title");
+        if (!headerVertical) return;
+        if (!menuMobileTitle.querySelector('[data-menu="verticalmenu-list"]')) {
+          const contentAppendTitleVertical = `
+            <a
+              class="no-underline heading-style py-10"
+              data-menu="verticalmenu-list"
+              role="link"
+              aria-disabled="true"
+            >
+              ${titleVertical}
+            </a>
+          `;
+          menuMobileTitle.insertAdjacentHTML(
+            "beforeend",
+            contentAppendTitleVertical
+          );
+          const newTabButton = menuMobileTitle.querySelector(
+            '[data-menu="verticalmenu-list"]'
+          );
+          if (newTabButton) {
+            newTabButton.addEventListener("click", (e) => {
+              e.preventDefault();
+              document
+                .querySelectorAll(".menu-mobile-title a")
+                .forEach((item) => item.classList.remove("active"));
+              newTabButton.classList.add("active");
+              this.showMenuForTab("verticalmenu-list", elements);
+            });
+          }
+        }
+        const wrapperVerticalmenu = document.querySelector(
+          ".verticalmenu-mobile"
+        );
+        const navigationMenuContent = document.querySelector(
+          ".navigation__menu-content-mobile"
+        );
+        if (!wrapperVerticalmenu || !navigationMenuContent) {
+          return;
+        }
+        if (!navigationMenuContent.querySelector(".verticalmenu-mobile")) {
+          const cloneWrapper = wrapperVerticalmenu.cloneNode(true);
+          navigationMenuContent.appendChild(cloneWrapper);
         }
       }
-
-      const wrapperVerticalmenu    = document.querySelector(".verticalmenu-mobile");
-      const navigationMenuContent  = document.querySelector(".navigation__menu-content-mobile");
-      if (!wrapperVerticalmenu || !navigationMenuContent) return;
-
-      if (!navigationMenuContent.querySelector(".verticalmenu-mobile")) {
-        const cloneWrapper = wrapperVerticalmenu.cloneNode(true);
-        navigationMenuContent.appendChild(cloneWrapper);
-      }
     },
-
 
     updateMenuTabState: function (elements) {
       const windowWidth = window.innerWidth;
@@ -863,19 +870,13 @@ let BlsMainMenuShopify = (function () {
         categoriesListMenu,
         categoriesListMenuVertical,
         categoriesListMenuMobile,
+        categoriesListMenuVerticalMobile,
       } = elements;
 
       if (!horizontalList || !categoriesListMenu) return;
 
-      const navigationMenuContent = document.querySelector(
-        ".navigation__menu-content-mobile"
-      );
-      const categoriesListMenuVerticalMobile = navigationMenuContent
-        ? navigationMenuContent.querySelector(".verticalmenu-mobile")
-        : null;
-
       if (windowWidth <= 1024) {
-        // Mobile
+        // Mobile view
         if (
           categoriesListMenu?.classList.contains("active") ||
           categoriesListMenuVertical?.classList.contains("active")
@@ -890,7 +891,7 @@ let BlsMainMenuShopify = (function () {
           categoriesListMenuVerticalMobile.style.display = "block";
         }
       } else {
-        // Desktop
+        // Desktop view
         if (
           categoriesListMenuMobile &&
           categoriesListMenu?.classList.contains("active")
@@ -898,21 +899,21 @@ let BlsMainMenuShopify = (function () {
           categoriesListMenuMobile.style.display = "none";
         }
 
-        if (categoriesListMenuVerticalMobile) {
-          if (categoriesListMenuVertical?.classList.contains("active")) {
-            categoriesListMenuVerticalMobile.style.display = "block";
-            horizontalList.style.display = "none";
-          } else {
-            categoriesListMenuVerticalMobile.style.display = "none";
-            horizontalList.style.display = "inline-flex";
-          }
-        } else {
+        if (
+          categoriesListMenuVerticalMobile &&
+          categoriesListMenuVertical?.classList.contains("active")
+        ) {
+          categoriesListMenuVerticalMobile.style.display = "none";
+        }
+
+        if (
+          categoriesListMenu?.classList.contains("active") ||
+          categoriesListMenuVertical?.classList.contains("active")
+        ) {
           horizontalList.style.display = "inline-flex";
         }
       }
     },
-
-
 
     initMainMenu: function () {
       const header = document.querySelector("header");
@@ -929,27 +930,34 @@ let BlsMainMenuShopify = (function () {
       document.querySelectorAll(".nav-toggle").forEach((navToggle) => {
         navToggle.addEventListener("click", (e) => {
           const target = e.currentTarget;
+          const main_menu = document.querySelector(".navigation.horizontal");
 
-          const html = document.documentElement;
-
-          if (html.classList.contains("nav-open")) {
+          if (document.documentElement.classList.contains("nav-open")) {
+            // Close menu
             root.style.removeProperty("padding-right");
-            html.classList.remove("nav-open", "open-drawer", "nav-verticalmenu");
+            document.documentElement.classList.remove(
+              "nav-open",
+              "open-drawer"
+            );
             target.classList.remove("open");
+            if (!main_menu) {
+              document.documentElement.classList.remove("nav-verticalmenu");
+            }
           } else {
+            // Open menu
             root.style.setProperty(
               "padding-right",
               getScrollBarWidth.init() + "px"
             );
-            html.classList.add("nav-open", "open-drawer");
+            document.documentElement.classList.add("nav-open", "open-drawer");
             target.classList.add("open");
-
-            html.classList.add("nav-verticalmenu");
+            if (!main_menu) {
+              document.documentElement.classList.add("nav-verticalmenu");
+            }
           }
         });
       });
     },
-
 
     setupMenuMouseEvents: function () {
       let width = screen.width;
@@ -1130,7 +1138,6 @@ let BlsMainMenuShopify = (function () {
   };
 })();
 BlsMainMenuShopify.init();
-
 var BlsSearchShopify = (function () {
   return {
     init: function () {
