@@ -43,7 +43,15 @@
             <div class="inline-flex align-center col-logo">
               {%- render 'logo' -%}
             </div>
-            
+
+            <div class="scroll-menu-wrapper desktop-1025-only">
+                <button class="menu-toggle">
+                  {%- render 'toggle-menu' -%}
+                  <span class="desktop-only">Menu</span>
+                </button>
+            </div>
+
+
             <div class="header-search header-search__mega color-default flex-1">
               {%- liquid
                 if top_search
