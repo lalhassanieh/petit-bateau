@@ -25,19 +25,16 @@ function initFixedTopbarHeader() {
     window.addEventListener("resize", updateHeights);
 }
 
-
 function initDesktopMenuToggle() {
   console.log('[initDesktopMenuToggle] starting…');
 
-  const menuToggle   = document.querySelector('.menu-toggle');
-  const verticalMenu = document.querySelector('.verticalmenu-mobile'); 
-  const overlay      = document.querySelector('.vertical-menu-overlay');
-  const headerNav    = document.querySelector('.header-bottom__navigation');
+  const menuToggle      = document.querySelector('.menu-toggle'); // your round button
+  const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
+  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]'); // theme hamburger
 
   console.log('[initDesktopMenuToggle] menuToggle:', menuToggle);
-  console.log('[initDesktopMenuToggle] verticalMenu:', verticalMenu);
-  console.log('[initDesktopMenuToggle] overlay:', overlay);
   console.log('[initDesktopMenuToggle] headerNav:', headerNav);
+  console.log('[initDesktopMenuToggle] nativeNavToggle:', nativeNavToggle);
 
   if (!menuToggle) {
     console.warn('[initDesktopMenuToggle] .menu-toggle NOT found → abort');
@@ -48,58 +45,18 @@ function initDesktopMenuToggle() {
   const SHOW_AFTER_SCROLL_Y = 120;
 
   function openMenu() {
-    console.log('[menu] openMenu() called');
-
-    if (!verticalMenu) {
-      console.warn('[menu] openMenu() → verticalMenu is null (no vertical menu on this page)');
-      return;
+    console.log('[menu] openMenu() → trigger nativeNavToggle');
+    if (nativeNavToggle) {
+      nativeNavToggle.click(); // reuse theme logic to open nav <nav class="mobile navigation ...">
+    } else {
+      console.warn('[menu] openMenu() → nativeNavToggle not found');
     }
-
-    verticalMenu.classList.add('is-open');
-    verticalMenu.classList.remove('hidden');
-    verticalMenu.classList.remove('block-1025');
-
-    if (overlay) {
-      overlay.classList.add('is-active');
-      overlay.classList.remove('hidden');
-    }
-
-    document.documentElement.classList.add('no-scroll-menu');
-  }
-
-  function closeMenu() {
-    console.log('[menu] closeMenu() called');
-
-    if (!verticalMenu) {
-      console.warn('[menu] closeMenu() → verticalMenu is null (no vertical menu on this page)');
-      return;
-    }
-
-    verticalMenu.classList.remove('is-open');
-    verticalMenu.classList.add('hidden');
-
-    if (overlay) {
-      overlay.classList.remove('is-active');
-      overlay.classList.add('hidden');
-    }
-
-    document.documentElement.classList.remove('no-scroll-menu');
   }
 
   function toggleMenu() {
-    if (!verticalMenu) {
-      console.warn('[menu] toggleMenu() → verticalMenu is null (no vertical menu on this page)');
-      return;
-    }
-
-    const isOpen = verticalMenu.classList.contains('is-open');
-    console.log('[menu] toggleMenu() called, isOpen before:', isOpen);
-
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+    // We don’t try to track open/close state ourselves.
+    // Just delegate to theme each time – it will toggle correctly.
+    openMenu();
   }
 
   function handleScrollOrResize() {
@@ -113,28 +70,20 @@ function initDesktopMenuToggle() {
     });
 
     if (!isDesktop) {
+      // On mobile: DO NOT touch nav, leave everything to theme
       menuToggle.classList.remove('scroll-active');
-      headerNav && headerNav.classList.remove('hide-on-scroll');
-
-      if (verticalMenu) {
-        closeMenu();
-      }
-
+      if (headerNav) headerNav.classList.remove('hide-on-scroll');
       return;
     }
 
     if (scrollY > SHOW_AFTER_SCROLL_Y) {
       console.log('[menu] scroll > threshold → hide nav, show button');
-      headerNav && headerNav.classList.add('hide-on-scroll');
+      if (headerNav) headerNav.classList.add('hide-on-scroll');
       menuToggle.classList.add('scroll-active');
     } else {
       console.log('[menu] scroll at top → show nav, hide button');
-      headerNav && headerNav.classList.remove('hide-on-scroll');
+      if (headerNav) headerNav.classList.remove('hide-on-scroll');
       menuToggle.classList.remove('scroll-active');
-
-      if (verticalMenu) {
-        closeMenu();
-      }
     }
   }
 
@@ -144,15 +93,9 @@ function initDesktopMenuToggle() {
     toggleMenu();
   });
 
-  if (overlay) {
-    overlay.addEventListener('click', function () {
-      console.log('[overlay] CLICK detected → closeMenu()');
-      closeMenu();
-    });
-  }
-
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
+
   console.log('[initDesktopMenuToggle] initial handleScrollOrResize() call');
   handleScrollOrResize();
 }
