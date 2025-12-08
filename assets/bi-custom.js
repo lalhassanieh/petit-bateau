@@ -27,14 +27,13 @@ function initFixedTopbarHeader() {
 
 
 function initDesktopMenuToggle() {
-  const menuToggle      = document.querySelector('.menu-toggle'); // your button
+  const menuToggle      = document.querySelector('.menu-toggle');
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]'); // theme's original burger
+  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
 
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
 
-  // If button or original toggle is missing, do nothing
   if (!menuToggle || !nativeNavToggle) return;
 
   function handleScrollOrResize() {
@@ -61,7 +60,10 @@ function initDesktopMenuToggle() {
   handleScrollOrResize();
 
   menuToggle.addEventListener('click', function () {
-    const html = document.documentElement;
+    const html      = document.documentElement;
+    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+    if (!isDesktop) return;
+
     const willOpen = !html.classList.contains('nav-open');
 
     nativeNavToggle.click();
@@ -69,12 +71,19 @@ function initDesktopMenuToggle() {
     if (willOpen) {
       html.classList.add('nav-verticalmenu');
 
-      const verticalTab = document.querySelector('.menu-mobile-title [data-menu="verticalmenu-list"]');
-      if (verticalTab) verticalTab.click();
+      const verticalTab = document.querySelector(
+        '.menu-mobile-title [data-menu="verticalmenu-list"]'
+      );
+      if (verticalTab) {
+        verticalTab.click(); 
+      }
     }
   });
-
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  initDesktopMenuToggle();
+});
 
 
 
