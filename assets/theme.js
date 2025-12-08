@@ -811,57 +811,50 @@ let BlsMainMenuShopify = (function () {
     },
 
     updateMenuVerticalMobile: function (elements) {
-      const windowWidth = window.innerWidth;
-        const headerVertical = document.querySelector(".header-vertical");
-        const headerVerticalMobile = document.querySelector(
-          ".verticalmenu-mobile"
+      const headerVerticalMobile = document.querySelector(".verticalmenu-mobile");
+      const titleVertical        = headerVerticalMobile?.dataset.title;
+      const menuMobileTitle      = document.querySelector(".menu-mobile-title");
+
+      if (!headerVerticalMobile || !menuMobileTitle) return;
+
+      if (!menuMobileTitle.querySelector('[data-menu="verticalmenu-list"]')) {
+        const contentAppendTitleVertical = `
+          <a
+            class="no-underline heading-style py-10"
+            data-menu="verticalmenu-list"
+            role="link"
+            aria-disabled="true"
+          >
+            ${titleVertical}
+          </a>
+        `;
+        menuMobileTitle.insertAdjacentHTML("beforeend", contentAppendTitleVertical);
+
+        const newTabButton = menuMobileTitle.querySelector(
+          '[data-menu="verticalmenu-list"]'
         );
-        const titleVertical = headerVerticalMobile?.dataset.title;
-        const menuMobileTitle = document.querySelector(".menu-mobile-title");
-        if (!headerVertical) return;
-        if (!menuMobileTitle.querySelector('[data-menu="verticalmenu-list"]')) {
-          const contentAppendTitleVertical = `
-            <a
-              class="no-underline heading-style py-10"
-              data-menu="verticalmenu-list"
-              role="link"
-              aria-disabled="true"
-            >
-              ${titleVertical}
-            </a>
-          `;
-          menuMobileTitle.insertAdjacentHTML(
-            "beforeend",
-            contentAppendTitleVertical
-          );
-          const newTabButton = menuMobileTitle.querySelector(
-            '[data-menu="verticalmenu-list"]'
-          );
-          if (newTabButton) {
-            newTabButton.addEventListener("click", (e) => {
-              e.preventDefault();
-              document
-                .querySelectorAll(".menu-mobile-title a")
-                .forEach((item) => item.classList.remove("active"));
-              newTabButton.classList.add("active");
-              this.showMenuForTab("verticalmenu-list", elements);
-            });
-          }
+        if (newTabButton) {
+          newTabButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            document
+              .querySelectorAll(".menu-mobile-title a")
+              .forEach((item) => item.classList.remove("active"));
+            newTabButton.classList.add("active");
+            this.showMenuForTab("verticalmenu-list", elements);
+          });
         }
-        const wrapperVerticalmenu = document.querySelector(
-          ".verticalmenu-mobile"
-        );
-        const navigationMenuContent = document.querySelector(
-          ".navigation__menu-content-mobile"
-        );
-        if (!wrapperVerticalmenu || !navigationMenuContent) {
-          return;
-        }
-        if (!navigationMenuContent.querySelector(".verticalmenu-mobile")) {
-          const cloneWrapper = wrapperVerticalmenu.cloneNode(true);
-          navigationMenuContent.appendChild(cloneWrapper);
-        }
+      }
+
+      const wrapperVerticalmenu    = document.querySelector(".verticalmenu-mobile");
+      const navigationMenuContent  = document.querySelector(".navigation__menu-content-mobile");
+      if (!wrapperVerticalmenu || !navigationMenuContent) return;
+
+      if (!navigationMenuContent.querySelector(".verticalmenu-mobile")) {
+        const cloneWrapper = wrapperVerticalmenu.cloneNode(true);
+        navigationMenuContent.appendChild(cloneWrapper);
+      }
     },
+
 
     updateMenuTabState: function (elements) {
       const windowWidth = window.innerWidth;
@@ -936,34 +929,27 @@ let BlsMainMenuShopify = (function () {
       document.querySelectorAll(".nav-toggle").forEach((navToggle) => {
         navToggle.addEventListener("click", (e) => {
           const target = e.currentTarget;
-          const main_menu = document.querySelector(".navigation.horizontal");
 
-          if (document.documentElement.classList.contains("nav-open")) {
-            // Close menu
+          const html = document.documentElement;
+
+          if (html.classList.contains("nav-open")) {
             root.style.removeProperty("padding-right");
-            document.documentElement.classList.remove(
-              "nav-open",
-              "open-drawer"
-            );
+            html.classList.remove("nav-open", "open-drawer", "nav-verticalmenu");
             target.classList.remove("open");
-            if (!main_menu) {
-              document.documentElement.classList.remove("nav-verticalmenu");
-            }
           } else {
-            // Open menu
             root.style.setProperty(
               "padding-right",
               getScrollBarWidth.init() + "px"
             );
-            document.documentElement.classList.add("nav-open", "open-drawer");
+            html.classList.add("nav-open", "open-drawer");
             target.classList.add("open");
-            if (!main_menu) {
-              document.documentElement.classList.add("nav-verticalmenu");
-            }
+
+            html.classList.add("nav-verticalmenu");
           }
         });
       });
     },
+
 
     setupMenuMouseEvents: function () {
       let width = screen.width;
