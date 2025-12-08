@@ -55,7 +55,7 @@ function initDesktopMenuToggle() {
     }
 
     verticalMenu.classList.add('is-open');
-    verticalMenu.classList.remove('hidden-1025'); 
+    verticalMenu.classList.remove('hidden'); 
     overlay && overlay.classList.add('is-active');
 
     document.documentElement.classList.add('no-scroll-menu');
