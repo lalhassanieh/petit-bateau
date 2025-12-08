@@ -595,13 +595,6 @@ svg.edit-icon {
 }
 
 
-.menu-toggle-icon-path {
-    transition: fill .25s ease;
-}
-
-.menu-toggle:hover {
-    background-color: #01407e; 
-}
 
 .desktop-only {
     font-family: Oswald-Bold !important;
