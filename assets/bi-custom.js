@@ -30,21 +30,29 @@ function initDesktopMenuToggle() {
   const menuToggle      = document.querySelector('.menu-toggle');
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
   const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
+  const verticalMenu    = document.querySelector('.js-vertical-menu-desktop'); // ⬅ наш десктопный вертикальный
 
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
 
+  if (!menuToggle) return;
+
+  function isDesktop() {
+    return window.innerWidth >= DESKTOP_MIN_WIDTH;
+  }
 
   function handleScrollOrResize() {
-    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-    const scrollY   = window.scrollY || window.pageYOffset;
+    const desktop = isDesktop();
+    const scrollY = window.scrollY || window.pageYOffset;
 
-    if (!isDesktop) {
+    if (!desktop) {
+      // Мобильный / планшет → ведём себя как обычно
       menuToggle.classList.remove('scroll-active');
       if (headerNav) headerNav.classList.remove('hide-on-scroll');
       return;
     }
 
+    // Десктоп → показываем кнопку после скролла, прячем нав
     if (scrollY > SHOW_AFTER_SCROLL_Y) {
       if (headerNav) headerNav.classList.add('hide-on-scroll');
       menuToggle.classList.add('scroll-active');
@@ -54,9 +62,24 @@ function initDesktopMenuToggle() {
     }
   }
 
+  function toggleVerticalMenuDesktop() {
+    if (!verticalMenu) return;
+    verticalMenu.classList.toggle('open-vertical');
+    // overlay сам включается по CSS через :is(.open-vertical)
+  }
+
   menuToggle.addEventListener('click', function (e) {
     e.preventDefault();
-    toggleMenu();
+
+    if (isDesktop()) {
+      // 💻 ДЕСКТОП: открываем/закрываем левое вертикальное меню
+      toggleVerticalMenuDesktop();
+    } else {
+      // 📱 МОБИЛА: оставляем нативное поведение Shopify
+      if (nativeNavToggle) {
+        nativeNavToggle.click();
+      }
+    }
   });
 
   window.addEventListener('scroll', handleScrollOrResize);
@@ -64,7 +87,6 @@ function initDesktopMenuToggle() {
 
   handleScrollOrResize();
 }
-
 
 
 
