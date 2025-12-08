@@ -27,31 +27,17 @@ function initFixedTopbarHeader() {
 
 
 function initDesktopMenuToggle() {
-  console.log('[initDesktopMenuToggle] starting…');
-
-  const menuToggle      = document.querySelector('.menu-toggle'); // your round button
+  const menuToggle      = document.querySelector('.menu-toggle');
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]'); // theme hamburger
-
-  console.log('[initDesktopMenuToggle] menuToggle:', menuToggle);
-  console.log('[initDesktopMenuToggle] headerNav:', headerNav);
-  console.log('[initDesktopMenuToggle] nativeNavToggle:', nativeNavToggle);
-
-  if (!menuToggle) {
-    console.warn('[initDesktopMenuToggle] .menu-toggle NOT found → abort');
-    return;
-  }
+  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
 
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
 
   function openMenu() {
-    console.log('[menu] openMenu() → trigger nativeNavToggle');
     if (nativeNavToggle) {
       nativeNavToggle.click();
-    } else {
-      console.warn('[menu] openMenu() → nativeNavToggle not found');
-    }
+    } 
   }
 
   function toggleMenu() {
@@ -62,32 +48,22 @@ function initDesktopMenuToggle() {
     const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
     const scrollY   = window.scrollY || window.pageYOffset;
 
-    console.log('[menu] handleScrollOrResize()', {
-      isDesktop,
-      scrollY,
-      width: window.innerWidth
-    });
-
     if (!isDesktop) {
-      // On mobile: DO NOT touch nav, leave everything to theme
       menuToggle.classList.remove('scroll-active');
       if (headerNav) headerNav.classList.remove('hide-on-scroll');
       return;
     }
 
     if (scrollY > SHOW_AFTER_SCROLL_Y) {
-      console.log('[menu] scroll > threshold → hide nav, show button');
       if (headerNav) headerNav.classList.add('hide-on-scroll');
       menuToggle.classList.add('scroll-active');
     } else {
-      console.log('[menu] scroll at top → show nav, hide button');
       if (headerNav) headerNav.classList.remove('hide-on-scroll');
       menuToggle.classList.remove('scroll-active');
     }
   }
 
   menuToggle.addEventListener('click', function (e) {
-    console.log('[menuToggle] CLICK detected');
     e.preventDefault();
     toggleMenu();
   });
@@ -95,7 +71,6 @@ function initDesktopMenuToggle() {
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
 
-  console.log('[initDesktopMenuToggle] initial handleScrollOrResize() call');
   handleScrollOrResize();
 }
 

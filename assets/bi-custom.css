@@ -640,34 +640,6 @@ svg.edit-icon {
   pointer-events: none;
 }
 
-/* ===== Десктоп: управление drawer-меню ===== */
-@media (min-width: 1025px) {
-  nav.navigation.horizontal.fixed.inset-0[data-action-mobile="true"] {
-    /* по умолчанию прячем */
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-  }
-
-  nav.navigation.horizontal.fixed.inset-0[data-action-mobile="true"].is-open-desktop {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    z-index: 9998; /* ниже шапки, но поверх контента */
-  }
-
-  body.nav-overlay-open-desktop {
-    overflow: hidden;
-  }
-}
-
-/* ===== Мобилка: гарантируем, что overlay поверх хедера ===== */
-@media (max-width: 1024px) {
-  nav.navigation.horizontal.fixed.inset-0[data-action-mobile="true"] {
-    z-index: 10000;
-  }
-}
 
 
 /*================*/
