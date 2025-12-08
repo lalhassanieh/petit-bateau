@@ -25,12 +25,13 @@ function initFixedTopbarHeader() {
     window.addEventListener("resize", updateHeights);
 }
 
+
 function initDesktopMenuToggle() {
   console.log('[initDesktopMenuToggle] starting…');
 
-  const menuToggle   = document.querySelector('.menu-toggle'); 
+  const menuToggle   = document.querySelector('.menu-toggle');
   const verticalMenu = document.querySelector('.verticalmenu-mobile'); 
-  const overlay      = document.querySelector('.vertical-menu-overlay');  
+  const overlay      = document.querySelector('.vertical-menu-overlay');
   const headerNav    = document.querySelector('.header-bottom__navigation');
 
   console.log('[initDesktopMenuToggle] menuToggle:', menuToggle);
@@ -44,49 +45,50 @@ function initDesktopMenuToggle() {
   }
 
   const DESKTOP_MIN_WIDTH   = 1025;
-  const SHOW_AFTER_SCROLL_Y = 120; 
+  const SHOW_AFTER_SCROLL_Y = 120;
 
   function openMenu() {
     console.log('[menu] openMenu() called');
 
     if (!verticalMenu) {
-      console.warn('[menu] openMenu() → verticalMenu is null');
+      console.warn('[menu] openMenu() → verticalMenu is null (no vertical menu on this page)');
       return;
     }
 
     verticalMenu.classList.add('is-open');
-    verticalMenu.classList.remove('hidden'); 
-    overlay && overlay.classList.add('is-active');
+    verticalMenu.classList.remove('hidden');
+    verticalMenu.classList.remove('hidden-1025');
+
+    if (overlay) {
+      overlay.classList.add('is-active');
+      overlay.classList.remove('hidden');
+    }
 
     document.documentElement.classList.add('no-scroll-menu');
-
-    console.log('[menu] menu state after open:', {
-      isOpen: verticalMenu.classList.contains('is-open'),
-      classes: verticalMenu.className
-    });
   }
 
   function closeMenu() {
     console.log('[menu] closeMenu() called');
 
     if (!verticalMenu) {
-      console.warn('[menu] closeMenu() → verticalMenu is null');
+      console.warn('[menu] closeMenu() → verticalMenu is null (no vertical menu on this page)');
       return;
     }
 
     verticalMenu.classList.remove('is-open');
-    overlay && overlay.classList.remove('is-active');
-    document.documentElement.classList.remove('no-scroll-menu');
+    verticalMenu.classList.add('hidden');
 
-    console.log('[menu] menu state after close:', {
-      isOpen: verticalMenu.classList.contains('is-open'),
-      classes: verticalMenu.className
-    });
+    if (overlay) {
+      overlay.classList.remove('is-active');
+      overlay.classList.add('hidden');
+    }
+
+    document.documentElement.classList.remove('no-scroll-menu');
   }
 
   function toggleMenu() {
     if (!verticalMenu) {
-      console.warn('[menu] toggleMenu() → verticalMenu is null');
+      console.warn('[menu] toggleMenu() → verticalMenu is null (no vertical menu on this page)');
       return;
     }
 
@@ -113,7 +115,11 @@ function initDesktopMenuToggle() {
     if (!isDesktop) {
       menuToggle.classList.remove('scroll-active');
       headerNav && headerNav.classList.remove('hide-on-scroll');
-      closeMenu();
+
+      if (verticalMenu) {
+        closeMenu();
+      }
+
       return;
     }
 
@@ -125,18 +131,19 @@ function initDesktopMenuToggle() {
       console.log('[menu] scroll at top → show nav, hide button');
       headerNav && headerNav.classList.remove('hide-on-scroll');
       menuToggle.classList.remove('scroll-active');
-      closeMenu();
+
+      if (verticalMenu) {
+        closeMenu();
+      }
     }
   }
 
-  // 🔹 Click on the MENU button
   menuToggle.addEventListener('click', function (e) {
     console.log('[menuToggle] CLICK detected');
     e.preventDefault();
     toggleMenu();
   });
 
-  // 🔹 Click on overlay to close
   if (overlay) {
     overlay.addEventListener('click', function () {
       console.log('[overlay] CLICK detected → closeMenu()');
@@ -146,10 +153,10 @@ function initDesktopMenuToggle() {
 
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
-
   console.log('[initDesktopMenuToggle] initial handleScrollOrResize() call');
   handleScrollOrResize();
 }
+
 
 
 
