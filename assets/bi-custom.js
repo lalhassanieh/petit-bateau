@@ -25,64 +25,73 @@ function initFixedTopbarHeader() {
     window.addEventListener("resize", updateHeights);
 }
 
-
 function initDesktopMenuToggle() {
-    const menuToggle      = document.querySelector('.menu-toggle');
-    const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-    const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
+  const menuToggle      = document.querySelector('.menu-toggle');
+  const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
+  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
 
-    const DESKTOP_MIN_WIDTH   = 1025;
-    const SHOW_AFTER_SCROLL_Y = 120;
+  const DESKTOP_MIN_WIDTH   = 1025;
+  const SHOW_AFTER_SCROLL_Y = 120;
 
-    if (!menuToggle || !nativeNavToggle) return;
+  console.log('[TOGGLE] initDesktopMenuToggle');
+  console.log('[TOGGLE] menuToggle      =', menuToggle);
+  console.log('[TOGGLE] headerNav       =', headerNav);
+  console.log('[TOGGLE] nativeNavToggle =', nativeNavToggle);
 
-    function handleScrollOrResize() {
-      const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-      const scrollY   = window.scrollY || window.pageYOffset;
+  if (!menuToggle || !nativeNavToggle) {
+    console.warn('[TOGGLE] Нет menuToggle или nativeNavToggle → десктопный toggle не активен');
+    return;
+  }
 
-      if (!isDesktop) {
-        menuToggle.classList.remove('scroll-active');
-        if (headerNav) headerNav.classList.remove('hide-on-scroll');
-        return;
-      }
+  function handleScrollOrResize() {
+    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+    const scrollY   = window.scrollY || window.pageYOffset;
 
-      if (scrollY > SHOW_AFTER_SCROLL_Y) {
-        if (headerNav) headerNav.classList.add('hide-on-scroll');
-        menuToggle.classList.add('scroll-active');
-      } else {
-        if (headerNav) headerNav.classList.remove('hide-on-scroll');
-        menuToggle.classList.remove('scroll-active');
-      }
+    if (!isDesktop) {
+      menuToggle.classList.remove('scroll-active');
+      if (headerNav) headerNav.classList.remove('hide-on-scroll');
+      return;
     }
 
-    window.addEventListener('scroll', handleScrollOrResize);
-    window.addEventListener('resize', handleScrollOrResize);
-    handleScrollOrResize();
+    if (scrollY > SHOW_AFTER_SCROLL_Y) {
+      if (headerNav) headerNav.classList.add('hide-on-scroll');
+      menuToggle.classList.add('scroll-active');
+    } else {
+      if (headerNav) headerNav.classList.remove('hide-on-scroll');
+      menuToggle.classList.remove('scroll-active');
+    }
+  }
 
-    menuToggle.addEventListener('click', function () {
-      const html      = document.documentElement;
-      const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-      if (!isDesktop) return;
+  window.addEventListener('scroll', handleScrollOrResize);
+  window.addEventListener('resize', handleScrollOrResize);
+  handleScrollOrResize();
 
-      const willOpen = !html.classList.contains('nav-open');
+  menuToggle.addEventListener('click', function () {
+    const html      = document.documentElement;
+    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+    if (!isDesktop) return;
 
-      nativeNavToggle.click();
+    const willOpen = !html.classList.contains('nav-open');
+    console.log('[TOGGLE] click, willOpen =', willOpen);
 
-      if (willOpen) {
-        html.classList.add('nav-verticalmenu');
+    nativeNavToggle.click();
+    console.log('[TOGGLE] after nativeNavToggle.click, html.classList =', html.className);
 
-        const verticalTab = document.querySelector(
-          '.menu-mobile-title [data-menu="verticalmenu-list"]'
-        );
-        if (verticalTab) {
-          verticalTab.click(); 
-        }
+    if (willOpen) {
+      html.classList.add('nav-verticalmenu');
+
+      const verticalTab = document.querySelector(
+        '.menu-mobile-title [data-menu="verticalmenu-list"]'
+      );
+      console.log('[TOGGLE] verticalTab =', verticalTab);
+      if (verticalTab) {
+        verticalTab.click();
       }
-    });
+    } else {
+      html.classList.remove('nav-verticalmenu');
+    }
+  });
 }
-
-
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
