@@ -57,7 +57,7 @@ function initDesktopMenuToggle() {
 
     verticalMenu.classList.add('is-open');
     verticalMenu.classList.remove('hidden');
-    verticalMenu.classList.remove('hidden-1025');
+    verticalMenu.classList.remove('block-1025');
 
     if (overlay) {
       overlay.classList.add('is-active');
