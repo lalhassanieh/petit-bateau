@@ -611,7 +611,7 @@ svg.edit-icon {
 #MainContent,
 .main-content {
   padding-top: calc(
-    var(--topbar-height, 0px) + var(--header-height, 0px)
+    var(--topbar-height, 39px) + var(--header-height, 108px)
   );
 }
 
