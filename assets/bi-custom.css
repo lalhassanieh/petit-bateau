@@ -1,3 +1,9 @@
+:root {
+  --topbar-height: 39px;
+  --header-height: 108px;
+}
+
+
 /*fonts*/
 @font-face {
   font-family: "Oswald-Medium";
