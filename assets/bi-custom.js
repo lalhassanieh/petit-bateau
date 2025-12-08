@@ -26,20 +26,16 @@ function initFixedTopbarHeader() {
 }
 
 
-
-
 function initDesktopMenuToggle() {
   console.log('[initDesktopMenuToggle] starting…');
 
-  const menuToggle      = document.querySelector('.menu-toggle'); // наша круглая кнопка
+  const menuToggle      = document.querySelector('.menu-toggle'); // your round button
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]'); // родной бургер
-  const navDrawer       = document.querySelector('nav.navigation.horizontal.fixed.inset-0[data-action-mobile="true"]');
+  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]'); // theme hamburger
 
   console.log('[initDesktopMenuToggle] menuToggle:', menuToggle);
   console.log('[initDesktopMenuToggle] headerNav:', headerNav);
   console.log('[initDesktopMenuToggle] nativeNavToggle:', nativeNavToggle);
-  console.log('[initDesktopMenuToggle] navDrawer:', navDrawer);
 
   if (!menuToggle) {
     console.warn('[initDesktopMenuToggle] .menu-toggle NOT found → abort');
@@ -49,33 +45,17 @@ function initDesktopMenuToggle() {
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
 
-  function toggleDesktopDrawer() {
-    if (!navDrawer) {
-      console.warn('[menu] toggleDesktopDrawer() → navDrawer not found');
-      return;
+  function openMenu() {
+    console.log('[menu] openMenu() → trigger nativeNavToggle');
+    if (nativeNavToggle) {
+      nativeNavToggle.click();
+    } else {
+      console.warn('[menu] openMenu() → nativeNavToggle not found');
     }
-
-    const isOpen = navDrawer.classList.toggle('is-open-desktop');
-    document.body.classList.toggle('nav-overlay-open-desktop', isOpen);
-
-    console.log('[menu] toggleDesktopDrawer() → isOpen =', isOpen);
   }
 
   function toggleMenu() {
-    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-
-    if (isDesktop) {
-      // 👉 Наше собственное десктоп-меню
-      toggleDesktopDrawer();
-    } else {
-      // 👉 Мобильное поведение оставляем теме
-      if (nativeNavToggle) {
-        console.log('[menu] toggleMenu() mobile → trigger nativeNavToggle');
-        nativeNavToggle.click();
-      } else {
-        console.warn('[menu] toggleMenu() mobile → nativeNavToggle not found');
-      }
-    }
+    openMenu();
   }
 
   function handleScrollOrResize() {
@@ -89,7 +69,7 @@ function initDesktopMenuToggle() {
     });
 
     if (!isDesktop) {
-      // На мобиле ничего не прячем, даём теме жить своей жизнью
+      // On mobile: DO NOT touch nav, leave everything to theme
       menuToggle.classList.remove('scroll-active');
       if (headerNav) headerNav.classList.remove('hide-on-scroll');
       return;
@@ -118,6 +98,7 @@ function initDesktopMenuToggle() {
   console.log('[initDesktopMenuToggle] initial handleScrollOrResize() call');
   handleScrollOrResize();
 }
+
 
 
 
