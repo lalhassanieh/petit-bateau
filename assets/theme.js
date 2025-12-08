@@ -810,69 +810,94 @@ let BlsMainMenuShopify = (function () {
       }
     },
 
-    updateMenuVerticalMobile: function (elements) {
-      console.log('[VM] updateMenuVerticalMobile()');
+updateMenuVerticalMobile: function (elements) {
+  console.log('[VM] updateMenuVerticalMobile()');
 
-      const headerVerticalMobile = document.querySelector(".verticalmenu-mobile");
-      const titleVertical        = headerVerticalMobile?.dataset.title;
-      const menuMobileTitle      = document.querySelector(".menu-mobile-title");
+  // Ищем источник вертикального меню: mobile-версию ИЛИ desktop-разметку
+  const verticalSource =
+    document.querySelector('.verticalmenu-mobile') ||
+    document.querySelector('.verticalmenu-html');
 
-      console.log('[VM] headerVerticalMobile =', headerVerticalMobile);
-      console.log('[VM] menuMobileTitle      =', menuMobileTitle);
+  const menuMobileTitle = document.querySelector('.menu-mobile-title');
 
-      if (!headerVerticalMobile || !menuMobileTitle) {
-        console.warn('[VM] Нет .verticalmenu-mobile или .menu-mobile-title → выходим');
-        return;
-      }
+  console.log('[VM] verticalSource   =', verticalSource);
+  console.log('[VM] menuMobileTitle =', menuMobileTitle);
 
-      if (!menuMobileTitle.querySelector('[data-menu="verticalmenu-list"]')) {
-        console.log('[VM] Добавляю таб Vertical');
-        const contentAppendTitleVertical = `
-          <a
-            class="no-underline heading-style py-10"
-            data-menu="verticalmenu-list"
-            role="link"
-            aria-disabled="true"
-          >
-            ${titleVertical}
-          </a>
-        `;
-        menuMobileTitle.insertAdjacentHTML("beforeend", contentAppendTitleVertical);
+  // Если вообще нет вертикального меню — просто выходим
+  if (!verticalSource || !menuMobileTitle) {
+    console.warn('[VM] Нет vertical menu в DOM → выходим из updateMenuVerticalMobile');
+    return;
+  }
 
-        const newTabButton = menuMobileTitle.querySelector(
-          '[data-menu="verticalmenu-list"]'
-        );
-        if (newTabButton) {
-          newTabButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            document
-              .querySelectorAll(".menu-mobile-title a")
-              .forEach((item) => item.classList.remove("active"));
-            newTabButton.classList.add("active");
-            this.showMenuForTab("verticalmenu-list", elements);
-          });
-        }
-      }
+  const titleVertical =
+    verticalSource.dataset?.title ||
+    verticalSource.getAttribute('data-title') ||
+    'Categories';
 
-      const wrapperVerticalmenu   = document.querySelector(".verticalmenu-mobile");
-      const navigationMenuContent = document.querySelector(".navigation__menu-content-mobile");
+  // 1) Добавляем таб "verticalmenu-list", если ещё не добавлен
+  if (!menuMobileTitle.querySelector('[data-menu="verticalmenu-list"]')) {
+    console.log('[VM] Добавляю таб Vertical в .menu-mobile-title');
 
-      console.log('[VM] wrapperVerticalmenu   =', wrapperVerticalmenu);
-      console.log('[VM] navigationMenuContent =', navigationMenuContent);
+    const contentAppendTitleVertical = `
+      <a
+        class="no-underline heading-style py-10"
+        data-menu="verticalmenu-list"
+        role="link"
+        aria-disabled="true"
+      >
+        ${titleVertical}
+      </a>
+    `;
 
-      if (!wrapperVerticalmenu || !navigationMenuContent) {
-        console.warn('[VM] Нет wrapperVerticalmenu или navigationMenuContent → выходим');
-        return;
-      }
+    menuMobileTitle.insertAdjacentHTML('beforeend', contentAppendTitleVertical);
 
-      if (!navigationMenuContent.querySelector(".verticalmenu-mobile")) {
-        console.log('[VM] Клонирую .verticalmenu-mobile внутрь .navigation__menu-content-mobile');
-        const cloneWrapper = wrapperVerticalmenu.cloneNode(true);
-        navigationMenuContent.appendChild(cloneWrapper);
-      } else {
-        console.log('[VM] Вертикальное меню уже есть внутри drawer');
-      }
-    },
+    const newTabButton = menuMobileTitle.querySelector(
+      '[data-menu="verticalmenu-list"]'
+    );
+
+    if (newTabButton) {
+      newTabButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        document
+          .querySelectorAll('.menu-mobile-title a')
+          .forEach((item) => item.classList.remove('active'));
+
+        newTabButton.classList.add('active');
+        this.showMenuForTab('verticalmenu-list', elements);
+      });
+    }
+  }
+
+  // 2) Клонируем вертикальное меню внутрь drawer, если его там ещё нет
+  const navigationMenuContent = document.querySelector(
+    '.navigation__menu-content-mobile'
+  );
+
+  console.log('[VM] navigationMenuContent =', navigationMenuContent);
+
+  if (!navigationMenuContent) {
+    console.warn('[VM] Нет .navigation__menu-content-mobile → некуда добавлять меню');
+    return;
+  }
+
+  let existingVertical = navigationMenuContent.querySelector('.verticalmenu-mobile');
+
+  if (!existingVertical) {
+    console.log('[VM] Клонирую verticalSource внутрь .navigation__menu-content-mobile');
+
+    const cloneWrapper = verticalSource.cloneNode(true);
+
+    // Если исходник был .verticalmenu-html, даём ему mobile-класс,
+    // чтобы showMenuForTab с ним работал
+    if (!cloneWrapper.classList.contains('verticalmenu-mobile')) {
+      cloneWrapper.classList.add('verticalmenu-mobile');
+    }
+
+    navigationMenuContent.appendChild(cloneWrapper);
+  } else {
+    console.log('[VM] Вертикальное меню уже есть внутри drawer');
+  }
+},
 
 
 
