@@ -60,32 +60,20 @@ function initDesktopMenuToggle() {
   window.addEventListener('resize', handleScrollOrResize);
   handleScrollOrResize();
 
-  // 👉 CLICK LOGIC FOR YOUR BUTTON
   menuToggle.addEventListener('click', function () {
-    const html     = document.documentElement;
-    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+    const html = document.documentElement;
+    const willOpen = !html.classList.contains('nav-open');
 
-    if (!isDesktop) return; // safety, your button is desktop-only anyway
-
-    const willOpen = !html.classList.contains('nav-open'); // drawer state *before* click
-
-    // Use theme's own logic to open/close the off-canvas nav
     nativeNavToggle.click();
 
-    // If we are opening the drawer now, switch to vertical menu
     if (willOpen) {
-      // Mark that we are using vertical menu mode
       html.classList.add('nav-verticalmenu');
 
-      // Click the "vertical menu" tab inside the drawer
-      const verticalTab = document.querySelector(
-        '.menu-mobile-title [data-menu="verticalmenu-list"]'
-      );
-      if (verticalTab) {
-        verticalTab.click();
-      }
+      const verticalTab = document.querySelector('.menu-mobile-title [data-menu="verticalmenu-list"]');
+      if (verticalTab) verticalTab.click();
     }
   });
+
 }
 
 
