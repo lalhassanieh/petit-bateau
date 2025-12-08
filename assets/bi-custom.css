@@ -526,9 +526,6 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
-.menu-toggle {
-    display: none;
-}
 
 @media only screen and (min-width: 1025px) {
     .menu-toggle {
@@ -573,7 +570,6 @@ svg.edit-icon {
   z-index: 9999 !important;
   background: #fff;
 }
-
 
 
 .header-bottom__navigation.hide-on-scroll {
