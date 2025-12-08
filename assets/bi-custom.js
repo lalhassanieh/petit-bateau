@@ -25,60 +25,69 @@ function initFixedTopbarHeader() {
     window.addEventListener("resize", updateHeights);
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  const menuToggle   = document.querySelector('.menu-toggle');
+  const verticalMenu = document.querySelector('.verticalmenu-mobile.vertical-menu');
+  const overlay      = document.querySelector('.vertical-menu-overlay');
 
-function initDesktopMenuToggle() {
-  const menuToggle      = document.querySelector('.menu-toggle');
-  const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
+  const DESKTOP_MIN_WIDTH = 1025;
 
-  const DESKTOP_MIN_WIDTH   = 1025;
-  const SHOW_AFTER_SCROLL_Y = 120;
-
-  function openMenu() {
-    if (nativeNavToggle) {
-      nativeNavToggle.click();
-    } 
+  if (!menuToggle || !verticalMenu) {
+    console.warn('[verticalMenuToggle] menuToggle or verticalMenu not found');
+    return;
   }
 
-  function toggleMenu() {
-    openMenu();
+  function isDesktop() {
+    return window.innerWidth >= DESKTOP_MIN_WIDTH;
   }
 
-  function handleScrollOrResize() {
-    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-    const scrollY   = window.scrollY || window.pageYOffset;
+  function openVertical() {
+    verticalMenu.classList.add('open-vertical');
+  }
 
-    if (!isDesktop) {
-      menuToggle.classList.remove('scroll-active');
-      if (headerNav) headerNav.classList.remove('hide-on-scroll');
-      return;
+  function closeVertical() {
+    verticalMenu.classList.remove('open-vertical');
+  }
+
+  function toggleVertical(e) {
+    // хотим, чтобы это работало ТОЛЬКО на десктопе;
+    // на мобилке пусть всё остаётся как в теме
+    if (!isDesktop()) {
+      return; // мобилка – выходим, не мешаем nav-toggle
     }
 
-    if (scrollY > SHOW_AFTER_SCROLL_Y) {
-      if (headerNav) headerNav.classList.add('hide-on-scroll');
-      menuToggle.classList.add('scroll-active');
-    } else {
-      if (headerNav) headerNav.classList.remove('hide-on-scroll');
-      menuToggle.classList.remove('scroll-active');
-    }
-  }
-
-  menuToggle.addEventListener('click', function (e) {
     e.preventDefault();
-    toggleMenu();
+    e.stopPropagation();
+
+    if (verticalMenu.classList.contains('open-vertical')) {
+      closeVertical();
+    } else {
+      openVertical();
+    }
+  }
+
+  // клик по твоей кнопке – открываем/закрываем вертикальное меню на десктопе
+  menuToggle.addEventListener('click', toggleVertical);
+
+  // клик по оверлею – закрыть меню
+  if (overlay) {
+    overlay.addEventListener('click', function () {
+      closeVertical();
+    });
+  }
+
+  // если ушли в мобилку по resize – на всякий случай закроем
+  window.addEventListener('resize', function () {
+    if (!isDesktop()) {
+      closeVertical();
+    }
   });
-
-  window.addEventListener('scroll', handleScrollOrResize);
-  window.addEventListener('resize', handleScrollOrResize);
-
-  handleScrollOrResize();
-}
+});
 
 
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    initDesktopMenuToggle();
     initFixedTopbarHeader();
 });
