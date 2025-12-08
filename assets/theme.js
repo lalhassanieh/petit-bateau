@@ -811,13 +811,22 @@ let BlsMainMenuShopify = (function () {
     },
 
     updateMenuVerticalMobile: function (elements) {
+      console.log('[VM] updateMenuVerticalMobile()');
+
       const headerVerticalMobile = document.querySelector(".verticalmenu-mobile");
       const titleVertical        = headerVerticalMobile?.dataset.title;
       const menuMobileTitle      = document.querySelector(".menu-mobile-title");
 
-      if (!headerVerticalMobile || !menuMobileTitle) return;
+      console.log('[VM] headerVerticalMobile =', headerVerticalMobile);
+      console.log('[VM] menuMobileTitle      =', menuMobileTitle);
+
+      if (!headerVerticalMobile || !menuMobileTitle) {
+        console.warn('[VM] Нет .verticalmenu-mobile или .menu-mobile-title → выходим');
+        return;
+      }
 
       if (!menuMobileTitle.querySelector('[data-menu="verticalmenu-list"]')) {
+        console.log('[VM] Добавляю таб Vertical');
         const contentAppendTitleVertical = `
           <a
             class="no-underline heading-style py-10"
@@ -845,15 +854,26 @@ let BlsMainMenuShopify = (function () {
         }
       }
 
-      const wrapperVerticalmenu    = document.querySelector(".verticalmenu-mobile");
-      const navigationMenuContent  = document.querySelector(".navigation__menu-content-mobile");
-      if (!wrapperVerticalmenu || !navigationMenuContent) return;
+      const wrapperVerticalmenu   = document.querySelector(".verticalmenu-mobile");
+      const navigationMenuContent = document.querySelector(".navigation__menu-content-mobile");
+
+      console.log('[VM] wrapperVerticalmenu   =', wrapperVerticalmenu);
+      console.log('[VM] navigationMenuContent =', navigationMenuContent);
+
+      if (!wrapperVerticalmenu || !navigationMenuContent) {
+        console.warn('[VM] Нет wrapperVerticalmenu или navigationMenuContent → выходим');
+        return;
+      }
 
       if (!navigationMenuContent.querySelector(".verticalmenu-mobile")) {
+        console.log('[VM] Клонирую .verticalmenu-mobile внутрь .navigation__menu-content-mobile');
         const cloneWrapper = wrapperVerticalmenu.cloneNode(true);
         navigationMenuContent.appendChild(cloneWrapper);
+      } else {
+        console.log('[VM] Вертикальное меню уже есть внутри drawer');
       }
     },
+
 
 
     updateMenuTabState: function (elements) {
