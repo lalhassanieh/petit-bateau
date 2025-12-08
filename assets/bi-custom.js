@@ -82,9 +82,6 @@ function initDesktopMenuToggle() {
 }
 
 
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
     initDesktopMenuToggle();
     initFixedTopbarHeader();
