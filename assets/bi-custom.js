@@ -54,11 +54,6 @@ function initDesktopMenuToggle() {
     }
   }
 
-  menuToggle.addEventListener('click', function (e) {
-    e.preventDefault();
-    toggleMenu();
-  });
-
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
 
