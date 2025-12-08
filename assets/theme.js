@@ -777,19 +777,21 @@ let BlsMainMenuShopify = (function () {
       });
     },
 
-    showMenuForTab: function (tabId, elements) {
+   showMenuForTab: function (tabId, elements) {
       const { horizontalList, categoriesListMenuMobile } = elements;
-      const categoriesListMenuVerticalMobile = document.querySelector(
-        ".verticalmenu-mobile"
+
+      const navigationMenuContent = document.querySelector(
+        ".navigation__menu-content-mobile"
       );
+      const categoriesListMenuVerticalMobile = navigationMenuContent
+        ? navigationMenuContent.querySelector(".verticalmenu-mobile")
+        : null;
 
       if (!horizontalList) return;
 
-      // Hide horizontal list if we're showing a specific menu
       horizontalList.style.display =
         tabId !== "horizontal-list" ? "none" : "block";
 
-      // Show appropriate menu based on tab
       if (tabId === "categories-list") {
         if (categoriesListMenuMobile)
           categoriesListMenuMobile.style.display = "block";
@@ -868,13 +870,19 @@ let BlsMainMenuShopify = (function () {
         categoriesListMenu,
         categoriesListMenuVertical,
         categoriesListMenuMobile,
-        categoriesListMenuVerticalMobile,
       } = elements;
 
       if (!horizontalList || !categoriesListMenu) return;
 
+      const navigationMenuContent = document.querySelector(
+        ".navigation__menu-content-mobile"
+      );
+      const categoriesListMenuVerticalMobile = navigationMenuContent
+        ? navigationMenuContent.querySelector(".verticalmenu-mobile")
+        : null;
+
       if (windowWidth <= 1024) {
-        // Mobile view
+        // Mobile
         if (
           categoriesListMenu?.classList.contains("active") ||
           categoriesListMenuVertical?.classList.contains("active")
@@ -889,7 +897,7 @@ let BlsMainMenuShopify = (function () {
           categoriesListMenuVerticalMobile.style.display = "block";
         }
       } else {
-        // Desktop view
+        // Desktop
         if (
           categoriesListMenuMobile &&
           categoriesListMenu?.classList.contains("active")
@@ -897,21 +905,21 @@ let BlsMainMenuShopify = (function () {
           categoriesListMenuMobile.style.display = "none";
         }
 
-        if (
-          categoriesListMenuVerticalMobile &&
-          categoriesListMenuVertical?.classList.contains("active")
-        ) {
-          categoriesListMenuVerticalMobile.style.display = "none";
-        }
-
-        if (
-          categoriesListMenu?.classList.contains("active") ||
-          categoriesListMenuVertical?.classList.contains("active")
-        ) {
+        if (categoriesListMenuVerticalMobile) {
+          if (categoriesListMenuVertical?.classList.contains("active")) {
+            categoriesListMenuVerticalMobile.style.display = "block";
+            horizontalList.style.display = "none";
+          } else {
+            categoriesListMenuVerticalMobile.style.display = "none";
+            horizontalList.style.display = "inline-flex";
+          }
+        } else {
           horizontalList.style.display = "inline-flex";
         }
       }
     },
+
+
 
     initMainMenu: function () {
       const header = document.querySelector("header");
