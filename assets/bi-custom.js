@@ -34,80 +34,33 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function hideNavOnScroll() {
-  const navBar = document.querySelector('.header-bottom__navigation');
-  if (!navBar) return;
+function initHeaderBottomShowOnlyOnTop() {
+    const nav = document.querySelector('.header-bottom__navigation');
 
-  let lastScroll = window.scrollY;
-
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > lastScroll && currentScroll > 50) {
-      navBar.classList.add('hide-on-scroll');
-    } 
-    else {
-      navBar.classList.remove('hide-on-scroll');
-    }
-
-    lastScroll = currentScroll;
-  });
-}
-
-hideNavOnScroll();
-console.log("Navigation collapse on scroll initialized");
-
-function initDesktopVerticalMenu() {
-    const navToggle = document.querySelector('[data-action="toggle-nav"]');
-    const verticalMenu = document.querySelector('.verticalmenu-mobile');
-    const verticalOverlay = document.querySelector('.vertical-menu-overlay');
-
-    if (!navToggle || !verticalMenu) {
-        console.warn("Vertical menu elements not found!");
+    if (!nav) {
+        console.warn('No .header-bottom__navigation element found');
         return;
     }
 
-    function openVerticalMenu() {
-        verticalMenu.classList.add('is-open');
-        if (verticalOverlay) verticalOverlay.classList.add('is-open');
-        document.documentElement.classList.add('vertical-menu-open');
-    }
+    function updateHeaderNavVisibility() {
+        const scrollY = window.scrollY || window.pageYOffset;
 
-    function closeVerticalMenu() {
-        verticalMenu.classList.remove('is-open');
-        if (verticalOverlay) verticalOverlay.classList.remove('is-open');
-        document.documentElement.classList.remove('vertical-menu-open');
-    }
-
-    function toggleVerticalMenuDesktop(e) {
-       
         if (window.innerWidth >= 1025) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (verticalMenu.classList.contains('is-open')) {
-                closeVerticalMenu();
+            if (scrollY === 0) {
+                nav.classList.remove('hide-on-scroll');
             } else {
-                openVerticalMenu();
+                nav.classList.add('hide-on-scroll');
             }
+        } else {
+            nav.classList.remove('hide-on-scroll');
         }
     }
 
-    navToggle.addEventListener('click', toggleVerticalMenuDesktop);
+    updateHeaderNavVisibility();
 
-    if (verticalOverlay) {
-        verticalOverlay.addEventListener('click', closeVerticalMenu);
-    }
+    window.addEventListener('scroll', updateHeaderNavVisibility, { passive: true });
 
-    verticalMenu.querySelectorAll('.close-menu').forEach(btn => {
-        btn.addEventListener('click', closeVerticalMenu);
-    });
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === "Escape" && verticalMenu.classList.contains('is-open')) {
-            closeVerticalMenu();
-        }
-    });
+    window.addEventListener('resize', updateHeaderNavVisibility);
 }
 
-document.addEventListener("DOMContentLoaded", initDesktopVerticalMenu);
+document.addEventListener('DOMContentLoaded', initHeaderBottomShowOnlyOnTop);
