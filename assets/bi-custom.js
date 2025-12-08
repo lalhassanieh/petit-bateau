@@ -26,40 +26,73 @@ function initFixedTopbarHeader() {
 }
 
 function initDesktopMenuToggle() {
-  const menuToggle = document.querySelector('.menu-toggle'); 
+  console.log('[initDesktopMenuToggle] starting…');
+
+  const menuToggle   = document.querySelector('.menu-toggle'); 
   const verticalMenu = document.querySelector('.verticalmenu-mobile'); 
-  const overlay = document.querySelector('.vertical-menu-overlay');  
-  const headerNav = document.querySelector('.header-bottom__navigation');
+  const overlay      = document.querySelector('.vertical-menu-overlay');  
+  const headerNav    = document.querySelector('.header-bottom__navigation');
+
+  console.log('[initDesktopMenuToggle] menuToggle:', menuToggle);
+  console.log('[initDesktopMenuToggle] verticalMenu:', verticalMenu);
+  console.log('[initDesktopMenuToggle] overlay:', overlay);
+  console.log('[initDesktopMenuToggle] headerNav:', headerNav);
 
   if (!menuToggle) {
-    console.warn('[menu-toggle] Button not found');
+    console.warn('[initDesktopMenuToggle] .menu-toggle NOT found → abort');
     return;
   }
 
-  const DESKTOP_MIN_WIDTH = 1025;
+  const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120; 
 
   function openMenu() {
-    if (!verticalMenu) return;
+    console.log('[menu] openMenu() called');
+
+    if (!verticalMenu) {
+      console.warn('[menu] openMenu() → verticalMenu is null');
+      return;
+    }
 
     verticalMenu.classList.add('is-open');
     verticalMenu.classList.remove('hidden-1025'); 
     overlay && overlay.classList.add('is-active');
 
     document.documentElement.classList.add('no-scroll-menu');
+
+    console.log('[menu] menu state after open:', {
+      isOpen: verticalMenu.classList.contains('is-open'),
+      classes: verticalMenu.className
+    });
   }
 
   function closeMenu() {
-    if (!verticalMenu) return;
+    console.log('[menu] closeMenu() called');
+
+    if (!verticalMenu) {
+      console.warn('[menu] closeMenu() → verticalMenu is null');
+      return;
+    }
 
     verticalMenu.classList.remove('is-open');
     overlay && overlay.classList.remove('is-active');
     document.documentElement.classList.remove('no-scroll-menu');
+
+    console.log('[menu] menu state after close:', {
+      isOpen: verticalMenu.classList.contains('is-open'),
+      classes: verticalMenu.className
+    });
   }
 
   function toggleMenu() {
-    if (!verticalMenu) return;
+    if (!verticalMenu) {
+      console.warn('[menu] toggleMenu() → verticalMenu is null');
+      return;
+    }
+
     const isOpen = verticalMenu.classList.contains('is-open');
+    console.log('[menu] toggleMenu() called, isOpen before:', isOpen);
+
     if (isOpen) {
       closeMenu();
     } else {
@@ -69,7 +102,13 @@ function initDesktopMenuToggle() {
 
   function handleScrollOrResize() {
     const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-    const scrollY = window.scrollY || window.pageYOffset;
+    const scrollY   = window.scrollY || window.pageYOffset;
+
+    console.log('[menu] handleScrollOrResize()', {
+      isDesktop,
+      scrollY,
+      width: window.innerWidth
+    });
 
     if (!isDesktop) {
       menuToggle.classList.remove('scroll-active');
@@ -79,28 +118,36 @@ function initDesktopMenuToggle() {
     }
 
     if (scrollY > SHOW_AFTER_SCROLL_Y) {
+      console.log('[menu] scroll > threshold → hide nav, show button');
       headerNav && headerNav.classList.add('hide-on-scroll');
       menuToggle.classList.add('scroll-active');
     } else {
+      console.log('[menu] scroll at top → show nav, hide button');
       headerNav && headerNav.classList.remove('hide-on-scroll');
       menuToggle.classList.remove('scroll-active');
       closeMenu();
     }
   }
 
+  // 🔹 Click on the MENU button
   menuToggle.addEventListener('click', function (e) {
+    console.log('[menuToggle] CLICK detected');
     e.preventDefault();
     toggleMenu();
   });
 
+  // 🔹 Click on overlay to close
   if (overlay) {
     overlay.addEventListener('click', function () {
+      console.log('[overlay] CLICK detected → closeMenu()');
       closeMenu();
     });
   }
 
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
+
+  console.log('[initDesktopMenuToggle] initial handleScrollOrResize() call');
   handleScrollOrResize();
 }
 
