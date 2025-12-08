@@ -574,40 +574,4 @@ svg.edit-icon {
   background: #fff;
 }
 
-body {
-  padding-top: calc(var(--topbar-height) + var(--header-height));
-}
-
-.header-bottom__navigation {
-  transition: height 0.3s ease, opacity 0.2s ease;
-  overflow: hidden; 
-  height: auto;
-}
-
-.header-bottom__navigation.hide-on-scroll {
-  height: 0 !important;
-  opacity: 0;
-  pointer-events: none;
-}
-
-
-@media (min-width: 1025px) {
-  .verticalmenu-mobile,
-  .vertical-menu-overlay {
-    display: none;
-  }
-
-  .verticalmenu-mobile.is-open,
-  .vertical-menu-overlay.is-open {
-    display: block !important;
-  }
-
-  .verticalmenu-mobile {
-    z-index: 120; 
-  }
-  .vertical-menu-overlay {
-    z-index: 110;
-  }
-}
-
 /*================*/
