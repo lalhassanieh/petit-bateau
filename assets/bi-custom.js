@@ -25,16 +25,21 @@ function initFixedTopbarHeader() {
     window.addEventListener("resize", updateHeights);
 }
 
+
+
+
 function initDesktopMenuToggle() {
   console.log('[initDesktopMenuToggle] starting…');
 
-  const menuToggle      = document.querySelector('.menu-toggle'); // your round button
+  const menuToggle      = document.querySelector('.menu-toggle'); // наша круглая кнопка
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]'); // theme hamburger
+  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]'); // родной бургер
+  const navDrawer       = document.querySelector('nav.navigation.horizontal.fixed.inset-0[data-action-mobile="true"]');
 
   console.log('[initDesktopMenuToggle] menuToggle:', menuToggle);
   console.log('[initDesktopMenuToggle] headerNav:', headerNav);
   console.log('[initDesktopMenuToggle] nativeNavToggle:', nativeNavToggle);
+  console.log('[initDesktopMenuToggle] navDrawer:', navDrawer);
 
   if (!menuToggle) {
     console.warn('[initDesktopMenuToggle] .menu-toggle NOT found → abort');
@@ -44,19 +49,33 @@ function initDesktopMenuToggle() {
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
 
-  function openMenu() {
-    console.log('[menu] openMenu() → trigger nativeNavToggle');
-    if (nativeNavToggle) {
-      nativeNavToggle.click(); // reuse theme logic to open nav <nav class="mobile navigation ...">
-    } else {
-      console.warn('[menu] openMenu() → nativeNavToggle not found');
+  function toggleDesktopDrawer() {
+    if (!navDrawer) {
+      console.warn('[menu] toggleDesktopDrawer() → navDrawer not found');
+      return;
     }
+
+    const isOpen = navDrawer.classList.toggle('is-open-desktop');
+    document.body.classList.toggle('nav-overlay-open-desktop', isOpen);
+
+    console.log('[menu] toggleDesktopDrawer() → isOpen =', isOpen);
   }
 
   function toggleMenu() {
-    // We don’t try to track open/close state ourselves.
-    // Just delegate to theme each time – it will toggle correctly.
-    openMenu();
+    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+
+    if (isDesktop) {
+      // 👉 Наше собственное десктоп-меню
+      toggleDesktopDrawer();
+    } else {
+      // 👉 Мобильное поведение оставляем теме
+      if (nativeNavToggle) {
+        console.log('[menu] toggleMenu() mobile → trigger nativeNavToggle');
+        nativeNavToggle.click();
+      } else {
+        console.warn('[menu] toggleMenu() mobile → nativeNavToggle not found');
+      }
+    }
   }
 
   function handleScrollOrResize() {
@@ -70,7 +89,7 @@ function initDesktopMenuToggle() {
     });
 
     if (!isDesktop) {
-      // On mobile: DO NOT touch nav, leave everything to theme
+      // На мобиле ничего не прячем, даём теме жить своей жизнью
       menuToggle.classList.remove('scroll-active');
       if (headerNav) headerNav.classList.remove('hide-on-scroll');
       return;
@@ -99,7 +118,6 @@ function initDesktopMenuToggle() {
   console.log('[initDesktopMenuToggle] initial handleScrollOrResize() call');
   handleScrollOrResize();
 }
-
 
 
 
