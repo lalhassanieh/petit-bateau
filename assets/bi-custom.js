@@ -32,11 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const DESKTOP_MIN_WIDTH = 1025;
 
-  if (!menuToggle || !verticalMenu) {
-    console.warn('[verticalMenuToggle] menuToggle or verticalMenu not found');
-    return;
-  }
-
   function isDesktop() {
     return window.innerWidth >= DESKTOP_MIN_WIDTH;
   }
@@ -50,10 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function toggleVertical(e) {
-    // хотим, чтобы это работало ТОЛЬКО на десктопе;
-    // на мобилке пусть всё остаётся как в теме
+    // работаем только на десктопе, на мобиле не трогаем стандартное меню
     if (!isDesktop()) {
-      return; // мобилка – выходим, не мешаем nav-toggle
+      return;
     }
 
     e.preventDefault();
@@ -66,24 +60,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // клик по твоей кнопке – открываем/закрываем вертикальное меню на десктопе
-  menuToggle.addEventListener('click', toggleVertical);
+  // <<< ВАЖНО: НИКАКИХ return ВЫШЕ НЕТ >>>
+  if (menuToggle && verticalMenu) {
+    // добавляем только обработчики — ничего не скрываем
+    menuToggle.addEventListener('click', toggleVertical);
 
-  // клик по оверлею – закрыть меню
-  if (overlay) {
-    overlay.addEventListener('click', function () {
-      closeVertical();
-    });
-  }
-
-  // если ушли в мобилку по resize – на всякий случай закроем
-  window.addEventListener('resize', function () {
-    if (!isDesktop()) {
-      closeVertical();
+    if (overlay) {
+      overlay.addEventListener('click', function () {
+        closeVertical();
+      });
     }
-  });
-});
 
+    window.addEventListener('resize', function () {
+      if (!isDesktop()) {
+        closeVertical();
+      }
+    });
+  } else {
+    console.warn('[verticalMenuToggle] menuToggle or verticalMenu not found');
+  }
+});
 
 
 
