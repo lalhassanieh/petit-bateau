@@ -20,14 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Set heights on load
   const topbarHeight = topbar.offsetHeight;
   const headerHeight = header.offsetHeight;
 
   document.body.style.setProperty("--topbar-height", topbarHeight + "px");
   document.body.style.setProperty("--header-height", headerHeight + "px");
 
-  // Optional: fix heights again when resizing window
   window.addEventListener("resize", () => {
     document.body.style.setProperty("--topbar-height", topbar.offsetHeight + "px");
     document.body.style.setProperty("--header-height", header.offsetHeight + "px");
@@ -45,11 +43,9 @@ function hideNavOnScroll() {
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
 
-    // scroll down → collapse
     if (currentScroll > lastScroll && currentScroll > 50) {
       navBar.classList.add('hide-on-scroll');
     } 
-    // scroll up → expand
     else {
       navBar.classList.remove('hide-on-scroll');
     }
@@ -59,4 +55,59 @@ function hideNavOnScroll() {
 }
 
 hideNavOnScroll();
-console.log("🔥 Navigation collapse on scroll initialized");
+console.log("Navigation collapse on scroll initialized");
+
+function initDesktopVerticalMenu() {
+    const navToggle = document.querySelector('[data-action="toggle-nav"]');
+    const verticalMenu = document.querySelector('.verticalmenu-mobile');
+    const verticalOverlay = document.querySelector('.vertical-menu-overlay');
+
+    if (!navToggle || !verticalMenu) {
+        console.warn("Vertical menu elements not found!");
+        return;
+    }
+
+    function openVerticalMenu() {
+        verticalMenu.classList.add('is-open');
+        if (verticalOverlay) verticalOverlay.classList.add('is-open');
+        document.documentElement.classList.add('vertical-menu-open');
+    }
+
+    function closeVerticalMenu() {
+        verticalMenu.classList.remove('is-open');
+        if (verticalOverlay) verticalOverlay.classList.remove('is-open');
+        document.documentElement.classList.remove('vertical-menu-open');
+    }
+
+    function toggleVerticalMenuDesktop(e) {
+       
+        if (window.innerWidth >= 1025) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (verticalMenu.classList.contains('is-open')) {
+                closeVerticalMenu();
+            } else {
+                openVerticalMenu();
+            }
+        }
+    }
+
+    navToggle.addEventListener('click', toggleVerticalMenuDesktop);
+
+    if (verticalOverlay) {
+        verticalOverlay.addEventListener('click', closeVerticalMenu);
+    }
+
+    verticalMenu.querySelectorAll('.close-menu').forEach(btn => {
+        btn.addEventListener('click', closeVerticalMenu);
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === "Escape" && verticalMenu.classList.contains('is-open')) {
+            closeVerticalMenu();
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", initDesktopVerticalMenu);
