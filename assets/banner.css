@@ -24,7 +24,7 @@
     min-height: auto !important;
   }
   .sec__inner .banner__media[style*="--aspect-ratio"]::before {
-    display: none !important;
+    display: block !important;
   }
   .sec__inner .banner__media img,
   .sec__inner .banner__media picture {
