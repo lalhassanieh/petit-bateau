@@ -642,27 +642,26 @@ svg.edit-icon {
 
 @media (min-width: 1025px) {
 
-  /* ===== DESKTOP VERTICAL MENU WRAPPER ===== */
   .verticalmenu-desktop.vertical-menu {
       position: fixed;
       top: 0;
       bottom: 0;
       left: 0;
-      width: 28rem;                         /* full width of menu */
+      width: 100%;           
+      max-width: 475px;        
       background-color: var(--color-white);
       border-right: 1px solid var(--color-border);
-      z-index: 2001;                         /* above overlay */
+      z-index: 2001;
       overflow-y: auto;
-      transform: translateX(-100%);          /* HIDDEN OFF-SCREEN */
+      transform: translateX(-100%);
       transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
-  /* When JS adds .open-vertical => slide in */
+
   .verticalmenu-desktop.vertical-menu.open-vertical {
       transform: translateX(0);
   }
 
-  /* ===== TEXT / ICON BEHAVIOUR ===== */
 
   .vertical-menu .title-menu-dropdown,
   .vertical-menu menu-item,
@@ -678,7 +677,6 @@ svg.edit-icon {
       pointer-events: auto;
   }
 
-  /* Hide label/text by default (collapsed/off-canvas state) */
   .vertical-menu .title-menu-dropdown .toggle-vertical>span,
   .vertical-menu .menu-text,
   .vertical-menu open-children-toggle {
@@ -688,7 +686,6 @@ svg.edit-icon {
       font-size: 0;
   }
 
-  /* When OPEN show text + toggle icons */
   .verticalmenu-desktop.vertical-menu.open-vertical .menu-icon-first-letter {
       display: none;
   }
@@ -770,7 +767,6 @@ svg.edit-icon {
       height: 36px;
   }
 
-  /* ===== DESKTOP OVERLAY ===== */
 
   .vertical-menu-overlay-desktop {
       content: '';
@@ -784,7 +780,7 @@ svg.edit-icon {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      z-index: 2000; /* under menu */
+      z-index: 2000;
       transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
@@ -794,7 +790,6 @@ svg.edit-icon {
       pointer-events: auto;
   }
 
-  /* ===== SUBMENU (MEGA) ===== */
 
   .submenu-vertical {
       position: fixed;
@@ -900,7 +895,6 @@ svg.edit-icon {
   }
 }
 
-/* Shared (you already had these, keep them) */
 .verticalmenu-html>ul>li {
   font-weight: 500;
   position: relative;
