@@ -43,7 +43,7 @@
           "type": "slider_item",
           "settings": {
             "image": "shopify://shop_images/banner_2.jpg",
-            "image_mobile": "shopify://shop_images/banner_2.jpg",
+            "image_mobile": "shopify://shop_images/2_8.jpg",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadein",
             "subheading": "CAP SUR DES NUITS",
