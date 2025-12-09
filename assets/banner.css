@@ -18,22 +18,6 @@
   }
 }
 
-@media (max-width: 991px) {
-  .sec__inner .banner__media {
-    height: auto !important;
-    min-height: auto !important;
-  }
-  .sec__inner .banner__media[style*="--aspect-ratio"]::before {
-    display: block !important;
-  }
-  .sec__inner .banner__media img,
-  .sec__inner .banner__media picture {
-    height: auto !important;
-    width: 100% !important;
-    object-fit: contain !important;
-    
-  }
-}
 
 .sec__inner .banner__media :is(picture, source, img) {
   width: 100%;
