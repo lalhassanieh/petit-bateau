@@ -14,44 +14,7 @@
     endif
   endif
 %}
-
-
-{%- comment -%}
-  SPECIAL LAYOUT FOR DESKTOP VERTICAL MENU
-{%- endcomment -%}
-{% if menu_type == 'vertical_desktop' %}
-
-  {% if link.links.size > 0 %}
-    <div class="flex flex-column vertical-child__menu">
-      {% for child_link in link.links %}
-        <div class="vertical-child__menu-item {% if child_link.links.size > 0 %}vertical-child__menu-item-level1{% endif %}">
-          <a
-            class="no-underline {% if child_link.links.size > 0 %}title-child__menu{% else %}title-child__parent{% endif %}"
-            href="{{ child_link.url }}"
-          >
-            {{ child_link.title }}
-          </a>
-
-          {% if child_link.links.size > 0 %}
-            <div class="vertical-child__submenu">
-              {% for grandchild_link in child_link.links %}
-                <a
-                  class="no-underline vertical-child__submenu-link"
-                  href="{{ grandchild_link.url }}"
-                >
-                  {{ grandchild_link.title }}
-                </a>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
-  {% endif %}
-
-{% else %}
-
-  {% if link.links.size > 0 %}
+{% if link.links.size > 0 %}
   <ul
     class="subchildmenu list-unstyled px-30 px-1025-0{% if menu_type != 'dropdown' %} grid grid-cols gap{% endif %}"
   >
@@ -292,5 +255,4 @@
       </li>
     {% endfor %}
   </ul>
-  {% endif %}
 {% endif %}
