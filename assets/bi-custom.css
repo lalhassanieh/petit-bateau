@@ -640,6 +640,47 @@ svg.edit-icon {
   pointer-events: none;
 }
 
+@media (min-width: 1025px) {
+
+  .verticalmenu-desktop.vertical-menu {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 6rem;             
+    background: #ffffff;
+    z-index: 2001;             
+    overflow-y: auto;
+    border-right: 1px solid var(--color-border);
+  }
+
+  .verticalmenu-desktop.vertical-menu.open-vertical {
+    width: 475px;
+  }
+
+  .vertical-menu-overlay-desktop {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-color: var(--overlay-bg);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 2000; 
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .verticalmenu-desktop.vertical-menu.open-vertical + .vertical-menu-overlay-desktop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
 
 
 /*================*/
