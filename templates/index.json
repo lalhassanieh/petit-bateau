@@ -42,8 +42,8 @@
         "slider_item_z8VbgF": {
           "type": "slider_item",
           "settings": {
-            "image": "shopify://shop_images/banner_2.jpg",
-            "image_mobile": "shopify://shop_images/banner_2.jpg",
+            "image": "shopify://shop_images/1_6c9055a6-96e2-4a7a-9a52-c44e15583ba4.jpg",
+            "image_mobile": "shopify://shop_images/4_1_1.jpg",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadein",
             "subheading": "CAP SUR DES NUITS",
@@ -176,7 +176,7 @@
         "show_arrow": false,
         "carousel_pagination": "show_dots",
         "pagination_position": "center",
-        "autoplay": false,
+        "autoplay": true,
         "autorotate_speed": 6,
         "subheading_font_size": 60,
         "subheading_font_weight": "body_weight",
