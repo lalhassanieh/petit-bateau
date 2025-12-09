@@ -21,7 +21,7 @@
     {% if only_for_domain == true %}
       {% for child_link in link.links %}
         {% for grandchild_link in child_link.links %}
-          <li class="menu-link level-1 {% if only_for_domain == true %} block  {% endif %}">
+          <li class="menu-link level-1 {% if only_for_domain == true %} block hidden-1025 {% endif %}">
             <menu-item class="relative static-1025 flex justify-between align-center border-bottom border-bottom-1025-0">
               <a
                 class="menu_item-link  no-underline  py-10 py-1025-5 min-h-55 min-h-1025-unset inline-flex align-center"
@@ -143,7 +143,7 @@
             {% endif %}
           </a>
           {%- if child_link.links.size > 0 -%}
-            <open-children-toggle class="inline-flex ms-5 flex-end align-center pointer{% if menu_type != 'dropdown' %} {% endif %}{% if enable_rtl %} left-0 left-1025-15{% else %} right-1025-15 right-0{% endif %}{% if section_st.redirect_to_link == blank %} absolute w-full w-1025-auto inset-y-0 static-1025{% else %} w-30 h-30 content-center{% endif %}">
+            <open-children-toggle class="inline-flex ms-5 flex-end align-center pointer{% if menu_type != 'dropdown' %} hidden-1025{% endif %}{% if enable_rtl %} left-0 left-1025-15{% else %} right-1025-15 right-0{% endif %}{% if section_st.redirect_to_link == blank %} absolute w-full w-1025-auto inset-y-0 static-1025{% else %} w-30 h-30 content-center{% endif %}">
               {% if enable_rtl %}
                 <svg width="6" height="11" fill="none">
                   <use href="#icon-back" />
@@ -158,7 +158,7 @@
         </menu-item>
         {% if child_link.links.size > 0 %}
           <ul class="sub-children-menu{% if menu_type == 'dropdown' %} invisible-1025{% endif %} gradient transition absolute{% if menu_type != 'dropdown' %} static-1025{% endif %} list-unstyled">
-            <li class=" grey-bg px-30 border-bottom flex gap-15 align-center justify-between{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}">
+            <li class="hidden-1025 grey-bg px-30 border-bottom flex gap-15 align-center justify-between{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}">
               <back-menu
                 class="py-10 min-h-55 inline-flex gap-20 align-center back-lv1 fs-big-1 heading-style"
                 role="link"
