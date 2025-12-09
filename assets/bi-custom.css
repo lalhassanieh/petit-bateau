@@ -475,7 +475,7 @@ svg.edit-icon {
   }
 }
 /* Mobile Slideshow Layout - Under 992px */
-@media (max-width: 599px) {
+@media (max-width: 991px) {
   .slideshow.swiper {
     background: #CADDEA !important;
     padding-bottom: 40px !important;
