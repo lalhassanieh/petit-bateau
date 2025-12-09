@@ -485,15 +485,15 @@ svg.edit-icon {
     display: flex !important;
     flex-direction: column !important;
   }
-  .slideshow.swiper .swiper-slide .sec__inner .banner__media {
+  /*.slideshow.swiper .swiper-slide .sec__inner .banner__media {
     position: relative !important;
     margin-bottom: 0 !important;
     height: auto !important;
     aspect-ratio: 4/3;
-    /* Default for tablets */
-    /* Ensure mobile images display properly */
-    /* Taller images for smaller mobile screens */
-  }
+     Default for tablets 
+     Ensure mobile images display properly 
+     Taller images for smaller mobile screens 
+  }*/
   .slideshow.swiper .swiper-slide .sec__inner .banner__media img {
     width: 100% !important;
     height: 100% !important;
