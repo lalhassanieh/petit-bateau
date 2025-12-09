@@ -61,50 +61,74 @@ function initDesktopMenuToggle() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  console.log("🔥 DOM Loaded – Starting Vertical Menu Init");
+
   const desktopMenu = document.querySelector('.verticalmenu-desktop');
   const overlay = document.querySelector('.vertical-menu-overlay-desktop');
   const toggleBtn = document.querySelector('.scroll-menu-wrapper .menu-toggle');
 
-  if (!desktopMenu || !toggleBtn) return;
+  console.log("📌 desktopMenu:", desktopMenu);
+  console.log("📌 overlay:", overlay);
+  console.log("📌 toggleBtn:", toggleBtn);
+
+  if (!desktopMenu) console.log("❌ ERROR: .verticalmenu-desktop NOT FOUND");
+  if (!toggleBtn) console.log("❌ ERROR: .menu-toggle NOT FOUND");
+  if (!overlay) console.log("⚠️ WARNING: .vertical-menu-overlay-desktop NOT FOUND");
+
+  if (!desktopMenu || !toggleBtn) {
+    console.log("⛔ Stopping JS — Required elements missing.");
+    return;
+  }
 
   function openMenu() {
+    console.log("➡️ Opening Menu");
     desktopMenu.classList.add('open-vertical');
     toggleBtn.setAttribute('aria-expanded', 'true');
   }
 
   function closeMenu() {
+    console.log("⬅️ Closing Menu");
     desktopMenu.classList.remove('open-vertical');
     toggleBtn.setAttribute('aria-expanded', 'false');
   }
 
   function toggleMenu() {
-    if (desktopMenu.classList.contains('open-vertical')) {
+    const isOpen = desktopMenu.classList.contains('open-vertical');
+    console.log("🔄 toggleMenu() – Menu is currently:", isOpen ? "OPEN" : "CLOSED");
+
+    if (isOpen) {
       closeMenu();
     } else {
       openMenu();
     }
   }
 
-  // Click on burger
+  // ⬇️ CLICK EVENT ON BURGER
   toggleBtn.addEventListener('click', function (e) {
+    console.log("🖱️ CLICK detected on .menu-toggle");
     e.preventDefault();
     toggleMenu();
   });
 
-  // Click on overlay to close
+  // ⬇️ CLICK EVENT ON OVERLAY
   if (overlay) {
     overlay.addEventListener('click', function () {
+      console.log("🖱️ CLICK detected on overlay → Closing Menu");
       closeMenu();
     });
   }
 
-  // ESC key closes menu
+  // ⬇️ ESC KEY CLOSES MENU
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' || e.key === 'Esc') {
+      console.log("⬅️ ESC pressed → Closing Menu");
       closeMenu();
     }
   });
+
+  console.log("✅ Vertical Menu JS Loaded Successfully");
 });
+``
 
 
 
