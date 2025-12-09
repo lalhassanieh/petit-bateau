@@ -2202,7 +2202,7 @@ header.active li.visible .submenu:not(.submenu-vertical) {
     display: inline-block;
   }
   .hidden-1025 {
-    display: none;
+    display: visible;
   }
   .absolute-1025 {
     position: absolute;
