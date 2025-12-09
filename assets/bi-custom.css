@@ -642,7 +642,12 @@ svg.edit-icon {
 
 @media (min-width: 1025px) {
 
-  /* Make sure the desktop vertical menu is visible on desktop */
+  .vertical-menu-overlay-desktop.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
   .verticalmenu-desktop {
     display: block;
   }
