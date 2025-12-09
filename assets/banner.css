@@ -1,28 +1,3 @@
-
-@media (min-width: 1440px) {
-  .sec__inner .banner__media {
-    height: auto !important;
-    min-height: auto !important;
-  }
-
-  .sec__inner .banner__media[style*="--aspect-ratio"]::before {
-    display: none !important;
-  }
-
-  .sec__inner .banner__media :is(picture, img) {
-    width: 100% !important;
-    height: auto !important;      
-    object-fit: contain !important;   
-    object-position: center center;
-    display: block;
-  }
-}
-
-
-
-
-
-
 .sec__inner .banner__media :is(picture, source, img) {
   width: 100%;
   height: 100%;
