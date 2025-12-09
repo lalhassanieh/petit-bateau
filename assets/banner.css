@@ -18,7 +18,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .sec__inner .banner__media {
     height: auto !important;
     min-height: auto !important;
