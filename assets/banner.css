@@ -1,12 +1,8 @@
 .sec__inner .banner__media :is(picture, source, img) {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* perfect centering */
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 100%!important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center center;
 }
 .sec__inner .banner__media .image-picture {
   display: block;
