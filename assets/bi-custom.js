@@ -27,25 +27,13 @@ function initFixedTopbarHeader() {
 
 
 function initDesktopMenuToggle() {
-  console.log('[Menu] initDesktopMenuToggle: starting');
-
   const menuToggle      = document.querySelector('.menu-toggle');
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
   const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
-  const mobileNav       = document.querySelector('nav.navigation.mobile');
 
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
 
-  console.log('[Menu] menuToggle =', menuToggle);
-  console.log('[Menu] headerNav =', headerNav);
-  console.log('[Menu] nativeNavToggle =', nativeNavToggle);
-  console.log('[Menu] mobileNav =', mobileNav);
-
-  if (!menuToggle) {
-    console.warn('[Menu] .menu-toggle NOT FOUND. Exit.');
-    return;
-  }
 
   function handleScrollOrResize() {
     const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
@@ -68,52 +56,15 @@ function initDesktopMenuToggle() {
 
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
+
   handleScrollOrResize();
-  console.log('[Menu] Scroll/resize listeners attached');
-
-  // CLICK HANDLER
-  menuToggle.addEventListener('click', function (e) {
-    e.preventDefault();
-    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-    console.log('[Menu] .menu-toggle CLICKED, isDesktop =', isDesktop);
-
-    if (!isDesktop) {
-      // 📱 MOBILE → use native toggle
-      if (nativeNavToggle) {
-        console.log('[Menu] Mobile: using nativeNavToggle.click()');
-        nativeNavToggle.click();
-      } else {
-        console.warn('[Menu] Mobile: nativeNavToggle NOT FOUND');
-      }
-      return;
-    }
-
-    // 🖥 DESKTOP → manual sidebar logic
-    if (!mobileNav) {
-      console.warn('[Menu] Desktop: mobileNav NOT FOUND');
-      return;
-    }
-
-    const willOpen = !mobileNav.classList.contains('is-open-desktop');
-    console.log('[Menu] Desktop: toggling sidebar, willOpen =', willOpen);
-
-    mobileNav.classList.toggle('is-open-desktop', willOpen);
-    document.documentElement.classList.toggle('menu-open-desktop', willOpen);
-  });
 }
 
-// Init
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', function () {
-    console.log('[Menu] DOMContentLoaded fired');
-    initDesktopMenuToggle();
-  });
-} else {
-  console.log('[Menu] DOM already ready, calling initDesktopMenuToggle()');
-  initDesktopMenuToggle();
-}
+
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    initDesktopMenuToggle();
     initFixedTopbarHeader();
 });
