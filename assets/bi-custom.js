@@ -31,9 +31,8 @@ function initDesktopMenuToggle() {
 
   const menuToggle      = document.querySelector('.menu-toggle');
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-  const nativeNavToggle = document.querySelector(
-    '[data-action="toggle-nav"], [data-action="open-nav"], [data-action="open-menu"]'
-  );
+  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
+  const mobileNav       = document.querySelector('nav.navigation.mobile');
 
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
@@ -41,19 +40,16 @@ function initDesktopMenuToggle() {
   console.log('[Menu] menuToggle =', menuToggle);
   console.log('[Menu] headerNav =', headerNav);
   console.log('[Menu] nativeNavToggle =', nativeNavToggle);
+  console.log('[Menu] mobileNav =', mobileNav);
 
   if (!menuToggle) {
-    console.warn('[Menu] .menu-toggle NOT FOUND. Click handler will never fire.');
+    console.warn('[Menu] .menu-toggle NOT FOUND. Exit.');
     return;
   }
 
-  // 👉 scroll/resize logic
   function handleScrollOrResize() {
     const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
     const scrollY   = window.scrollY || window.pageYOffset;
-
-    // Debug
-    // console.log('[Menu] handleScrollOrResize, isDesktop=', isDesktop, 'scrollY=', scrollY);
 
     if (!isDesktop) {
       menuToggle.classList.remove('scroll-active');
@@ -75,36 +71,38 @@ function initDesktopMenuToggle() {
   handleScrollOrResize();
   console.log('[Menu] Scroll/resize listeners attached');
 
-  // 👉 CLICK HANDLER
+  // CLICK HANDLER
   menuToggle.addEventListener('click', function (e) {
     e.preventDefault();
-    console.log('[Menu] .menu-toggle CLICKED');
+    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+    console.log('[Menu] .menu-toggle CLICKED, isDesktop =', isDesktop);
 
-    // 1) Try theme native toggle first
-    if (nativeNavToggle) {
-      console.log('[Menu] Using nativeNavToggle.click()');
-      nativeNavToggle.click();
+    if (!isDesktop) {
+      // 📱 MOBILE → use native toggle
+      if (nativeNavToggle) {
+        console.log('[Menu] Mobile: using nativeNavToggle.click()');
+        nativeNavToggle.click();
+      } else {
+        console.warn('[Menu] Mobile: nativeNavToggle NOT FOUND');
+      }
       return;
     }
 
-    // 2) Fallback: manually open the mobile nav
-    const mobileNav = document.querySelector('nav.navigation.mobile');
-    console.log('[Menu] mobileNav =', mobileNav);
-
+    // 🖥 DESKTOP → manual sidebar logic
     if (!mobileNav) {
-      console.warn('[Menu] nav.navigation.mobile NOT FOUND – cannot open menu.');
+      console.warn('[Menu] Desktop: mobileNav NOT FOUND');
       return;
     }
 
-    const nowOpen = !mobileNav.classList.contains('is-open');
-    mobileNav.classList.toggle('is-open');
-    document.documentElement.classList.toggle('menu-open', nowOpen);
+    const willOpen = !mobileNav.classList.contains('is-open-desktop');
+    console.log('[Menu] Desktop: toggling sidebar, willOpen =', willOpen);
 
-    console.log('[Menu] mobileNav.is-open =', nowOpen);
+    mobileNav.classList.toggle('is-open-desktop', willOpen);
+    document.documentElement.classList.toggle('menu-open-desktop', willOpen);
   });
 }
 
-// Init after DOM is ready
+// Init
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function () {
     console.log('[Menu] DOMContentLoaded fired');
@@ -114,7 +112,6 @@ if (document.readyState === 'loading') {
   console.log('[Menu] DOM already ready, calling initDesktopMenuToggle()');
   initDesktopMenuToggle();
 }
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
