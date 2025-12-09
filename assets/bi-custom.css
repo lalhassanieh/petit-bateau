@@ -494,7 +494,7 @@ svg.edit-icon {
     /* Ensure mobile images display properly */
     /* Taller images for smaller mobile screens */
   }
-  .slideshow.swiper .swiper-slide .sec__inner .banner__media img {
+  /*.slideshow.swiper .swiper-slide .sec__inner .banner__media img {
     width: 100% !important;
     height: auto !important;
     -o-object-fit: cover !important;
@@ -504,7 +504,7 @@ svg.edit-icon {
 @media (max-width: 991px) and (max-width: 600px) {
   .slideshow.swiper .swiper-slide .sec__inner .banner__media {
     aspect-ratio: 3/4;
-  }
+  }*/
 }
 @media (max-width: 991px) {
   .slideshow.swiper .swiper-slide .sec__inner .sec__content {
@@ -663,6 +663,14 @@ svg.edit-icon {
     object-fit: contain !important;   
     object-position: center center;
     display: block;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 991px) {
+  .slideshow.swiper .swiper-slide .sec__inner .banner__media img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover !important;
   }
 }
 
