@@ -134,7 +134,10 @@ body {
 :where(h6, .h6) {
   --size: 1.6rem;
 }
- 
+:where(img) {
+  max-width: 100%;
+  height: auto;
+}
 .placeholder-image {
   fill: rgba(51, 50, 50, 0.35);
   background-color: #eee;
