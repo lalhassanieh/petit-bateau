@@ -128,7 +128,7 @@
           "type": "slider_item",
           "settings": {
             "image": "shopify://shop_images/banner_3.jpg",
-            "image_mobile": "shopify://shop_images/4_2.jpg",
+            "image_mobile": "shopify://shop_images/3_2.jpg",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeindown",
             "subheading": "",
