@@ -1,6 +1,6 @@
 .sec__inner .banner__media :is(picture, source, img) {
   width: 100%!important;
-  height: 600px !important;
+  height: 530px !important;
   object-fit: contain !important;
   object-position: center center;
 }
