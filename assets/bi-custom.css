@@ -666,6 +666,13 @@ svg.edit-icon {
   }
 }
 
+@media (min-width: 600px) and (max-width: 991px) {
+  .slideshow.swiper .swiper-slide .sec__inner .banner__media img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover !important;
+  }
+}
 
 
 
