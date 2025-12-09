@@ -5,6 +5,9 @@
   object-position: center center;
 }
 
+.sec__inner .banner__media .image-picture {
+  display: block;
+}
 .text-below{
   --color-heading: #111;
   --btn-primary-bg-graident-color: #111;
