@@ -139,7 +139,7 @@
                                 class="menu-list"
                                 style="--row-gap: 40px; --col-desktop:{{ block_st.promotion_menu_column }};"
                               >
-                                {%- render 'submenu-list' , link: link -%}
+                                {%- render 'submenu-list', link: link, menu_type: 'vertical_desktop' -%}
                               </div>
                             {% endif %}
                             {%- if block_st.promotion_image_1 != blank or block_st.promotion_image_2 != blank -%}
@@ -198,7 +198,7 @@
                                 class="menu-list"
                                 style="--row-gap: 40px; --col-desktop:{{ block_st.product_menu_column }};"
                               >
-                                {%- render 'submenu-list' | link: link -%}
+                                {%- render 'submenu-list', link: link, menu_type: 'vertical_desktop' -%}
                               </div>
                             {% endif %}
                             {%- if product_count > 0 -%}
