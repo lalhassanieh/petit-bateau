@@ -653,10 +653,7 @@ svg.edit-icon {
       transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
-  .vertical-menu:hover, 
-  .vertical-menu.open-vertical {
-      width: 28rem;
-  }
+
 
   .vertical-menu .title-menu-dropdown,
   .vertical-menu menu-item,
