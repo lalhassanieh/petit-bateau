@@ -83,9 +83,6 @@
   multi-content.swiper.row-gap {
     row-gap: 0;
   }
-  multi-content[data-enable="true"] > .section__block:not(:first-child) {
-    display: none;
-  }
 }
 .sec__content:not(.show-content-box):is(
     .container:not(.px-custom),
