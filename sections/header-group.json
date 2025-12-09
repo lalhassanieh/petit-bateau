@@ -18,9 +18,9 @@
           "type": "text_slider",
           "settings": {
             "text1": "<strong>Bienvenue chez PETIT BATEAU Liban !</strong> ",
-            "text2": "Bénéficiez de <strong>15 % de réduction</strong> sur votre première commande avec le code promo <strong>HELLO15</strong>.",
-            "text3": "Inscrivez-vous dès maintenant et bénéficiez de <strong>15 % de réduction</strong> sur votre première commande avec le code promo <strong>HELLO15</strong>.",
-            "text4": "Livraison partout au Liban. [Plus d’informations…] ",
+            "text2": "",
+            "text3": "",
+            "text4": "Livraison partout au Liban. <a href=\"/pages/livraision\" title=\"LIVRAISION\">[Plus d’informations…] </a>",
             "change_every": 3,
             "hidden_on_mobile": false
           }
