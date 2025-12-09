@@ -25,15 +25,24 @@ function initFixedTopbarHeader() {
     window.addEventListener("resize", updateHeights);
 }
 
-
-function initDesktopMenuToggle() {
-  const menuToggle      = document.querySelector('.menu-toggle');
-  const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
+function initDesktopMenu() {
+  const menuToggle  = document.querySelector('.menu-toggle');
+  const headerNav   = document.querySelector('.header-bottom__navigation.relative.color-default');
+  const desktopMenu = document.querySelector('.verticalmenu-desktop');
+  const overlay     = document.querySelector('.vertical-menu-overlay-desktop');
+  const closeBtns   = document.querySelectorAll('.verticalmenu-desktop .close-menu');
 
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
 
+  if (!menuToggle || !desktopMenu || !overlay) {
+    console.warn("⚠️ Desktop menu elements missing.");
+    return;
+  }
+
+  console.log("🔥 initDesktopMenu() started");
+
+  let previousBodyOverflow = "";
 
   function handleScrollOrResize() {
     const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
@@ -41,75 +50,77 @@ function initDesktopMenuToggle() {
 
     if (!isDesktop) {
       menuToggle.classList.remove('scroll-active');
-      if (headerNav) headerNav.classList.remove('hide-on-scroll');
+      headerNav?.classList.remove('hide-on-scroll');
+      desktopMenu.classList.remove('open-vertical');
+      overlay.classList.remove('visible');
+      document.body.style.overflow = previousBodyOverflow;
+      document.body.classList.remove('vertical-menu-open');
       return;
     }
 
+    if (desktopMenu.classList.contains('open-vertical')) return;
+
     if (scrollY > SHOW_AFTER_SCROLL_Y) {
-      if (headerNav) headerNav.classList.add('hide-on-scroll');
+      headerNav?.classList.add('hide-on-scroll');
       menuToggle.classList.add('scroll-active');
     } else {
-      if (headerNav) headerNav.classList.remove('hide-on-scroll');
+      headerNav?.classList.remove('hide-on-scroll');
       menuToggle.classList.remove('scroll-active');
     }
   }
+
+  function openMenu() {
+    if (desktopMenu.classList.contains('open-vertical')) return;
+
+    console.log("📂 Opening vertical menu…");
+    previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';    
+    document.body.classList.add('vertical-menu-open');
+
+    desktopMenu.classList.add('open-vertical');
+    overlay.classList.add('visible');
+  }
+
+  function closeMenu() {
+    if (!desktopMenu.classList.contains('open-vertical')) return;
+
+    console.log("❌ Closing vertical menu…");
+    desktopMenu.classList.remove('open-vertical');
+    overlay.classList.remove('visible');
+
+    document.body.style.overflow = previousBodyOverflow; 
+    document.body.classList.remove('vertical-menu-open');
+
+    handleScrollOrResize();
+  }
+
+
+  menuToggle.addEventListener('click', () => {
+    const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+    if (!isDesktop) return;
+    if (!desktopMenu.classList.contains('open-vertical')) {
+      openMenu();
+    }
+  });
+
+  closeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMenu();
+    });
+  });
 
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
 
   handleScrollOrResize();
+
+  console.log("✅ Desktop menu initialized");
 }
-
-function initVerticalMenu() {
-    console.log("🔥 initVerticalMenu() started");
-
-    const toggleBtn = document.querySelector(".menu-toggle");
-    const desktopMenu = document.querySelector(".verticalmenu-desktop");
-    const overlay = document.querySelector(".vertical-menu-overlay-desktop");
-
-    if (!toggleBtn || !desktopMenu || !overlay) {
-        console.warn("⚠️ Vertical menu elements missing:");
-        console.log("toggleBtn:", toggleBtn);
-        console.log("desktopMenu:", desktopMenu);
-        console.log("overlay:", overlay);
-        return;
-    }
-
-    // OPEN the menu
-    function openMenu() {
-        console.log("📂 Opening menu...");
-        desktopMenu.classList.add("open-vertical");
-        overlay.classList.add("visible");
-    }
-
-    // CLOSE the menu
-    function closeMenu() {
-        console.log("❌ Closing menu...");
-        desktopMenu.classList.remove("open-vertical");
-        overlay.classList.remove("visible");
-    }
-
-    // Toggle button opens menu
-    toggleBtn.addEventListener("click", openMenu);
-
-    // Overlay closes menu
-    overlay.addEventListener("click", closeMenu);
-
-    // Close button inside the menu
-    document.addEventListener("click", (e) => {
-        if (e.target.closest(".close-menu")) {
-            closeMenu();
-        }
-    });
-
-    console.log("✅ Vertical menu initialized");
-}
-
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    initDesktopMenuToggle();
-    initFixedTopbarHeader();
+    initDesktopMenu();
     initVerticalMenu();
 });
