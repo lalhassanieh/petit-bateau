@@ -27,19 +27,33 @@ function initFixedTopbarHeader() {
 
 
 function initDesktopMenuToggle() {
+  console.log('[Menu] initDesktopMenuToggle: starting');
+
   const menuToggle      = document.querySelector('.menu-toggle');
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
+  const nativeNavToggle = document.querySelector(
+    '[data-action="toggle-nav"], [data-action="open-nav"], [data-action="open-menu"]'
+  );
 
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
 
-  if (!menuToggle) return;
+  console.log('[Menu] menuToggle =', menuToggle);
+  console.log('[Menu] headerNav =', headerNav);
+  console.log('[Menu] nativeNavToggle =', nativeNavToggle);
 
-  // 👉 Show/hide the floating button on scroll (your existing logic)
+  if (!menuToggle) {
+    console.warn('[Menu] .menu-toggle NOT FOUND. Click handler will never fire.');
+    return;
+  }
+
+  // 👉 scroll/resize logic
   function handleScrollOrResize() {
     const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
     const scrollY   = window.scrollY || window.pageYOffset;
+
+    // Debug
+    // console.log('[Menu] handleScrollOrResize, isDesktop=', isDesktop, 'scrollY=', scrollY);
 
     if (!isDesktop) {
       menuToggle.classList.remove('scroll-active');
@@ -59,29 +73,50 @@ function initDesktopMenuToggle() {
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
   handleScrollOrResize();
+  console.log('[Menu] Scroll/resize listeners attached');
 
-  // 👉 CLICK: open the mobile menu (also on desktop)
+  // 👉 CLICK HANDLER
   menuToggle.addEventListener('click', function (e) {
     e.preventDefault();
+    console.log('[Menu] .menu-toggle CLICKED');
 
-    // If theme already has its own toggle, reuse it
+    // 1) Try theme native toggle first
     if (nativeNavToggle) {
+      console.log('[Menu] Using nativeNavToggle.click()');
       nativeNavToggle.click();
       return;
     }
 
-    // Fallback: manually toggle the mobile nav
+    // 2) Fallback: manually open the mobile nav
     const mobileNav = document.querySelector('nav.navigation.mobile');
+    console.log('[Menu] mobileNav =', mobileNav);
 
-    if (!mobileNav) return;
+    if (!mobileNav) {
+      console.warn('[Menu] nav.navigation.mobile NOT FOUND – cannot open menu.');
+      return;
+    }
 
+    const nowOpen = !mobileNav.classList.contains('is-open');
     mobileNav.classList.toggle('is-open');
-    document.documentElement.classList.toggle('menu-open');
+    document.documentElement.classList.toggle('menu-open', nowOpen);
+
+    console.log('[Menu] mobileNav.is-open =', nowOpen);
   });
 }
 
+// Init after DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log('[Menu] DOMContentLoaded fired');
+    initDesktopMenuToggle();
+  });
+} else {
+  console.log('[Menu] DOM already ready, calling initDesktopMenuToggle()');
+  initDesktopMenuToggle();
+}
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
-    initDesktopMenuToggle();
     initFixedTopbarHeader();
 });
