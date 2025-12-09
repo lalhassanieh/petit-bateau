@@ -1,9 +1,7 @@
 .sec__inner .banner__media :is(picture, source, img) {
-  width: 100%!important;
-  height: auto!important;
-  display: block;
-  object-fit: contain !important;
-  object-position: center center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .sec__inner .banner__media .image-picture {
   display: block;
