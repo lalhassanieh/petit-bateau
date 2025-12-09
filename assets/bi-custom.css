@@ -792,9 +792,9 @@ svg.edit-icon {
 
 
   .submenu-vertical {
-      position: fixed;
-      width: 28rem;
-      padding: 2rem 3rem !important;
+    position: fixed;
+    width: 475px;
+    padding: 2rem 3rem !important;
       inset-block: 0;
       inset-inline-start: 28rem;
       visibility: hidden;
@@ -874,7 +874,7 @@ svg.edit-icon {
     opacity: 0;
     top: 0;
     left: 100%;
-    inset-inline-start: 28rem;
+    inset-inline-start: 475px;
     transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1),
                 visibility 0.4s cubic-bezier(0.19, 1, 0.22, 1),
                 transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
