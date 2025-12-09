@@ -138,10 +138,6 @@ body {
   max-width: 100%;
   height: auto;
 }
-video {
-  max-width: 100%;
-  height: auto;
-}
 .placeholder-image {
   fill: rgba(51, 50, 50, 0.35);
   background-color: #eee;
