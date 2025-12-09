@@ -15,11 +15,15 @@
   endif
 %}
 
-
+<!-- DEBUG menu_type: {{ menu_type | json }} -->
 {%- comment -%}
   SPECIAL LAYOUT FOR DESKTOP VERTICAL MENU
 {%- endcomment -%}
 {% if menu_type == 'vertical_desktop' %}
+  <!-- DEBUG: vertical_desktop branch IS ACTIVE -->
+  <div style="background:red;color:white;padding:10px;z-index:9999;position:relative;">
+    VERTICAL DESKTOP TEST BLOCK
+  </div>
 
   {% if link.links.size > 0 %}
     <ul
