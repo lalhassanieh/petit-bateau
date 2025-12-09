@@ -122,5 +122,5 @@ function initDesktopMenu() {
 
 document.addEventListener("DOMContentLoaded", () => {
     initDesktopMenu();
-    initVerticalMenu();
+    initFixedTopbarHeader();
 });
