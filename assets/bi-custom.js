@@ -60,6 +60,51 @@ function initDesktopMenuToggle() {
   handleScrollOrResize();
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  const desktopMenu = document.querySelector('.verticalmenu-desktop');
+  const overlay = document.querySelector('.vertical-menu-overlay-desktop');
+  const toggleBtn = document.querySelector('.scroll-menu-wrapper .menu-toggle');
+
+  if (!desktopMenu || !toggleBtn) return;
+
+  function openMenu() {
+    desktopMenu.classList.add('open-vertical');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    desktopMenu.classList.remove('open-vertical');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleMenu() {
+    if (desktopMenu.classList.contains('open-vertical')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  // Click on burger
+  toggleBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    toggleMenu();
+  });
+
+  // Click on overlay to close
+  if (overlay) {
+    overlay.addEventListener('click', function () {
+      closeMenu();
+    });
+  }
+
+  // ESC key closes menu
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      closeMenu();
+    }
+  });
+});
 
 
 
