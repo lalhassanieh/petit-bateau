@@ -641,25 +641,5 @@ svg.edit-icon {
 }
 
 
-@media (min-width: 1025px) {
-  nav.navigation.mobile {
-    display: block;          
-    max-width: 28rem;      
-    left: 0;
-    top: 0;
-    bottom: 0;
-    transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-    z-index: 2001;
-  }
-
-  nav.navigation.mobile.is-open-desktop {
-    transform: translateX(0);
-  }
-
-  html.menu-open-desktop {
-    overflow: hidden;
-  }
-}
 
 /*================*/
