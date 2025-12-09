@@ -60,6 +60,50 @@ function initDesktopMenuToggle() {
   handleScrollOrResize();
 }
 
+function initVerticalMenu() {
+    console.log("🔥 initVerticalMenu() started");
+
+    const toggleBtn = document.querySelector(".menu-toggle");
+    const desktopMenu = document.querySelector(".verticalmenu-desktop");
+    const overlay = document.querySelector(".vertical-menu-overlay-desktop");
+
+    if (!toggleBtn || !desktopMenu || !overlay) {
+        console.warn("⚠️ Vertical menu elements missing:");
+        console.log("toggleBtn:", toggleBtn);
+        console.log("desktopMenu:", desktopMenu);
+        console.log("overlay:", overlay);
+        return;
+    }
+
+    // OPEN the menu
+    function openMenu() {
+        console.log("📂 Opening menu...");
+        desktopMenu.classList.add("open-vertical");
+        overlay.classList.add("visible");
+    }
+
+    // CLOSE the menu
+    function closeMenu() {
+        console.log("❌ Closing menu...");
+        desktopMenu.classList.remove("open-vertical");
+        overlay.classList.remove("visible");
+    }
+
+    // Toggle button opens menu
+    toggleBtn.addEventListener("click", openMenu);
+
+    // Overlay closes menu
+    overlay.addEventListener("click", closeMenu);
+
+    // Close button inside the menu
+    document.addEventListener("click", (e) => {
+        if (e.target.closest(".close-menu")) {
+            closeMenu();
+        }
+    });
+
+    console.log("✅ Vertical menu initialized");
+}
 
 
 
@@ -67,4 +111,5 @@ function initDesktopMenuToggle() {
 document.addEventListener("DOMContentLoaded", () => {
     initDesktopMenuToggle();
     initFixedTopbarHeader();
+    initVerticalMenu();
 });
