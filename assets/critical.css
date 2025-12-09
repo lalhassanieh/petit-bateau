@@ -140,6 +140,7 @@ body {
 }
 video {
   max-width: 100%;
+  height: auto;
 }
 .placeholder-image {
   fill: rgba(51, 50, 50, 0.35);
