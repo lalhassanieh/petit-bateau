@@ -176,7 +176,7 @@
         "show_arrow": false,
         "carousel_pagination": "show_dots",
         "pagination_position": "center",
-        "autoplay": true,
+        "autoplay": false,
         "autorotate_speed": 6,
         "subheading_font_size": 60,
         "subheading_font_weight": "body_weight",
