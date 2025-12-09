@@ -31,8 +31,7 @@
     height: auto !important;
     width: 100% !important;
     object-fit: contain !important;
-    object-position: center center !important;
-    display: block;
+    
   }
 }
 
