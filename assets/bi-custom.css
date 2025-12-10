@@ -571,7 +571,6 @@ svg.edit-icon {
 }
 
 [data-block-id="product_banner_qVLbrb"] > img {
-  position: static !important;
   width: 100% !important;
   height: 100% !important;
   object-fit: unset !important;
