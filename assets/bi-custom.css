@@ -570,6 +570,14 @@ svg.edit-icon {
   }
 }
 
+[data-block-id="product_banner_qVLbrb"] > img {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: unset !important;
+  margin: 0 auto;
+  display: block;
+}
 
 /*=========================
        CSS For Navbar
