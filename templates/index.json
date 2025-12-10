@@ -333,6 +333,7 @@
         },
         "product_banner_4x8k8g": {
           "type": "product_banner",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/robe_1.jpg",
             "content_background_color": "#bdd4e5",
