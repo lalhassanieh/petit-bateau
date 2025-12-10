@@ -530,6 +530,22 @@ svg.edit-icon {
 /*==========================
       BANNERS
 ============================*/
+/* Slide buttons look exactly like global ones */
+.slideshow .sec__content-btn .btn-primary {
+  padding: 9px 20px !important;
+  border-radius: 4px !important;
+  border: 1px solid #002E5E;
+  background: #fff !important;
+  color: #002E5E !important;
+  transition: background-color 0.3s ease-in-out;
+  font-family: Oswald-Bold !important;
+  letter-spacing: 0.21px;
+}
+
+.slideshow .sec__content-btn .btn-primary:hover {
+  background: #002E5E !important;
+  color: #fff !important;
+}
 
 
 @media (min-width: 1440px) {
