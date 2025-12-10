@@ -944,7 +944,7 @@ picture {
   flex-grow: 1;
 }
 #MainContent section:not(:last-child) .section:not(.remove_spacing) {
-  margin-bottom: 20px;
+  margin-bottom: calc(var(--section-spacing) - var(--gutter-x, 0px));
 }
 .section-spacing-top {
   margin-top: calc(var(--section-spacing) - var(--gutter-x, 0px));
