@@ -148,7 +148,7 @@
       "note": {
         "title": "Add Order Note",
         "placeholder": "How can we help you?",
-        "description": ""
+        "description_html": ""
       },
       "gift": {
         "title": "Add Gift",
