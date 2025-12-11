@@ -834,7 +834,8 @@
       "shipping": {
         "method": "Mode de Livraison",
         "summary": "Expédition (frais de livraison)"
-      }
+      },
+      "taxes_included": "dont taxes incluses  (TVA 11%)"
     }
   }
 }
