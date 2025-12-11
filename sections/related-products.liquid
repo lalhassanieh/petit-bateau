@@ -47,11 +47,6 @@
 --col-desktop: {{ items_per_row }};--col-number: {{ items_per_row_mobile }};{% if items_per_row > 3 %}--col-tablet: 3;{% else %}--col-tablet: {{ items_per_row }};{% endif %}
 {% if column_gap < 15 %}--col-gap: {{ column_gap }}px;{% else %}--col-gap: 15px;--col-gap-desktop: {{  column_gap }}px;{% endif %}--repeat: {{ items_to_show }}; --col-mobile: {{ items_per_row_mobile }}
   {%- endcapture -%}
-  
-{% if hide_related %}
-  {% comment %} Completely skip output (removes empty lines & wrappers) {% endcomment %}
-  {% break %}
-{% endif %}
 
 {% unless hide_related %}
 <div
