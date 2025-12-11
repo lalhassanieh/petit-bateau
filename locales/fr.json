@@ -832,7 +832,8 @@
   "customer_accounts": {
     "order_details": {
       "shipping": {
-        "method": "Mode de Livraison"
+        "method": "Mode de Livraison",
+        "summary": "Expédition (frais de livraison)"
       }
     }
   }
