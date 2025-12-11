@@ -828,5 +828,12 @@
     "errors": {
       "reset_password_html": "Cette adresse e-mail est déjà associée à un compte. Si ce compte vous appartient, vous pouvez reconfigurer votre mot de passe"
     }
+  },
+  "customer_accounts": {
+    "order_details": {
+      "shipping": {
+        "method": "Mode de Livraison"
+      }
+    }
   }
 }
