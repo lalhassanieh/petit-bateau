@@ -24,7 +24,7 @@
   assign scroll_animation = settings.scroll_animation
   assign animate_delay = 0
 
-    # === HIDE CONDITION: ANY PRODUCT IN "Carte Cadeau" COLLECTION ===
+  # === HIDE CONDITION ===
   assign hide_related = false
 
   if product
@@ -34,6 +34,10 @@
         break
       endif
     endfor
+
+    if product.handle == 'coffret-emballage'
+      assign hide_related = true
+    endif
   endif
 -%}  
 {% unless hide_related %}
