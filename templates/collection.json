@@ -63,7 +63,7 @@
         "column_gap": 30,
         "collection_information_position": "below_image",
         "design": "morden",
-        "text_alignment": "left",
+        "text_alignment": "center",
         "show_product_count": true,
         "font_size": 14,
         "font_weight": "heading_weight",
