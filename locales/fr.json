@@ -806,7 +806,7 @@
       },
       "delivery_options": {
         "pick_up": "Retrait en Boutique",
-        "ship": "Livraison a domicile"
+        "ship": "Livraison "
       },
       "payment": {
         "billing_address_title": "Adresse de Livraison",
