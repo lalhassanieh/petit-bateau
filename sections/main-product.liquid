@@ -32,6 +32,24 @@
   endif
   assign wishlist = pages.wishlist
   assign action_when_click_added_wishlist = theme_st.action_when_click_added_wishlist
+
+    # === HIDE REF CONDITION ===
+  assign hide_ref = false
+
+  if product
+    # hide for Carte Cadeau collection
+    for collection in product.collections
+      if collection.handle == 'carte-cadeau'
+        assign hide_ref = true
+        break
+      endif
+    endfor
+
+    # hide for specific product coffret-emballage
+    if product.handle == 'coffret-emballage'
+      assign hide_ref = true
+    endif
+  endif
 -%}
 {%- capture style -%}
   --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--speed: {{ section_st.speed }}s; --font-size: {{ section_st.font_size }};
