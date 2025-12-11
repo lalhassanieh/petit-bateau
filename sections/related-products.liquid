@@ -23,6 +23,21 @@
   assign items_per_row_mobile = section_st.items_per_row_mobile
   assign scroll_animation = settings.scroll_animation
   assign animate_delay = 0
+
+   # === HIDE CONDITION FOR COFFRET EMBALLAGE IN CARTE CADEAU ===
+  assign hide_related = false
+  assign in_carte_cadeau = false
+
+  for collection in product.collections
+    if collection.handle == 'carte-cadeau'
+      assign in_carte_cadeau = true
+      break
+    endif
+  endfor
+
+  if in_carte_cadeau and product.handle == 'coffret-emballage'
+    assign hide_related = true
+  endif
 -%}
 {%- capture style -%}
     --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
@@ -31,6 +46,8 @@
 --col-desktop: {{ items_per_row }};--col-number: {{ items_per_row_mobile }};{% if items_per_row > 3 %}--col-tablet: 3;{% else %}--col-tablet: {{ items_per_row }};{% endif %}
 {% if column_gap < 15 %}--col-gap: {{ column_gap }}px;{% else %}--col-gap: 15px;--col-gap-desktop: {{  column_gap }}px;{% endif %}--repeat: {{ items_to_show }}; --col-mobile: {{ items_per_row_mobile }}
   {%- endcapture -%}
+  
+  {% unless hide_related %}
 <div
   class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__related-product color-{{ color_scheme }} gradient{{ reset_spacing }}{% if reveal %} overflow-hidden{% endif %}"
   style="{{ style | strip | strip_newlines }}"
@@ -221,7 +238,7 @@
     </product-recommendations>
   </div>
 </div>
-
+{% endunless %}
 {% schema %}
 {
   "name": "t:sections.related-products.name",
