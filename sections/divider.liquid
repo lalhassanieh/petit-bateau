@@ -6,12 +6,31 @@
   if section_st.reset_spacing
     assign reset_spacing = ' remove_spacing'
   endif
+
+    # === HIDE CONDITION ===
+  assign hide_related = false
+
+  if product
+    for collection in product.collections
+      if collection.handle == 'carte-cadeau'
+        assign hide_related = true
+        break
+      endif
+    endfor
+
+    if product.handle == 'coffret-emballage'
+      assign hide_related = true
+    endif
+  endif
 -%}
 {%- style -%}
   .sec__divider-inner {
     border-bottom: var(--border-height) solid var(--border-color);
   }
 {%- endstyle -%}
+
+
+{% unless hide_related %}
 <div class="section sec__divider{{ reset_spacing }}">
   <div class="{{ section_width }}">
     <div
@@ -21,6 +40,7 @@
   </div>
 </div>
 
+{% endunless %}
 {% schema %}
 {
   "name": "t:sections.divider.name",
