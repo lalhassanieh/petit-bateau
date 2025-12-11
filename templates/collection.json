@@ -50,7 +50,6 @@
     },
     "subcollection": {
       "type": "subcollection-list",
-      "disabled": true,
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "default",
