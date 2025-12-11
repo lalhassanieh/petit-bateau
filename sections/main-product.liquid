@@ -230,9 +230,13 @@
         <div class="zoom-external-area"></div>
       {% endif %}
       {% content_for 'blocks' %}
-      {% if enable_sticky_content_on_desktop %}     <div id="variant-ref-container" style="margin-top: 15px;">
+      {% if enable_sticky_content_on_desktop %}
+        {% unless hide_ref %}
+          <div id="variant-ref-container" style="margin-top: 15px;">
             <strong>Ref</strong> <span id="variant-vendor-value">{{ product.selected_or_first_available_variant.metafields.global.product_additional_VendorItemNo | default: 'N/A' }}</span>
-          </div></div>{% endif %}
+          </div>
+        {% endunless %}
+        </div>{% endif %}
     </motion-element>
  
   </div>
