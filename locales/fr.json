@@ -805,7 +805,8 @@
         "add_address": "Une autre adresse de Livraison "
       },
       "delivery_options": {
-        "pick_up": "Retrait en Boutique"
+        "pick_up": "Retrait en Boutique",
+        "ship": "Livraison "
       },
       "payment": {
         "billing_address_title": "Adresse de Livraison",
