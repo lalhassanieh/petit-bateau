@@ -24,19 +24,16 @@
   assign scroll_animation = settings.scroll_animation
   assign animate_delay = 0
 
-   # === HIDE CONDITION FOR COFFRET EMBALLAGE IN CARTE CADEAU ===
+    # === HIDE CONDITION: ANY PRODUCT IN "Carte Cadeau" COLLECTION ===
   assign hide_related = false
-  assign in_carte_cadeau = false
 
-  for collection in product.collections
-    if collection.handle == 'carte-cadeau'
-      assign in_carte_cadeau = true
-      break
-    endif
-  endfor
-
-  if in_carte_cadeau and product.handle == 'coffret-emballage'
-    assign hide_related = true
+  if product
+    for collection in product.collections
+      if collection.handle == 'carte-cadeau'
+        assign hide_related = true
+        break
+      endif
+    endfor
   endif
 -%}
 {%- capture style -%}
