@@ -147,7 +147,7 @@
       "note": {
         "title": "Si vous souhaitez que certains articles soient regroupés dans une même pochette cadeau gratuite, merci de le préciser dans l’espace commentaires ci-dessous.",
         "placeholder": "Indiquez simplement dans les commentaires le ou les produits que vous souhaitez faire emballer.  ",
-        "description": "Pour un cadeau naissance, nous vous proposons également un emballage cadeau plus raffiné, un coffret au prix de 5 dollars. Vous pouvez l’ajouter à votre commande en cliquant sur ce lien. "
+        "description": "Pour un cadeau naissance, nous vous proposons également un emballage cadeau plus raffiné, un coffret au prix de 5 dollars. Vous pouvez l’ajouter à votre commande en cliquant sur ce <a href='/products/coffret-emballage'>lien</a>. "
       },
       "gift": {
         "title": "Ajouter un cadeau",
