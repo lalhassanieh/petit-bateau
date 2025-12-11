@@ -822,7 +822,7 @@
       },
       "order_summary": {
         "vat_label_html": "TVA de {{amount}} incluses",
-        "shipping_label": "Livraison à Domicile"
+        "shipping_label": "Livraison"
       }
     },
     "errors": {
