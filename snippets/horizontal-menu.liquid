@@ -296,27 +296,25 @@
                                       assign ratio = collection_value.featured_image.aspect_ratio
                                     -%}
                                     {%- if p_url != blank -%}
-                                      <div class="collection-items align-self-start menu-collection rounded overflow-hidden relative  {{ settings.hover_effect }}">
-                                        {%- assign banner_alt = p_img.alt | default: collection_value.title | escape -%}
-                                        <a
-                                          role="link"
-                                          aria-label="{{ collection_value.title }}"
-                                          href="{{ p_url }}"
-                                          class="banner__media collection-media p-0 hover-effect block rounded"
-                                          style="--aspect-ratio: {{ ratio }}"
-                                        >
-                                          {%- if p_img != blank -%}
-                                            {%- assign image_alt = p_img.alt | default: 'Images' | escape -%}
-                                            {% render 'responsive-image',
-                                              type: 'other',
-                                              image: p_img,
-                                              image_alt: image_alt,
-                                              sizes: '(min-width: 1200px) 240px, 120px'
-                                            %}
-                                          {%- else -%}
-                                            {% render 'placeholder-render' %}
-                                          {%- endif -%}
-                                        </a>
+                                      {%- assign banner_alt = p_img.alt | default: collection_value.title | escape -%}
+                                      <a
+                                        role="link"
+                                        aria-label="{{ collection_value.title }}"
+                                        href="{{ p_url }}"
+                                        class="collection-items align-self-start menu-collection rounded overflow-hidden relative  {{ settings.hover_effect }} banner__media collection-media p-0 hover-effect block rounded"
+                                        style="--aspect-ratio: {{ ratio }}"
+                                      >
+                                        {%- if p_img != blank -%}
+                                          {%- assign image_alt = p_img.alt | default: 'Images' | escape -%}
+                                          {% render 'responsive-image',
+                                            type: 'other',
+                                            image: p_img,
+                                            image_alt: image_alt,
+                                            sizes: '(min-width: 1200px) 240px, 120px'
+                                          %}
+                                        {%- else -%}
+                                          {% render 'placeholder-render' %}
+                                        {%- endif -%}
                                         <div class="collection-info absolute bottom-25 inset-x-0 text-center">
                                           <span
                                             class="btn inline-block bg-white heading-color py-15 px-30 text-center"
@@ -325,7 +323,7 @@
                                             {{- collection_value.title -}}
                                           </span>
                                         </div>
-                                      </div>
+                                      </a>
                                     {%- endif -%}
                                   {%- endif -%}
                                 {%- endfor -%}
@@ -848,27 +846,25 @@
                                       assign ratio = collection_value.featured_image.aspect_ratio
                                     -%}
                                     {%- if p_url != blank -%}
-                                      <div class="collection-items align-self-start menu-collection rounded overflow-hidden relative  {{ settings.hover_effect }}">
-                                        {%- assign banner_alt = p_img.alt | default: collection_value.title | escape -%}
-                                        <a
-                                          role="link"
-                                          aria-label="{{ collection_value.title }}"
-                                          href="{{ p_url }}"
-                                          class="banner__media collection-media p-0 hover-effect block rounded"
-                                          style="--aspect-ratio: {{ ratio }}"
-                                        >
-                                          {%- if p_img != blank -%}
-                                            {%- assign image_alt = p_img.alt | default: 'Images' | escape -%}
-                                            {% render 'responsive-image',
-                                              type: 'other',
-                                              image: p_img,
-                                              image_alt: image_alt,
-                                              sizes: '(min-width: 1200px) 240px, 120px'
-                                            %}
-                                          {%- else -%}
-                                            {% render 'placeholder-render' %}
-                                          {%- endif -%}
-                                        </a>
+                                      {%- assign banner_alt = p_img.alt | default: collection_value.title | escape -%}
+                                      <a
+                                        role="link"
+                                        aria-label="{{ collection_value.title }}"
+                                        href="{{ p_url }}"
+                                        class="collection-items align-self-start menu-collection rounded overflow-hidden relative  {{ settings.hover_effect }} banner__media collection-media p-0 hover-effect block rounded"
+                                        style="--aspect-ratio: {{ ratio }}"
+                                      >
+                                        {%- if p_img != blank -%}
+                                          {%- assign image_alt = p_img.alt | default: 'Images' | escape -%}
+                                          {% render 'responsive-image',
+                                            type: 'other',
+                                            image: p_img,
+                                            image_alt: image_alt,
+                                            sizes: '(min-width: 1200px) 240px, 120px'
+                                          %}
+                                        {%- else -%}
+                                          {% render 'placeholder-render' %}
+                                        {%- endif -%}
                                         <div class="collection-info absolute bottom-25 inset-x-0 text-center">
                                           <span
                                             class="btn inline-block bg-white heading-color py-15 px-30 text-center"
@@ -877,7 +873,7 @@
                                             {{- collection_value.title -}}
                                           </span>
                                         </div>
-                                      </div>
+                                      </a>
                                     {%- endif -%}
                                   {%- endif -%}
                                 {%- endfor -%}
