@@ -952,6 +952,7 @@
                   arial-label="{{ link.title }}"
                 >
                   <span>{{ link.title }}</span>
+                </a>
                   {%- if link.links.size > 0 -%}
                     <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
                       <svg class="icon-down hidden block-1025" width="10" height="6">
@@ -959,7 +960,6 @@
                       </svg>
                     </open-children-toggle>
                   {%- endif -%}
-                </a>
                 {%- if link.links.size > 0 -%}
                   <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
                     {% if enable_rtl %}
