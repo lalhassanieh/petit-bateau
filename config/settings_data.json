@@ -106,7 +106,7 @@
     "show_checkbox_in_product_page": false,
     "show_check_box_in_quick_view": false,
     "text_terms_conditions": "<p>J’accepte les <a href=\"/pages/cgv\" target=\"_blank\" title=\"LES CONDITIONS GÉNÉRALES DE VENTE (CGV)\">conditions générales de vente</a></p>",
-    "page_terms_conditions": "",
+    "page_terms_conditions": "cgv",
     "rate_color": "#ea0606",
     "sections": {
       "custom-colors": {
