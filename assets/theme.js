@@ -1119,7 +1119,7 @@ let BlsMainMenuShopify = (function () {
       const article = document.querySelector(".verticalmenu-html");
       if (!article) return;
 
-      const verticalMenu = document.querySelector(".vertical-menu");
+      const verticalMenu = document.querySelector(".vertical-menu:not(.verticalmenu-desktop)");
       if (!verticalMenu) return;
       verticalMenu.addEventListener("mouseenter", function () {
         setTimeout(function () {
