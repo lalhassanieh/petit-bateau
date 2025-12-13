@@ -688,6 +688,7 @@ svg.edit-icon {
   overflow: hidden;
   transition: height 0.3s ease, opacity 0.3s ease;
 }
+
 /* Desktop menu sidebar when opened via desktop toggle */
 @media (max-width: 1024px) {
   .navigation.desktop-menu {
@@ -695,119 +696,36 @@ svg.edit-icon {
   }
 }
 
+@media (min-width: 1025px) {
+  .nav-open .navigation.desktop-menu {
+    transform: translate(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .navigation.desktop-menu {
+    display: flex;
+    background: var(--color-background);
+    --menu-mobile-width: 43rem;
+    --show-overlay-bg: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    max-width: var(--menu-mobile-width);
+    overflow: hidden;
+    transform: translateX(-101%);
+    transition: var(--transition-popup);
+    z-index: 12;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+  }
+}
 
-/* Desktop menu sidebar when opened via desktop toggle */
-@media (max-width: 1024px) {
-  .navigation.desktop-menu,
+
+@media (max-width: 1024.5px) {
   nav.desktop-menu {
     display: none !important;
   }
 }
-
-@media (min-width: 1025px) {
-  /* Override any animation keyframes that might affect visibility */
-  .navigation.desktop-menu,
-  nav.desktop-menu,
-  .navigation.desktop-menu.animate__fadeInUp,
-  nav.desktop-menu.animate__fadeInUp,
-  .navigation.desktop-menu.animate__fadeInDown,
-  nav.desktop-menu.animate__fadeInDown {
-    animation: none !important;
-    -webkit-animation: none !important;
-  }
-  
-  /* Default state: hidden off-canvas */
-  .navigation.desktop-menu,
-  nav.desktop-menu,
-  .navigation.horizontal.desktop-menu,
-  nav.horizontal.desktop-menu {
-    display: flex !important;
-    background: var(--color-background) !important;
-    --menu-mobile-width: 43rem;
-    --show-overlay-bg: rgba(255, 255, 255, 0.9);
-    width: 100% !important;
-    max-width: var(--menu-mobile-width) !important;
-    overflow: hidden;
-    transform: translateX(-101%) !important;
-    -webkit-transform: translateX(-101%) !important;
-    transition: var(--transition-popup) !important;
-    z-index: 13 !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    bottom: 0 !important;
-    height: 100vh !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* OPEN STATE: Show when nav-open or open-drawer is active on html element */
-  html.nav-open .navigation.desktop-menu,
-  html.nav-open nav.desktop-menu,
-  html.nav-open .navigation.horizontal.desktop-menu,
-  html.nav-open nav.horizontal.desktop-menu,
-  html.nav-open .desktop-menu,
-  html.open-drawer .navigation.desktop-menu,
-  html.open-drawer nav.desktop-menu,
-  html.open-drawer .navigation.horizontal.desktop-menu,
-  html.open-drawer nav.horizontal.desktop-menu,
-  html.open-drawer .desktop-menu,
-  html.open-sidebar .navigation.desktop-menu,
-  html.open-sidebar nav.desktop-menu,
-  html.open-sidebar .navigation.horizontal.desktop-menu,
-  html.open-sidebar nav.horizontal.desktop-menu,
-  html.open-sidebar .desktop-menu,
-  body.nav-open .navigation.desktop-menu,
-  body.nav-open nav.desktop-menu,
-  body.nav-open .navigation.horizontal.desktop-menu,
-  body.nav-open nav.horizontal.desktop-menu,
-  body.nav-open .desktop-menu,
-  body.open-drawer .navigation.desktop-menu,
-  body.open-drawer nav.desktop-menu,
-  body.open-drawer .navigation.horizontal.desktop-menu,
-  body.open-drawer nav.horizontal.desktop-menu,
-  body.open-drawer .desktop-menu,
-  body.open-sidebar .navigation.desktop-menu,
-  body.open-sidebar nav.desktop-menu,
-  body.open-sidebar .navigation.horizontal.desktop-menu,
-  body.open-sidebar nav.horizontal.desktop-menu,
-  body.open-sidebar .desktop-menu {
-    transform: translateX(0) !important;
-    -webkit-transform: translateX(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-  }
-  
-  /* Extra specificity for desktop menu with horizontal class - highest priority */
-  html.nav-open nav.desktop-menu.horizontal,
-  html.nav-open .navigation.desktop-menu.horizontal,
-  html.nav-open nav.horizontal.desktop-menu,
-  html.nav-open .navigation.horizontal.desktop-menu,
-  html.open-drawer nav.desktop-menu.horizontal,
-  html.open-drawer .navigation.desktop-menu.horizontal,
-  html.open-drawer nav.horizontal.desktop-menu,
-  html.open-drawer .navigation.horizontal.desktop-menu,
-  html.open-sidebar nav.desktop-menu.horizontal,
-  html.open-sidebar .navigation.desktop-menu.horizontal,
-  html.open-sidebar nav.horizontal.desktop-menu,
-  html.open-sidebar .navigation.horizontal.desktop-menu {
-    transform: translateX(0) !important;
-    -webkit-transform: translateX(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* Ensure desktop menu is always visible when nav-open, regardless of other classes */
-  html.nav-open nav.desktop-menu,
-  html.open-drawer nav.desktop-menu,
-  html.open-sidebar nav.desktop-menu {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-    -webkit-transform: translateX(0) !important;
-    z-index: 13 !important;
-  }
-}
+/*================*/
