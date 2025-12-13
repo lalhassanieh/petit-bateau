@@ -1,14 +1,15 @@
 {%- liquid
-  assign section_st = section.settings
-  assign title = section_st.title_categories
-  
   comment
-    Try to get the horizontal menu section (header-mega-store) to use its mega_menu links
-    If not available, fall back to categories_menu from vertical menu section
+    Since this snippet is rendered in theme.liquid without section context,
+    section.settings will be null. We need to find the header-mega-store section
+    from the sections object or section_groups.
   endcomment
   assign horizontal_menu_section = null
   assign menu_links = null
+  assign title = 'Menu'
   
+  comment Try to find header-mega-store section from sections
+  endcomment
   for section_item in sections
     if section_item.type == 'header-mega-store' and section_item.settings.mega_menu != blank
       assign horizontal_menu_section = section_item
@@ -17,8 +18,20 @@
     endif
   endfor
   
-  if menu_links == null and section_st.categories_menu != blank
-    assign menu_links = section_st.categories_menu.links
+  comment If not found, try section_groups (header-group)
+  endcomment
+  if menu_links == null
+    for section_group in section_groups
+      if section_group.name == 'header-group'
+        for section_item in section_group.sections
+          if section_item.type == 'header-mega-store' and section_item.settings.mega_menu != blank
+            assign horizontal_menu_section = section_item
+            assign menu_links = section_item.settings.mega_menu.links
+            break
+          endif
+        endfor
+      endif
+    endfor
   endif
   
   if horizontal_menu_section != null
@@ -69,7 +82,8 @@
       </div>
       <div class="verticalmenu-html">
         <ul>
-          {%- if menu_links != null -%}
+          {%- comment -%}DEBUG: menu_links size = {{ menu_links.size | default: 'null' }}, horizontal_menu_section = {{ horizontal_menu_section | default: 'null' }}{%- endcomment -%}
+          {%- if menu_links != null and menu_links.size > 0 -%}
             {%- for link in menu_links -%}
               {%- liquid
                 assign last_block = null
@@ -86,22 +100,15 @@
                     endif
                   endfor
                 else
-                  assign link_title_checked = link.title | downcase
-                  for block in section.blocks
-                    assign text = block.settings.text | downcase
-                    if text == link_title_checked
-                      assign last_block = block
-                    endif
-                  endfor
-                  for i in (1..10)
-                    assign icon_placeholder = '[icon_' | append: i | append: ']'
-                    assign icon_setting = 'icon_' | append: i
-                    if link_title contains icon_placeholder and section_st[icon_setting] != blank
-                      assign has_icon = true
-                      assign icon_html = section_st[icon_setting]
-                      assign link_title = link.title | replace: icon_placeholder, ''
-                    endif
-                  endfor
+                  if horizontal_menu_section != null
+                    assign link_title_checked = link.title | downcase
+                    for block in horizontal_menu_section.blocks
+                      assign text = block.settings.text | downcase
+                      if text == link_title_checked
+                        assign last_block = block
+                      endif
+                    endfor
+                  endif
                 endif
               -%}
             {% if last_block != null %}
@@ -327,6 +334,8 @@
               </li>
             {% endif %}
           {%- endfor -%}
+          {%- else -%}
+            <li style="color: red; padding: 20px;">DEBUG: No menu links found. menu_links = {{ menu_links | default: 'null' }}, size = {{ menu_links.size | default: 'null' }}</li>
           {%- endif -%}
         </ul>
       </div>
