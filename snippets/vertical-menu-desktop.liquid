@@ -1,28 +1,47 @@
 {%- liquid
   comment
     Get the horizontal menu section (header-mega-store) to use its mega_menu links
-    Since this snippet is rendered without section context, we need to find the header section
+    Try multiple approaches to find the section
   endcomment
   assign horizontal_menu_section = null
   assign menu_links = null
   assign title = 'Menu'
+  assign horizontal_section_st = null
   
+  comment Try to find header-mega-store section
+  endcomment
   for section_item in sections
     if section_item.type == 'header-mega-store'
       if section_item.settings.mega_menu != blank
         assign horizontal_menu_section = section_item
         assign menu_links = section_item.settings.mega_menu.links
+        assign horizontal_section_st = section_item.settings
         break
       endif
     endif
   endfor
   
-  if horizontal_menu_section != null
-    assign horizontal_section_st = horizontal_menu_section.settings
+  comment If not found, try to get from header-group sections
+  endcomment
+  if horizontal_menu_section == null
+    for section_group in section_groups
+      for section_item in section_group.sections
+        if section_item.type == 'header-mega-store'
+          if section_item.settings.mega_menu != blank
+            assign horizontal_menu_section = section_item
+            assign menu_links = section_item.settings.mega_menu.links
+            assign horizontal_section_st = section_item.settings
+            break
+          endif
+        endif
+      endfor
+    endfor
+  endif
+  
+  if horizontal_section_st != null
     assign theme_st = settings
     assign section_width = horizontal_section_st.section_width | default: 'container'
   else
-    assign horizontal_section_st = null
     assign theme_st = settings
     assign section_width = 'container'
   endif
@@ -64,6 +83,7 @@
       <div class="verticalmenu-html">
         <ul class="list-none verticalmenu-list">
           {%- if menu_links != null and menu_links.size > 0 -%}
+            {% comment %}Debug: Found {{ menu_links.size }} menu links{% endcomment %}
             {%- for link in menu_links -%}
               {%- liquid
                 assign last_block = null
@@ -80,22 +100,15 @@
                     endif
                   endfor
                 else
-                  assign link_title_checked = link.title | downcase
-                  for block in section.blocks
-                    assign text = block.settings.text | downcase
-                    if text == link_title_checked
-                      assign last_block = block
-                    endif
-                  endfor
-                  for i in (1..10)
-                    assign icon_placeholder = '[icon_' | append: i | append: ']'
-                    assign icon_setting = 'icon_' | append: i
-                    if link_title contains icon_placeholder and section_st[icon_setting] != blank
-                      assign has_icon = true
-                      assign icon_html = section_st[icon_setting]
-                      assign link_title = link.title | replace: icon_placeholder, ''
-                    endif
-                  endfor
+                  if horizontal_menu_section != null
+                    assign link_title_checked = link.title | downcase
+                    for block in horizontal_menu_section.blocks
+                      assign text = block.settings.text | downcase
+                      if text == link_title_checked
+                        assign last_block = block
+                      endif
+                    endfor
+                  endif
                 endif
               -%}
             {% if last_block != null %}
