@@ -586,11 +586,10 @@ svg.edit-icon {
   }
 }
 
-
 /*=========================
        CSS For Navbar
 ===========================*/
-/*
+
 .desktop-1025-only {
   display: none;
 }
@@ -698,8 +697,36 @@ svg.edit-icon {
   height: 0 !important;
   opacity: 0;
   pointer-events: none;
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease;
 }
 
-*/
+/* Desktop vertical menu overlay and open state */
+@media (min-width: 1025px) {
+  .vertical-menu-overlay-desktop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 12;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+  }
+
+  .vertical-menu-overlay-desktop.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .verticalmenu-desktop.open-vertical {
+    width: 28rem !important;
+    z-index: 13;
+  }
+}
 
 /*================*/
