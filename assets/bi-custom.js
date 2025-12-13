@@ -26,6 +26,7 @@ function initFixedTopbarHeader() {
 }
 
 
+
 function initDesktopMenuToggle() {
   const menuToggle = document.querySelector('.menu-toggle.nav-toggle');
   const headerNav = document.querySelector('.header-bottom__navigation');
@@ -54,10 +55,35 @@ function initDesktopMenuToggle() {
     }
   }
 
+  // The toggle functionality is handled by theme.js via nav-toggle class
+  // We just handle the scroll behavior here
+
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
 
   handleScrollOrResize();
+  
+  // Debug: Log when nav-open is toggled
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        const hasNavOpen = document.documentElement.classList.contains('nav-open');
+        const hasOpenDrawer = document.documentElement.classList.contains('open-drawer');
+        const desktopMenu = document.querySelector('.navigation.desktop-menu, nav.desktop-menu');
+        
+        if (desktopMenu) {
+          console.log('Desktop menu found:', desktopMenu);
+          console.log('nav-open:', hasNavOpen, 'open-drawer:', hasOpenDrawer);
+          console.log('Menu transform:', window.getComputedStyle(desktopMenu).transform);
+        }
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class']
+  });
   
   // Ensure desktop menu close button works
   // The theme.js already handles close-menu, but we ensure it works on desktop
@@ -75,8 +101,18 @@ function initDesktopMenuToggle() {
       }
     }
   });
+  
+  // Debug: Check if desktop menu exists on load
+  setTimeout(() => {
+    const desktopMenu = document.querySelector('.navigation.desktop-menu, nav.desktop-menu');
+    console.log('Desktop menu on load:', desktopMenu);
+    if (desktopMenu) {
+      console.log('Desktop menu classes:', desktopMenu.className);
+      console.log('Desktop menu computed display:', window.getComputedStyle(desktopMenu).display);
+      console.log('Desktop menu computed transform:', window.getComputedStyle(desktopMenu).transform);
+    }
+  }, 1000);
 }
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
