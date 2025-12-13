@@ -1090,7 +1090,7 @@
 
   {% comment %} Desktop Menu Sidebar (duplicate of mobile menu) {% endcomment %}
   <nav
-    class="flex flex-column desktop-menu hidden-1025 block navigation horizontal fixed inset-0 {{ section_st.dropdowns_animation }}"
+    class="flex flex-column desktop-menu block-1025 navigation horizontal fixed inset-0 {{ section_st.dropdowns_animation }}"
     data-action-mobile="{{ section_st.redirect_to_link }}"
     style="
       --hot-cl: {{ section_st.label_color_hot }};--hot-bg-cl: {{ section_st.label_background_hot }};
@@ -1513,7 +1513,7 @@
                   {%- endif -%}
                 </a>
                 {%- if link.links.size > 0 -%}
-                  <open-children-toggle class="inline-flex flex-end align-center pointer ms-5 w-30 h-30 content-center hidden-1025 flex-shrink-0">
+                  <open-children-toggle class="inline-flex flex-end align-center pointer ms-5 w-30 h-30 content-center block-1025 flex-shrink-0">
                     {% if enable_rtl %}
                       <svg class="icon-down" width="6" height="11">
                         <use href="#icon-back" />
@@ -1528,7 +1528,7 @@
               </menu-item>
               {%- if link.links.size > 0 -%}
                 <div class="submenu submenu-horizontal invisible-1025 absolute gradient color-default">
-                  <div class="hidden-1025 grey-bg px-30 border-bottom flex gap-15 align-center justify-between{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}">
+                  <div class="block-1025 grey-bg px-30 border-bottom flex gap-15 align-center justify-between{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}">
                     <back-menu
                       class="py-10 min-h-55 min-h-1025-50 inline-flex gap-20 align-center fs-big-1 heading-style"
                       role="link"
