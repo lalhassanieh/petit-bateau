@@ -58,7 +58,25 @@ function initDesktopMenuToggle() {
   window.addEventListener('resize', handleScrollOrResize);
 
   handleScrollOrResize();
+  
+  // Ensure desktop menu close button works
+  // The theme.js already handles close-menu, but we ensure it works on desktop
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('close-menu')) {
+      const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
+      if (isDesktop) {
+        // The theme.js CloseMenu class already handles this, but we ensure nav-open is removed
+        // This is a backup to ensure desktop menu closes properly
+        setTimeout(() => {
+          if (document.documentElement.classList.contains('nav-open')) {
+            document.documentElement.classList.remove('nav-open', 'open-drawer');
+          }
+        }, 100);
+      }
+    }
+  });
 }
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
