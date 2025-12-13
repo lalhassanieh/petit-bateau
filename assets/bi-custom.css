@@ -590,7 +590,7 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
-
+/*
 .desktop-1025-only {
   display: none;
 }
@@ -698,29 +698,8 @@ svg.edit-icon {
   height: 0 !important;
   opacity: 0;
   pointer-events: none;
-  overflow: hidden;
-  transition: height 0.3s ease, opacity 0.3s ease;
 }
 
-/* Desktop mobile menu when opened via desktop toggle - same as mobile */
-@media (min-width: 1025px) {
-  .nav-open .navigation.mobile {
-    transform: translate(0);
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .navigation.mobile {
-    background: var(--color-background);
-    --menu-mobile-width: 43rem;
-    --show-overlay-bg: rgba(255, 255, 255, 0.9);
-    width: 100%;
-    max-width: var(--menu-mobile-width);
-    overflow: hidden;
-    transform: translateX(-101%);
-    transition: var(--transition-popup);
-    z-index: 12;
-  }
-}
+*/
 
 /*================*/
