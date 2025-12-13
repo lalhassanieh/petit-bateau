@@ -848,7 +848,7 @@ svg.edit-icon {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    flex: 0 0 40px !important;
+    flex: 0 0 35px !important;
     background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
@@ -910,9 +910,9 @@ svg.edit-icon {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 40px !important;
-    height: 40px !important;
-    flex: 0 0 40px !important;
+    width: 35px !important;
+    height: 35px !important;
+    flex: 0 0 35px !important;
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
@@ -927,8 +927,8 @@ svg.edit-icon {
   .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle svg,
   .verticalmenu-desktop .sub-children-menu open-children-toggle svg {
     display: block !important;
-    width: 18px !important;
-    height: 18px !important;
+    width: 15px !important;
+    height: 15px !important;
     fill: #002e5e !important;
     color: #002e5e !important;
   }
@@ -997,11 +997,10 @@ svg.edit-icon {
   .verticalmenu-desktop *{
     max-width: 100% !important;
   }
-@media (min-width: 1025px) {
+
   .verticalmenu-desktop :where(.heading-style) {
-    font-weight: 400 !important; /* or 500/600 as you prefer */
+    font-weight: 400 !important; 
   }
-}
 
 
 }
