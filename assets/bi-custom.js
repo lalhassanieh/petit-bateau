@@ -26,7 +26,6 @@ function initFixedTopbarHeader() {
 }
 
 
-
 function initDesktopMenuToggle() {
   const menuToggle = document.querySelector('.menu-toggle.nav-toggle');
   const headerNav = document.querySelector('.header-bottom__navigation');
@@ -63,7 +62,7 @@ function initDesktopMenuToggle() {
 
   handleScrollOrResize();
   
-  // Debug: Log when nav-open is toggled
+  // Force desktop menu to show when nav-open is active
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
@@ -71,10 +70,18 @@ function initDesktopMenuToggle() {
         const hasOpenDrawer = document.documentElement.classList.contains('open-drawer');
         const desktopMenu = document.querySelector('.navigation.desktop-menu, nav.desktop-menu');
         
-        if (desktopMenu) {
-          console.log('Desktop menu found:', desktopMenu);
-          console.log('nav-open:', hasNavOpen, 'open-drawer:', hasOpenDrawer);
-          console.log('Menu transform:', window.getComputedStyle(desktopMenu).transform);
+        if (desktopMenu && window.innerWidth >= DESKTOP_MIN_WIDTH) {
+          if (hasNavOpen || hasOpenDrawer) {
+            // Force the menu to show
+            desktopMenu.style.transform = 'translateX(0)';
+            desktopMenu.style.webkitTransform = 'translateX(0)';
+            desktopMenu.style.opacity = '1';
+            desktopMenu.style.visibility = 'visible';
+          } else {
+            // Hide the menu
+            desktopMenu.style.transform = 'translateX(-101%)';
+            desktopMenu.style.webkitTransform = 'translateX(-101%)';
+          }
         }
       }
     });
@@ -84,6 +91,28 @@ function initDesktopMenuToggle() {
     attributes: true,
     attributeFilter: ['class']
   });
+  
+  // Also listen for clicks on the toggle button
+  const toggleButton = document.querySelector('.menu-toggle.nav-toggle');
+  if (toggleButton) {
+    toggleButton.addEventListener('click', () => {
+      setTimeout(() => {
+        const desktopMenu = document.querySelector('.navigation.desktop-menu, nav.desktop-menu');
+        const hasNavOpen = document.documentElement.classList.contains('nav-open');
+        if (desktopMenu && window.innerWidth >= DESKTOP_MIN_WIDTH) {
+          if (hasNavOpen) {
+            desktopMenu.style.transform = 'translateX(0)';
+            desktopMenu.style.webkitTransform = 'translateX(0)';
+            desktopMenu.style.opacity = '1';
+            desktopMenu.style.visibility = 'visible';
+          } else {
+            desktopMenu.style.transform = 'translateX(-101%)';
+            desktopMenu.style.webkitTransform = 'translateX(-101%)';
+          }
+        }
+      }, 10);
+    });
+  }
   
   // Ensure desktop menu close button works
   // The theme.js already handles close-menu, but we ensure it works on desktop
