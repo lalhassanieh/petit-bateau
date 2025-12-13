@@ -966,71 +966,34 @@ svg.edit-icon {
     flex: 1 1 auto !important;
     min-width: 0 !important;
   }
-}
 
-/* =========================================================
-   FINAL PATCH: Force submenu list to match main menu styling
-========================================================= */
-@media (min-width: 1025px) {
-
-  /* === FIX submenu list layout (remove grid/columns/extra spacing) === */
-  .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu{
-    display: block !important;
+  /* ---------- LEVEL-2 PANEL: Full sliding panel behavior ---------- */
+  /* Level-2 panel (sub-children-menu) should behave like a full sidebar panel */
+  .verticalmenu-desktop .sub-children-menu {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #fff !important;
+    transform: translateX(100%) !important;
+    transition: transform .35s ease !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 45 !important;
     padding: 0 !important;
     margin: 0 !important;
-    gap: 0 !important;
   }
 
-  .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu > li{
-    display: block !important;
+  /* When opened by JS */
+  .verticalmenu-desktop .sub-children-menu.vm-active {
+    transform: translateX(0) !important;
+  }
+
+  /* Kill old desktop dropdown positioning so it doesn't act like "second column" */
+  .verticalmenu-desktop .dropdown-menu .sub-children-menu {
+    left: 0 !important;
+    top: 0 !important;
     width: 100% !important;
-    border-bottom: 1px solid rgba(0,0,0,.08) !important;
-  }
-
-  /* Make each row like main menu */
-  .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu > li > menu-item{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 18px 22px !important;
-    width: 100% !important;
-    position: relative !important;
-  }
-
-  /* Link text style like main menu */
-  .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu > li > menu-item > a{
-    display: flex !important;
-    align-items: center !important;
-    width: 100% !important;
-    text-decoration: none !important;
-    color: #0a2a43 !important;
-    font-size: 18px !important;
-    font-weight: 700 !important;
-    padding: 0 !important;        /* remove theme padding */
-    margin: 0 !important;
-    min-height: unset !important; /* remove min-h-55 effect */
-    line-height: 1.2 !important;
-  }
-
-  /* Show chevron on desktop for items that have children (it is hidden-1025 in HTML) */
-  .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu > li > menu-item > open-children-toggle.hidden-1025{
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 40px !important;
-    height: 40px !important;
-    flex: 0 0 40px !important;
-    position: static !important;  /* stop absolute full-width overlay */
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu > li > menu-item > open-children-toggle svg{
-    width: 18px !important;
-    height: 18px !important;
-  }
-
-  /* IMPORTANT: prevent the toggle from covering the whole row (your HTML has w-full) */
-  .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu > li > menu-item > open-children-toggle{
-    width: 40px !important;
   }
 }
 
