@@ -63,28 +63,72 @@ function initVerticalMenu() {
     const toggleBtn = document.querySelector(".menu-toggle");
     const desktopMenu = document.querySelector(".verticalmenu-desktop");
     const overlay = document.querySelector(".vertical-menu-overlay-desktop");
+    const DESKTOP_MIN_WIDTH = 1025;
+
+    if (!desktopMenu || !overlay) return;
+
+    function isDesktop() {
+        return window.innerWidth >= DESKTOP_MIN_WIDTH;
+    }
 
     function openMenu() {
+        if (!isDesktop()) return;
+        
         desktopMenu.classList.add("open-vertical");
         overlay.classList.add("visible");
+        document.body.style.overflow = "hidden";
     }
 
     function closeMenu() {
         desktopMenu.classList.remove("open-vertical");
         overlay.classList.remove("visible");
+        document.body.style.overflow = "";
     }
 
-    toggleBtn.addEventListener("click", openMenu);
+    // Open menu on toggle button click (desktop only)
+    if (toggleBtn) {
+        toggleBtn.addEventListener("click", (e) => {
+            if (isDesktop()) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (desktopMenu.classList.contains("open-vertical")) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            }
+        });
+    }
 
-    overlay.addEventListener("click", closeMenu);
+    // Close menu on overlay click
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+            closeMenu();
+        }
+    });
 
+    // Close menu on close button click
     document.addEventListener("click", (e) => {
-        if (e.target.closest(".close-menu")) {
+        if (e.target.closest(".close-menu") && desktopMenu.classList.contains("open-vertical")) {
+            closeMenu();
+        }
+    });
+
+    // Close menu on escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && desktopMenu.classList.contains("open-vertical")) {
+            closeMenu();
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener("resize", () => {
+        if (!isDesktop() && desktopMenu.classList.contains("open-vertical")) {
             closeMenu();
         }
     });
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
     initDesktopMenuToggle();
