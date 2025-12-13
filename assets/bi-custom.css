@@ -970,7 +970,123 @@ svg.edit-icon {
   }
 }
 
+/* =========================================================
+   Desktop vertical menu: make it LOOK like the mobile sidebar
+   (single panel + sliding submenus)
+========================================================= */
 @media (min-width: 1025px) {
+  /* Panel width like mobile */
+  .verticalmenu-desktop {
+    width: var(--menu-mobile-width, 43rem) !important;
+    max-width: var(--menu-mobile-width, 43rem) !important;
+    overflow: hidden !important; /* important for slide panels */
+  }
+
+  /* Show the top blue header like mobile */
+  .verticalmenu-desktop .title-menu-dropdown {
+    display: flex !important;
+    justify-content: space-between;
+    padding: 14px 20px !important;
+    min-height: 56px !important;
+    background: var(--gradient-background, #002e5e) !important;
+    color: #fff !important;
+  }
+
+  .verticalmenu-desktop .title-menu-dropdown .toggle-vertical span {
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+  }
+
+  /* List look like mobile (rows + separators) */
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li {
+    border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+  }
+
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li > menu-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 18px 20px !important;
+    width: 100% !important;
+  }
+
+  .verticalmenu-desktop menu-item > a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    text-decoration: none !important;
+    color: var(--color-heading, #0a2a43) !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+  }
+
+  /* Right chevron click target like mobile */
+  .verticalmenu-desktop menu-item > open-children-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 36px !important;
+  }
+
+  /* ========= IMPORTANT: stop the "2nd column fixed panel" ========= */
+  .verticalmenu-desktop.open-vertical .submenu-vertical__mega,
+  .verticalmenu-desktop.open-vertical .submenu-vertical {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    z-index: 20 !important;
+  }
+
+  /* Submenus slide inside the same panel (mobile style) */
+  .verticalmenu-desktop .submenu-vertical-desktop,
+  .verticalmenu-desktop .sub-children-menu,
+  .verticalmenu-desktop .submenu.submenu-vertical-desktop {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    background: #fff !important;
+    transform: translateX(100%) !important;
+    visibility: hidden !important;
+    opacity: 1 !important;
+    transition: transform .35s ease, visibility .35s ease !important;
+  }
+
+  /* When opened by JS (your theme uses .is-open + submenu…) */
+  .verticalmenu-desktop .is-open + .submenu-vertical-desktop,
+  .verticalmenu-desktop .is-open + .sub-children-menu,
+  .verticalmenu-desktop .is-open + .submenu.submenu-vertical-desktop {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+  }
+
+  /* Back header inside submenu should look like mobile */
+  .verticalmenu-desktop .submenu-vertical-desktop .hidden-1025,
+  .verticalmenu-desktop .submenu.submenu-vertical-desktop .hidden-1025 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 14px 20px !important;
+    border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+  }
+
+  /* Remove "mega menu padding blocks" that make it look desktop-y */
+  .verticalmenu-desktop :is(.dropdown-menu .submenu-vertical-desktop, .dropdown-menu .sub-children-menu) {
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
   /* Force vertical list display - highest priority override using multiple selectors */
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list.inline-flex-1025,
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
