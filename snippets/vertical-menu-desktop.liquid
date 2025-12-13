@@ -52,8 +52,15 @@
   >
     <div class="desktop-menu-content reset-color-on-menu">
       <div class="title-menu-dropdown h-44 w-full align-center hidden" style="--color-background: {{ section_st.background_categories }}">
-        <div class="toggle-vertical inline-flex pointer align-center gap-10">
-          <span>{{ title | default: 'Menu' }}</span>
+        <div class="header-left">
+          <div class="header-back" role="button" aria-label="Back">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <use href="#icon-back"></use>
+            </svg>
+          </div>
+          <div class="toggle-vertical inline-flex pointer align-center gap-10">
+            <span>{{ title | default: 'Menu' }}</span>
+          </div>
         </div>
         <close-menu class="close-menu-header">
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
