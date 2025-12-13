@@ -694,18 +694,7 @@ svg.edit-icon {
     display: none !important;
   }
 }
-@media (min-width: 1025px) {
-  nav.desktop-menu {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-  }
-  nav.mobile {
-    display: none !important;
-  }
-}
+
 @media (min-width: 1025px) {
   /* Override any animation keyframes that might affect visibility */
   .navigation.desktop-menu,
@@ -720,15 +709,7 @@ svg.edit-icon {
     opacity: 1 !important;
   }
   
-  .nav-open .navigation.desktop-menu,
-  .nav-open nav.desktop-menu {
-    transform: translate(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-  }
-  
+  /* Default state: hidden off-canvas */
   .navigation.desktop-menu,
   nav.desktop-menu {
     display: flex !important;
@@ -748,6 +729,20 @@ svg.edit-icon {
     height: 100vh;
     opacity: 1 !important;
     visibility: visible !important;
+  }
+  
+  /* OPEN STATE: Show when nav-open or open-drawer is active */
+  .nav-open .navigation.desktop-menu,
+  .nav-open nav.desktop-menu,
+  .open-drawer .navigation.desktop-menu,
+  .open-drawer nav.desktop-menu,
+  .open-sidebar .navigation.desktop-menu,
+  .open-sidebar nav.desktop-menu {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    -webkit-animation: none !important;
   }
 }
 
