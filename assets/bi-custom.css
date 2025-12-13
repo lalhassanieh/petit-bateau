@@ -921,6 +921,49 @@ svg.edit-icon {
     padding: 0 !important;
     list-style: none !important;
   }
+
+  /* ---------- FORCE CHEVRONS IN SUBMENUS (fix missing icons) ---------- */
+  /* Force toggle to appear inside desktop submenus */
+  .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle,
+  .verticalmenu-desktop .sub-children-menu open-children-toggle{
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    flex: 0 0 40px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    color: #0a2a43 !important; /* same as menu text */
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle svg,
+  .verticalmenu-desktop .sub-children-menu open-children-toggle svg{
+    display: block !important;
+    width: 18px !important;
+    height: 18px !important;
+    fill: currentColor !important;
+  }
+
+  /* Make each submenu row have space for text + icon */
+  .verticalmenu-desktop .submenu-vertical-desktop menu-item,
+  .verticalmenu-desktop .sub-children-menu menu-item{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  /* Keep link from taking 100% and pushing icon away */
+  .verticalmenu-desktop .submenu-vertical-desktop menu-item > a,
+  .verticalmenu-desktop .sub-children-menu menu-item > a{
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
 }
 
 /*================*/
