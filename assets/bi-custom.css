@@ -997,6 +997,11 @@ svg.edit-icon {
   .verticalmenu-desktop *{
     max-width: 100% !important;
   }
+@media (min-width: 1025px) {
+  .verticalmenu-desktop :where(.heading-style) {
+    font-weight: 400 !important; /* or 500/600 as you prefer */
+  }
+}
 
 
 }
