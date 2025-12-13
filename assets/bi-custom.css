@@ -590,6 +590,7 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
+
 .desktop-1025-only {
   display: none;
 }
@@ -769,20 +770,55 @@ svg.edit-icon {
     padding: 0;
     margin: 0;
     list-style: none;
+    display: block !important;
+    visibility: visible !important;
   }
 
   /* Menu items - always show text when sidebar is open */
   .verticalmenu-desktop.open-vertical .menu-icon-first-letter {
-    display: none;
+    display: none !important;
   }
 
   .verticalmenu-desktop.open-vertical .menu-text,
   .verticalmenu-desktop.open-vertical .title-menu-dropdown .toggle-vertical > span,
+  .verticalmenu-desktop.open-vertical open-children-toggle,
+  .verticalmenu-desktop.open-vertical .menu-text {
+    max-width: none !important;
+    width: auto !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
+    visibility: visible !important;
+  }
+
+  /* Override default hidden states - show menu items always when sidebar is open */
+  .verticalmenu-desktop.open-vertical .verticalmenu-list li {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .verticalmenu-desktop.open-vertical .menu-item__first {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .verticalmenu-desktop.open-vertical .nav-link {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Override menu-vertical.css default hidden states */
+  .verticalmenu-desktop.open-vertical .menu-text,
+  .verticalmenu-desktop.open-vertical .title-menu-dropdown .toggle-vertical > span,
   .verticalmenu-desktop.open-vertical open-children-toggle {
-    max-width: none;
-    width: auto;
-    opacity: 1;
-    display: inline-flex;
+    max-width: none !important;
+    width: auto !important;
+    opacity: 1 !important;
+    font-size: var(--body-font-size, 1.4rem) !important;
+    display: inline-flex !important;
+    visibility: visible !important;
   }
 
   .verticalmenu-desktop.open-vertical .menu-item__first {
@@ -792,6 +828,23 @@ svg.edit-icon {
 
   .verticalmenu-desktop.open-vertical .level0 {
     pointer-events: auto;
+  }
+
+  /* Ensure menu list items are visible */
+  .verticalmenu-desktop.open-vertical .verticalmenu-list {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .verticalmenu-desktop.open-vertical .verticalmenu-list li {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .verticalmenu-desktop.open-vertical .verticalmenu-html {
+    display: block !important;
+    visibility: visible !important;
   }
 
   /* Overlay */
@@ -856,6 +909,254 @@ svg.edit-icon {
     height: 1.3rem;
     fill: currentColor;
   }
+
+  /* ============================================
+     NAV-SKIN: Desktop menu skin matching mobile
+     Reuses mobile CSS variables, desktop-only classes
+     ============================================ */
+  
+  /* Base: Reuse mobile background & colors */
+  .nav-skin {
+    background: var(--color-background, #ffffff);
+    color: var(--color-link, #111111);
+  }
+
+  /* Typography: Match mobile font sizes & weights */
+  .nav-skin menu-item a,
+  .nav-skin menu-item span,
+  .nav-skin a {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    font-weight: 500;
+    color: var(--color-link, #111111);
+  }
+
+  .nav-skin menu-item a.heading-style,
+  .nav-skin .heading-style {
+    font-weight: 600;
+    color: var(--color-heading, #111111);
+  }
+
+  /* Level 0 menu items: Match mobile spacing & borders */
+  .nav-skin .verticalmenu-html > ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li {
+    position: relative;
+    list-style: none;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+  }
+
+  .nav-skin .verticalmenu-html > ul > li menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5.5rem;
+    padding: 0 3rem;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li menu-item a {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    text-decoration: none;
+    padding: 1rem 0;
+    min-height: 5.5rem;
+  }
+
+  /* Open children toggle - make it clickable */
+  .nav-skin open-children-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* Icons: Same size & color as mobile */
+  .nav-skin svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: currentColor;
+  }
+
+  .nav-skin svg use {
+    color: var(--color-link, #111111);
+  }
+
+  .nav-skin open-children-toggle svg {
+    width: 0.6rem;
+    height: 1.1rem;
+  }
+
+  /* Submenu: Desktop click behavior (like mobile) */
+  .nav-skin .verticalmenu-html > ul > li > div {
+    position: fixed;
+    left: 43rem;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    min-width: 30rem;
+    max-width: 60rem;
+    z-index: 14;
+    background: var(--color-background, #ffffff);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li.is-open > div {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  /* Nested submenus (sub-children-menu) - also slide in from right */
+  .nav-skin .sub-children-menu {
+    position: fixed;
+    left: calc(43rem + 60rem);
+    top: 0;
+    bottom: 0;
+    width: auto;
+    min-width: 30rem;
+    max-width: 60rem;
+    z-index: 15;
+    background: var(--color-background, #ffffff);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    visibility: hidden;
+  }
+
+  .nav-skin .menu-link.is-open + .sub-children-menu {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  /* Submenu header (back-menu + close-menu container) */
+  .nav-skin .verticalmenu-html > ul > li > div > div:first-child {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+    background: var(--color-background, #ffffff);
+  }
+
+  /* Submenu content area */
+  .nav-skin .verticalmenu-html > ul > li > div > div:last-child {
+    flex: 1;
+    padding: 4rem;
+    overflow-y: auto;
+    background: var(--gradient-background, var(--color-background, #ffffff));
+  }
+
+  /* Back menu & close button styling */
+  .nav-skin back-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 3rem;
+    min-height: 5.5rem;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: var(--color-heading, #111111);
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+    cursor: pointer;
+    background: var(--color-background, #ffffff);
+  }
+
+  .nav-skin back-menu:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .nav-skin back-menu svg {
+    width: 0.6rem;
+    height: 1.1rem;
+    fill: currentColor;
+  }
+
+  .nav-skin close-menu {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 15;
+    width: 4.4rem;
+    height: 4.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+
+  .nav-skin close-menu:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-skin close-menu svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: currentColor;
+  }
+
+  /* Submenu content: Reuse mobile variables */
+  .nav-skin .submenu {
+    background: var(--gradient-background, var(--color-background, #ffffff));
+    color: var(--color-link, #111111);
+  }
+
+  .nav-skin .submenu * {
+    color: var(--color-link, #111111);
+  }
+
+  .nav-skin .submenu .heading-style {
+    color: var(--color-heading, #111111);
+  }
+
+  /* Label colors: Reuse mobile label variables */
+  .nav-skin .menu_label.hot {
+    color: var(--hot-cl, #ff0000);
+    background: var(--hot-bg-cl, #fff);
+  }
+
+  .nav-skin .menu_label.new {
+    color: var(--new-cl, #00ff00);
+    background: var(--new-bg-cl, #fff);
+  }
+
+  .nav-skin .menu_label.sale {
+    color: var(--sale-cl, #ff0000);
+    background: var(--sale-bg-cl, #fff);
+  }
+
+  .nav-skin .menu_label.popular {
+    color: var(--popular-cl, #0000ff);
+    background: var(--popular-bg-cl, #fff);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -868,4 +1169,5 @@ svg.edit-icon {
     display: none !important;
   }
 }
+
 /*================*/
