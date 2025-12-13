@@ -111,10 +111,6 @@
                   <a href="{{ link.url }}">
                     {% if has_icon %}
                       {{ icon_html }}
-                    {% else %}
-                      <span>
-                        {{ link_title | strip | first | upcase }}
-                      </span>
                     {% endif %}
                     <span>{{ link_title }}</span>  
                   </a>
@@ -260,10 +256,6 @@
                   <a href="{{ link.url }}">
                     {% if has_icon %}
                       {{ icon_html }}
-                    {% else %}
-                      <span>
-                        {{ link_title | strip | first | upcase }}
-                      </span>
                     {% endif %}
                     <span>{{ link_title }}</span>  
                   </a>
