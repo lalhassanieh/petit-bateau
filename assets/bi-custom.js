@@ -54,9 +54,6 @@ function initDesktopMenuToggle() {
     }
   }
 
-  // The toggle functionality is handled by theme.js via nav-toggle class
-  // We just handle the scroll behavior here
-
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
 
