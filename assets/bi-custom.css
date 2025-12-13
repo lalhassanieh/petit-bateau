@@ -894,6 +894,15 @@ svg.edit-icon {
     pointer-events: none; /* Changed from auto to none - overlay won't close menu */
   }
 
+  /* Ensure overlay is completely hidden when menu is closed */
+  .verticalmenu-desktop:not(.open-vertical) ~ .vertical-menu-overlay-desktop,
+  .vertical-menu-overlay-desktop:not(.visible) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+  }
+
   /* Submenu positioning when sidebar is open */
   .verticalmenu-desktop.open-vertical .submenu-vertical__mega,
   .verticalmenu-desktop.open-vertical .submenu-vertical {
@@ -1067,6 +1076,27 @@ svg.edit-icon {
   /* Ensure no hover behavior - only click */
   .nav-skin .verticalmenu-html > ul > li:not(.is-open) > div {
     opacity: 0;
+    transform: translateX(100%) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Prevent any hover from opening submenus - STRICT */
+  .nav-skin .verticalmenu-html > ul > li:hover > div:not(.is-open),
+  .nav-skin .verticalmenu-html > ul > li:not(.is-open):hover > div {
+    transform: translateX(100%) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+
+  /* Only allow submenu to show when is-open class is present */
+  .nav-skin .verticalmenu-html > ul > li > div {
+    display: none;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li.is-open > div {
+    display: flex;
   }
 
   /* Nested submenus (sub-children-menu) - also slide in from right */
