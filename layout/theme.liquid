@@ -213,7 +213,18 @@
       sections 'header-group'
     -%}
 
-    {%- render 'vertical-menu-desktop' -%}
+    {%- comment -%}Get header-mega-store section to pass to vertical menu{%- endcomment -%}
+    {%- liquid
+      assign header_section_for_menu = null
+      for section_item in sections
+        if section_item.type == 'header-mega-store'
+          assign header_section_for_menu = section_item
+          break
+        endif
+      endfor
+    -%}
+    {%- render 'vertical-menu-desktop', horizontal_menu_section: header_section_for_menu -%}
+
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
