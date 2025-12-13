@@ -922,10 +922,11 @@ svg.edit-icon {
     list-style: none !important;
   }
 
-  /* ---------- FORCE CHEVRONS IN SUBMENUS (fix missing icons) ---------- */
-  /* Force toggle to appear inside desktop submenus */
-  .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle,
-  .verticalmenu-desktop .sub-children-menu open-children-toggle{
+  /* ---------- FORCE CHEVRONS IN SUBMENUS (override hidden-1025) ---------- */
+  /* 1) SHOW the chevron/toggle in submenu rows (it has hidden-1025) */
+  .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle.hidden-1025,
+  .verticalmenu-desktop .sub-children-menu open-children-toggle.hidden-1025,
+  .verticalmenu-desktop .subchildmenu open-children-toggle.hidden-1025 {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -935,32 +936,33 @@ svg.edit-icon {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
-    color: #0a2a43 !important; /* same as menu text */
+    position: static !important;       /* stop absolute full-width overlay */
+    inset: auto !important;
+    right: auto !important;
     background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
   }
 
   .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle svg,
-  .verticalmenu-desktop .sub-children-menu open-children-toggle svg{
+  .verticalmenu-desktop .sub-children-menu open-children-toggle svg {
     display: block !important;
     width: 18px !important;
     height: 18px !important;
-    fill: currentColor !important;
+    fill: #002e5e !important;
+    color: #002e5e !important;
   }
 
-  /* Make each submenu row have space for text + icon */
-  .verticalmenu-desktop .submenu-vertical-desktop menu-item,
-  .verticalmenu-desktop .sub-children-menu menu-item{
+  /* 2) Make the row layout like the main menu */
+  .verticalmenu-desktop .subchildmenu > li > menu-item {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     width: 100% !important;
   }
 
-  /* Keep link from taking 100% and pushing icon away */
-  .verticalmenu-desktop .submenu-vertical-desktop menu-item > a,
-  .verticalmenu-desktop .sub-children-menu menu-item > a{
+  /* Let the link take the remaining space but NOT cover the toggle */
+  .verticalmenu-desktop .subchildmenu > li > menu-item > a {
     flex: 1 1 auto !important;
     min-width: 0 !important;
   }
