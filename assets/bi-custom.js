@@ -67,6 +67,7 @@ function initVerticalMenu() {
 
     if (!desktopMenu || !overlay) return;
 
+    // Debug: Log which method was used to load the menu
     const methodUsed = desktopMenu?.getAttribute('data-menu-method');
     const menuFound = desktopMenu?.getAttribute('data-menu-found') === 'true';
     if (methodUsed) {
@@ -86,20 +87,26 @@ function initVerticalMenu() {
     }
 
     function closeMenu() {
+        // Close all submenus first
         const openSubmenus = desktopMenu.querySelectorAll('.is-open');
         openSubmenus.forEach(item => item.classList.remove('is-open'));
         
+        // Remove menu open state
         desktopMenu.classList.remove("open-vertical");
         
+        // Completely hide overlay
         overlay.classList.remove("visible");
         
+        // Restore body scroll immediately
         document.body.style.overflow = "";
         document.body.style.position = "";
         document.documentElement.style.overflow = "";
         
+        // Force a reflow to ensure styles are applied
         void desktopMenu.offsetHeight;
     }
 
+    // Open menu on toggle button click (desktop only)
     if (toggleBtn) {
         toggleBtn.addEventListener("click", (e) => {
             if (isDesktop()) {
@@ -115,7 +122,9 @@ function initVerticalMenu() {
         });
     }
 
+    // Close menu on close button click (both header close and submenu close)
     desktopMenu.addEventListener("click", (e) => {
+        // Check if click is on close-menu element or its children (SVG, use, etc.)
         const closeBtn = e.target.closest("close-menu");
         if (closeBtn && desktopMenu.classList.contains("open-vertical")) {
             e.preventDefault();
@@ -125,6 +134,7 @@ function initVerticalMenu() {
         }
     });
 
+    // Close menu on overlay click
     overlay.addEventListener("click", (e) => {
         if (desktopMenu.classList.contains("open-vertical")) {
             e.preventDefault();
@@ -133,20 +143,26 @@ function initVerticalMenu() {
         }
     });
 
+    // Close menu on escape key
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && desktopMenu.classList.contains("open-vertical")) {
             closeMenu();
         }
     });
 
+    // Handle window resize
     window.addEventListener("resize", () => {
         if (!isDesktop() && desktopMenu.classList.contains("open-vertical")) {
             closeMenu();
         }
     });
 
+    // ============================================
+    // Submenu navigation (click-based like mobile)
+    // ============================================
     
     function openSubmenu(menuItem) {
+        // Close all other submenus at the same level
         const parent = menuItem.parentElement;
         if (parent) {
             const siblings = parent.querySelectorAll('> li');
@@ -157,26 +173,32 @@ function initVerticalMenu() {
             });
         }
         
+        // Open the clicked submenu
         menuItem.classList.add('is-open');
     }
 
     function closeSubmenu(menuItem) {
+        // Close this submenu and all nested submenus
         const nestedOpen = menuItem.querySelectorAll('.is-open');
         nestedOpen.forEach(item => item.classList.remove('is-open'));
         menuItem.classList.remove('is-open');
     }
 
     function goBack() {
+        // Find the deepest open submenu and close it
         const allOpen = desktopMenu.querySelectorAll('.is-open');
         if (allOpen.length === 0) return;
         
+        // Get the last one (deepest)
         const deepest = Array.from(allOpen).pop();
         closeSubmenu(deepest);
     }
 
+    // Handle clicks on menu items with children
     desktopMenu.addEventListener("click", (e) => {
         if (!isDesktop() || !desktopMenu.classList.contains("open-vertical")) return;
 
+        // Handle back button clicks
         const clickedBack = e.target.closest('back-menu');
         if (clickedBack) {
             e.preventDefault();
@@ -185,12 +207,15 @@ function initVerticalMenu() {
             return;
         }
 
+        // Handle nested submenu items (sub-children-menu)
         const nestedMenuItem = e.target.closest('.menu-link');
         if (nestedMenuItem) {
+            // Fix: Use nextElementSibling instead of invalid querySelector
             const next = nestedMenuItem.nextElementSibling;
             const hasNestedSubmenu = next && next.classList.contains('sub-children-menu');
             const clickedNestedToggle = e.target.closest('open-children-toggle');
             
+            // Only chevron opens nested submenu
             if (hasNestedSubmenu && clickedNestedToggle) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -198,6 +223,7 @@ function initVerticalMenu() {
                 if (nestedMenuItem.classList.contains('is-open')) {
                     nestedMenuItem.classList.remove('is-open');
                 } else {
+                    // Close other nested items at same level
                     const parent = nestedMenuItem.parentElement;
                     if (parent) {
                         parent.querySelectorAll('.menu-link.is-open').forEach(item => {
@@ -211,20 +237,25 @@ function initVerticalMenu() {
                 return;
             }
             
+            // Allow normal navigation on nested links
             if (e.target.closest('.menu-link a')) {
+                // do nothing → browser navigates normally
                 return;
             }
         }
 
+        // Handle top-level menu items
         const menuItem = e.target.closest('.verticalmenu-html > ul > li');
         if (!menuItem) return;
 
         const hasSubmenu = menuItem.querySelector('> div');
         if (!hasSubmenu) return;
 
+        // Check if click is on open-children-toggle (chevron)
         const clickedToggle = e.target.closest('open-children-toggle');
         const clickedLink = e.target.closest('menu-item a');
 
+        // ONLY chevron opens submenu
         if (clickedToggle) {
             e.preventDefault();
             e.stopPropagation();
@@ -237,11 +268,14 @@ function initVerticalMenu() {
             return;
         }
 
+        // Allow normal navigation on <a> links
         if (clickedLink) {
+            // do nothing → browser navigates normally
             return;
         }
     });
 
+    // Safety net: Sync overlay/body state if open-vertical class is removed by any script
     const syncState = () => {
         const isOpen = desktopMenu.classList.contains('open-vertical');
         overlay.classList.toggle('visible', isOpen);
@@ -254,81 +288,15 @@ function initVerticalMenu() {
         }
     };
 
+    // Watch for class changes on desktopMenu
     new MutationObserver(syncState).observe(desktopMenu, { 
         attributes: true, 
         attributeFilter: ['class'] 
     });
     
+    // Initial sync
     syncState();
 }
-
-function initVerticalMenuHeaderController() {
-    const menu = document.querySelector(".verticalmenu-desktop");
-    if (!menu) return;
-
-    const titleSpan = menu.querySelector(".title-menu-dropdown .toggle-vertical span");
-    const backBtn = menu.querySelector(".title-menu-dropdown .header-back");
-    const closeBtn = menu.querySelector(".title-menu-dropdown .close-menu-header");
-    const rootTitle = (menu.getAttribute("data-title") || "Menu").trim();
-    const titleStack = [rootTitle];
-
-    function setHeader(title) {
-        if (titleSpan) titleSpan.textContent = title || rootTitle;
-        menu.classList.toggle("is-sub-open", titleStack.length > 1);
-    }
-
-    function openLevel(li, title) {
-        const parentUL = li.parentElement;
-        parentUL?.querySelectorAll(":scope > li.is-open").forEach(x => {
-            if (x !== li) x.classList.remove("is-open");
-        });
-
-        li.classList.add("is-open");
-        titleStack.push(title);
-        setHeader(title);
-    }
-
-    function goBack() {
-        if (titleStack.length <= 1) return;
-
-        const openItems = menu.querySelectorAll("li.is-open");
-        const last = openItems[openItems.length - 1];
-        if (last) last.classList.remove("is-open");
-
-        titleStack.pop();
-        setHeader(titleStack[titleStack.length - 1]);
-    }
-
-    menu.addEventListener("click", (e) => {
-        const toggle = e.target.closest("open-children-toggle");
-        if (!toggle) return;
-
-        const li = toggle.closest("li");
-        const a = li?.querySelector(":scope > menu-item > a span");
-        const title = (a?.textContent || rootTitle).trim();
-
-        if (li) openLevel(li, title);
-        e.preventDefault();
-        e.stopPropagation();
-    });
-
-    backBtn?.addEventListener("click", (e) => {
-        e.preventDefault();
-        goBack();
-    });
-
-    closeBtn?.addEventListener("click", () => {
-        menu.querySelectorAll("li.is-open").forEach(li => li.classList.remove("is-open"));
-        titleStack.length = 1;
-        setHeader(rootTitle);
-
-        menu.classList.remove("open-vertical");
-        document.querySelector(".vertical-menu-overlay-desktop")?.classList.remove("visible");
-    });
-
-    setHeader(rootTitle);
-}
-
 
 document.addEventListener("DOMContentLoaded", () => {
     initDesktopMenuToggle();
@@ -337,3 +305,79 @@ document.addEventListener("DOMContentLoaded", () => {
     initVerticalMenuHeaderController();
 });
 
+// Desktop vertical menu header controller (mobile-like behavior)
+function initVerticalMenuHeaderController() {
+  const menu = document.querySelector(".verticalmenu-desktop");
+  if (!menu) return;
+
+  const titleSpan = menu.querySelector(".title-menu-dropdown .toggle-vertical span");
+  const backBtn   = menu.querySelector(".title-menu-dropdown .header-back");
+  const closeBtn  = menu.querySelector(".title-menu-dropdown .close-menu-header");
+  const rootTitle = (menu.getAttribute("data-title") || "Menu").trim();
+
+  // stack holds actual opened LI elements + their titles
+  const stack = [{ li: null, title: rootTitle }];
+
+  function setHeader(title) {
+    if (titleSpan) titleSpan.textContent = title || rootTitle;
+    // Back appears only when inside submenu
+    menu.classList.toggle("is-sub-open", stack.length > 1);
+  }
+
+  function openLevel(li, title) {
+    // close siblings at same level (mobile behavior)
+    const parentUL = li.parentElement;
+    parentUL?.querySelectorAll(":scope > li.is-open").forEach(x => {
+      if (x !== li) x.classList.remove("is-open");
+    });
+
+    li.classList.add("is-open");
+    stack.push({ li, title });
+    setHeader(title);
+  }
+
+  function goBack() {
+    if (stack.length <= 1) return;
+
+    // close the currently opened submenu (real UI back)
+    const current = stack.pop();
+    current.li?.classList.remove("is-open");
+
+    // restore previous title (and previous menu is now visible automatically)
+    setHeader(stack[stack.length - 1].title);
+  }
+
+  // Chevron => open submenu + push to stack
+  menu.addEventListener("click", (e) => {
+    const toggle = e.target.closest("open-children-toggle");
+    if (!toggle) return;
+
+    const li = toggle.closest("li");
+    const span = li?.querySelector(":scope > menu-item > a span");
+    const title = (span?.textContent || rootTitle).trim();
+
+    if (li) openLevel(li, title);
+
+    e.preventDefault();
+    e.stopPropagation();
+  });
+
+  // Back button
+  backBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    goBack();
+  });
+
+  // Close button => reset fully
+  closeBtn?.addEventListener("click", () => {
+    menu.querySelectorAll("li.is-open").forEach(li => li.classList.remove("is-open"));
+    stack.length = 1;
+    setHeader(rootTitle);
+
+    // close sidebar too if needed
+    menu.classList.remove("open-vertical");
+    document.querySelector(".vertical-menu-overlay-desktop")?.classList.remove("visible");
+  });
+
+  setHeader(rootTitle);
+}
