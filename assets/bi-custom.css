@@ -715,182 +715,211 @@ svg.edit-icon {
 
 
 /* =========================================================
-   DESKTOP VERTICAL MENU = MOBILE SIDEBAR LOOK (CLEAN)
-   Keep ONLY this for desktop (1025+)
+   DESKTOP VERTICAL MENU = MOBILE SIDEBAR LOOK (CLEAN FINAL)
+   Put this at the END of the file (and remove older duplicates)
 ========================================================= */
 @media (min-width: 1025px) {
 
-  /* Sidebar container */
+  /* ---------- PANEL + OVERLAY ---------- */
   .verticalmenu-desktop{
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 43rem;
-    max-width: 43rem;
-    z-index: 9999;
+    top: 0; left: 0; bottom: 0;
+    width: 43rem; max-width: 43rem;
     background: #fff;
+    z-index: 9999;
     transform: translateX(-100%);
     transition: transform .35s ease;
-    overflow: hidden; /* important: sliding panels */
-    box-shadow: 2px 0 12px rgba(0,0,0,.12);
+    box-shadow: 2px 0 16px rgba(0,0,0,.18);
+    overflow: hidden; /* crucial: sliding panels */
   }
   .verticalmenu-desktop.open-vertical{ transform: translateX(0); }
 
-  /* Overlay */
   .vertical-menu-overlay-desktop{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,.5);
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.55);
     z-index: 9998;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: .25s ease;
+    opacity: 0; visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
   }
   .vertical-menu-overlay-desktop.visible{
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    opacity: 1; visibility: visible;
   }
 
-  /* Main header (blue) */
+  /* ---------- HEADER (BLUE) ---------- */
   .verticalmenu-desktop .title-menu-dropdown{
     display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
+    align-items: center;
+    justify-content: space-between;
     gap: 12px;
-    padding: 16px 22px !important;
+    height: 56px;
+    padding: 0 20px !important;
     background: #002e5e !important;
     color: #fff !important;
-    min-height: 56px;
+    border-bottom: 1px solid rgba(255,255,255,.12);
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 30;
   }
+
   .verticalmenu-desktop .title-menu-dropdown .toggle-vertical span{
-    color:#fff !important;
-    font-size:18px !important;
-    font-weight:700 !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 28rem;
   }
 
-  /* Header left group (Back + Title) */
-  .verticalmenu-desktop .title-menu-dropdown .header-left {
-    display: flex !important;
-    align-items: center !important;
-    gap: 14px !important;
-    min-width: 0;
-  }
-
-  /* Back button in header (shown when submenu opened) */
-  .verticalmenu-desktop .title-menu-dropdown .header-back{
-    width:36px; height:36px;
-    display:none;
-    align-items:center; justify-content:center;
-    border-radius:50%;
-    cursor:pointer;
-  }
-  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .header-back{ display:flex; }
-  .verticalmenu-desktop .title-menu-dropdown .header-back:hover{
-    background: rgba(255,255,255,.14);
-  }
-
-  /* Close button */
   .verticalmenu-desktop .title-menu-dropdown .close-menu-header{
-    width:36px; height:36px;
-    display:flex; align-items:center; justify-content:center;
-    border-radius:50%;
-    cursor:pointer;
+    width: 38px; height: 38px;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    border-radius: 999px;
+    cursor: pointer;
   }
   .verticalmenu-desktop .title-menu-dropdown .close-menu-header:hover{
     background: rgba(255,255,255,.14);
   }
-  .verticalmenu-desktop .title-menu-dropdown svg{
-    fill:#fff !important;
-    color:#fff !important;
+  .verticalmenu-desktop .title-menu-dropdown .close-menu-header svg{
+    fill: #fff !important;
+    color: #fff !important;
   }
 
-  /* UL must be vertical */
+  /* JS will toggle this class when inside submenu */
+  .verticalmenu-desktop .title-menu-dropdown .header-back{
+    width: 38px; height: 38px;
+    display: none;
+    align-items: center; justify-content: center;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .header-back{
+    display: inline-flex;
+  }
+  .verticalmenu-desktop .title-menu-dropdown .header-back:hover{
+    background: rgba(255,255,255,.14);
+  }
+  .verticalmenu-desktop .title-menu-dropdown .header-back svg{
+    fill: #fff !important;
+    color: #fff !important;
+  }
+
+  /* ---------- CONTENT AREA (below header) ---------- */
+  .verticalmenu-desktop .navigation.vertical,
+  .verticalmenu-desktop .desktop-menu-content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .verticalmenu-desktop .verticalmenu-html{
+    position: relative;
+    flex: 1;
+    overflow: hidden; /* panels slide inside here */
+    background: #fff;
+  }
+
+  /* Make the UL vertical (override theme utilities) */
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list{
-    display:block !important;
-    margin:0 !important;
-    padding:0 !important;
-    list-style:none !important;
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
   }
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li{
-    display:block !important;
-    border-bottom:1px solid rgba(0,0,0,.08);
+    display: block !important;
+    width: 100% !important;
   }
 
-  /* Row styling like mobile */
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li > menu-item{
-    display:flex !important;
-    align-items:center !important;
-    justify-content:space-between !important;
-    padding:18px 22px !important;
-    width:100%;
-  }
-  .verticalmenu-desktop .verticalmenu-html menu-item > a{
-    display:flex !important;
-    align-items:center !important;
-    width:100% !important;
-    text-decoration:none !important;
-    color:#0a2a43 !important;
-    font-size:18px !important;
-    font-weight:700 !important;
+  /* ---------- ROW STYLE (main + submenu) ---------- */
+  .verticalmenu-desktop :is(ul.horizontal-list > li, .subchildmenu > li){
+    border-bottom: 1px solid rgba(0,0,0,.08);
   }
 
-  /* Chevron target */
-  .verticalmenu-desktop .verticalmenu-html menu-item > open-children-toggle{
-    width:40px; height:40px;
-    display:inline-flex !important;
-    align-items:center; justify-content:center;
-    flex:0 0 40px;
-  }
-  .verticalmenu-desktop .verticalmenu-html menu-item > open-children-toggle svg{
-    width:18px; height:18px;
+  .verticalmenu-desktop :is(ul.horizontal-list > li > menu-item, .subchildmenu > li > menu-item){
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 18px 20px !important;
   }
 
-  /* === Sliding panels (submenus) === */
+  /* Link text */
+  .verticalmenu-desktop :is(menu-item > a, menu-item > a > span){
+    color: #0a2a43 !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+  }
+
+  /* Chevron button (remove your blue square issue) */
+  .verticalmenu-desktop menu-item > open-children-toggle{
+    width: 40px !important;
+    height: 40px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 40px !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .verticalmenu-desktop menu-item > open-children-toggle svg{
+    width: 16px !important;
+    height: 16px !important;
+    fill: #002e5e !important;
+    color: #002e5e !important;
+  }
+
+  /* ---------- SUBMENU PANELS: FULL WIDTH SLIDE (NOT partial) ---------- */
+  /* remove "desktop dropdown column" behavior completely */
+  .verticalmenu-desktop .submenu-vertical__mega,
+  .verticalmenu-desktop .submenu-vertical{
+    position: static !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    box-shadow: none !important;
+  }
+
+  /* the panel itself */
   .verticalmenu-desktop .submenu-vertical-desktop,
   .verticalmenu-desktop .sub-children-menu{
-    position:absolute !important;
-    inset:0 !important;
-    width:100% !important;
-    height:100% !important;
-    background:#fff !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #fff !important;
     transform: translateX(100%) !important;
     transition: transform .35s ease !important;
-    z-index:40 !important;
-    padding:0 !important;
-    margin:0 !important;
+    z-index: 20 !important;
+    overflow-y: auto !important;
+    padding: 0 !important;
   }
 
-  /* Open state: your JS adds .visible on submenu */
+  /* OPEN states (cover all variants your theme uses) */
   .verticalmenu-desktop .submenu-vertical-desktop.visible,
-  .verticalmenu-desktop .sub-children-menu.visible{
+  .verticalmenu-desktop .sub-children-menu.visible,
+  .verticalmenu-desktop li.is-open > .submenu-vertical-desktop,
+  .verticalmenu-desktop li.is-open > .sub-children-menu,
+  .verticalmenu-desktop .is-open + .submenu-vertical-desktop,
+  .verticalmenu-desktop .is-open + .sub-children-menu{
     transform: translateX(0) !important;
   }
 
-  /* Prevent desktop dropdown behavior */
-  .verticalmenu-desktop .dropdown-menu .sub-children-menu{
-    left:0 !important;
-    top:0 !important;
-    width:100% !important;
-    padding:0 !important;
-  }
-
-  /* Hide internal grey submenu header (we use the top blue header only) */
+  /* Hide the internal grey header inside submenu (we use the main blue header with dynamic title/back) */
   .verticalmenu-desktop .submenu-vertical-desktop .hidden-1025,
   .verticalmenu-desktop .sub-children-menu .hidden-1025{
-    display:none !important;
+    display: none !important;
+  }
+
+  /* Ensure submenu lists are stacked like main */
+  .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu,
+  .verticalmenu-desktop .sub-children-menu ul{
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
   }
 }
 
