@@ -761,7 +761,7 @@ svg.edit-icon {
   .verticalmenu-desktop .title-menu-dropdown .toggle-vertical span{
     color: #fff !important;
     font-size: 18px !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -843,8 +843,8 @@ svg.edit-icon {
   }
 
   .verticalmenu-desktop menu-item > open-children-toggle{
-    width: 40px !important;
-    height: 40px !important;
+    width: 35px !important;
+    height: 35px !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -854,8 +854,8 @@ svg.edit-icon {
     box-shadow: none !important;
   }
   .verticalmenu-desktop menu-item > open-children-toggle svg{
-    width: 16px !important;
-    height: 16px !important;
+    width: 15px !important;
+    height: 15px !important;
     fill: #002e5e !important;
     color: #002e5e !important;
   }
