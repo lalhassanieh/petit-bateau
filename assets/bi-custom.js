@@ -91,19 +91,9 @@ function initVerticalMenu() {
         const openSubmenus = desktopMenu.querySelectorAll('.is-open');
         openSubmenus.forEach(item => item.classList.remove('is-open'));
         
-        // Remove menu open state
         desktopMenu.classList.remove("open-vertical");
-        
-        // Completely hide overlay
         overlay.classList.remove("visible");
-        
-        // Restore body scroll immediately
         document.body.style.overflow = "";
-        document.body.style.position = "";
-        document.documentElement.style.overflow = "";
-        
-        // Force a reflow to ensure styles are applied
-        void desktopMenu.offsetHeight;
     }
 
     // Open menu on toggle button click (desktop only)
