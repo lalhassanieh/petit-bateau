@@ -997,6 +997,11 @@ svg.edit-icon {
   .verticalmenu-desktop *{
     max-width: 100% !important;
   }
+
+  .navigation .submenu > div.grey-bg {
+    background-color: #f5f5f5;
+  }
+
 }
 
 /*================*/
