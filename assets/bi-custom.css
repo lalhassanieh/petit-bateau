@@ -969,7 +969,9 @@ svg.edit-icon {
 
   /* ---------- LEVEL-2 PANEL: Full sliding panel behavior ---------- */
   /* Level-2 panel (sub-children-menu) should behave like a full sidebar panel */
-  .verticalmenu-desktop .sub-children-menu {
+  /* Override static-1025 class to force absolute positioning */
+  .verticalmenu-desktop .sub-children-menu,
+  .verticalmenu-desktop .sub-children-menu.static-1025 {
     position: absolute !important;
     inset: 0 !important;
     width: 100% !important;
@@ -982,6 +984,10 @@ svg.edit-icon {
     z-index: 45 !important;
     padding: 0 !important;
     margin: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
   }
 
   /* When opened by JS */
