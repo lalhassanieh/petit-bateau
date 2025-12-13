@@ -702,6 +702,12 @@ svg.edit-icon {
 }
 
 /* Desktop menu sidebar when opened via desktop toggle */
+@media (max-width: 1024px) {
+  .navigation.desktop-menu {
+    display: none !important;
+  }
+}
+
 @media (min-width: 1025px) {
   .nav-open .navigation.desktop-menu {
     transform: translate(0);
@@ -710,6 +716,7 @@ svg.edit-icon {
   }
   
   .navigation.desktop-menu {
+    display: flex;
     background: var(--color-background);
     --menu-mobile-width: 43rem;
     --show-overlay-bg: rgba(255, 255, 255, 0.9);
@@ -717,6 +724,8 @@ svg.edit-icon {
     max-width: var(--menu-mobile-width);
     overflow: hidden;
     transform: translateX(-101%);
+    opacity: 0;
+    visibility: hidden;
     transition: var(--transition-popup);
     z-index: 12;
   }
