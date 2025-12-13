@@ -57,8 +57,8 @@
         </div>
       </div>
       <div class="verticalmenu-html">
-        <ul class="list-none verticalmenu-list">
-          {%- if menu_links != null -%}
+        <ul>
+          {%- if menu_links != null and menu_links.size > 0 -%}
             {%- for link in menu_links -%}
               {%- liquid
                 assign last_block = null
@@ -75,22 +75,15 @@
                     endif
                   endfor
                 else
-                  assign link_title_checked = link.title | downcase
-                  for block in section.blocks
-                    assign text = block.settings.text | downcase
-                    if text == link_title_checked
-                      assign last_block = block
-                    endif
-                  endfor
-                  for i in (1..10)
-                    assign icon_placeholder = '[icon_' | append: i | append: ']'
-                    assign icon_setting = 'icon_' | append: i
-                    if link_title contains icon_placeholder and section_st[icon_setting] != blank
-                      assign has_icon = true
-                      assign icon_html = section_st[icon_setting]
-                      assign link_title = link.title | replace: icon_placeholder, ''
-                    endif
-                  endfor
+                  if horizontal_menu_section != null
+                    assign link_title_checked = link.title | downcase
+                    for block in horizontal_menu_section.blocks
+                      assign text = block.settings.text | downcase
+                      if text == link_title_checked
+                        assign last_block = block
+                      endif
+                    endfor
+                  endif
                 endif
               -%}
             {% if last_block != null %}
@@ -114,42 +107,32 @@
                   -%}
               {%- endcase -%}
               {%- capture menu_level_0 -%}
-                <menu-item class="menu-item__first relative flex align-center flex-1">
-                  <a class="no-underline flex align-center nav-link" href="{{ link.url }}">
+                <menu-item>
+                  <a href="{{ link.url }}">
                     {% if has_icon %}
                       {{ icon_html }}
                     {% else %}
-                      <span class="menu-icon-first-letter flex-1 text-center">
+                      <span>
                         {{ link_title | strip | first | upcase }}
                       </span>
                     {% endif %}
-                    <span class="menu-text inline-flex">{{ link_title }}</span>  
+                    <span>{{ link_title }}</span>  
                   </a>
                   {%- if link.links.size > 0 -%}
-                    <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0{% else %} touch-target-mb{% endif %}">
-                      <svg class="icon-down hidden no-hidden" width="12" height="8">
+                    <open-children-toggle>
+                      <svg width="12" height="8">
                         <use href="#icon-next"></use>
                       </svg>
                     </open-children-toggle>
                   {%- endif -%}
                 </menu-item>
               {%- endcapture -%}
-              <li
-                {{ block.shopify_attributes }}
-                class="level0 relative{% if link.links.size or has_content %} menu-parent menu-parent__vertical mega-menu{% else %} single{% endif %}"
-                {{ block.shopify_attributes }}
-              >
+              <li>
                 {{ menu_level_0 }}
                 {%- if link.links.size > 0 or has_content -%}
-                  <div
-                    class="custom-scrollbar submenu submenu-vertical__mega absolute gradient p-0 mega-menu-custom-width overflow-x-hidden"
-                    style="--mega_custom_width: {{ mega_custom_width }}px"
-                  >
-                    <div class="grey-bg px-30 border-bottom flex gap-15 align-center justify-between{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}">
-                      <back-menu
-                        class="py-10 min-h-55 inline-flex gap-20 align-center fs-big-1 heading-style"
-                        role="link"
-                      >
+                  <div style="--mega_custom_width: {{ mega_custom_width }}px">
+                    <div>
+                      <back-menu role="link">
                         {% if enable_rtl %}
                           <svg width="6" height="11" fill="none">
                             <use href="#icon-next" />
@@ -159,7 +142,7 @@
                             <use href="#icon-back" />
                           </svg>
                         {% endif %}
-                        <div class="flex align-center gap-10">
+                        <div>
                           {% if has_icon %}
                             {{ icon_html }}
                           {% endif %}
@@ -168,37 +151,28 @@
                           </span>
                         </div>
                       </back-menu>
-                      <close-menu class="close-menu lh-1 ms-10">
+                      <close-menu>
                         <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                           <use href="#icon-close" />
                         </svg>
                       </close-menu>
                     </div>
-                    <div class="{% if full_width %}{% if section_width == 'container' %}container{% else %}fluid_container{% endif %}{% else %}stretch_width{% endif %}">
+                    <div>
                       {%- case last_block.type -%}
                         {%- when 'menu_promotion' -%}
                           {% assign banner_count = 0 %}
                           {%- if block_st.promotion_image_1 != blank -%}
                             {% assign banner_count = banner_count | plus: 1 %}
                           {%- endif -%}
-                          <div
-                            class="vertical-block__promotion promotion-{{ block_st.promotion_style }} flex flex-column gap"
-                            style="--col-mega-width: {% if block_st.promotion_style == 'horizontal' %}{{ block_st.promotion_image_width }}{% else %}0{% endif %}%; --col-gap: 30px"
-                          >
+                          <div style="--col-mega-width: {% if block_st.promotion_style == 'horizontal' %}{{ block_st.promotion_image_width }}{% else %}0{% endif %}%; --col-gap: 30px">
                             {% if link.links.size > 0 %}
-                              <div
-                                class="menu-list"
-                                style="--row-gap: 40px; --col-desktop:{{ block_st.promotion_menu_column }};"
-                              >
+                              <div style="--row-gap: 40px; --col-desktop:{{ block_st.promotion_menu_column }};">
                                 {%- render 'submenu-list', link: link, menu_type: 'vertical_desktop' -%}
                               </div>
                             {% endif %}
                             {%- if block_st.promotion_image_1 != blank or block_st.promotion_image_2 != blank -%}
-                              <div class="col-mega">
-                                <div  
-                                  class="grid grid-cols gap-20 px-30 {{ settings.hover_effect }}"
-                                  style="--col-number: {{ banner_count }}"
-                                >
+                              <div>
+                                <div style="--col-number: {{ banner_count }}">
                                   {%- if block_st.promotion_image_1 != blank -%}
                                     {%- assign banner_alt = block_st.promotion_image_1.alt
                                       | default: link.title
@@ -213,7 +187,6 @@
                                       {% if block_st.promotion_link_newtab_1 != blank %}
                                         target="_blank"
                                       {% endif %}
-                                      class="rounded"
                                       style="--aspect-ratio: {{ block_st.promotion_image_1.aspect_ratio}}"
                                     >
                                       {% render 'responsive-image',
@@ -240,25 +213,16 @@
                               assign product_count = product_count | plus: 1
                             endif
                           -%}
-                          <div
-                            class="flex flex-column gap-30 vertical-block__product"
-                            style="--col-mega-width: {{ block_st.product_width }}%"
-                          >
+                          <div style="--col-mega-width: {{ block_st.product_width }}%">
                             {% if link.links.size > 0 %}
-                              <div
-                                class="menu-list"
-                                style="--row-gap: 40px; --col-desktop:{{ block_st.product_menu_column }};"
-                              >
+                              <div style="--row-gap: 40px; --col-desktop:{{ block_st.product_menu_column }};">
                                 {%- render 'submenu-list', link: link, menu_type: 'vertical_desktop' -%}
                               </div>
                             {% endif %}
                             {%- if product_count > 0 -%}
-                              <div class="col-mega">
-                                <div
-                                  class="grid grid-cols gap-20 px-30"
-                                  style="--col-number: {{ product_count }}"
-                                >
-                                  <span class="menu-title-product title-child__menu menu_item-link no-underline heading-style py-10 min-h-55 inline-flex align-center">
+                              <div>
+                                <div style="--col-number: {{ product_count }}">
+                                  <span>
                                     {{ block_st.product_title }}
                                   </span>
                                   {% render 'product-item',
@@ -291,37 +255,30 @@
                   endif
                 endfor
               %}
-              <li
-                {{ block.shopify_attributes }}
-                class="{% if has_children == false %}no-submenu__child {% endif %}level0{% if link.links.size %} menu-parent menu-parent__vertical dropdown-vertical{% else %} single{% endif %}"
-                {{ block.shopify_attributes }}
-              >
-                <menu-item class="menu-item__first relative flex align-center flex-1">
-                  <a class="no-underline flex align-center nav-link" href="{{ link.url }}">
+              <li>
+                <menu-item>
+                  <a href="{{ link.url }}">
                     {% if has_icon %}
                       {{ icon_html }}
                     {% else %}
-                      <span class="menu-icon-first-letter flex-1 text-center">
+                      <span>
                         {{ link_title | strip | first | upcase }}
                       </span>
                     {% endif %}
-                    <span class="menu-text inline-flex">{{ link_title }}</span>  
+                    <span>{{ link_title }}</span>  
                   </a>
                   {%- if link.links.size > 0 -%}
-                    <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0{% else %} touch-target-mb{% endif %}">
-                      <svg class="icon-down hidden no-hidden" width="12" height="8">
+                    <open-children-toggle>
+                      <svg width="12" height="8">
                         <use href="#icon-next"></use>
                       </svg>
                     </open-children-toggle>
                   {%- endif -%}
                 </menu-item>
                 {%- if link.links.size > 0 -%}
-                  <div class="submenu submenu-vertical color-default custom-scrollbar">
-                    <div class="grey-bg px-30 border-bottom flex gap-15 align-center justify-between{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}">
-                      <back-menu
-                        class="py-10 min-h-55 inline-flex gap-20 align-center fs-big-1 heading-style"
-                        role="link"
-                      >
+                  <div>
+                    <div>
+                      <back-menu role="link">
                         {% if enable_rtl %}
                           <svg width="6" height="11" fill="none">
                             <use href="#icon-next" />
@@ -331,7 +288,7 @@
                             <use href="#icon-back" />
                           </svg>
                         {% endif %}
-                        <div class="flex align-center gap-10">
+                        <div>
                           {% if has_icon %}
                             {{ icon_html }}
                           {% endif %}
@@ -340,7 +297,7 @@
                           </span>
                         </div>
                       </back-menu>
-                      <close-menu class="close-menu lh-1 ms-10">
+                      <close-menu>
                         <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                           <use href="#icon-close" />
                         </svg>
