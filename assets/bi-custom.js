@@ -199,7 +199,9 @@ function initVerticalMenu() {
         // Handle nested submenu items (sub-children-menu)
         const nestedMenuItem = e.target.closest('.menu-link');
         if (nestedMenuItem) {
-            const hasNestedSubmenu = nestedMenuItem.querySelector('+ .sub-children-menu');
+            // Fix: Use nextElementSibling instead of invalid querySelector
+            const next = nestedMenuItem.nextElementSibling;
+            const hasNestedSubmenu = next && next.classList.contains('sub-children-menu');
             const clickedNestedToggle = e.target.closest('open-children-toggle');
             
             // Only chevron opens nested submenu
@@ -261,6 +263,28 @@ function initVerticalMenu() {
             return;
         }
     });
+
+    // Safety net: Sync overlay/body state if open-vertical class is removed by any script
+    const syncState = () => {
+        const isOpen = desktopMenu.classList.contains('open-vertical');
+        overlay.classList.toggle('visible', isOpen);
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+            document.body.style.position = "";
+            document.documentElement.style.overflow = "";
+        }
+    };
+
+    // Watch for class changes on desktopMenu
+    new MutationObserver(syncState).observe(desktopMenu, { 
+        attributes: true, 
+        attributeFilter: ['class'] 
+    });
+    
+    // Initial sync
+    syncState();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
