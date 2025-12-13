@@ -590,6 +590,7 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
+
 .desktop-1025-only {
   display: none;
 }
@@ -769,20 +770,55 @@ svg.edit-icon {
     padding: 0;
     margin: 0;
     list-style: none;
+    display: block !important;
+    visibility: visible !important;
   }
 
   /* Menu items - always show text when sidebar is open */
   .verticalmenu-desktop.open-vertical .menu-icon-first-letter {
-    display: none;
+    display: none !important;
   }
 
   .verticalmenu-desktop.open-vertical .menu-text,
   .verticalmenu-desktop.open-vertical .title-menu-dropdown .toggle-vertical > span,
+  .verticalmenu-desktop.open-vertical open-children-toggle,
+  .verticalmenu-desktop.open-vertical .menu-text {
+    max-width: none !important;
+    width: auto !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
+    visibility: visible !important;
+  }
+
+  /* Override default hidden states - show menu items always when sidebar is open */
+  .verticalmenu-desktop.open-vertical .verticalmenu-list li {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .verticalmenu-desktop.open-vertical .menu-item__first {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .verticalmenu-desktop.open-vertical .nav-link {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Override menu-vertical.css default hidden states */
+  .verticalmenu-desktop.open-vertical .menu-text,
+  .verticalmenu-desktop.open-vertical .title-menu-dropdown .toggle-vertical > span,
   .verticalmenu-desktop.open-vertical open-children-toggle {
-    max-width: none;
-    width: auto;
-    opacity: 1;
-    display: inline-flex;
+    max-width: none !important;
+    width: auto !important;
+    opacity: 1 !important;
+    font-size: var(--body-font-size, 1.4rem) !important;
+    display: inline-flex !important;
+    visibility: visible !important;
   }
 
   .verticalmenu-desktop.open-vertical .menu-item__first {
@@ -792,6 +828,23 @@ svg.edit-icon {
 
   .verticalmenu-desktop.open-vertical .level0 {
     pointer-events: auto;
+  }
+
+  /* Ensure menu list items are visible */
+  .verticalmenu-desktop.open-vertical .verticalmenu-list {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .verticalmenu-desktop.open-vertical .verticalmenu-list li {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .verticalmenu-desktop.open-vertical .verticalmenu-html {
+    display: block !important;
+    visibility: visible !important;
   }
 
   /* Overlay */
@@ -868,4 +921,5 @@ svg.edit-icon {
     display: none !important;
   }
 }
+
 /*================*/
