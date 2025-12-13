@@ -751,4 +751,11 @@ svg.edit-icon {
     display: none !important;
   }
 }
+
+
+@media (max-width: 1024.5px) {
+  nav.desktop-menu {
+    display: none !important;
+  }
+}
 /*================*/
