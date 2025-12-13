@@ -67,6 +67,13 @@ function initVerticalMenu() {
 
     if (!desktopMenu || !overlay) return;
 
+    // Debug: Log which method was used to load the menu
+    const methodUsed = desktopMenu?.getAttribute('data-menu-method');
+    const menuFound = desktopMenu?.getAttribute('data-menu-found') === 'true';
+    if (methodUsed) {
+        console.log(`[Vertical Menu] Method used: ${methodUsed}, Menu found: ${menuFound}`);
+    }
+
     function isDesktop() {
         return window.innerWidth >= DESKTOP_MIN_WIDTH;
     }
