@@ -77,6 +77,10 @@ function initDesktopMenuToggle() {
             desktopMenu.style.webkitTransform = 'translateX(0)';
             desktopMenu.style.opacity = '1';
             desktopMenu.style.visibility = 'visible';
+            desktopMenu.style.zIndex = '13';
+            desktopMenu.style.display = 'flex';
+            desktopMenu.style.width = '100%';
+            desktopMenu.style.maxWidth = '43rem';
           } else {
             // Hide the menu
             desktopMenu.style.transform = 'translateX(-101%)';
@@ -105,6 +109,8 @@ function initDesktopMenuToggle() {
             desktopMenu.style.webkitTransform = 'translateX(0)';
             desktopMenu.style.opacity = '1';
             desktopMenu.style.visibility = 'visible';
+            desktopMenu.style.zIndex = '13';
+            desktopMenu.style.display = 'flex';
           } else {
             desktopMenu.style.transform = 'translateX(-101%)';
             desktopMenu.style.webkitTransform = 'translateX(-101%)';
