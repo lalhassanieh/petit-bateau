@@ -305,99 +305,219 @@ document.addEventListener("DOMContentLoaded", () => {
     initVerticalMenuHeaderController();
 });
 
-// Desktop vertical menu header controller (unified handler for all levels)
+// Desktop vertical menu header controller (mobile-like behavior)
 function initVerticalMenuHeaderController() {
-  (function () {
-    const root = document.querySelector(".verticalmenu-desktop");
-    if (!root) return;
+  const menu = document.querySelector(".verticalmenu-desktop");
+  if (!menu) return;
 
-    const header = root.querySelector(".title-menu-dropdown");
-    const headerTitle = header?.querySelector(".toggle-vertical span");
-    const headerBack = header?.querySelector(".header-back");
+  const header    = menu.querySelector(".title-menu-dropdown");
+  const titleSpan = header?.querySelector(".toggle-vertical span");
+  const closeBtn  = header?.querySelector(".close-menu-header");
 
-    // stack of opened <li> items (level0, level1, level2...)
-    const stack = [];
+  const rootTitle = (menu.getAttribute("data-title") || "Menu").trim();
 
-    function setTitle(t) {
-      if (headerTitle) headerTitle.textContent = t || "Menu";
-    }
+  // We'll store the *actual opened panel* so Back truly returns where you were.
+  const stack = [{ title: rootTitle, li: null, menuItem: null, panel: null }];
 
-    function updateBackVisibility() {
-      if (!headerBack) return;
-      if (stack.length > 0) {
-        root.classList.add("is-sub-open");
-        headerBack.style.display = "flex";
-      } else {
-        root.classList.remove("is-sub-open");
-        headerBack.style.display = "none";
-        setTitle(root.dataset.title || "Menu");
-      }
-    }
+  function setHeader(title) {
+    if (titleSpan) titleSpan.textContent = title || rootTitle;
+    menu.classList.toggle("is-sub-open", stack.length > 1);
+  }
 
-    function openPanel(li, title) {
-      if (!li) return;
-      // push current state
-      stack.push(li);
-      li.classList.add("is-open");
-      setTitle(title);
-      updateBackVisibility();
-    }
+  // Helpers to match different theme behaviors
+  function openState(entry) {
+    entry.li?.classList.add("is-open");
+    entry.menuItem?.classList.add("is-open");
+    entry.panel?.classList.add("visible");
+    entry.panel?.classList.remove("invisible-1025"); // your markup has this
+  }
 
-    function goBack() {
-      const last = stack.pop();
-      if (last) last.classList.remove("is-open");
+  function closeState(entry) {
+    entry.li?.classList.remove("is-open");
+    entry.menuItem?.classList.remove("is-open");
+    entry.panel?.classList.remove("visible");
+    // keep it hidden on desktop (matches your theme class)
+    entry.panel?.classList.add("invisible-1025");
+  }
 
-      // If we are still inside another opened li, keep title as that one
-      const prev = stack[stack.length - 1];
-      if (prev) {
-        const prevTitle =
-          prev.querySelector(":scope > menu-item > a span")?.textContent?.trim() ||
-          prev.querySelector(":scope > back-menu span")?.textContent?.trim() ||
-          "Menu";
-        setTitle(prevTitle);
-      }
-      updateBackVisibility();
-    }
+  function getPanel(li) {
+    // In your markup the submenu is: <li> ... <div class="submenu ...">...</div></li>
+    return li?.querySelector(":scope > .submenu");
+  }
 
-    // Back button in main blue header
-    headerBack?.addEventListener("click", (e) => {
-      e.preventDefault();
-      goBack();
+  function closeSiblings(li) {
+    const ul = li?.parentElement;
+    if (!ul) return;
+
+    ul.querySelectorAll(":scope > li").forEach(sib => {
+      if (sib === li) return;
+      const sibMenuItem = sib.querySelector(":scope > menu-item");
+      const sibPanel = getPanel(sib);
+      closeState({ li: sib, menuItem: sibMenuItem, panel: sibPanel });
+    });
+  }
+
+  function openLevel(li, title) {
+    const menuItem = li.querySelector(":scope > menu-item");
+    const panel = getPanel(li);
+    if (!panel) return; // no submenu
+
+    closeSiblings(li); // mobile behavior: only one open per level
+    openState({ li, menuItem, panel });
+
+    stack.push({ title, li, menuItem, panel });
+    setHeader(title);
+  }
+
+  function goBack() {
+    if (stack.length <= 1) return;
+
+    const current = stack.pop();
+    closeState(current);
+
+    const prev = stack[stack.length - 1];
+    setHeader(prev.title);
+  }
+
+  // Click chevron => open submenu (and push)
+  menu.addEventListener("click", (e) => {
+    const toggle = e.target.closest("open-children-toggle");
+    if (!toggle) return;
+
+    const li = toggle.closest("li");
+    const label = li?.querySelector(":scope > menu-item > a span")?.textContent?.trim() || rootTitle;
+
+    openLevel(li, label);
+
+    e.preventDefault();
+    e.stopPropagation();
+  });
+
+  // Back button (you need this element in your header)
+  header?.querySelector(".header-back")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    goBack();
+  });
+
+  // Close => reset everything
+  closeBtn?.addEventListener("click", () => {
+    // close all opened panels
+    menu.querySelectorAll("li").forEach(li => {
+      const mi = li.querySelector(":scope > menu-item");
+      const p  = getPanel(li);
+      closeState({ li, menuItem: mi, panel: p });
     });
 
-    // CLICK HANDLER: open any submenu panel (level0 and level1)
-    // We listen for open-children-toggle clicks
-    root.addEventListener("click", (e) => {
-      const toggle = e.target.closest("open-children-toggle");
-      if (!toggle) return;
+    stack.length = 1;
+    setHeader(rootTitle);
 
-      const li = toggle.closest("li");
-      if (!li) return;
+    // also close sidebar overlay if your theme uses it
+    menu.classList.remove("open-vertical");
+    document.querySelector(".vertical-menu-overlay-desktop")?.classList.remove("visible");
+  });
 
-      // Get title from its <a><span>...</span></a>
-      const title = li.querySelector(":scope > menu-item > a span")?.textContent?.trim()
-        || li.querySelector(":scope > menu-item > a")?.textContent?.trim()
-        || "Menu";
-
-      // If already open, do nothing (or you can back)
-      if (li.classList.contains("is-open")) return;
-
-      e.preventDefault();
-      e.stopPropagation();
-
-      openPanel(li, title);
-    });
-
-    // If user closes menu, reset stack
-    root.querySelectorAll("close-menu").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        while (stack.length) stack.pop().classList.remove("is-open");
-        updateBackVisibility();
-      });
-    });
-
-    // initial state
-    updateBackVisibility();
-  })();
+  setHeader(rootTitle);
 }
 
+// Level-2 submenu panel handler (sliding panel behavior)
+// This handles nested sub-children-menu panels (level-2) separately from level-0 panels
+(() => {
+  const menu = document.querySelector('.verticalmenu-desktop');
+  if (!menu) return;
+
+  const headerTitleEl = menu.querySelector('.title-menu-dropdown .toggle-vertical span');
+  const headerBackBtn = menu.querySelector('.title-menu-dropdown .header-back');
+  const rootTitle = menu.getAttribute('data-title') || (headerTitleEl ? headerTitleEl.textContent.trim() : 'Menu');
+
+  // Separate stack for level-2 panels (sub-children-menu)
+  const level2Stack = [];
+
+  function setHeader(title, showBack) {
+    if (headerTitleEl) headerTitleEl.textContent = title || rootTitle;
+    if (showBack !== undefined) {
+      if (showBack) menu.classList.add('is-sub-open');
+      else menu.classList.remove('is-sub-open');
+    }
+  }
+
+  function openLevel2Panel(panelEl, title) {
+    if (!panelEl) return;
+
+    // activate this panel
+    panelEl.classList.add('vm-active');
+
+    // push it to stack
+    level2Stack.push({ panel: panelEl, title: title || rootTitle });
+
+    setHeader(title, true);
+  }
+
+  function closeTopLevel2Panel() {
+    const top = level2Stack.pop();
+    if (!top) return false; // no level-2 panel to close
+
+    top.panel.classList.remove('vm-active');
+
+    // update header to previous panel title (or let level-0 handler manage it)
+    const prev = level2Stack[level2Stack.length - 1];
+    if (prev) {
+      setHeader(prev.title, true);
+    } else {
+      // No more level-2 panels, let level-0 handler manage the header
+      // The existing initVerticalMenuHeaderController will handle it
+      return false;
+    }
+    return true;
+  }
+
+  // Click handler for sub-collection toggles (level-1 -> opens level-2 panel)
+  menu.addEventListener('click', (e) => {
+    const toggle = e.target.closest('open-children-toggle');
+    if (!toggle) return;
+
+    // we only want this sliding behavior on desktop
+    if (window.innerWidth < 1025) return;
+
+    // find the level-1 LI (the one containing sub-children-menu)
+    const level1Li = toggle.closest('li.menu-link.level-1');
+    if (!level1Li) return; // ignore other toggles - let existing handler take over
+
+    const panel = level1Li.querySelector(':scope > .sub-children-menu');
+    if (!panel) return;
+
+    // title = the clicked link text
+    const a = level1Li.querySelector(':scope > menu-item > a');
+    const title = a ? a.textContent.trim().replace(/\s+/g, ' ') : rootTitle;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    openLevel2Panel(panel, title);
+  });
+
+  // Extend back button to handle level-2 panels first, then fall back to level-0 handler
+  if (headerBackBtn) {
+    headerBackBtn.addEventListener('click', (e) => {
+      // Try to close level-2 panel first
+      if (level2Stack.length > 0 && closeTopLevel2Panel()) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      // If no level-2 panel, let the existing level-0 handler take over
+    }, true); // Use capture phase to run before existing handler
+  }
+
+  // Reset level-2 panels when menu closes
+  const closeBtn = menu.querySelector('.title-menu-dropdown .close-menu-header');
+  if (closeBtn) {
+    const originalCloseHandler = closeBtn.onclick;
+    closeBtn.addEventListener('click', () => {
+      // Close all level-2 panels
+      while (level2Stack.length) {
+        const top = level2Stack.pop();
+        top.panel.classList.remove('vm-active');
+      }
+    });
+  }
+})();
