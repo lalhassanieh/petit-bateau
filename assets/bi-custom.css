@@ -586,9 +586,21 @@ svg.edit-icon {
   }
 }
 
+
 /*=========================
        CSS For Navbar
 ===========================*/
+.desktop-1025-only {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .desktop-1025-only {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .menu-toggle {
     display: flex;
     justify-content: center;
@@ -685,47 +697,7 @@ svg.edit-icon {
   height: 0 !important;
   opacity: 0;
   pointer-events: none;
-  overflow: hidden;
-  transition: height 0.3s ease, opacity 0.3s ease;
-}
-
-/* Desktop menu sidebar when opened via desktop toggle */
-@media (max-width: 1024px) {
-  .navigation.desktop-menu {
-    display: none !important;
-  }
-}
-
-@media (min-width: 1025px) {
-  .nav-open .navigation.desktop-menu {
-    transform: translate(0);
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .navigation.desktop-menu {
-    display: flex;
-    background: var(--color-background);
-    --menu-mobile-width: 43rem;
-    --show-overlay-bg: rgba(255, 255, 255, 0.9);
-    width: 100%;
-    max-width: var(--menu-mobile-width);
-    overflow: hidden;
-    transform: translateX(-101%);
-    transition: var(--transition-popup);
-    z-index: 12;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    height: 100vh;
-  }
 }
 
 
-@media (max-width: 1024.5px) {
-  nav.desktop-menu {
-    display: none !important;
-  }
-}
 /*================*/
