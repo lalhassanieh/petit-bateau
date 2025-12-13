@@ -699,5 +699,173 @@ svg.edit-icon {
   pointer-events: none;
 }
 
+/*=========================
+   Vertical Menu Desktop Sidebar
+===========================*/
+@media (min-width: 1025px) {
+  /* Vertical menu desktop container */
+  .verticalmenu-desktop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 43rem;
+    z-index: 13;
+    background: var(--color-background, #ffffff);
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
 
+  /* Open state */
+  .verticalmenu-desktop.open-vertical {
+    transform: translateX(0);
+  }
+
+  /* Vertical menu navigation */
+  .verticalmenu-desktop .navigation.vertical {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Desktop menu content */
+  .verticalmenu-desktop .desktop-menu-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Title menu dropdown - show on desktop when opened */
+  .verticalmenu-desktop .title-menu-dropdown {
+    display: flex !important;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: var(--gradient-background, #002e5e);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 5.5rem;
+  }
+
+  .verticalmenu-desktop .title-menu-dropdown .toggle-vertical {
+    color: var(--color-heading, #ffffff);
+    font-weight: 600;
+    font-size: 1.6rem;
+  }
+
+  /* Vertical menu HTML container */
+  .verticalmenu-desktop .verticalmenu-html {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Vertical menu list */
+  .verticalmenu-desktop .verticalmenu-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  /* Menu items - always show text when sidebar is open */
+  .verticalmenu-desktop.open-vertical .menu-icon-first-letter {
+    display: none;
+  }
+
+  .verticalmenu-desktop.open-vertical .menu-text,
+  .verticalmenu-desktop.open-vertical .title-menu-dropdown .toggle-vertical > span,
+  .verticalmenu-desktop.open-vertical open-children-toggle {
+    max-width: none;
+    width: auto;
+    opacity: 1;
+    display: inline-flex;
+  }
+
+  .verticalmenu-desktop.open-vertical .menu-item__first {
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+  }
+
+  .verticalmenu-desktop.open-vertical .level0 {
+    pointer-events: auto;
+  }
+
+  /* Overlay */
+  .vertical-menu-overlay-desktop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 12;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+                visibility 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .vertical-menu-overlay-desktop.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Submenu positioning when sidebar is open */
+  .verticalmenu-desktop.open-vertical .submenu-vertical__mega,
+  .verticalmenu-desktop.open-vertical .submenu-vertical {
+    position: fixed;
+    left: 43rem;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    min-width: 30rem;
+    max-width: 60rem;
+    z-index: 14;
+    background: var(--color-background, #ffffff);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Close menu button */
+  .verticalmenu-desktop .close-menu {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 15;
+    width: 4.4rem;
+    height: 4.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+
+  .verticalmenu-desktop .close-menu:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .verticalmenu-desktop .close-menu svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: currentColor;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Hide vertical menu desktop on mobile */
+  .verticalmenu-desktop {
+    display: none !important;
+  }
+
+  .vertical-menu-overlay-desktop {
+    display: none !important;
+  }
+}
 /*================*/
