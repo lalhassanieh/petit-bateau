@@ -688,7 +688,6 @@ svg.edit-icon {
   overflow: hidden;
   transition: height 0.3s ease, opacity 0.3s ease;
 }
-
 /* Desktop menu sidebar when opened via desktop toggle */
 @media (max-width: 1024px) {
   .navigation.desktop-menu {
@@ -697,14 +696,16 @@ svg.edit-icon {
 }
 
 @media (min-width: 1025px) {
-  .nav-open .navigation.desktop-menu {
-    transform: translate(0);
-    opacity: 1;
-    visibility: visible;
+  .nav-open .navigation.desktop-menu,
+  .nav-open nav.desktop-menu {
+    transform: translate(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
-  .navigation.desktop-menu {
-    display: flex;
+  .navigation.desktop-menu,
+  nav.desktop-menu {
+    display: flex !important;
     background: var(--color-background);
     --menu-mobile-width: 43rem;
     --show-overlay-bg: rgba(255, 255, 255, 0.9);
@@ -719,13 +720,8 @@ svg.edit-icon {
     left: 0;
     bottom: 0;
     height: 100vh;
-  }
-}
-
-
-@media (max-width: 1024.5px) {
-  nav.desktop-menu {
-    display: none !important;
+    opacity: 1;
+    visibility: visible;
   }
 }
 /*================*/
