@@ -112,16 +112,12 @@ function initVerticalMenu() {
         });
     }
 
-    // Close menu on overlay click
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) {
-            closeMenu();
-        }
-    });
-
-    // Close menu on close button click
+    // Close menu on close button click (both header close and submenu close)
     document.addEventListener("click", (e) => {
-        if (e.target.closest(".close-menu") && desktopMenu.classList.contains("open-vertical")) {
+        const closeBtn = e.target.closest(".close-menu");
+        if (closeBtn && desktopMenu.classList.contains("open-vertical")) {
+            e.preventDefault();
+            e.stopPropagation();
             closeMenu();
         }
     });
