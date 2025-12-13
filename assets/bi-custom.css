@@ -715,12 +715,10 @@ svg.edit-icon {
 
 
 /* =========================================================
-   DESKTOP VERTICAL MENU = MOBILE SIDEBAR LOOK (CLEAN FINAL)
-   Put this at the END of the file (and remove older duplicates)
+   DESKTOP VERTICAL MENU 
 ========================================================= */
 @media (min-width: 1025px) {
 
-  /* ---------- PANEL + OVERLAY ---------- */
   .verticalmenu-desktop{
     position: fixed;
     top: 0; left: 0; bottom: 0;
@@ -730,7 +728,7 @@ svg.edit-icon {
     transform: translateX(-100%);
     transition: transform .35s ease;
     box-shadow: 2px 0 16px rgba(0,0,0,.18);
-    overflow: hidden; /* crucial: sliding panels */
+    overflow: hidden; 
   }
   .verticalmenu-desktop.open-vertical{ transform: translateX(0); }
 
@@ -745,7 +743,6 @@ svg.edit-icon {
     opacity: 1; visibility: visible;
   }
 
-  /* ---------- HEADER (BLUE) ---------- */
   .verticalmenu-desktop .title-menu-dropdown{
     display: flex !important;
     align-items: center;
@@ -786,7 +783,6 @@ svg.edit-icon {
     color: #fff !important;
   }
 
-  /* JS will toggle this class when inside submenu */
   .verticalmenu-desktop .title-menu-dropdown .header-back{
     width: 38px; height: 38px;
     display: none;
@@ -805,7 +801,6 @@ svg.edit-icon {
     color: #fff !important;
   }
 
-  /* ---------- CONTENT AREA (below header) ---------- */
   .verticalmenu-desktop .navigation.vertical,
   .verticalmenu-desktop .desktop-menu-content{
     height: 100%;
@@ -816,11 +811,10 @@ svg.edit-icon {
   .verticalmenu-desktop .verticalmenu-html{
     position: relative;
     flex: 1;
-    overflow: hidden; /* panels slide inside here */
+    overflow: hidden; 
     background: #fff;
   }
 
-  /* Make the UL vertical (override theme utilities) */
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list{
     display: block !important;
     padding: 0 !important;
@@ -832,7 +826,6 @@ svg.edit-icon {
     width: 100% !important;
   }
 
-  /* ---------- ROW STYLE (main + submenu) ---------- */
   .verticalmenu-desktop :is(ul.horizontal-list > li, .subchildmenu > li){
     border-bottom: 1px solid rgba(0,0,0,.08);
   }
@@ -845,15 +838,7 @@ svg.edit-icon {
     padding: 18px 20px !important;
   }
 
-  /* Link text */
-  .verticalmenu-desktop :is(menu-item > a, menu-item > a > span){
-    color: #0a2a43 !important;
-    font-size: 18px !important;
-    font-weight: 700 !important;
-    text-decoration: none !important;
-  }
 
-  /* Chevron button (remove your blue square issue) */
   .verticalmenu-desktop menu-item > open-children-toggle{
     width: 40px !important;
     height: 40px !important;
@@ -872,8 +857,6 @@ svg.edit-icon {
     color: #002e5e !important;
   }
 
-  /* ---------- SUBMENU PANELS: FULL WIDTH SLIDE (NOT partial) ---------- */
-  /* remove "desktop dropdown column" behavior completely */
   .verticalmenu-desktop .submenu-vertical__mega,
   .verticalmenu-desktop .submenu-vertical{
     position: static !important;
@@ -883,7 +866,6 @@ svg.edit-icon {
     box-shadow: none !important;
   }
 
-  /* the panel itself */
   .verticalmenu-desktop .submenu-vertical-desktop,
   .verticalmenu-desktop .sub-children-menu{
     position: absolute !important;
@@ -898,7 +880,6 @@ svg.edit-icon {
     padding: 0 !important;
   }
 
-  /* OPEN states (cover all variants your theme uses) */
   .verticalmenu-desktop .submenu-vertical-desktop.visible,
   .verticalmenu-desktop .sub-children-menu.visible,
   .verticalmenu-desktop li.is-open > .submenu-vertical-desktop,
@@ -908,13 +889,11 @@ svg.edit-icon {
     transform: translateX(0) !important;
   }
 
-  /* Hide the internal grey header inside submenu (we use the main blue header with dynamic title/back) */
   .verticalmenu-desktop .submenu-vertical-desktop .hidden-1025,
   .verticalmenu-desktop .sub-children-menu .hidden-1025{
     display: none !important;
   }
 
-  /* Ensure submenu lists are stacked like main */
   .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu,
   .verticalmenu-desktop .sub-children-menu ul{
     margin: 0 !important;
@@ -922,8 +901,6 @@ svg.edit-icon {
     list-style: none !important;
   }
 
-  /* ---------- FORCE CHEVRONS IN SUBMENUS (override hidden-1025) ---------- */
-  /* 1) SHOW the chevron/toggle in submenu rows (it has hidden-1025) */
   .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle.hidden-1025,
   .verticalmenu-desktop .sub-children-menu open-children-toggle.hidden-1025,
   .verticalmenu-desktop .subchildmenu open-children-toggle.hidden-1025 {
@@ -936,7 +913,7 @@ svg.edit-icon {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
-    position: static !important;       /* stop absolute full-width overlay */
+    position: static !important;     
     inset: auto !important;
     right: auto !important;
     background: transparent !important;
@@ -953,7 +930,6 @@ svg.edit-icon {
     color: #002e5e !important;
   }
 
-  /* 2) Make the row layout like the main menu */
   .verticalmenu-desktop .subchildmenu > li > menu-item {
     display: flex !important;
     align-items: center !important;
@@ -961,15 +937,11 @@ svg.edit-icon {
     width: 100% !important;
   }
 
-  /* Let the link take the remaining space but NOT cover the toggle */
   .verticalmenu-desktop .subchildmenu > li > menu-item > a {
     flex: 1 1 auto !important;
     min-width: 0 !important;
   }
 
-  /* ---------- LEVEL-2 PANEL: Full sliding panel behavior ---------- */
-  /* Level-2 panel (sub-children-menu) should behave like a full sidebar panel */
-  /* Override static-1025 class to force absolute positioning */
   .verticalmenu-desktop .sub-children-menu,
   .verticalmenu-desktop .sub-children-menu.static-1025 {
     position: absolute !important;
@@ -990,12 +962,10 @@ svg.edit-icon {
     bottom: 0 !important;
   }
 
-  /* When opened by JS */
   .verticalmenu-desktop .sub-children-menu.vm-active {
     transform: translateX(0) !important;
   }
 
-  /* Kill old desktop dropdown positioning so it doesn't act like "second column" */
   .verticalmenu-desktop .dropdown-menu .sub-children-menu {
     left: 0 !important;
     top: 0 !important;
