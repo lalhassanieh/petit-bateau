@@ -62,7 +62,7 @@
         </close-menu>
       </div>
       <div class="verticalmenu-html">
-        <ul>
+        <ul class="horizontal-list list-unstyled inline-flex-1025 flex-wrap row-gap-0 horizontal px-30 px-1025-0 show-localization">
           {%- if menu_links != null and menu_links.size > 0 -%}
             {%- for link in menu_links -%}
               {%- liquid
@@ -91,7 +91,7 @@
                   endif
                 endif
               -%}
-            {% if last_block != null %}
+              {% if last_block != null %}
               {%- liquid
                 assign block_st = last_block.settings
                 assign has_content = false
@@ -128,11 +128,11 @@
                   {%- endif -%}
                 </menu-item>
               {%- endcapture -%}
-              <li>
+              <li class="level0{% if link.links.size or has_content %} menu-parent menu-parent__horizontal mega-menu{% else %} single{% endif %}">
                 {{ menu_level_0 }}
                 {%- if link.links.size > 0 or has_content -%}
-                  <div style="--mega_custom_width: {{ mega_custom_width }}px">
-                    <div>
+                  <div class="custom-scrollbar submenu submenu-horizontal submenu-vertical-desktop invisible-1025 absolute gradient p-0 py-1025-40 mega-menu-custom-width overflow-x-hidden" style="--mega_custom_width: {{ mega_custom_width }}px">
+                    <div class="hidden-1025 grey-bg px-30 border-bottom flex gap-15 align-center justify-between{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}">
                       <back-menu role="link">
                         {% if enable_rtl %}
                           <svg width="6" height="11" fill="none">
@@ -243,6 +243,7 @@
                           </div>
 
                       {%- endcase -%}
+                      </div>
                     </div>
                   </div>
                 {%- endif -%}
@@ -256,7 +257,7 @@
                   endif
                 endfor
               %}
-              <li>
+              <li class="level0{% if link.links.size > 0 %} menu-parent menu-parent__horizontal dropdown-menu{% else %} single{% endif %}">
                 <menu-item>
                   <a href="{{ link.url }}">
                     {% if has_icon %}
@@ -273,8 +274,8 @@
                   {%- endif -%}
                 </menu-item>
                 {%- if link.links.size > 0 -%}
-                  <div>
-                    <div>
+                  <div class="submenu submenu-horizontal submenu-vertical-desktop invisible-1025 absolute gradient color-default">
+                    <div class="hidden-1025 grey-bg px-30 border-bottom flex gap-15 align-center justify-between{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}">
                       <back-menu role="link">
                         {% if enable_rtl %}
                           <svg width="6" height="11" fill="none">
@@ -307,8 +308,8 @@
             {% endif %}
           {%- endfor -%}
           {%- endif -%}
-        </ul>
-      </div>
+          </ul>
+        </div>
     </div>
   </div>
 </div>
