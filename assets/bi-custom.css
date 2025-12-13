@@ -990,8 +990,9 @@ svg.edit-icon {
     bottom: 0 !important;
   }
 
-  /* When opened by JS */
-  .verticalmenu-desktop .sub-children-menu.vm-active {
+  /* When opened by JS (handles both vm-active class and is-open on parent li) */
+  .verticalmenu-desktop .sub-children-menu.vm-active,
+  .verticalmenu-desktop li.is-open > .sub-children-menu {
     transform: translateX(0) !important;
   }
 
