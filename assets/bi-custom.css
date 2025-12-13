@@ -970,8 +970,6 @@ svg.edit-icon {
   }
 }
 
-/* Additional override at end of file to ensure it takes precedence */
-/* This should override ANY other CSS rules */
 @media (min-width: 1025px) {
   /* Force vertical list display - highest priority override using multiple selectors */
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list.inline-flex-1025,
