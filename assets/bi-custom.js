@@ -418,3 +418,106 @@ function initVerticalMenuHeaderController() {
 
   setHeader(rootTitle);
 }
+
+// Level-2 submenu panel handler (sliding panel behavior)
+// This handles nested sub-children-menu panels (level-2) separately from level-0 panels
+(() => {
+  const menu = document.querySelector('.verticalmenu-desktop');
+  if (!menu) return;
+
+  const headerTitleEl = menu.querySelector('.title-menu-dropdown .toggle-vertical span');
+  const headerBackBtn = menu.querySelector('.title-menu-dropdown .header-back');
+  const rootTitle = menu.getAttribute('data-title') || (headerTitleEl ? headerTitleEl.textContent.trim() : 'Menu');
+
+  // Separate stack for level-2 panels (sub-children-menu)
+  const level2Stack = [];
+
+  function setHeader(title, showBack) {
+    if (headerTitleEl) headerTitleEl.textContent = title || rootTitle;
+    if (showBack !== undefined) {
+      if (showBack) menu.classList.add('is-sub-open');
+      else menu.classList.remove('is-sub-open');
+    }
+  }
+
+  function openLevel2Panel(panelEl, title) {
+    if (!panelEl) return;
+
+    // activate this panel
+    panelEl.classList.add('vm-active');
+
+    // push it to stack
+    level2Stack.push({ panel: panelEl, title: title || rootTitle });
+
+    setHeader(title, true);
+  }
+
+  function closeTopLevel2Panel() {
+    const top = level2Stack.pop();
+    if (!top) return false; // no level-2 panel to close
+
+    top.panel.classList.remove('vm-active');
+
+    // update header to previous panel title (or let level-0 handler manage it)
+    const prev = level2Stack[level2Stack.length - 1];
+    if (prev) {
+      setHeader(prev.title, true);
+    } else {
+      // No more level-2 panels, let level-0 handler manage the header
+      // The existing initVerticalMenuHeaderController will handle it
+      return false;
+    }
+    return true;
+  }
+
+  // Click handler for sub-collection toggles (level-1 -> opens level-2 panel)
+  menu.addEventListener('click', (e) => {
+    const toggle = e.target.closest('open-children-toggle');
+    if (!toggle) return;
+
+    // we only want this sliding behavior on desktop
+    if (window.innerWidth < 1025) return;
+
+    // find the level-1 LI (the one containing sub-children-menu)
+    const level1Li = toggle.closest('li.menu-link.level-1');
+    if (!level1Li) return; // ignore other toggles - let existing handler take over
+
+    const panel = level1Li.querySelector(':scope > .sub-children-menu');
+    if (!panel) return;
+
+    // title = the clicked link text
+    const a = level1Li.querySelector(':scope > menu-item > a');
+    const title = a ? a.textContent.trim().replace(/\s+/g, ' ') : rootTitle;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    openLevel2Panel(panel, title);
+  });
+
+  // Extend back button to handle level-2 panels first, then fall back to level-0 handler
+  if (headerBackBtn) {
+    headerBackBtn.addEventListener('click', (e) => {
+      // Try to close level-2 panel first
+      if (level2Stack.length > 0 && closeTopLevel2Panel()) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      // If no level-2 panel, let the existing level-0 handler take over
+    }, true); // Use capture phase to run before existing handler
+  }
+
+  // Reset level-2 panels when menu closes
+  const closeBtn = menu.querySelector('.title-menu-dropdown .close-menu-header');
+  if (closeBtn) {
+    const originalCloseHandler = closeBtn.onclick;
+    closeBtn.addEventListener('click', () => {
+      // Close all level-2 panels
+      while (level2Stack.length) {
+        const top = level2Stack.pop();
+        top.panel.classList.remove('vm-active');
+      }
+    });
+  }
+})();
