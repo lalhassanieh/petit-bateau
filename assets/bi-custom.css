@@ -710,6 +710,7 @@ svg.edit-icon {
 
 @media (min-width: 1025px) {
   /* Ensure desktop menu is visible on desktop */
+  .navigation.desktop-menu.flex-1025,
   .navigation.desktop-menu.block-1025 {
     display: flex !important;
     visibility: visible !important;
