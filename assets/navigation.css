@@ -412,16 +412,25 @@
     visibility: visible;
   }
   
-  .navigation.desktop-menu {
-    background: var(--color-background);
+  .navigation.desktop-menu,
+  .navigation.desktop-menu.block-1025 {
+    display: flex !important;
+    background: var(--color-background) !important;
     --menu-mobile-width: 43rem;
     --show-overlay-bg: rgba(255, 255, 255, 0.9);
-    width: 100%;
-    max-width: var(--menu-mobile-width);
+    width: 100% !important;
+    max-width: var(--menu-mobile-width) !important;
     overflow: hidden;
     transform: translateX(-101%);
     transition: var(--transition-popup);
-    z-index: 12;
+    z-index: 12 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
   .navigation.desktop-menu open-children-toggle {
