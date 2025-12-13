@@ -7,7 +7,7 @@ document.querySelectorAll('.tooltip-content').forEach(el => {
   }
 });
 
-/*
+
 function initFixedTopbarHeader() {
     const topbar = document.querySelector("#topbar");
     const header = document.querySelector(".header");
@@ -27,17 +27,19 @@ function initFixedTopbarHeader() {
 
 
 function initDesktopMenuToggle() {
-  const menuToggle      = document.querySelector('.menu-toggle');
-  const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
-  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const headerNav = document.querySelector('.header-bottom__navigation');
+  const verticalMenu = document.querySelector('.verticalmenu-desktop');
+  const overlay = document.querySelector('.vertical-menu-overlay-desktop');
 
-  const DESKTOP_MIN_WIDTH   = 1025;
+  if (!menuToggle || !verticalMenu) return;
+
+  const DESKTOP_MIN_WIDTH = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
-
 
   function handleScrollOrResize() {
     const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-    const scrollY   = window.scrollY || window.pageYOffset;
+    const scrollY = window.scrollY || window.pageYOffset;
 
     if (!isDesktop) {
       menuToggle.classList.remove('scroll-active');
@@ -54,44 +56,50 @@ function initDesktopMenuToggle() {
     }
   }
 
+  function openVerticalMenu() {
+    verticalMenu.classList.add('open-vertical');
+    if (overlay) overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVerticalMenu() {
+    verticalMenu.classList.remove('open-vertical');
+    if (overlay) overlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  // Toggle menu on button click
+  menuToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (verticalMenu.classList.contains('open-vertical')) {
+      closeVerticalMenu();
+    } else {
+      openVerticalMenu();
+    }
+  });
+
+  // Close menu on overlay click
+  if (overlay) {
+    overlay.addEventListener('click', closeVerticalMenu);
+  }
+
+  // Close menu on close button click
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.close-menu') && verticalMenu.classList.contains('open-vertical')) {
+      closeVerticalMenu();
+    }
+  });
+
   window.addEventListener('scroll', handleScrollOrResize);
   window.addEventListener('resize', handleScrollOrResize);
 
   handleScrollOrResize();
 }
 
-function initVerticalMenu() {
-    const toggleBtn = document.querySelector(".menu-toggle");
-    const desktopMenu = document.querySelector(".verticalmenu-desktop");
-    const overlay = document.querySelector(".vertical-menu-overlay-desktop");
 
-    function openMenu() {
-        desktopMenu.classList.add("open-vertical");
-        overlay.classList.add("visible");
-    }
-
-    function closeMenu() {
-        desktopMenu.classList.remove("open-vertical");
-        overlay.classList.remove("visible");
-    }
-
-    toggleBtn.addEventListener("click", openMenu);
-
-    overlay.addEventListener("click", closeMenu);
-
-    document.addEventListener("click", (e) => {
-        if (e.target.closest(".close-menu")) {
-            closeMenu();
-        }
-    });
-}
-*/
-
-
-/*
 document.addEventListener("DOMContentLoaded", () => {
     initDesktopMenuToggle();
     initFixedTopbarHeader();
-    initVerticalMenu();
 });
-*/
