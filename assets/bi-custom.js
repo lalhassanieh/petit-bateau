@@ -123,9 +123,20 @@ function initVerticalMenu() {
     }
 
     // Close menu on close button click (both header close and submenu close)
-    document.addEventListener("click", (e) => {
-        const closeBtn = e.target.closest(".close-menu");
+    desktopMenu.addEventListener("click", (e) => {
+        // Check if click is on close-menu element or its children (SVG, use, etc.)
+        const closeBtn = e.target.closest("close-menu");
         if (closeBtn && desktopMenu.classList.contains("open-vertical")) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeMenu();
+            return;
+        }
+    });
+
+    // Close menu on overlay click
+    overlay.addEventListener("click", (e) => {
+        if (desktopMenu.classList.contains("open-vertical")) {
             e.preventDefault();
             e.stopPropagation();
             closeMenu();
