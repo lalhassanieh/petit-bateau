@@ -933,6 +933,9 @@ svg.edit-icon {
     color: #002e5e !important;
   }
 
+  .verticalmenu-desktop .submenu-vertical-desktop.title-menu-dropdown {
+    background-color: #f5f5f5;
+  }
   .verticalmenu-desktop .subchildmenu > li > menu-item {
     display: flex !important;
     align-items: center !important;
