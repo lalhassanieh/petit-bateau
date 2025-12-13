@@ -310,71 +310,108 @@ function initVerticalMenuHeaderController() {
   const menu = document.querySelector(".verticalmenu-desktop");
   if (!menu) return;
 
-  const titleSpan = menu.querySelector(".title-menu-dropdown .toggle-vertical span");
-  const backBtn   = menu.querySelector(".title-menu-dropdown .header-back");
-  const closeBtn  = menu.querySelector(".title-menu-dropdown .close-menu-header");
+  const header    = menu.querySelector(".title-menu-dropdown");
+  const titleSpan = header?.querySelector(".toggle-vertical span");
+  const closeBtn  = header?.querySelector(".close-menu-header");
+
   const rootTitle = (menu.getAttribute("data-title") || "Menu").trim();
 
-  // stack holds actual opened LI elements + their titles
-  const stack = [{ li: null, title: rootTitle }];
+  // We'll store the *actual opened panel* so Back truly returns where you were.
+  const stack = [{ title: rootTitle, li: null, menuItem: null, panel: null }];
 
   function setHeader(title) {
     if (titleSpan) titleSpan.textContent = title || rootTitle;
-    // Back appears only when inside submenu
     menu.classList.toggle("is-sub-open", stack.length > 1);
   }
 
-  function openLevel(li, title) {
-    // close siblings at same level (mobile behavior)
-    const parentUL = li.parentElement;
-    parentUL?.querySelectorAll(":scope > li.is-open").forEach(x => {
-      if (x !== li) x.classList.remove("is-open");
-    });
+  // Helpers to match different theme behaviors
+  function openState(entry) {
+    entry.li?.classList.add("is-open");
+    entry.menuItem?.classList.add("is-open");
+    entry.panel?.classList.add("visible");
+    entry.panel?.classList.remove("invisible-1025"); // your markup has this
+  }
 
-    li.classList.add("is-open");
-    stack.push({ li, title });
+  function closeState(entry) {
+    entry.li?.classList.remove("is-open");
+    entry.menuItem?.classList.remove("is-open");
+    entry.panel?.classList.remove("visible");
+    // keep it hidden on desktop (matches your theme class)
+    entry.panel?.classList.add("invisible-1025");
+  }
+
+  function getPanel(li) {
+    // In your markup the submenu is: <li> ... <div class="submenu ...">...</div></li>
+    return li?.querySelector(":scope > .submenu");
+  }
+
+  function closeSiblings(li) {
+    const ul = li?.parentElement;
+    if (!ul) return;
+
+    ul.querySelectorAll(":scope > li").forEach(sib => {
+      if (sib === li) return;
+      const sibMenuItem = sib.querySelector(":scope > menu-item");
+      const sibPanel = getPanel(sib);
+      closeState({ li: sib, menuItem: sibMenuItem, panel: sibPanel });
+    });
+  }
+
+  function openLevel(li, title) {
+    const menuItem = li.querySelector(":scope > menu-item");
+    const panel = getPanel(li);
+    if (!panel) return; // no submenu
+
+    closeSiblings(li); // mobile behavior: only one open per level
+    openState({ li, menuItem, panel });
+
+    stack.push({ title, li, menuItem, panel });
     setHeader(title);
   }
 
   function goBack() {
     if (stack.length <= 1) return;
 
-    // close the currently opened submenu (real UI back)
     const current = stack.pop();
-    current.li?.classList.remove("is-open");
+    closeState(current);
 
-    // restore previous title (and previous menu is now visible automatically)
-    setHeader(stack[stack.length - 1].title);
+    const prev = stack[stack.length - 1];
+    setHeader(prev.title);
   }
 
-  // Chevron => open submenu + push to stack
+  // Click chevron => open submenu (and push)
   menu.addEventListener("click", (e) => {
     const toggle = e.target.closest("open-children-toggle");
     if (!toggle) return;
 
     const li = toggle.closest("li");
-    const span = li?.querySelector(":scope > menu-item > a span");
-    const title = (span?.textContent || rootTitle).trim();
+    const label = li?.querySelector(":scope > menu-item > a span")?.textContent?.trim() || rootTitle;
 
-    if (li) openLevel(li, title);
+    openLevel(li, label);
 
     e.preventDefault();
     e.stopPropagation();
   });
 
-  // Back button
-  backBtn?.addEventListener("click", (e) => {
+  // Back button (you need this element in your header)
+  header?.querySelector(".header-back")?.addEventListener("click", (e) => {
     e.preventDefault();
     goBack();
   });
 
-  // Close button => reset fully
+  // Close => reset everything
   closeBtn?.addEventListener("click", () => {
-    menu.querySelectorAll("li.is-open").forEach(li => li.classList.remove("is-open"));
+    // close all opened panels
+    menu.querySelectorAll("li").forEach(li => {
+      const mi = li.querySelector(":scope > menu-item");
+      const p  = getPanel(li);
+      closeState({ li, menuItem: mi, panel: p });
+    });
+
     stack.length = 1;
     setHeader(rootTitle);
 
-    // close sidebar too if needed
+    // also close sidebar overlay if your theme uses it
     menu.classList.remove("open-vertical");
     document.querySelector(".vertical-menu-overlay-desktop")?.classList.remove("visible");
   });
