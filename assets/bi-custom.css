@@ -971,627 +971,142 @@ svg.edit-icon {
 }
 
 /* =========================================================
-   Desktop vertical menu: make it LOOK like the mobile sidebar
-   (single panel + sliding submenus)
-========================================================= */
-@media (min-width: 1025px) {
-  /* Panel width like mobile */
-  .verticalmenu-desktop {
-    width: var(--menu-mobile-width, 43rem) !important;
-    max-width: var(--menu-mobile-width, 43rem) !important;
-    overflow: hidden !important; /* important for slide panels */
-  }
-
-  /* Show the top blue header like mobile */
-  .verticalmenu-desktop .title-menu-dropdown {
-    display: flex !important;
-    justify-content: space-between;
-    padding: 14px 20px !important;
-    min-height: 56px !important;
-    background: var(--gradient-background, #002e5e) !important;
-    color: #fff !important;
-  }
-
-  .verticalmenu-desktop .title-menu-dropdown .toggle-vertical span {
-    color: #fff !important;
-    font-size: 18px !important;
-    font-weight: 600 !important;
-  }
-
-  /* List look like mobile (rows + separators) */
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li {
-    border-bottom: 1px solid rgba(0,0,0,0.08) !important;
-  }
-
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li > menu-item {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 18px 20px !important;
-    width: 100% !important;
-  }
-
-  .verticalmenu-desktop menu-item > a {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    width: 100% !important;
-    text-decoration: none !important;
-    color: var(--color-heading, #0a2a43) !important;
-    font-size: 18px !important;
-    font-weight: 600 !important;
-  }
-
-  /* Right chevron click target like mobile */
-  .verticalmenu-desktop menu-item > open-children-toggle {
-    width: 36px !important;
-    height: 36px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex: 0 0 36px !important;
-  }
-
-  /* ========= IMPORTANT: stop the "2nd column fixed panel" ========= */
-  .verticalmenu-desktop.open-vertical .submenu-vertical__mega,
-  .verticalmenu-desktop.open-vertical .submenu-vertical {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    box-shadow: none !important;
-    z-index: 20 !important;
-  }
-
-  /* Submenus slide inside the same panel (mobile style) */
-  .verticalmenu-desktop .submenu-vertical-desktop,
-  .verticalmenu-desktop .sub-children-menu,
-  .verticalmenu-desktop .submenu.submenu-vertical-desktop {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    background: #fff !important;
-    transform: translateX(100%) !important;
-    visibility: hidden !important;
-    opacity: 1 !important;
-    transition: transform .35s ease, visibility .35s ease !important;
-  }
-
-  /* When opened by JS (your theme uses .is-open + submenu…) */
-  .verticalmenu-desktop .is-open + .submenu-vertical-desktop,
-  .verticalmenu-desktop .is-open + .sub-children-menu,
-  .verticalmenu-desktop .is-open + .submenu.submenu-vertical-desktop {
-    transform: translateX(0) !important;
-    visibility: visible !important;
-  }
-
-  /* Back header inside submenu should look like mobile */
-  .verticalmenu-desktop .submenu-vertical-desktop .hidden-1025,
-  .verticalmenu-desktop .submenu.submenu-vertical-desktop .hidden-1025 {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 14px 20px !important;
-    border-bottom: 1px solid rgba(0,0,0,0.08) !important;
-  }
-
-  /* Remove "mega menu padding blocks" that make it look desktop-y */
-  .verticalmenu-desktop :is(.dropdown-menu .submenu-vertical-desktop, .dropdown-menu .sub-children-menu) {
-    padding: 0 !important;
-    width: 100% !important;
-  }
-
-  /* Force vertical list display - highest priority override using multiple selectors */
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list.inline-flex-1025,
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
-  .verticalmenu-desktop .verticalmenu-html ul[class*="horizontal-list"][class*="inline-flex-1025"],
-  .verticalmenu-desktop .verticalmenu-html ul[class*="horizontal-list"] {
-    display: block !important;
-    flex-direction: column !important;
-    flex-wrap: nowrap !important;
-    flex: none !important;
-  }
-  
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li,
-  .verticalmenu-desktop .verticalmenu-html ul[class*="horizontal-list"] > li {
-    display: block !important;
-    width: 100% !important;
-    flex: none !important;
-    float: none !important;
-  }
-  
-  /* Override the inline-flex-1025 utility class directly */
-  .verticalmenu-desktop .inline-flex-1025 {
-    display: block !important;
-  }
-
-  /* Desktop Vertical Menu - Duplicate mobile styles for desktop */
-  .verticalmenu-desktop .mega-menu .subchildmenu > li.menu-link {
-    opacity: 1;
-  }
-
-  .verticalmenu-desktop .navigation.vertical open-children-toggle {
-    color: var(--color-heading);
-  }
-
-  .verticalmenu-desktop .navigation__menu-content {
-    height: 100%;
-    flex: 1;
-    overflow-y: auto;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop,
-  .verticalmenu-desktop .sub-children-menu {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: var(--menu-mobile-width, 43rem);
-    transform: translateX(100%) !important;
-    z-index: 12;
-    transition: var(--transition-popup);
-  }
-
-  .verticalmenu-desktop .is-open + .submenu-vertical-desktop,
-  .verticalmenu-desktop .is-open + .sub-children-menu {
-    transform: translate(0) !important;
-    visibility: visible !important;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop .grid-cols {
-    --col-desktop: 1 !important;
-  }
-
-  .verticalmenu-desktop .subchildmenu {
-    --col-gap: 0 !important;
-  }
-
-  .verticalmenu-desktop :is(.subchildmenu, .sub-children-menu ul, .horizontal-list) {
-    max-height: 100%;
-    overflow: auto;
-  }
-
-  .verticalmenu-desktop .touch-target-mb {
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  .verticalmenu-desktop :is(.horizontal-list, .categories-list) {
-    animation: 0.5s fadeIn;
-  }
-
-  .verticalmenu-desktop .menu_label {
-    right: -10px;
-  }
-
-  .verticalmenu-desktop .menu_label:after {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    transform: translateX(-95%);
-    -webkit-transform: translateX(-95%);
-    border-right-color: var(--menu-label-bg);
-    margin: auto;
-    border-top-color: transparent;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop :is(.stretch_width, .fluid_container, .full_width, .container) {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-
-  .verticalmenu-desktop .horizontal-list menu-item.px-15 {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  /* Desktop fade-in-down animations */
-  .verticalmenu-desktop .fade-in-down .dropdown-menu .subchildmenu > li.menu-link.level-1 {
-    --tw-translate-x: 20%;
-    --transform-logical: 1;
-    opacity: 0;
-    transform: translate(calc(var(--tw-translate-x) * var(--transform-logical)));
-    transition: transform 1s cubic-bezier(.075, .82, .165, 1), opacity 1s cubic-bezier(.19, 1, .22, 1);
-    transition-delay: .2s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1 {
-    --tw-translate-x: 0;
-    opacity: 1;
-    transition-delay: .25s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:first-child {
-    transition-delay: .3s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:nth-child(2) {
-    transition-delay: .35s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:nth-child(3) {
-    transition-delay: .4s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:nth-child(4) {
-    transition-delay: .45s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:nth-child(5) {
-    transition-delay: .5s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:nth-child(6) {
-    transition-delay: .55s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:nth-child(7) {
-    transition-delay: .6s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:nth-child(8) {
-    transition-delay: .65s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:nth-child(9) {
-    transition-delay: 0.7s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .dropdown-menu.visible .subchildmenu > li.menu-link.level-1:nth-child(10) {
-    transition-delay: 0.8s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu .col-mega .grid > *,
-  .verticalmenu-desktop .fade-in-down .mega-menu .subchildmenu > li.menu-link.level-1 {
-    --translate-y: 0;
-    --translate-x: 20%;
-    opacity: 0;
-    transform: translate(var(--translate-x), var(--translate-y));
-    transition: transform 1.5s cubic-bezier(.075, .82, .165, 1), opacity .9s cubic-bezier(.19, 1, .22, 1);
-    transition-delay: .3s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu.visible .col-mega .grid > * {
-    --translate-x: 0;
-    opacity: 1;
-    transition-delay: .3s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu.visible .subchildmenu > li.menu-link {
-    --translate-x: 0;
-    opacity: 1;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu.visible .subchildmenu > li.menu-link:first-child {
-    transition-delay: .4s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu.visible .subchildmenu > li.menu-link:nth-child(2) {
-    transition-delay: .5s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu.visible .subchildmenu > li.menu-link:nth-child(3) {
-    transition-delay: .6s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu.visible .subchildmenu > li.menu-link:nth-child(4) {
-    transition-delay: .7s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu.visible .subchildmenu > li.menu-link:nth-child(5) {
-    transition-delay: .8s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu.visible .col-mega .grid > *:first-child {
-    transition-delay: .6s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .mega-menu.visible .col-mega .grid > *:nth-child(2) {
-    transition-delay: 0.7s;
-  }
-
-  .verticalmenu-desktop .fade-in-down .fluid_container .col-mega .grid > *:first-child {
-    transition-delay: .8s;
-  }
-
-  /* Desktop menu list and column styles */
-  .verticalmenu-desktop .menu-list {
-    flex: 0 0 auto;
-    width: calc(100% - var(--col-mega-width) - var(--col-gap) * 0.5);
-  }
-
-  .verticalmenu-desktop .col-mega {
-    flex: 0 0 auto;
-    width: calc(var(--col-mega-width) - var(--col-gap) * 0.5);
-  }
-
-  .verticalmenu-desktop .promotion-vertical .col-mega {
-    --col-mega-width: 100%;
-  }
-
-  .verticalmenu-desktop .mega-menu-custom-width {
-    width: var(--mega_custom_width);
-    max-width: 90vw;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop .collection-info .bg-white {
-    width: 90%;
-    max-width: 17rem;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop .menu_label {
-    position: static;
-    margin-inline-start: 1rem;
-    padding: 3px 8px 2px 8px;
-  }
-
-  .verticalmenu-desktop .rounded-style .submenu-vertical-desktop .menu_label.rounded-2 {
-    border-radius: 20px;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop .menu_label::after {
-    display: none;
-  }
-
-  .verticalmenu-desktop .mega-menu .level-1 menu-item > .menu_item-link {
-    padding-top: 0;
-  }
-
-  .verticalmenu-desktop .menu-parent.mega-menu .level-1 > menu-item,
-  .verticalmenu-desktop .title-child__menu {
-    font-size: calc(var(--body-font-size) + 1px);
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop .collection-info .bg-white {
-    border: 0;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop .collection-info .bg-white:hover {
-    color: #fff !important;
-    background: var(--btn-bg);
-    border-color: var(--btn-border-color);
-  }
-
-  /* Dropdown menu styles for desktop */
-  .verticalmenu-desktop .dropdown-menu .sub-children-menu {
-    left: 100%;
-    top: -1rem;
-  }
-
-  .verticalmenu-desktop .dropdown-menu .level-1 open-children-toggle {
-    position: relative;
-  }
-
-  .verticalmenu-desktop :is(.dropdown-menu .submenu-vertical-desktop, .dropdown-menu .sub-children-menu) {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    width: 26rem;
-  }
-
-  .verticalmenu-desktop .dropdown-menu .sub-children-menu {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .verticalmenu-desktop :is(.dropdown-menu .menu-link) {
-    position: relative;
-  }
-
-  .verticalmenu-desktop .dropdown-menu .menu-link:hover open-children-toggle {
-    color: var(--color-primary);
-  }
-
-  .verticalmenu-desktop :is(.dropdown-menu .menu_item-link) {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    position: relative;
-  }
-}
-
-/* =========================================================
    DESKTOP VERTICAL MENU = MOBILE SIDEBAR LOOK (FINAL PATCH)
    Put this at the END of your CSS file
 ========================================================= */
 @media (min-width: 1025px) {
-
-  /* 1) Force the top header (title + close) to be visible */
-  .verticalmenu-desktop .title-menu-dropdown.hidden,
-  .verticalmenu-desktop .title-menu-dropdown.hidden-1025 {
-    display: flex !important;
+  /* Make desktop behave like a single "mobile-like" sliding panel */
+  .verticalmenu-desktop { 
+    overflow: hidden !important; 
   }
 
-  /* Blue header styling (main level) */
+  /* Top blue header */
   .verticalmenu-desktop .title-menu-dropdown {
-    background: #002e5e !important;
-    color: #fff !important;
-    padding: 14px 20px !important;
-    min-height: 56px !important;
+    display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
+    padding: 16px 22px !important;
+    background: #002e5e !important;
+    color: #fff !important;
     border-bottom: 1px solid rgba(255,255,255,.12) !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 50 !important;
   }
 
+  /* Header left group (Back + Title) */
+  .verticalmenu-desktop .title-menu-dropdown .header-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    min-width: 0;
+  }
+
+  /* Title text */
   .verticalmenu-desktop .title-menu-dropdown .toggle-vertical span {
     color: #fff !important;
     font-size: 18px !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 28rem;
   }
 
-  /* Close icon in header */
-  .verticalmenu-desktop close-menu.close-menu-header,
-  .verticalmenu-desktop close-menu.close-menu-header svg,
-  .verticalmenu-desktop .title-menu-dropdown close-menu,
-  .verticalmenu-desktop .title-menu-dropdown close-menu svg {
-    display: inline-flex !important;
-    color: #fff !important;
-    fill: #fff !important;
+  /* Back button in header (hidden by default on root) */
+  .verticalmenu-desktop .title-menu-dropdown .header-back {
+    width: 36px; 
+    height: 36px;
+    display: none;
+    align-items: center; 
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .header-back { 
+    display: flex; 
   }
 
-  .verticalmenu-desktop .title-menu-dropdown close-menu,
-  .verticalmenu-desktop close-menu.close-menu-header {
-    width: 38px !important;
-    height: 38px !important;
+  .verticalmenu-desktop .title-menu-dropdown .header-back:hover {
+    background: rgba(255,255,255,.12);
+  }
+
+  /* Close button in header */
+  .verticalmenu-desktop .title-menu-dropdown .close-menu-header {
+    width: 36px; 
+    height: 36px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .verticalmenu-desktop .title-menu-dropdown .close-menu-header:hover {
+    background: rgba(255,255,255,.12);
+  }
+
+  /* Menu rows + chevron */
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li {
+    border-bottom: 1px solid rgba(0,0,0,.08) !important;
+  }
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li > menu-item {
+    padding: 18px 22px !important;
+    display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    border-radius: 999px !important;
-    cursor: pointer !important;
+    justify-content: space-between !important;
+  }
+  .verticalmenu-desktop .verticalmenu-html menu-item > a {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #0a2a43 !important;
+    text-decoration: none !important;
+    width: 100%;
+  }
+  .verticalmenu-desktop .verticalmenu-html menu-item > open-children-toggle {
+    width: 40px; 
+    height: 40px;
+    display: inline-flex !important;
+    align-items: center; 
+    justify-content: center;
+    flex: 0 0 40px;
+  }
+  .verticalmenu-desktop .verticalmenu-html menu-item > open-children-toggle svg {
+    width: 18px; 
+    height: 18px;
   }
 
-  .verticalmenu-desktop .title-menu-dropdown close-menu:hover,
-  .verticalmenu-desktop close-menu.close-menu-header:hover {
-    background: rgba(255,255,255,.14) !important;
+  /* Submenu must cover the FULL panel like mobile */
+  .verticalmenu-desktop .submenu-vertical-desktop {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #fff !important;
+    transform: translateX(100%) !important;
+    transition: transform .35s ease !important;
+    visibility: visible !important; /* keep measurable */
+    opacity: 1 !important;
+    z-index: 20 !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
-  /* 2) STOP "desktop second column submenu" completely */
+  /* When a parent is open => slide submenu in */
+  .verticalmenu-desktop .level0.is-open > .submenu-vertical-desktop {
+    transform: translateX(0) !important;
+  }
+
+  /* Kill the "2nd column" behavior completely */
   .verticalmenu-desktop.open-vertical .submenu-vertical__mega,
   .verticalmenu-desktop.open-vertical .submenu-vertical {
     position: absolute !important;
-    left: 0 !important;
+    left: 0 !important; 
     top: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    min-width: 0 !important;
+    width: 100% !important; 
     max-width: 100% !important;
     box-shadow: none !important;
   }
 
-  /* 3) Make ALL submenu panels full screen inside same sidebar */
-  .verticalmenu-desktop .submenu-vertical-desktop,
-  .verticalmenu-desktop .sub-children-menu,
-  .verticalmenu-desktop .submenu.submenu-vertical-desktop {
-    position: absolute !important;
-    inset: 0 !important;              /* top/left/right/bottom = 0 */
-    width: 100% !important;
-    max-width: 100% !important;
-    background: #fff !important;
-    transform: translateX(100%) !important;
-    visibility: hidden !important;
-    transition: transform .35s ease, visibility .35s ease !important;
-    z-index: 40 !important;
-    padding: 0 !important;            /* remove the desktop padding */
-  }
-
-  /* OPEN states (more robust selectors for your theme) */
-  .verticalmenu-desktop .submenu-vertical-desktop.visible,
-  .verticalmenu-desktop .sub-children-menu.visible,
-  .verticalmenu-desktop li.is-open > .submenu-vertical-desktop,
-  .verticalmenu-desktop li.is-open > .sub-children-menu,
-  .verticalmenu-desktop .is-open + .submenu-vertical-desktop,
-  .verticalmenu-desktop .is-open + .sub-children-menu {
-    transform: translateX(0) !important;
-    visibility: visible !important;
-  }
-
-  /* Kill old desktop dropdown behavior that makes it partial */
-  .verticalmenu-desktop .dropdown-menu .sub-children-menu {
-    left: 0 !important;
-    top: 0 !important;
-    opacity: 1 !important;
-    transform: translateX(100%) !important;
-  }
-
-  /* 4) Show the submenu header (back + close) on desktop and make it BLUE */
-  .verticalmenu-desktop .submenu-vertical-desktop .hidden-1025,
-  .verticalmenu-desktop .submenu.submenu-vertical-desktop .hidden-1025,
-  .verticalmenu-desktop .sub-children-menu .hidden-1025 {
-    display: flex !important;                 /* was hidden on desktop */
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 12px !important;
-    padding: 14px 20px !important;
-    background: #002e5e !important;
-    color: #fff !important;
-    border-bottom: 1px solid rgba(255,255,255,.12) !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 60 !important;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop back-menu,
-  .verticalmenu-desktop .sub-children-menu back-menu {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    cursor: pointer !important;
-    color: #fff !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop back-menu svg,
-  .verticalmenu-desktop .sub-children-menu back-menu svg,
-  .verticalmenu-desktop .submenu-vertical-desktop close-menu svg,
-  .verticalmenu-desktop .sub-children-menu close-menu svg {
-    fill: #fff !important;
-    color: #fff !important;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop close-menu,
-  .verticalmenu-desktop .sub-children-menu close-menu {
-    width: 38px !important;
-    height: 38px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border-radius: 999px !important;
-    cursor: pointer !important;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop close-menu:hover,
-  .verticalmenu-desktop .sub-children-menu close-menu:hover {
-    background: rgba(255,255,255,.14) !important;
-  }
-
-  /* 5) Make submenu lists look like the main menu (rows, separators, font) */
-  .verticalmenu-desktop .submenu-vertical-desktop ul,
-  .verticalmenu-desktop .sub-children-menu ul {
-    margin: 0 !important;
-    padding: 0 !important;
-    list-style: none !important;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop li,
-  .verticalmenu-desktop .sub-children-menu li {
-    border-bottom: 1px solid rgba(0,0,0,.08) !important;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop a,
-  .verticalmenu-desktop .sub-children-menu a,
-  .verticalmenu-desktop .submenu-vertical-desktop .menu_item-link,
-  .verticalmenu-desktop .sub-children-menu .menu_item-link {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 18px 20px !important;
-    text-decoration: none !important;
-    color: #0a2a43 !important;
-    font-size: 18px !important;
-    font-weight: 600 !important;
-    width: 100% !important;
-  }
-
-  /* Chevron area like mobile */
-  .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle,
-  .verticalmenu-desktop .sub-children-menu open-children-toggle {
-    width: 36px !important;
-    height: 36px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex: 0 0 36px !important;
+  /* Hide the internal grey submenu header on desktop (we use the main blue header) */
+  .verticalmenu-desktop .submenu-vertical-desktop .hidden-1025 {
+    display: none !important;
   }
 }
 
