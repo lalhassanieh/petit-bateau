@@ -912,22 +912,49 @@ svg.edit-icon {
 
   /* Override inline-flex-1025 to display as vertical block list on desktop */
   /* Keep same structure as mobile but display vertically on desktop */
-  .verticalmenu-desktop .verticalmenu-html > ul.horizontal-list {
+  /* Target the ul with all its classes to override inline-flex-1025 - highest specificity */
+  .verticalmenu-desktop.vertical-menu.fixed.color-default.nav-skin .verticalmenu-html ul.horizontal-list.inline-flex-1025.flex-wrap,
+  .verticalmenu-desktop.vertical-menu .verticalmenu-html ul.horizontal-list.inline-flex-1025.flex-wrap,
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list.inline-flex-1025,
+  .verticalmenu-desktop.open-vertical .verticalmenu-html ul.horizontal-list,
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list {
     display: block !important;
     flex-direction: column !important;
     flex-wrap: nowrap !important;
     width: 100% !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
-  .verticalmenu-desktop .verticalmenu-html > ul.horizontal-list > li {
+  /* Override inline-flex-1025 class specifically for vertical menu - multiple selectors for specificity */
+  .verticalmenu-desktop .verticalmenu-html .inline-flex-1025,
+  .verticalmenu-desktop .verticalmenu-html ul.inline-flex-1025 {
+    display: block !important;
+  }
+
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li {
     display: block !important;
     width: 100% !important;
     flex: none !important;
+    float: none !important;
+    clear: both !important;
   }
 
   /* Ensure menu items display correctly */
-  .verticalmenu-desktop .verticalmenu-html > ul.horizontal-list > li > menu-item {
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li > menu-item {
     display: flex !important;
+    width: 100% !important;
+  }
+
+  /* Override any flex-wrap that might cause horizontal layout */
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list.flex-wrap {
+    flex-wrap: nowrap !important;
+  }
+
+  /* Ensure list items don't float or inline */
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li.level0 {
+    display: block !important;
     width: 100% !important;
   }
 }
@@ -940,6 +967,34 @@ svg.edit-icon {
 
   .vertical-menu-overlay-desktop {
     display: none !important;
+  }
+}
+
+/* Additional override at end of file to ensure it takes precedence */
+/* This should override ANY other CSS rules */
+@media (min-width: 1025px) {
+  /* Force vertical list display - highest priority override using multiple selectors */
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list.inline-flex-1025,
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
+  .verticalmenu-desktop .verticalmenu-html ul[class*="horizontal-list"][class*="inline-flex-1025"],
+  .verticalmenu-desktop .verticalmenu-html ul[class*="horizontal-list"] {
+    display: block !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    flex: none !important;
+  }
+  
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li,
+  .verticalmenu-desktop .verticalmenu-html ul[class*="horizontal-list"] > li {
+    display: block !important;
+    width: 100% !important;
+    flex: none !important;
+    float: none !important;
+  }
+  
+  /* Override the inline-flex-1025 utility class directly */
+  .verticalmenu-desktop .inline-flex-1025 {
+    display: block !important;
   }
 }
 
