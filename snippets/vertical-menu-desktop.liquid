@@ -1,24 +1,34 @@
 {%- liquid
   comment
-    Since this snippet is rendered in theme.liquid without section context,
-    section.settings will be null. We need to find the header-mega-store section
-    from the sections object or section_groups.
+    Try multiple methods to get the menu:
+    1. Use passed section parameter from theme.liquid
+    2. Try to find from sections (if available)
+    3. Try section_groups
+    4. As last resort, try common menu handles from linklists
   endcomment
-  assign horizontal_menu_section = null
   assign menu_links = null
+  assign horizontal_menu_section = null
   assign title = 'Menu'
   
-  comment Try to find header-mega-store section from sections
+  comment Method 1: Use passed section parameter if available
   endcomment
-  for section_item in sections
-    if section_item.type == 'header-mega-store' and section_item.settings.mega_menu != blank
-      assign horizontal_menu_section = section_item
-      assign menu_links = section_item.settings.mega_menu.links
-      break
-    endif
-  endfor
+  if horizontal_menu_section != null and horizontal_menu_section.settings.mega_menu != blank
+    assign menu_links = horizontal_menu_section.settings.mega_menu.links
+  endif
   
-  comment If not found, try section_groups (header-group)
+  comment Method 2: Try to find header-mega-store section from sections (if available)
+  endcomment
+  if menu_links == null
+    for section_item in sections
+      if section_item.type == 'header-mega-store' and section_item.settings.mega_menu != blank
+        assign horizontal_menu_section = section_item
+        assign menu_links = section_item.settings.mega_menu.links
+        break
+      endif
+    endfor
+  endif
+  
+  comment Method 3: Try section_groups (header-group)
   endcomment
   if menu_links == null
     for section_group in section_groups
@@ -34,13 +44,25 @@
     endfor
   endif
   
+  comment Method 4: Try common menu handles as fallback
+  endcomment
+  if menu_links == null
+    if linklists.main-menu != blank
+      assign menu_links = linklists.main-menu.links
+    elsif linklists.mega-menu != blank
+      assign menu_links = linklists.mega-menu.links
+    elsif linklists.menu != blank
+      assign menu_links = linklists.menu.links
+    endif
+  endif
+  
   if horizontal_menu_section != null
     assign horizontal_section_st = horizontal_menu_section.settings
     assign theme_st = settings
-    assign section_width = horizontal_section_st.section_width
-    assign uppercase_first = horizontal_section_st.uppercase_first
+    assign section_width = horizontal_section_st.section_width | default: 'container'
+    assign uppercase_first = horizontal_section_st.uppercase_first | default: false
   else
-    assign horizontal_section_st = section_st
+    assign horizontal_section_st = null
     assign theme_st = settings
     assign section_width = 'container'
     assign uppercase_first = false
@@ -82,7 +104,7 @@
       </div>
       <div class="verticalmenu-html">
         <ul>
-          {%- comment -%}DEBUG: menu_links size = {{ menu_links.size | default: 'null' }}, horizontal_menu_section = {{ horizontal_menu_section | default: 'null' }}{%- endcomment -%}
+          {%- comment -%}DEBUG: menu_links size = {{ menu_links.size | default: 'null' }}, horizontal_menu_section = {{ horizontal_menu_section | default: 'null' }}, linklists.main-menu = {{ linklists.main-menu | default: 'null' }}{%- endcomment -%}
           {%- if menu_links != null and menu_links.size > 0 -%}
             {%- for link in menu_links -%}
               {%- liquid
