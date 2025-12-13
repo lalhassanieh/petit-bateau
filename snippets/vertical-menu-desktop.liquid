@@ -1,33 +1,29 @@
 {%- liquid
-  assign section_st = section.settings
-  assign title = section_st.title_categories
-  
   comment
-    Try to get the horizontal menu section (header-mega-store) to use its mega_menu links
-    If not available, fall back to categories_menu from vertical menu section
+    Get the horizontal menu section (header-mega-store) to use its mega_menu links
+    Since this snippet is rendered without section context, we need to find the header section
   endcomment
   assign horizontal_menu_section = null
   assign menu_links = null
+  assign title = 'Menu'
   
   for section_item in sections
-    if section_item.type == 'header-mega-store' and section_item.settings.mega_menu != blank
-      assign horizontal_menu_section = section_item
-      assign menu_links = section_item.settings.mega_menu.links
-      break
+    if section_item.type == 'header-mega-store'
+      if section_item.settings.mega_menu != blank
+        assign horizontal_menu_section = section_item
+        assign menu_links = section_item.settings.mega_menu.links
+        break
+      endif
     endif
   endfor
-  
-  if menu_links == null and section_st.categories_menu != blank
-    assign menu_links = section_st.categories_menu.links
-  endif
   
   if horizontal_menu_section != null
     assign horizontal_section_st = horizontal_menu_section.settings
     assign theme_st = settings
-    assign section_width = horizontal_section_st.section_width
-    assign uppercase_first = horizontal_section_st.uppercase_first
+    assign section_width = horizontal_section_st.section_width | default: 'container'
+    assign uppercase_first = horizontal_section_st.uppercase_first | default: false
   else
-    assign horizontal_section_st = section_st
+    assign horizontal_section_st = null
     assign theme_st = settings
     assign section_width = 'container'
     assign uppercase_first = false
@@ -59,17 +55,17 @@
     {% endif %}
   >
     <div class="desktop-menu-content reset-color-on-menu">
-      <div class="title-menu-dropdown h-44 w-full align-center hidden" style="--color-background: {{ section_st.background_categories }}">
+      <div class="title-menu-dropdown h-44 w-full align-center block-1025" style="{% if horizontal_section_st.menu_mobile_background %}--color-background: {{ horizontal_section_st.menu_mobile_background }};{% else %}--color-background: #002e5e;{% endif %}">
         <div class="toggle-vertical inline-flex pointer align-center gap-10">
           <svg width="18" height="13" viewBox="0 0 18 13" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M1.5 7.5C1.26562 7.5 1.0638 7.42188 0.894531 7.26562C0.738281 7.09635 0.660156 6.89453 0.660156 6.66016C0.660156 6.4388 0.738281 6.25 0.894531 6.09375C1.0638 5.92448 1.26562 5.83984 1.5 5.83984H16.5C16.7344 5.83984 16.9297 5.92448 17.0859 6.09375C17.2552 6.25 17.3398 6.4388 17.3398 6.66016C17.3398 6.89453 17.2552 7.09635 17.0859 7.26562C16.9297 7.42188 16.7344 7.5 16.5 7.5H1.5ZM1.5 2.5C1.26562 2.5 1.0638 2.42188 0.894531 2.26562C0.738281 2.09635 0.660156 1.89453 0.660156 1.66016C0.660156 1.4388 0.738281 1.25 0.894531 1.09375C1.0638 0.924479 1.26562 0.839844 1.5 0.839844H16.5C16.7344 0.839844 16.9297 0.924479 17.0859 1.09375C17.2552 1.25 17.3398 1.4388 17.3398 1.66016C17.3398 1.89453 17.2552 2.09635 17.0859 2.26562C16.9297 2.42188 16.7344 2.5 16.5 2.5H1.5ZM1.5 12.5C1.26562 12.5 1.0638 12.4219 0.894531 12.2656C0.738281 12.0964 0.660156 11.8945 0.660156 11.6602C0.660156 11.4388 0.738281 11.25 0.894531 11.0938C1.0638 10.9245 1.26562 10.8398 1.5 10.8398H16.5C16.7344 10.8398 16.9297 10.9245 17.0859 11.0938C17.2552 11.25 17.3398 11.4388 17.3398 11.6602C17.3398 11.8945 17.2552 12.0964 17.0859 12.2656C16.9297 12.4219 16.7344 12.5 16.5 12.5H1.5Z" fill="currentColor"/>
           </svg>
-          <span>{{ title | default: 'Menu' }}</span>
+          <span style="{% if horizontal_section_st.menu_mobile_color %}color: {{ horizontal_section_st.menu_mobile_color }};{% else %}color: #ffffff;{% endif %}">{{ title }}</span>
         </div>
       </div>
       <div class="verticalmenu-html">
         <ul class="list-none verticalmenu-list">
-          {%- if menu_links != null -%}
+          {%- if menu_links != null and menu_links.size > 0 -%}
             {%- for link in menu_links -%}
               {%- liquid
                 assign last_block = null
@@ -137,7 +133,7 @@
                     <span class="menu-text inline-flex">{{ link_title }}</span>  
                   </a>
                   {%- if link.links.size > 0 -%}
-                    <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0{% else %} touch-target-mb{% endif %}">
+                    <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if horizontal_section_st.redirect_to_link == blank %} absolute inset-0{% else %} touch-target-mb{% endif %}">
                       <svg class="icon-down hidden no-hidden" width="12" height="8">
                         <use href="#icon-next"></use>
                       </svg>
@@ -319,7 +315,7 @@
                     <span class="menu-text inline-flex">{{ link_title }}</span>  
                   </a>
                   {%- if link.links.size > 0 -%}
-                    <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0{% else %} touch-target-mb{% endif %}">
+                    <open-children-toggle class="inline-flex flex-end align-center ms-5{% if horizontal_section_st.redirect_to_link == blank %} absolute inset-0{% else %} touch-target-mb{% endif %}">
                       <svg class="icon-down hidden no-hidden" width="12" height="8">
                         <use href="#icon-next"></use>
                       </svg>
