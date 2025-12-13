@@ -403,3 +403,61 @@
   background: var(--btn-bg);
   border-color: var(--btn-border-color);
 }
+
+/* Desktop menu sidebar styles */
+@media screen and (min-width: 1025px) {
+  .nav-open .navigation.desktop-menu {
+    transform: translate(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .navigation.desktop-menu {
+    background: var(--color-background);
+    --menu-mobile-width: 43rem;
+    --show-overlay-bg: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    max-width: var(--menu-mobile-width);
+    overflow: hidden;
+    transform: translateX(-101%);
+    transition: var(--transition-popup);
+    z-index: 12;
+  }
+  
+  .navigation.desktop-menu open-children-toggle {
+    color: var(--color-heading);
+  }
+  
+  .navigation.desktop-menu .menu-mobile-title a {
+    color: var(--color-heading);
+    opacity: 0.6;
+  }
+  
+  .navigation.desktop-menu .menu-mobile-title a.active {
+    opacity: 1;
+  }
+  
+  .navigation.desktop-menu .navigation__menu-content {
+    height: 100%;
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  .navigation.desktop-menu .submenu,
+  .navigation.desktop-menu .sub-children-menu {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: var(--menu-mobile-width);
+    transform: translateX(100%) !important;
+    z-index: 12;
+    transition: var(--transition-popup);
+  }
+  
+  .navigation.desktop-menu .is-open + .submenu,
+  .navigation.desktop-menu .is-open + .sub-children-menu {
+    transform: translate(0) !important;
+    visibility: visible !important;
+  }
+}
