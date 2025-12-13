@@ -910,7 +910,7 @@ svg.edit-icon {
     fill: currentColor;
   }
 
-  /* ============================================
+    /* ============================================
      NAV-SKIN: Desktop menu skin matching mobile
      Reuses mobile CSS variables, desktop-only classes
      ============================================ */
@@ -965,7 +965,6 @@ svg.edit-icon {
     min-height: 5.5rem;
     padding: 0 3rem;
     width: 100%;
-    cursor: pointer;
   }
 
   .nav-skin .verticalmenu-html > ul > li menu-item a {
@@ -975,17 +974,6 @@ svg.edit-icon {
     text-decoration: none;
     padding: 1rem 0;
     min-height: 5.5rem;
-  }
-
-  /* Open children toggle - make it clickable */
-  .nav-skin open-children-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer;
-    flex-shrink: 0;
   }
 
   /* Icons: Same size & color as mobile */
@@ -1004,7 +992,7 @@ svg.edit-icon {
     height: 1.1rem;
   }
 
-  /* Submenu: Desktop click behavior (like mobile) */
+  /* Submenu: Desktop hover behavior (not click) */
   .nav-skin .verticalmenu-html > ul > li > div {
     position: fixed;
     left: 43rem;
@@ -1016,42 +1004,20 @@ svg.edit-icon {
     z-index: 14;
     background: var(--color-background, #ffffff);
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    visibility: hidden;
   }
 
-  .nav-skin .verticalmenu-html > ul > li.is-open > div {
-    transform: translateX(0);
+  .nav-skin .verticalmenu-html > ul > li:hover > div {
+    opacity: 1;
     visibility: visible;
-  }
-
-  /* Nested submenus (sub-children-menu) - also slide in from right */
-  .nav-skin .sub-children-menu {
-    position: fixed;
-    left: calc(43rem + 60rem);
-    top: 0;
-    bottom: 0;
-    width: auto;
-    min-width: 30rem;
-    max-width: 60rem;
-    z-index: 15;
-    background: var(--color-background, #ffffff);
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    overflow-y: auto;
-    overflow-x: hidden;
-    visibility: hidden;
-  }
-
-  .nav-skin .menu-link.is-open + .sub-children-menu {
-    transform: translateX(0);
-    visibility: visible;
+    pointer-events: auto;
   }
 
   /* Submenu header (back-menu + close-menu container) */
@@ -1085,11 +1051,6 @@ svg.edit-icon {
     color: var(--color-heading, #111111);
     border-bottom: 1px solid var(--color-border, #e5e5e5);
     cursor: pointer;
-    background: var(--color-background, #ffffff);
-  }
-
-  .nav-skin back-menu:hover {
-    background: rgba(0, 0, 0, 0.02);
   }
 
   .nav-skin back-menu svg {
@@ -1158,6 +1119,7 @@ svg.edit-icon {
     background: var(--popular-bg-cl, #fff);
   }
 }
+
 
 @media (max-width: 1024px) {
   /* Hide vertical menu desktop on mobile */
