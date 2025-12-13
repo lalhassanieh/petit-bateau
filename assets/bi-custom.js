@@ -91,9 +91,19 @@ function initVerticalMenu() {
         const openSubmenus = desktopMenu.querySelectorAll('.is-open');
         openSubmenus.forEach(item => item.classList.remove('is-open'));
         
+        // Remove menu open state
         desktopMenu.classList.remove("open-vertical");
+        
+        // Completely hide overlay
         overlay.classList.remove("visible");
+        
+        // Restore body scroll immediately
         document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.documentElement.style.overflow = "";
+        
+        // Force a reflow to ensure styles are applied
+        void desktopMenu.offsetHeight;
     }
 
     // Open menu on toggle button click (desktop only)
@@ -191,29 +201,33 @@ function initVerticalMenu() {
         if (nestedMenuItem) {
             const hasNestedSubmenu = nestedMenuItem.querySelector('+ .sub-children-menu');
             const clickedNestedToggle = e.target.closest('open-children-toggle');
-            const clickedNestedLink = e.target.closest('.menu-link a');
             
-            if (hasNestedSubmenu) {
-                if (clickedNestedToggle || (clickedNestedLink && !e.target.closest('open-children-toggle'))) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    if (nestedMenuItem.classList.contains('is-open')) {
-                        nestedMenuItem.classList.remove('is-open');
-                    } else {
-                        // Close other nested items at same level
-                        const parent = nestedMenuItem.parentElement;
-                        if (parent) {
-                            parent.querySelectorAll('.menu-link.is-open').forEach(item => {
-                                if (item !== nestedMenuItem) {
-                                    item.classList.remove('is-open');
-                                }
-                            });
-                        }
-                        nestedMenuItem.classList.add('is-open');
+            // Only chevron opens nested submenu
+            if (hasNestedSubmenu && clickedNestedToggle) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (nestedMenuItem.classList.contains('is-open')) {
+                    nestedMenuItem.classList.remove('is-open');
+                } else {
+                    // Close other nested items at same level
+                    const parent = nestedMenuItem.parentElement;
+                    if (parent) {
+                        parent.querySelectorAll('.menu-link.is-open').forEach(item => {
+                            if (item !== nestedMenuItem) {
+                                item.classList.remove('is-open');
+                            }
+                        });
                     }
-                    return;
+                    nestedMenuItem.classList.add('is-open');
                 }
+                return;
+            }
+            
+            // Allow normal navigation on nested links
+            if (e.target.closest('.menu-link a')) {
+                // do nothing → browser navigates normally
+                return;
             }
         }
 
@@ -224,13 +238,12 @@ function initVerticalMenu() {
         const hasSubmenu = menuItem.querySelector('> div');
         if (!hasSubmenu) return;
 
-        // Check if click is on open-children-toggle or menu-item
+        // Check if click is on open-children-toggle (chevron)
         const clickedToggle = e.target.closest('open-children-toggle');
-        const clickedMenuItem = e.target.closest('menu-item');
         const clickedLink = e.target.closest('menu-item a');
 
-        // Handle submenu toggle
-        if (clickedToggle || (clickedMenuItem && !clickedLink)) {
+        // ONLY chevron opens submenu
+        if (clickedToggle) {
             e.preventDefault();
             e.stopPropagation();
             
@@ -242,11 +255,10 @@ function initVerticalMenu() {
             return;
         }
 
-        // If clicking the link and it has children, prevent navigation and open submenu
-        if (clickedLink && hasSubmenu) {
-            e.preventDefault();
-            e.stopPropagation();
-            openSubmenu(menuItem);
+        // Allow normal navigation on <a> links
+        if (clickedLink) {
+            // do nothing → browser navigates normally
+            return;
         }
     });
 }
