@@ -746,16 +746,41 @@ svg.edit-icon {
   .verticalmenu-desktop .title-menu-dropdown {
     display: flex !important;
     align-items: center;
+    justify-content: space-between;
     padding: 1.5rem 3rem;
     background: var(--gradient-background, #002e5e);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     min-height: 5.5rem;
+    position: relative;
   }
 
   .verticalmenu-desktop .title-menu-dropdown .toggle-vertical {
     color: var(--color-heading, #ffffff);
     font-weight: 600;
     font-size: 1.6rem;
+  }
+
+  /* Close button in header */
+  .verticalmenu-desktop .close-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    color: var(--color-heading, #ffffff);
+  }
+
+  .verticalmenu-desktop .close-menu-header:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .verticalmenu-desktop .close-menu-header svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: currentColor;
   }
 
   /* Vertical menu HTML container */
@@ -847,7 +872,7 @@ svg.edit-icon {
     visibility: visible !important;
   }
 
-  /* Overlay */
+  /* Overlay - visible but not clickable (doesn't close menu) */
   .vertical-menu-overlay-desktop {
     position: fixed;
     top: 0;
@@ -866,7 +891,16 @@ svg.edit-icon {
   .vertical-menu-overlay-desktop.visible {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
+    pointer-events: none; /* Changed from auto to none - overlay won't close menu */
+  }
+
+  /* Ensure overlay is completely hidden when menu is closed */
+  .verticalmenu-desktop:not(.open-vertical) ~ .vertical-menu-overlay-desktop,
+  .vertical-menu-overlay-desktop:not(.visible) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
   }
 
   /* Submenu positioning when sidebar is open */
@@ -910,93 +944,296 @@ svg.edit-icon {
     fill: currentColor;
   }
 
-  /* Override inline-flex-1025 to display as vertical block list on desktop */
-  /* Keep same structure as mobile but display vertically on desktop */
-  /* Target the ul with all its classes to override inline-flex-1025 - highest specificity */
-  .verticalmenu-desktop.vertical-menu.fixed.color-default.nav-skin .verticalmenu-html ul.horizontal-list.inline-flex-1025.flex-wrap,
-  .verticalmenu-desktop.vertical-menu .verticalmenu-html ul.horizontal-list.inline-flex-1025.flex-wrap,
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list.inline-flex-1025,
-  .verticalmenu-desktop.open-vertical .verticalmenu-html ul.horizontal-list,
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list {
-    display: block !important;
-    flex-direction: column !important;
-    flex-wrap: nowrap !important;
-    width: 100% !important;
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  /* Override inline-flex-1025 class specifically for vertical menu - multiple selectors for specificity */
-  .verticalmenu-desktop .verticalmenu-html .inline-flex-1025,
-  .verticalmenu-desktop .verticalmenu-html ul.inline-flex-1025 {
-    display: block !important;
-  }
-
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li {
-    display: block !important;
-    width: 100% !important;
-    flex: none !important;
-    float: none !important;
-    clear: both !important;
-  }
-
-  /* Ensure menu items display correctly */
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li > menu-item {
-    display: flex !important;
-    width: 100% !important;
-  }
-
-  /* Override any flex-wrap that might cause horizontal layout */
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list.flex-wrap {
-    flex-wrap: nowrap !important;
-  }
-
-  /* Ensure list items don't float or inline */
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li.level0 {
-    display: block !important;
-    width: 100% !important;
-  }
-}
-
-@media (max-width: 1024px) {
-  /* Hide vertical menu desktop on mobile */
-  .verticalmenu-desktop {
-    display: none !important;
-  }
-
-  .vertical-menu-overlay-desktop {
-    display: none !important;
-  }
-}
-
-/* Additional override at end of file to ensure it takes precedence */
-/* This should override ANY other CSS rules */
-@media (min-width: 1025px) {
-  /* Force vertical list display - highest priority override using multiple selectors */
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list.inline-flex-1025,
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
-  .verticalmenu-desktop .verticalmenu-html ul[class*="horizontal-list"][class*="inline-flex-1025"],
-  .verticalmenu-desktop .verticalmenu-html ul[class*="horizontal-list"] {
-    display: block !important;
-    flex-direction: column !important;
-    flex-wrap: nowrap !important;
-    flex: none !important;
-  }
+  /* ============================================
+     NAV-SKIN: Desktop menu skin matching mobile
+     Reuses mobile CSS variables, desktop-only classes
+     ============================================ */
   
-  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li,
-  .verticalmenu-desktop .verticalmenu-html ul[class*="horizontal-list"] > li {
-    display: block !important;
-    width: 100% !important;
-    flex: none !important;
-    float: none !important;
-  }
-  
-  /* Override the inline-flex-1025 utility class directly */
-  .verticalmenu-desktop .inline-flex-1025 {
-    display: block !important;
+  /* Base: Reuse mobile background & colors */
+  .nav-skin {
+    background: var(--color-background, #ffffff);
+    color: var(--color-link, #111111);
   }
 
+  /* Typography: Match mobile font sizes & weights */
+  .nav-skin menu-item a,
+  .nav-skin menu-item span,
+  .nav-skin a {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    font-weight: 500;
+    color: var(--color-link, #111111);
+  }
+
+  .nav-skin menu-item a.heading-style,
+  .nav-skin .heading-style {
+    font-weight: 600;
+    color: var(--color-heading, #111111);
+  }
+
+  /* Level 0 menu items: Match mobile spacing & borders */
+  .nav-skin .verticalmenu-html > ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li {
+    position: relative;
+    list-style: none;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+  }
+
+  .nav-skin .verticalmenu-html > ul > li menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5.5rem;
+    padding: 0 3rem;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li menu-item a {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    text-decoration: none;
+    padding: 1rem 0;
+    min-height: 5.5rem;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+  }
+
+  /* Hover effect on menu item links */
+  .nav-skin .verticalmenu-html > ul > li menu-item a:hover {
+    color: var(--color-link-hover, var(--color-link, #111111));
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+
+  /* Make chevron clearly clickable */
+  .nav-skin open-children-toggle {
+    cursor: pointer;
+  }
+
+  /* Open children toggle - make it clickable */
+  .nav-skin open-children-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* Icons: Same size & color as mobile */
+  .nav-skin svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: currentColor;
+  }
+
+  .nav-skin svg use {
+    color: var(--color-link, #111111);
+  }
+
+  .nav-skin open-children-toggle svg {
+    width: 0.6rem;
+    height: 1.1rem;
+  }
+
+  /* Submenu: Desktop click behavior ONLY (no hover) */
+  .nav-skin .verticalmenu-html > ul > li > div {
+    position: fixed;
+    left: 43rem;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    min-width: 30rem;
+    max-width: 60rem;
+    z-index: 14;
+    background: var(--color-background, #ffffff);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li.is-open > div {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Ensure no hover behavior - only click */
+  .nav-skin .verticalmenu-html > ul > li:not(.is-open) > div {
+    opacity: 0;
+    transform: translateX(100%) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Prevent any hover from opening submenus - STRICT */
+  .nav-skin .verticalmenu-html > ul > li:hover > div:not(.is-open),
+  .nav-skin .verticalmenu-html > ul > li:not(.is-open):hover > div {
+    transform: translateX(100%) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+
+  /* Only allow submenu to show when is-open class is present */
+  .nav-skin .verticalmenu-html > ul > li > div {
+    display: none;
+  }
+
+  .nav-skin .verticalmenu-html > ul > li.is-open > div {
+    display: flex;
+  }
+
+  /* Nested submenus (sub-children-menu) - also slide in from right */
+  .nav-skin .sub-children-menu {
+    position: fixed;
+    left: calc(43rem + 60rem);
+    top: 0;
+    bottom: 0;
+    width: auto;
+    min-width: 30rem;
+    max-width: 60rem;
+    z-index: 15;
+    background: var(--color-background, #ffffff);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    visibility: hidden;
+  }
+
+  .nav-skin .menu-link.is-open + .sub-children-menu {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  /* Submenu header (back-menu + close-menu container) */
+  .nav-skin .verticalmenu-html > ul > li > div > div:first-child {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+    background: var(--color-background, #ffffff);
+  }
+
+  /* Submenu content area */
+  .nav-skin .verticalmenu-html > ul > li > div > div:last-child {
+    flex: 1;
+    padding: 4rem;
+    overflow-y: auto;
+    background: var(--gradient-background, var(--color-background, #ffffff));
+  }
+
+  /* Back menu & close button styling */
+  .nav-skin back-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 3rem;
+    min-height: 5.5rem;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: var(--color-heading, #111111);
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+    cursor: pointer;
+    background: var(--color-background, #ffffff);
+  }
+
+  .nav-skin back-menu:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .nav-skin back-menu svg {
+    width: 0.6rem;
+    height: 1.1rem;
+    fill: currentColor;
+  }
+
+  .nav-skin close-menu {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 15;
+    width: 4.4rem;
+    height: 4.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+
+  .nav-skin close-menu:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-skin close-menu svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: currentColor;
+  }
+
+  /* Submenu content: Reuse mobile variables */
+  .nav-skin .submenu {
+    background: var(--gradient-background, var(--color-background, #ffffff));
+    color: var(--color-link, #111111);
+  }
+
+  .nav-skin .submenu * {
+    color: var(--color-link, #111111);
+  }
+
+  .nav-skin .submenu .heading-style {
+    color: var(--color-heading, #111111);
+  }
+
+  /* Label colors: Reuse mobile label variables */
+  .nav-skin .menu_label.hot {
+    color: var(--hot-cl, #ff0000);
+    background: var(--hot-bg-cl, #fff);
+  }
+
+  .nav-skin .menu_label.new {
+    color: var(--new-cl, #00ff00);
+    background: var(--new-bg-cl, #fff);
+  }
+
+  .nav-skin .menu_label.sale {
+    color: var(--sale-cl, #ff0000);
+    background: var(--sale-bg-cl, #fff);
+  }
+
+  .nav-skin .menu_label.popular {
+    color: var(--popular-cl, #0000ff);
+    background: var(--popular-bg-cl, #fff);
+  }
+
+  
   /* Desktop Vertical Menu - Duplicate mobile styles for desktop */
   .verticalmenu-desktop .mega-menu .subchildmenu > li.menu-link {
     opacity: 1;
@@ -1281,6 +1518,18 @@ svg.edit-icon {
     padding-left: 3rem;
     padding-right: 3rem;
     position: relative;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  /* Hide vertical menu desktop on mobile */
+  .verticalmenu-desktop {
+    display: none !important;
+  }
+
+  .vertical-menu-overlay-desktop {
+    display: none !important;
   }
 }
 
