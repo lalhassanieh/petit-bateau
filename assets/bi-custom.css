@@ -743,5 +743,12 @@ svg.edit-icon {
     height: 100vh;
   }
 }
-
+@media (min-width: 1025px) {
+  nav.horizontal.desktop-menu {
+    display: flex !important;
+  }
+  nav.horizontal.mobile {
+    display: none !important;
+  }
+}
 /*================*/
