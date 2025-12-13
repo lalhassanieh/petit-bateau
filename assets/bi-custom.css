@@ -589,18 +589,6 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
-
-.desktop-1025-only {
-  display: none;
-}
-
-@media (min-width: 1025px) {
-  .desktop-1025-only {
-    display: flex;
-    align-items: center;
-  }
-}
-
 .menu-toggle {
     display: flex;
     justify-content: center;
