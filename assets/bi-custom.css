@@ -696,6 +696,14 @@ svg.edit-icon {
 }
 
 
+/* Desktop menu sidebar when opened via desktop toggle */
+@media (max-width: 1024px) {
+  .navigation.desktop-menu,
+  nav.desktop-menu {
+    display: none !important;
+  }
+}
+
 @media (min-width: 1025px) {
   /* Override any animation keyframes that might affect visibility */
   .navigation.desktop-menu,
@@ -723,7 +731,7 @@ svg.edit-icon {
     transform: translateX(-101%) !important;
     -webkit-transform: translateX(-101%) !important;
     transition: var(--transition-popup) !important;
-    z-index: 12 !important;
+    z-index: 13 !important;
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -790,6 +798,16 @@ svg.edit-icon {
     opacity: 1 !important;
     visibility: visible !important;
   }
+  
+  /* Ensure desktop menu is always visible when nav-open, regardless of other classes */
+  html.nav-open nav.desktop-menu,
+  html.open-drawer nav.desktop-menu,
+  html.open-sidebar nav.desktop-menu {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    -webkit-transform: translateX(0) !important;
+    z-index: 13 !important;
+  }
 }
-
-/*================*/
