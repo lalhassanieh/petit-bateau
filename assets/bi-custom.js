@@ -87,6 +87,10 @@ function initVerticalMenu() {
     }
 
     function closeMenu() {
+        // Close all submenus first
+        const openSubmenus = desktopMenu.querySelectorAll('.is-open');
+        openSubmenus.forEach(item => item.classList.remove('is-open'));
+        
         desktopMenu.classList.remove("open-vertical");
         overlay.classList.remove("visible");
         document.body.style.overflow = "";
@@ -133,6 +137,120 @@ function initVerticalMenu() {
     window.addEventListener("resize", () => {
         if (!isDesktop() && desktopMenu.classList.contains("open-vertical")) {
             closeMenu();
+        }
+    });
+
+    // ============================================
+    // Submenu navigation (click-based like mobile)
+    // ============================================
+    
+    function openSubmenu(menuItem) {
+        // Close all other submenus at the same level
+        const parent = menuItem.parentElement;
+        if (parent) {
+            const siblings = parent.querySelectorAll('> li');
+            siblings.forEach(item => {
+                if (item !== menuItem) {
+                    item.classList.remove('is-open');
+                }
+            });
+        }
+        
+        // Open the clicked submenu
+        menuItem.classList.add('is-open');
+    }
+
+    function closeSubmenu(menuItem) {
+        // Close this submenu and all nested submenus
+        const nestedOpen = menuItem.querySelectorAll('.is-open');
+        nestedOpen.forEach(item => item.classList.remove('is-open'));
+        menuItem.classList.remove('is-open');
+    }
+
+    function goBack() {
+        // Find the deepest open submenu and close it
+        const allOpen = desktopMenu.querySelectorAll('.is-open');
+        if (allOpen.length === 0) return;
+        
+        // Get the last one (deepest)
+        const deepest = Array.from(allOpen).pop();
+        closeSubmenu(deepest);
+    }
+
+    // Handle clicks on menu items with children
+    desktopMenu.addEventListener("click", (e) => {
+        if (!isDesktop() || !desktopMenu.classList.contains("open-vertical")) return;
+
+        // Handle back button clicks
+        const clickedBack = e.target.closest('back-menu');
+        if (clickedBack) {
+            e.preventDefault();
+            e.stopPropagation();
+            goBack();
+            return;
+        }
+
+        // Handle nested submenu items (sub-children-menu)
+        const nestedMenuItem = e.target.closest('.menu-link');
+        if (nestedMenuItem) {
+            const hasNestedSubmenu = nestedMenuItem.querySelector('+ .sub-children-menu');
+            const clickedNestedToggle = e.target.closest('open-children-toggle');
+            const clickedNestedLink = e.target.closest('.menu-link a');
+            
+            if (hasNestedSubmenu) {
+                if (clickedNestedToggle || (clickedNestedLink && !e.target.closest('open-children-toggle'))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    if (nestedMenuItem.classList.contains('is-open')) {
+                        nestedMenuItem.classList.remove('is-open');
+                    } else {
+                        // Close other nested items at same level
+                        const parent = nestedMenuItem.parentElement;
+                        if (parent) {
+                            parent.querySelectorAll('.menu-link.is-open').forEach(item => {
+                                if (item !== nestedMenuItem) {
+                                    item.classList.remove('is-open');
+                                }
+                            });
+                        }
+                        nestedMenuItem.classList.add('is-open');
+                    }
+                    return;
+                }
+            }
+        }
+
+        // Handle top-level menu items
+        const menuItem = e.target.closest('.verticalmenu-html > ul > li');
+        if (!menuItem) return;
+
+        const hasSubmenu = menuItem.querySelector('> div');
+        if (!hasSubmenu) return;
+
+        // Check if click is on open-children-toggle or menu-item
+        const clickedToggle = e.target.closest('open-children-toggle');
+        const clickedMenuItem = e.target.closest('menu-item');
+        const clickedLink = e.target.closest('menu-item a');
+
+        // Handle submenu toggle
+        if (clickedToggle || (clickedMenuItem && !clickedLink)) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (menuItem.classList.contains('is-open')) {
+                closeSubmenu(menuItem);
+            } else {
+                openSubmenu(menuItem);
+            }
+            return;
+        }
+
+        // If clicking the link and it has children, prevent navigation and open submenu
+        if (clickedLink && hasSubmenu) {
+            e.preventDefault();
+            e.stopPropagation();
+            openSubmenu(menuItem);
         }
     });
 }
