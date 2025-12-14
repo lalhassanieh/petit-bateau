@@ -388,8 +388,23 @@ function initVerticalMenuHeaderController() {
     if (!panelEl) return;
 
     panelEl.classList.add('vm-active');
+    
+    // Find the parent level-1 li and add class to expand it
+    const level1Li = panelEl.closest('li.menu-link.level-1');
+    if (level1Li) {
+      level1Li.classList.add('is-open');
+      
+      // Calculate and set the top position so it expands from its current position
+      const menuContainer = menu.querySelector('.verticalmenu-html');
+      if (menuContainer) {
+        const liRect = level1Li.getBoundingClientRect();
+        const containerRect = menuContainer.getBoundingClientRect();
+        const topOffset = liRect.top - containerRect.top;
+        level1Li.style.top = topOffset + 'px';
+      }
+    }
 
-    level2Stack.push({ panel: panelEl, title: title || rootTitle });
+    level2Stack.push({ panel: panelEl, title: title || rootTitle, li: level1Li });
 
     setHeader(title, true);
   }
@@ -399,6 +414,12 @@ function initVerticalMenuHeaderController() {
     if (!top) return false; 
 
     top.panel.classList.remove('vm-active');
+    
+    // Remove the is-open class and reset styles from the level-1 li
+    if (top.li) {
+      top.li.classList.remove('is-open');
+      top.li.style.top = '';
+    }
 
     const prev = level2Stack[level2Stack.length - 1];
     if (prev) {
@@ -447,6 +468,11 @@ function initVerticalMenuHeaderController() {
       while (level2Stack.length) {
         const top = level2Stack.pop();
         top.panel.classList.remove('vm-active');
+        // Remove the is-open class and reset styles from the level-1 li
+        if (top.li) {
+          top.li.classList.remove('is-open');
+          top.li.style.top = '';
+        }
       }
     });
   }
