@@ -590,7 +590,7 @@ svg.edit-icon {
 /*=========================
        CSS For Navbar
 ===========================*/
-/*
+
 .desktop-1025-only {
   display: none;
 }
@@ -700,6 +700,485 @@ svg.edit-icon {
   pointer-events: none;
 }
 
-*/
+
+@media (max-width: 1024px) {
+  .verticalmenu-desktop {
+    display: none !important;
+  }
+
+  .vertical-menu-overlay-desktop {
+    display: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   DESKTOP VERTICAL MENU 
+========================================================= */
+@media (min-width: 1025px) {
+
+  .verticalmenu-desktop{
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 43rem; max-width: 43rem;
+    background: #fff;
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: transform .35s ease;
+    box-shadow: 2px 0 16px rgba(0,0,0,.18);
+    overflow: hidden; 
+  }
+  .verticalmenu-desktop.open-vertical{ transform: translateX(0); }
+
+  .vertical-menu-overlay-desktop{
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 9998;
+    opacity: 0; visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
+  }
+  .vertical-menu-overlay-desktop.visible{
+    opacity: 1; visibility: visible;
+  }
+
+  .verticalmenu-desktop .title-menu-dropdown{
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: 56px;
+    padding: 5px 20px !important;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+
+  .verticalmenu-desktop .title-menu-dropdown .toggle-vertical span{
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 28rem;
+  }
+
+  .verticalmenu-desktop .title-menu-dropdown .close-menu-header{
+    width: 38px; height: 38px;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .verticalmenu-desktop .title-menu-dropdown .close-menu-header:hover{
+    background: rgba(255,255,255,.14);
+  }
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .close-menu-header:hover{
+    background: rgba(0,0,0,.08);
+  }
+
+  .verticalmenu-desktop .title-menu-dropdown .header-back{
+    width: 38px; height: 38px;
+    display: none;
+    align-items: center; justify-content: center;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .header-back{
+    display: inline-flex;
+  }
+  .verticalmenu-desktop .title-menu-dropdown .header-back:hover{
+    background: rgba(255,255,255,.14);
+  }
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .header-back:hover{
+    background: rgba(0,0,0,.08);
+  }
+
+  .verticalmenu-desktop .navigation.vertical,
+  .verticalmenu-desktop .desktop-menu-content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .verticalmenu-desktop .verticalmenu-html{
+    position: relative;
+    flex: 1;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    background: #fff;
+  }
+
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list{
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+  }
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list > li{
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .verticalmenu-desktop :is(ul.horizontal-list > li, .subchildmenu > li){
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+
+  .verticalmenu-desktop :is(ul.horizontal-list > li > menu-item, .subchildmenu > li > menu-item){
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 18px 30px !important;
+  }
+
+  .verticalmenu-desktop :is(menu-item > a, menu-item > a > span){
+    text-decoration: none !important;
+    padding: 0 !important;
+  }
+
+  .verticalmenu-desktop menu-item > open-children-toggle{
+    width: 30px !important;
+    height: 30px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 30px !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .verticalmenu-desktop menu-item > open-children-toggle svg{
+    width: 15px !important;
+    height: 15px !important;
+    fill: #002e5e !important;
+    color: #002e5e !important;
+  }
+
+  .verticalmenu-desktop .submenu-vertical__mega,
+  .verticalmenu-desktop .submenu-vertical{
+    position: static !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    box-shadow: none !important;
+  }
+
+  .verticalmenu-desktop .submenu,
+  .verticalmenu-desktop .submenu-vertical-desktop,
+  .verticalmenu-desktop .sub-children-menu,
+  .verticalmenu-desktop ul.sub-children-menu {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    background: #fff !important;
+    transform: translateX(100%) !important;
+    transition: transform .35s ease !important;
+    z-index: 20 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .verticalmenu-desktop .submenu.visible,
+  .verticalmenu-desktop .submenu-vertical-desktop.visible,
+  .verticalmenu-desktop .sub-children-menu.visible,
+  .verticalmenu-desktop ul.sub-children-menu.visible,
+  .verticalmenu-desktop .submenu.vm-active,
+  .verticalmenu-desktop .submenu-vertical-desktop.vm-active,
+  .verticalmenu-desktop .sub-children-menu.vm-active,
+  .verticalmenu-desktop ul.sub-children-menu.vm-active,
+  .verticalmenu-desktop li.is-open > .submenu-vertical-desktop,
+  .verticalmenu-desktop li.is-open > .sub-children-menu,
+  .verticalmenu-desktop li.is-open > ul.sub-children-menu,
+  .verticalmenu-desktop li.is-open > .submenu,
+  .verticalmenu-desktop li.is-open .submenu-vertical-desktop.visible,
+  .verticalmenu-desktop li.is-open .sub-children-menu.visible,
+  .verticalmenu-desktop li.is-open ul.sub-children-menu.visible,
+  .verticalmenu-desktop li.is-open .submenu-vertical-desktop.vm-active,
+  .verticalmenu-desktop li.is-open .sub-children-menu.vm-active,
+  .verticalmenu-desktop li.is-open ul.sub-children-menu.vm-active,
+  .verticalmenu-desktop .is-open + .submenu-vertical-desktop,
+  .verticalmenu-desktop .is-open + .sub-children-menu{
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
+  }
+
+  .verticalmenu-desktop .submenu-vertical-desktop .hidden-1025,
+  .verticalmenu-desktop .sub-children-menu .hidden-1025{
+    display: none !important;
+  }
+
+  .verticalmenu-desktop .submenu-vertical-desktop .subchildmenu,
+  .verticalmenu-desktop .sub-children-menu ul{
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle.hidden-1025,
+  .verticalmenu-desktop .sub-children-menu open-children-toggle.hidden-1025,
+  .verticalmenu-desktop .subchildmenu open-children-toggle.hidden-1025 {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 30px !important;
+    height: 30px !important;
+    flex: 0 0 30px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    position: static !important;     
+    inset: auto !important;
+    right: auto !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .verticalmenu-desktop .submenu-vertical-desktop open-children-toggle svg,
+  .verticalmenu-desktop .sub-children-menu open-children-toggle svg {
+    display: block !important;
+    width: 15px !important;
+    height: 15px !important;
+    fill: #002e5e !important;
+    color: #002e5e !important;
+  }
+
+  .verticalmenu-desktop .subchildmenu > li > menu-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  .verticalmenu-desktop .subchildmenu > li > menu-item > a {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .verticalmenu-desktop .sub-children-menu,
+  .verticalmenu-desktop .sub-children-menu.static-1025 {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    background: #fff !important;
+    transform: translateX(100%) !important;
+    transition: transform .35s ease !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 45 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  .verticalmenu-desktop .sub-children-menu.vm-active,
+  .verticalmenu-desktop li.is-open > .sub-children-menu {
+    transform: translateX(0) !important;
+  }
+
+  .verticalmenu-desktop .dropdown-menu .sub-children-menu {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+  }
+
+  .verticalmenu-desktop {
+    overflow: hidden !important;
+    overscroll-behavior-x: none;
+  }
+
+  .verticalmenu-desktop .desktop-menu-content {
+    overflow: hidden !important;
+  }
+
+  .verticalmenu-desktop img,
+  .verticalmenu-desktop video,
+  .verticalmenu-desktop svg {
+    max-width: 100%;
+  }
+
+  .verticalmenu-desktop.is-sub-open {
+    overflow-x: hidden !important;
+  }
+
+  .verticalmenu-desktop:not(.is-sub-open) .title-menu-dropdown {
+    background: #002e5e !important;  
+    color: #fff !important;
+  }
+  
+
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown {
+    background: #f5f5f5 !important;  
+    color: #002e5e !important;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .toggle-vertical span {
+    color: #002e5e !important;
+  }
+
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .header-back svg {
+    fill: #002e5e !important;
+  }
+
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .close-menu-header svg {
+    fill: #002e5e !important;
+  }
+
+  .verticalmenu-desktop .title-menu-dropdown {
+    transition: background-color .25s ease, color .25s ease;
+  }
+
+  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu,
+  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    display: block !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    transform: translateX(100%) !important;
+    pointer-events: none !important;
+    z-index: 9999 !important;
+    overflow: visible !important;
+  }
+
+  .verticalmenu-desktop .submenu-vertical-desktop li.is-open > .sub-children-menu,
+  .verticalmenu-desktop .submenu-vertical-desktop li.is-open > ul.sub-children-menu,
+  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu.visible,
+  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu.visible,
+  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu.vm-active,
+  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu.vm-active {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
+  }
+
+
+  .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
+  .verticalmenu-desktop .subchildmenu {
+    position: relative !important;
+  }
+
+  .verticalmenu-desktop li.menu-link.level-1 {
+    position: static !important;
+  }
+
+  .verticalmenu-desktop li.menu-link.level-1 > ul.sub-children-menu {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    margin: 0 !important;
+    background: #fff !important;
+    overflow: visible !important;
+    transform: translateX(100%) !important;
+    transition: transform .35s ease !important;
+    pointer-events: none !important;
+    z-index: 300 !important;
+  }
+
+  .verticalmenu-desktop li.menu-link.level-1 > ul.sub-children-menu.vm-active {
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
+  }
+
+  .verticalmenu-desktop ul.sub-children-menu > ul.list-unstyled {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .verticalmenu-desktop ul.sub-children-menu > ul.list-unstyled > li {
+    border-bottom: 1px solid rgba(0,0,0,.08) !important;
+  }
+
+  .verticalmenu-desktop ul.sub-children-menu > ul.list-unstyled > li > a {
+    display: flex !important;
+    align-items: center !important;
+    padding: 18px 20px !important;
+    min-height: 55px !important;
+  }
+
+  .verticalmenu-desktop .sub-children-menu,
+  .verticalmenu-desktop .sub-children-menu ul,
+  .verticalmenu-desktop .sub-children-menu.gradient,
+  .verticalmenu-desktop .sub-children-menu ul.gradient{
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  .verticalmenu-desktop .sub-children-menu::before,
+  .verticalmenu-desktop .sub-children-menu::after,
+  .verticalmenu-desktop .sub-children-menu ul::before,
+  .verticalmenu-desktop .sub-children-menu ul::after{
+    content: none !important;
+    display: none !important;
+  }
+
+  .verticalmenu-desktop .sub-children-menu,
+  .verticalmenu-desktop .sub-children-menu ul{
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  .verticalmenu-desktop .verticalmenu-html,
+  .verticalmenu-desktop .verticalmenu-html .gradient,
+  .verticalmenu-desktop .submenu.gradient,
+  .verticalmenu-desktop .submenu-vertical-desktop.gradient,
+  .verticalmenu-desktop .sub-children-menu.gradient,
+  .verticalmenu-desktop .submenu,
+  .verticalmenu-desktop .submenu-vertical-desktop,
+  .verticalmenu-desktop .sub-children-menu {
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  .verticalmenu-desktop .verticalmenu-html::before,
+  .verticalmenu-desktop .verticalmenu-html::after,
+  .verticalmenu-desktop .submenu::before,
+  .verticalmenu-desktop .submenu::after,
+  .verticalmenu-desktop .submenu-vertical-desktop::before,
+  .verticalmenu-desktop .submenu-vertical-desktop::after,
+  .verticalmenu-desktop .sub-children-menu::before,
+  .verticalmenu-desktop .sub-children-menu::after {
+    content: none !important;
+    display: none !important;
+  }
+
+
+  .verticalmenu-desktop .horizontal-list .level0 > menu-item > a::after{
+    content: none !important;
+    display: none !important;
+    transform: none !important;
+  }
+
+  .verticalmenu-desktop .horizontal-list .level0 > menu-item > a.reversed-links{
+    background: none !important;
+    background-size: 0 0 !important;
+  }
+}
 
 /*================*/
