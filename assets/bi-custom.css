@@ -1174,22 +1174,6 @@ svg.edit-icon {
     display: none !important;
   }
 
- .verticalmenu-desktop
-  ul.horizontal-list
-  > li.level0.single{
-    border-bottom: none !important;
-  }
-  
-    .verticalmenu-desktop
-  ul.horizontal-list
-  > li.level0.single::after,
-  .verticalmenu-desktop
-  ul.horizontal-list
-  > li.level0.single::before{
-    content: none !important;
-    display: none !important;
-  }
-
 }
 
 /*================*/
