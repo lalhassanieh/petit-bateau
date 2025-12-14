@@ -426,7 +426,6 @@ function initVerticalMenuHeaderController() {
     if (level1Li) {
       level1Li.classList.add('is-open');
       
-      // Add is-open to menu-item (same as mobile)
       const mi = level1Li.querySelector(':scope > menu-item');
       if (mi) mi.classList.add('is-open');
       
@@ -464,7 +463,6 @@ function initVerticalMenuHeaderController() {
     if (top.li) {
       top.li.classList.remove('is-open');
       
-      // Remove is-open from menu-item (same as mobile)
       const mi = top.li.querySelector(':scope > menu-item');
       if (mi) mi.classList.remove('is-open');
     }
