@@ -1073,35 +1073,62 @@ svg.edit-icon {
     pointer-events: auto !important;
   }
 
+  /* The viewport that panels slide inside */
+  .verticalmenu-desktop .verticalmenu-html {
+    position: relative !important;
+    overflow: hidden !important; /* important: hide the list behind the panel */
+  }
+
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
   .verticalmenu-desktop .subchildmenu {
     position: relative !important;
   }
 
-  .verticalmenu-desktop li.menu-link.level-1.is-open {
-    position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    min-height: 100% !important;
-    z-index: 50 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    background: #fff !important;
+  /* IMPORTANT: don't position the li as a panel */
+  .verticalmenu-desktop li.menu-link.level-1 {
+    position: static !important;
   }
 
-  .verticalmenu-desktop li.menu-link.level-1:has(.sub-children-menu.vm-active) {
+  /* Make level-2 panel cover the whole menu (like mobile) */
+  .verticalmenu-desktop li.menu-link.level-1 > ul.sub-children-menu {
     position: absolute !important;
+    top: 0 !important;
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
     width: 100% !important;
-    min-height: 100% !important;
-    z-index: 50 !important;
-    display: flex !important;
-    flex-direction: column !important;
+    height: 100% !important;
+    margin: 0 !important;
     background: #fff !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    transform: translateX(100%) !important;
+    transition: transform .35s ease !important;
+    pointer-events: none !important;
+    z-index: 300 !important;
+  }
+
+  /* open state */
+  .verticalmenu-desktop li.menu-link.level-1 > ul.sub-children-menu.vm-active {
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
+  }
+
+  /* Make spacing/dividers identical inside the panel */
+  .verticalmenu-desktop ul.sub-children-menu > ul.list-unstyled {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .verticalmenu-desktop ul.sub-children-menu > ul.list-unstyled > li {
+    border-bottom: 1px solid rgba(0,0,0,.08) !important;
+  }
+
+  .verticalmenu-desktop ul.sub-children-menu > ul.list-unstyled > li > a {
+    display: flex !important;
+    align-items: center !important;
+    padding: 18px 20px !important; /* match main menu */
+    min-height: 55px !important;
   }
 }
 
