@@ -1174,6 +1174,17 @@ svg.edit-icon {
     display: none !important;
   }
 
+
+  .verticalmenu-desktop .horizontal-list .level0 > menu-item > a::after{
+    content: none !important;
+    display: none !important;
+    transform: none !important;
+  }
+
+  .verticalmenu-desktop .horizontal-list .level0 > menu-item > a .reversed-links{
+    background: none !important;
+    background-size: 0 0 !important;
+  }
 }
 
 /*================*/
