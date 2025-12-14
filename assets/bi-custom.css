@@ -1050,6 +1050,38 @@ svg.edit-icon {
   .verticalmenu-desktop .title-menu-dropdown {
     transition: background-color .25s ease, color .25s ease;
   }
+
+  /* Force third-level panels (ul.sub-children-menu) to behave as real side panels */
+  /* Override static-1025 and ensure proper positioning */
+  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu,
+  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    transform: translateX(100%) !important;
+    pointer-events: none !important;
+    z-index: 9999 !important;
+  }
+
+  /* When opened - make 3rd level panel visible */
+  .verticalmenu-desktop .submenu-vertical-desktop li.is-open > .sub-children-menu,
+  .verticalmenu-desktop .submenu-vertical-desktop li.is-open > ul.sub-children-menu,
+  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu.visible,
+  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu.visible,
+  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu.vm-active,
+  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu.vm-active {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
+  }
 }
 
 /*================*/
