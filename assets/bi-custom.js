@@ -456,6 +456,18 @@ function initVerticalMenuHeaderController() {
     setHeader(title, true);
   }
 
+  function isInSubmenu() {
+    // Check if there's an open submenu visible
+    const openSubmenu = menu.querySelector('.submenu.visible, .submenu-vertical-desktop.visible');
+    if (openSubmenu) return true;
+    
+    // Check if there's a visible submenu-vertical-desktop
+    const visibleSubmenu = menu.querySelector('.submenu-vertical-desktop:not(.invisible-1025)');
+    if (visibleSubmenu) return true;
+    
+    return false;
+  }
+
   function closeTopLevel2Panel() {
     if (level2Stack.length === 0) return false;
     
@@ -476,7 +488,9 @@ function initVerticalMenuHeaderController() {
     } else {
       // Show the parent collection title instead of rootTitle
       const parentTitle = top.parentCollectionTitle || rootTitle;
-      setHeader(parentTitle, false);
+      // Check if we're still in a submenu context - if parentTitle is not rootTitle, we're in a submenu
+      const stillInSubmenu = parentTitle !== rootTitle || isInSubmenu();
+      setHeader(parentTitle, stillInSubmenu);
     }
     return true;
   }
