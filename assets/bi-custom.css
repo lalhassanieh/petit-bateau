@@ -1097,8 +1097,7 @@ svg.edit-icon {
     right: 0 !important;
     bottom: 0 !important;
     width: 100% !important;
-    height: 1250px !important;
-    min-height: 100% !important;
+    height: 100% !important;
     background: #fff !important;
     z-index: 450 !important;    
     display: flex !important;
