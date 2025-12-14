@@ -750,16 +750,12 @@ svg.edit-icon {
     gap: 12px;
     height: 56px;
     padding: 0 20px !important;
-    background: #002e5e !important;
-    color: #fff !important;
-    border-bottom: 1px solid rgba(255,255,255,.12);
     position: sticky;
     top: 0;
     z-index: 30;
   }
 
   .verticalmenu-desktop .title-menu-dropdown .toggle-vertical span{
-    color: #fff !important;
     font-size: 18px !important;
     font-weight: 600 !important;
     white-space: nowrap;
@@ -778,9 +774,8 @@ svg.edit-icon {
   .verticalmenu-desktop .title-menu-dropdown .close-menu-header:hover{
     background: rgba(255,255,255,.14);
   }
-  .verticalmenu-desktop .title-menu-dropdown .close-menu-header svg{
-    fill: #fff !important;
-    color: #fff !important;
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .close-menu-header:hover{
+    background: rgba(0,0,0,.08);
   }
 
   .verticalmenu-desktop .title-menu-dropdown .header-back{
@@ -796,9 +791,8 @@ svg.edit-icon {
   .verticalmenu-desktop .title-menu-dropdown .header-back:hover{
     background: rgba(255,255,255,.14);
   }
-  .verticalmenu-desktop .title-menu-dropdown .header-back svg{
-    fill: #fff !important;
-    color: #fff !important;
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .header-back:hover{
+    background: rgba(0,0,0,.08);
   }
 
   .verticalmenu-desktop .navigation.vertical,
@@ -933,9 +927,6 @@ svg.edit-icon {
     color: #002e5e !important;
   }
 
-  .verticalmenu-desktop .submenu-vertical-desktop .title-menu-dropdown {
-    background: #f5f5f5;
-  }
   .verticalmenu-desktop .subchildmenu > li > menu-item {
     display: flex !important;
     align-items: center !important;
@@ -1005,7 +996,39 @@ svg.edit-icon {
     font-weight: 400 !important; 
   }
 
+  /* ---------- HEADER COLOR CHANGE: Blue for main, light for submenu ---------- */
+  /* MAIN (root) menu header */
+  .verticalmenu-desktop:not(.is-sub-open) .title-menu-dropdown {
+    background: #002e5e !important;   /* main menu color */
+    color: #fff !important;
+  }
 
+  /* SUBMENU header */
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown {
+    background: #f5f6f8 !important;   /* submenu color */
+    color: #0a2a43 !important;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+
+  /* Title text color in submenu */
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .toggle-vertical span {
+    color: #0a2a43 !important;
+  }
+
+  /* Back icon color in submenu */
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .header-back svg {
+    fill: #0a2a43 !important;
+  }
+
+  /* Close icon color in submenu */
+  .verticalmenu-desktop.is-sub-open .title-menu-dropdown .close-menu-header svg {
+    fill: #0a2a43 !important;
+  }
+
+  /* Smooth color transition */
+  .verticalmenu-desktop .title-menu-dropdown {
+    transition: background-color .25s ease, color .25s ease;
+  }
 }
 
 /*================*/
