@@ -1073,10 +1073,9 @@ svg.edit-icon {
     pointer-events: auto !important;
   }
 
-  /* The viewport that panels slide inside */
   .verticalmenu-desktop .verticalmenu-html {
     position: relative !important;
-    overflow: hidden !important; /* important: hide the list behind the panel */
+    overflow: hidden !important; 
   }
 
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
@@ -1084,12 +1083,10 @@ svg.edit-icon {
     position: relative !important;
   }
 
-  /* IMPORTANT: don't position the li as a panel */
   .verticalmenu-desktop li.menu-link.level-1 {
     position: static !important;
   }
 
-  /* Make level-2 panel cover the whole menu (like mobile) */
   .verticalmenu-desktop li.menu-link.level-1 > ul.sub-children-menu {
     position: absolute !important;
     top: 0 !important;
@@ -1108,13 +1105,11 @@ svg.edit-icon {
     z-index: 300 !important;
   }
 
-  /* open state */
   .verticalmenu-desktop li.menu-link.level-1 > ul.sub-children-menu.vm-active {
     transform: translateX(0) !important;
     pointer-events: auto !important;
   }
 
-  /* Make spacing/dividers identical inside the panel */
   .verticalmenu-desktop ul.sub-children-menu > ul.list-unstyled {
     padding: 0 !important;
     margin: 0 !important;
@@ -1127,7 +1122,7 @@ svg.edit-icon {
   .verticalmenu-desktop ul.sub-children-menu > ul.list-unstyled > li > a {
     display: flex !important;
     align-items: center !important;
-    padding: 18px 20px !important; /* match main menu */
+    padding: 18px 20px !important;
     min-height: 55px !important;
   }
 }
