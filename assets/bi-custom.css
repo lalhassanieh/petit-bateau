@@ -748,7 +748,7 @@ svg.edit-icon {
     justify-content: space-between;
     gap: 12px;
     height: 56px;
-    padding: 0 20px !important;
+    padding: 5px 30px !important;
     position: sticky;
     top: 0;
     z-index: 30;
