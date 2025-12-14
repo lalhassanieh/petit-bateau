@@ -1150,7 +1150,18 @@ svg.edit-icon {
     border-bottom: 0 !important;
   }
 
+  .verticalmenu-desktop .verticalmenu-html{
+    border: 0 !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    filter: none !important;
+  }
 
+  .verticalmenu-desktop .verticalmenu-html::before,
+  .verticalmenu-desktop .verticalmenu-html::after{
+    content: none !important;
+    display: none !important;
+  }
 }
 
 /*================*/
