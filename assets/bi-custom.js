@@ -179,10 +179,16 @@ function initVerticalMenu() {
 
         const clickedBack = e.target.closest('back-menu');
         if (clickedBack) {
-            e.preventDefault();
-            e.stopPropagation();
-            goBack();
-            return;
+            // Let the level2Stack handler take care of back-menu clicks in sub-children-menu
+            // Only use generic goBack() if not in a level-2 panel
+            const subChildrenMenu = clickedBack.closest('.sub-children-menu');
+            if (!subChildrenMenu || !subChildrenMenu.classList.contains('vm-active')) {
+                e.preventDefault();
+                e.stopPropagation();
+                goBack();
+                return;
+            }
+            // Otherwise, let the level2Stack handler process it
         }
 
         const nestedMenuItem = e.target.closest('.menu-link');
@@ -410,6 +416,8 @@ function initVerticalMenuHeaderController() {
   }
 
   function closeTopLevel2Panel() {
+    if (level2Stack.length === 0) return false;
+    
     const top = level2Stack.pop();
     if (!top) return false; 
 
@@ -425,7 +433,7 @@ function initVerticalMenuHeaderController() {
     if (prev) {
       setHeader(prev.title, true);
     } else {
-      return false;
+      setHeader(rootTitle, false);
     }
     return true;
   }
@@ -451,6 +459,26 @@ function initVerticalMenuHeaderController() {
     openLevel2Panel(panel, title);
   });
 
+  // Handle back-menu clicks inside sub-children-menu
+  menu.addEventListener('click', (e) => {
+    const backMenu = e.target.closest('back-menu');
+    if (!backMenu) return;
+
+    if (window.innerWidth < 1025) return;
+
+    // Check if we're in a level-2 panel (sub-children-menu)
+    const subChildrenMenu = backMenu.closest('.sub-children-menu');
+    if (subChildrenMenu && subChildrenMenu.classList.contains('vm-active')) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Close the current level-2 panel and return to previous
+      if (closeTopLevel2Panel()) {
+        return;
+      }
+    }
+  }, true); // Use capture phase to handle before other handlers
+
   if (headerBackBtn) {
     headerBackBtn.addEventListener('click', (e) => {
       if (level2Stack.length > 0 && closeTopLevel2Panel()) {
@@ -474,6 +502,7 @@ function initVerticalMenuHeaderController() {
           top.li.style.top = '';
         }
       }
+      setHeader(rootTitle, false);
     });
   }
 })();
