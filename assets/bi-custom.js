@@ -339,6 +339,25 @@ function initVerticalMenuNavigator() {
     return panel;
   }
 
+  // Helper to activate a panel with all necessary classes and styles
+  function activatePanel(li, panel) {
+    if (!li || !panel) return;
+
+    // 1) Mark LI open
+    li.classList.add("is-open");
+
+    // 2) Force panel visible for CSS rules
+    panel.classList.add("visible", "vm-active");
+
+    // 3) Remove the desktop-hidden class that is currently blocking it
+    panel.classList.remove("invisible-1025");
+
+    // Extra safety (some themes toggle opacity/visibility)
+    panel.style.visibility = "visible";
+    panel.style.opacity = "1";
+    panel.style.pointerEvents = "auto";
+  }
+
   function openPanel(li, title) {
     const panel = getPanel(li);
     if (!panel) {
@@ -350,24 +369,42 @@ function initVerticalMenuNavigator() {
       title,
       panelTag: panel.tagName,
       panelClass: panel.className,
-      liClass: li.className
+      liClass: li.className,
+      beforeActivate: {
+        liHasIsOpen: li.classList.contains('is-open'),
+        panelHasVisible: panel.classList.contains('visible'),
+        panelHasVmActive: panel.classList.contains('vm-active'),
+        panelHasInvisible: panel.classList.contains('invisible-1025')
+      }
     });
 
-    // close siblings at same level (so only one open)
+    // Close siblings at same level (so only one open)
     const ul = li.parentElement;
     if (ul) {
       ul.querySelectorAll(":scope > li").forEach(sib => {
         if (sib === li) return;
         const sibPanel = getPanel(sib);
         sib.classList.remove("is-open");
-        sibPanel?.classList.remove("visible", "vm-active");
-        sibPanel?.classList.add("invisible-1025");
+        if (sibPanel) {
+          sibPanel.classList.remove("visible", "vm-active");
+          sibPanel.classList.add("invisible-1025");
+          // Reset inline styles
+          sibPanel.style.visibility = "";
+          sibPanel.style.opacity = "";
+          sibPanel.style.pointerEvents = "";
+        }
       });
     }
 
-    li.classList.add("is-open");
-    panel.classList.add("visible", "vm-active");
-    panel.classList.remove("invisible-1025");
+    // Activate this panel with all necessary classes
+    activatePanel(li, panel);
+
+    console.log('[initVerticalMenuNavigator] After activate:', {
+      liHasIsOpen: li.classList.contains('is-open'),
+      panelHasVisible: panel.classList.contains('visible'),
+      panelHasVmActive: panel.classList.contains('vm-active'),
+      panelHasInvisible: panel.classList.contains('invisible-1025')
+    });
 
     stack.push({ title, li, panel });
     setHeader(title);
@@ -377,9 +414,18 @@ function initVerticalMenuNavigator() {
     if (stack.length <= 1) return;
     const current = stack.pop();
 
-    current.li?.classList.remove("is-open");
-    current.panel?.classList.remove("visible", "vm-active");
-    current.panel?.classList.add("invisible-1025");
+    if (current.li) {
+      current.li.classList.remove("is-open");
+    }
+    
+    if (current.panel) {
+      current.panel.classList.remove("visible", "vm-active");
+      current.panel.classList.add("invisible-1025");
+      // Reset inline styles
+      current.panel.style.visibility = "";
+      current.panel.style.opacity = "";
+      current.panel.style.pointerEvents = "";
+    }
 
     setHeader(stack[stack.length - 1].title);
   }
@@ -388,8 +434,14 @@ function initVerticalMenuNavigator() {
     menu.querySelectorAll("li").forEach(li => {
       li.classList.remove("is-open");
       const p = getPanel(li);
-      p?.classList.remove("visible", "vm-active");
-      p?.classList.add("invisible-1025");
+      if (p) {
+        p.classList.remove("visible", "vm-active");
+        p.classList.add("invisible-1025");
+        // Reset inline styles
+        p.style.visibility = "";
+        p.style.opacity = "";
+        p.style.pointerEvents = "";
+      }
     });
     stack.length = 1;
     setHeader(rootTitle);
