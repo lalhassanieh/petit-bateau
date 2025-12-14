@@ -536,8 +536,7 @@ function initVerticalMenuHeaderController() {
         top.panel.classList.remove('vm-active');
         if (top.li) {
           top.li.classList.remove('is-open');
-          
-          // Remove is-open from menu-item (same as mobile)
+        
           const mi = top.li.querySelector(':scope > menu-item');
           if (mi) mi.classList.remove('is-open');
         }
