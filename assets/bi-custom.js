@@ -179,8 +179,6 @@ function initVerticalMenu() {
 
         const clickedBack = e.target.closest('back-menu');
         if (clickedBack) {
-            // Let the level2Stack handler take care of back-menu clicks in sub-children-menu
-            // Only use generic goBack() if not in a level-2 panel
             const subChildrenMenu = clickedBack.closest('.sub-children-menu');
             if (!subChildrenMenu || !subChildrenMenu.classList.contains('vm-active')) {
                 e.preventDefault();
@@ -188,7 +186,6 @@ function initVerticalMenu() {
                 goBack();
                 return;
             }
-            // Otherwise, let the level2Stack handler process it
         }
 
         const nestedMenuItem = e.target.closest('.menu-link');
@@ -393,22 +390,18 @@ function initVerticalMenuHeaderController() {
   function getParentCollectionTitle(level1Li) {
     if (!level1Li) return rootTitle;
     
-    // Find the parent subchildmenu that contains this level-1 item
     const subchildmenu = level1Li.closest('.subchildmenu');
     if (!subchildmenu) return rootTitle;
     
-    // Find the parent submenu that contains the subchildmenu
     const parentSubmenu = subchildmenu.closest('.submenu, .submenu-vertical-desktop');
     if (!parentSubmenu) return rootTitle;
     
-    // Try to find the parent collection title from the submenu's back-menu or header
     const backMenu = parentSubmenu.querySelector('back-menu');
     if (backMenu) {
       const backMenuText = backMenu.textContent.trim();
       if (backMenuText) return backMenuText;
     }
     
-    // Try to find from the parent li that contains this submenu
     const parentLi = parentSubmenu.closest('li');
     if (parentLi) {
       const parentLink = parentLi.querySelector('menu-item > a, > menu-item > a');
@@ -426,14 +419,12 @@ function initVerticalMenuHeaderController() {
 
     panelEl.classList.add('vm-active');
     
-    // Find the parent level-1 li and add class to expand it
     const level1Li = panelEl.closest('li.menu-link.level-1');
     let parentCollectionTitle = rootTitle;
     
     if (level1Li) {
       level1Li.classList.add('is-open');
       
-      // Get the parent collection title
       parentCollectionTitle = getParentCollectionTitle(level1Li);
     }
 
@@ -448,11 +439,9 @@ function initVerticalMenuHeaderController() {
   }
 
   function isInSubmenu() {
-    // Check if there's an open submenu visible
     const openSubmenu = menu.querySelector('.submenu.visible, .submenu-vertical-desktop.visible');
     if (openSubmenu) return true;
     
-    // Check if there's a visible submenu-vertical-desktop
     const visibleSubmenu = menu.querySelector('.submenu-vertical-desktop:not(.invisible-1025)');
     if (visibleSubmenu) return true;
     
@@ -467,7 +456,6 @@ function initVerticalMenuHeaderController() {
 
     top.panel.classList.remove('vm-active');
     
-    // Remove the is-open class from the level-1 li
     if (top.li) {
       top.li.classList.remove('is-open');
     }
@@ -476,9 +464,7 @@ function initVerticalMenuHeaderController() {
     if (prev) {
       setHeader(prev.title, true);
     } else {
-      // Show the parent collection title instead of rootTitle
       const parentTitle = top.parentCollectionTitle || rootTitle;
-      // Check if we're still in a submenu context - if parentTitle is not rootTitle, we're in a submenu
       const stillInSubmenu = parentTitle !== rootTitle || isInSubmenu();
       setHeader(parentTitle, stillInSubmenu);
     }
@@ -506,25 +492,22 @@ function initVerticalMenuHeaderController() {
     openLevel2Panel(panel, title);
   });
 
-  // Handle back-menu clicks inside sub-children-menu
   menu.addEventListener('click', (e) => {
     const backMenu = e.target.closest('back-menu');
     if (!backMenu) return;
 
     if (window.innerWidth < 1025) return;
 
-    // Check if we're in a level-2 panel (sub-children-menu)
     const subChildrenMenu = backMenu.closest('.sub-children-menu');
     if (subChildrenMenu && subChildrenMenu.classList.contains('vm-active')) {
       e.preventDefault();
       e.stopPropagation();
       
-      // Close the current level-2 panel and return to previous
       if (closeTopLevel2Panel()) {
         return;
       }
     }
-  }, true); // Use capture phase to handle before other handlers
+  }, true);
 
   if (headerBackBtn) {
     headerBackBtn.addEventListener('click', (e) => {
@@ -543,7 +526,6 @@ function initVerticalMenuHeaderController() {
       while (level2Stack.length) {
         const top = level2Stack.pop();
         top.panel.classList.remove('vm-active');
-        // Remove the is-open class from the level-1 li
         if (top.li) {
           top.li.classList.remove('is-open');
         }
