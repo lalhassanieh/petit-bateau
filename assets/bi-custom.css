@@ -1082,6 +1082,18 @@ svg.edit-icon {
     transform: translateX(0) !important;
     pointer-events: auto !important;
   }
+
+  /* Prevent overflow clipping on submenu containers */
+  .verticalmenu-desktop .submenu-vertical-desktop,
+  .verticalmenu-desktop .submenu-vertical-desktop * {
+    overflow: visible !important;
+  }
+
+  /* But allow vertical scrolling on the menu itself */
+  .verticalmenu-desktop {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
 }
 
 /*================*/
