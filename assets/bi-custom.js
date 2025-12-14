@@ -165,7 +165,7 @@ function initVerticalMenu() {
         // Close all other submenus at the same level
         const parent = menuItem.parentElement;
         if (parent) {
-            const siblings = parent.querySelectorAll(':scope > li');
+            const siblings = parent.querySelectorAll('> li');
             siblings.forEach(item => {
                 if (item !== menuItem) {
                     item.classList.remove('is-open');
@@ -248,7 +248,7 @@ function initVerticalMenu() {
         const menuItem = e.target.closest('.verticalmenu-html > ul > li');
         if (!menuItem) return;
 
-        const hasSubmenu = menuItem.querySelector(':scope > div');
+        const hasSubmenu = menuItem.querySelector('> div');
         if (!hasSubmenu) return;
 
         // Check if click is on open-children-toggle (chevron)
@@ -326,161 +326,29 @@ function initVerticalMenuNavigator() {
   }
 
   function getPanel(li) {
-    if (!li) return null;
-    
-    // First try direct children (most common)
-    let panel = li.querySelector(":scope > .submenu-vertical-desktop, :scope > .sub-children-menu, :scope > .submenu, :scope > ul.sub-children-menu");
-    
-    // If not found, search at any depth inside the LI (theme may nest panels)
-    if (!panel) {
-      panel = li.querySelector(".submenu-vertical-desktop, .submenu, ul.sub-children-menu, .sub-children-menu");
-    }
-    
-    return panel;
-  }
-
-  // More robust helper specifically for finding child panels (3rd level)
-  // Handles cases where level-2 items don't have direct UL children
-  function getChildPanel(li) {
-    if (!li) return null;
-
-    // 1) Direct UL child
-    let panel = li.querySelector(":scope > ul");
-    if (panel) return panel;
-
-    // 2) Common class variants inside li
-    panel = li.querySelector("ul.sub-children-menu, ul.subchildmenu, ul.submenu, .submenu");
-    if (panel) return panel;
-
-    // 3) Sometimes the submenu is the NEXT sibling (very common in themes)
-    if (li.nextElementSibling && li.nextElementSibling.tagName === 'UL') {
-      return li.nextElementSibling;
-    }
-
-    // 4) Or inside an immediate wrapper DIV next to the link
-    const wrap = li.querySelector(":scope > div");
-    if (wrap) {
-      panel = wrap.querySelector("ul");
-      if (panel) return panel;
-    }
-
-    // 5) Fallback: any UL anywhere inside the LI
-    panel = li.querySelector("ul");
-    return panel;
-  }
-
-  // Helper to activate a panel with all necessary classes and styles
-  function activatePanel(li, panel) {
-    if (!li || !panel) return;
-
-    // 1) Mark LI open
-    li.classList.add("is-open");
-
-    // 2) Force panel visible for CSS rules
-    panel.classList.add("visible", "vm-active");
-
-    // 3) Remove the desktop-hidden class that is currently blocking it
-    panel.classList.remove("invisible-1025");
-
-    // Extra safety (some themes toggle opacity/visibility/display/transform)
-    // Force transform to translateX(0) to override any matrix transforms
-    panel.style.display = "block";
-    panel.style.visibility = "visible";
-    panel.style.opacity = "1";
-    panel.style.transform = "translateX(0)";
-    // Force transform via setProperty for higher specificity
-    panel.style.setProperty("transform", "translateX(0)", "important");
-    panel.style.left = "0";
-    panel.style.top = "0";
-    panel.style.zIndex = "99999";
-    panel.style.pointerEvents = "auto";
-
-    // Debug: Log computed styles to identify CSS issues
-    const cs = window.getComputedStyle(panel);
-    console.log('[activatePanel] Computed styles:', {
-      display: cs.display,
-      visibility: cs.visibility,
-      opacity: cs.opacity,
-      transform: cs.transform,
-      position: cs.position,
-      left: cs.left,
-      top: cs.top,
-      right: cs.right,
-      bottom: cs.bottom,
-      zIndex: cs.zIndex,
-      width: cs.width,
-      height: cs.height,
-      overflow: cs.overflow
-    });
-
-    // Debug: Check parent container
-    const parentContainer = panel.closest('.submenu-vertical-desktop');
-    if (parentContainer) {
-      const parentRect = parentContainer.getBoundingClientRect();
-      const panelRect = panel.getBoundingClientRect();
-      console.log('[activatePanel] Layout check:', {
-        parentRect: { width: parentRect.width, height: parentRect.height, top: parentRect.top, left: parentRect.left },
-        panelRect: { width: panelRect.width, height: panelRect.height, top: panelRect.top, left: panelRect.left },
-        isVisible: panelRect.width > 0 && panelRect.height > 0
-      });
-    }
+    // support both types - panel is inside the <li>, not a sibling
+    return li?.querySelector(":scope > .submenu-vertical-desktop, :scope > .sub-children-menu, :scope > .submenu");
   }
 
   function openPanel(li, title) {
-    // Try the standard getPanel first
-    let panel = getPanel(li);
-    
-    // If not found, try the more robust getChildPanel (for 3rd level panels)
-    if (!panel) {
-      panel = getChildPanel(li);
-    }
-    
-    if (!panel) {
-      console.warn('[initVerticalMenuNavigator] No panel found for LI:', li, 'Classes:', li.className);
-      console.warn('[initVerticalMenuNavigator] LI HTML:', li.outerHTML.substring(0, 300));
-      return;
-    }
-    
-    console.log('[initVerticalMenuNavigator] Opening panel:', {
-      title,
-      panelTag: panel.tagName,
-      panelClass: panel.className,
-      liClass: li.className,
-      beforeActivate: {
-        liHasIsOpen: li.classList.contains('is-open'),
-        panelHasVisible: panel.classList.contains('visible'),
-        panelHasVmActive: panel.classList.contains('vm-active'),
-        panelHasInvisible: panel.classList.contains('invisible-1025')
-      }
-    });
+    const panel = getPanel(li);
+    if (!panel) return;
 
-    // Close siblings at same level (so only one open)
+    // close siblings at same level (so only one open)
     const ul = li.parentElement;
     if (ul) {
       ul.querySelectorAll(":scope > li").forEach(sib => {
         if (sib === li) return;
         const sibPanel = getPanel(sib);
         sib.classList.remove("is-open");
-        if (sibPanel) {
-          sibPanel.classList.remove("visible", "vm-active");
-          sibPanel.classList.add("invisible-1025");
-          // Reset inline styles
-          sibPanel.style.visibility = "";
-          sibPanel.style.opacity = "";
-          sibPanel.style.pointerEvents = "";
-        }
+        sibPanel?.classList.remove("visible", "vm-active");
+        sibPanel?.classList.add("invisible-1025");
       });
     }
 
-    // Activate this panel with all necessary classes
-    activatePanel(li, panel);
-
-    console.log('[initVerticalMenuNavigator] After activate:', {
-      liHasIsOpen: li.classList.contains('is-open'),
-      panelHasVisible: panel.classList.contains('visible'),
-      panelHasVmActive: panel.classList.contains('vm-active'),
-      panelHasInvisible: panel.classList.contains('invisible-1025')
-    });
+    li.classList.add("is-open");
+    panel.classList.add("visible", "vm-active");
+    panel.classList.remove("invisible-1025");
 
     stack.push({ title, li, panel });
     setHeader(title);
@@ -490,18 +358,9 @@ function initVerticalMenuNavigator() {
     if (stack.length <= 1) return;
     const current = stack.pop();
 
-    if (current.li) {
-      current.li.classList.remove("is-open");
-    }
-    
-    if (current.panel) {
-      current.panel.classList.remove("visible", "vm-active");
-      current.panel.classList.add("invisible-1025");
-      // Reset inline styles
-      current.panel.style.visibility = "";
-      current.panel.style.opacity = "";
-      current.panel.style.pointerEvents = "";
-    }
+    current.li?.classList.remove("is-open");
+    current.panel?.classList.remove("visible", "vm-active");
+    current.panel?.classList.add("invisible-1025");
 
     setHeader(stack[stack.length - 1].title);
   }
@@ -510,14 +369,8 @@ function initVerticalMenuNavigator() {
     menu.querySelectorAll("li").forEach(li => {
       li.classList.remove("is-open");
       const p = getPanel(li);
-      if (p) {
-        p.classList.remove("visible", "vm-active");
-        p.classList.add("invisible-1025");
-        // Reset inline styles
-        p.style.visibility = "";
-        p.style.opacity = "";
-        p.style.pointerEvents = "";
-      }
+      p?.classList.remove("visible", "vm-active");
+      p?.classList.add("invisible-1025");
     });
     stack.length = 1;
     setHeader(rootTitle);
@@ -558,5 +411,4 @@ function initVerticalMenuNavigator() {
 
   setHeader(rootTitle);
 }
-
 
