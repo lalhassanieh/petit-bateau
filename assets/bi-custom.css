@@ -996,36 +996,31 @@ svg.edit-icon {
     font-weight: 400 !important; 
   }
 
-  /* ---------- HEADER COLOR CHANGE: Blue for main, light for submenu ---------- */
-  /* MAIN (root) menu header */
+  /* menu header */
   .verticalmenu-desktop:not(.is-sub-open) .title-menu-dropdown {
-    background: #002e5e !important;   /* main menu color */
+    background: #002e5e !important;  
     color: #fff !important;
   }
+  
 
-  /* SUBMENU header */
   .verticalmenu-desktop.is-sub-open .title-menu-dropdown {
-    background: #f5f6f8 !important;   /* submenu color */
-    color: #0a2a43 !important;
+    background: #f5f5f5 !important;  
+    color: #002e5e !important;
     border-bottom: 1px solid rgba(0,0,0,.08);
   }
 
-  /* Title text color in submenu */
   .verticalmenu-desktop.is-sub-open .title-menu-dropdown .toggle-vertical span {
-    color: #0a2a43 !important;
+    color: #002e5e !important;
   }
 
-  /* Back icon color in submenu */
   .verticalmenu-desktop.is-sub-open .title-menu-dropdown .header-back svg {
-    fill: #0a2a43 !important;
+    fill: #002e5e !important;
   }
 
-  /* Close icon color in submenu */
   .verticalmenu-desktop.is-sub-open .title-menu-dropdown .close-menu-header svg {
-    fill: #0a2a43 !important;
+    fill: #002e5e !important;
   }
 
-  /* Smooth color transition */
   .verticalmenu-desktop .title-menu-dropdown {
     transition: background-color .25s ease, color .25s ease;
   }
