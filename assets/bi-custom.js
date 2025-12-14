@@ -352,10 +352,42 @@ function initVerticalMenuNavigator() {
     // 3) Remove the desktop-hidden class that is currently blocking it
     panel.classList.remove("invisible-1025");
 
-    // Extra safety (some themes toggle opacity/visibility)
+    // Extra safety (some themes toggle opacity/visibility/display/transform)
+    panel.style.display = "block";
     panel.style.visibility = "visible";
     panel.style.opacity = "1";
+    panel.style.transform = "translateX(0)";
     panel.style.pointerEvents = "auto";
+
+    // Debug: Log computed styles to identify CSS issues
+    const cs = window.getComputedStyle(panel);
+    console.log('[activatePanel] Computed styles:', {
+      display: cs.display,
+      visibility: cs.visibility,
+      opacity: cs.opacity,
+      transform: cs.transform,
+      position: cs.position,
+      left: cs.left,
+      top: cs.top,
+      right: cs.right,
+      bottom: cs.bottom,
+      zIndex: cs.zIndex,
+      width: cs.width,
+      height: cs.height,
+      overflow: cs.overflow
+    });
+
+    // Debug: Check parent container
+    const parentContainer = panel.closest('.submenu-vertical-desktop');
+    if (parentContainer) {
+      const parentRect = parentContainer.getBoundingClientRect();
+      const panelRect = panel.getBoundingClientRect();
+      console.log('[activatePanel] Layout check:', {
+        parentRect: { width: parentRect.width, height: parentRect.height, top: parentRect.top, left: parentRect.left },
+        panelRect: { width: panelRect.width, height: panelRect.height, top: panelRect.top, left: panelRect.left },
+        isVisible: panelRect.width > 0 && panelRect.height > 0
+      });
+    }
   }
 
   function openPanel(li, title) {
