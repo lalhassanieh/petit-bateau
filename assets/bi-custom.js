@@ -303,6 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initFixedTopbarHeader();
     initVerticalMenu();
     initVerticalMenuNavigator();
+    wrapSubmenuPanels();
 });
 
 // Desktop vertical menu navigator (unified handler for all levels)
@@ -410,5 +411,38 @@ function initVerticalMenuNavigator() {
   });
 
   setHeader(rootTitle);
+}
+
+// Wrap 3rd-level submenu ULs into panel wrappers (desktop only)
+function wrapSubmenuPanels() {
+  // only desktop
+  if (window.matchMedia('(min-width: 1025px)').matches === false) return;
+
+  const root = document.querySelector('.verticalmenu-desktop');
+  if (!root) return;
+
+  // For every LI inside desktop submenu that has a nested UL (grandchildren),
+  // wrap that UL into <div class="sub-children-menu"> as a direct child of the LI.
+  root.querySelectorAll('.submenu-vertical-desktop li').forEach(li => {
+    // find a UL that represents the next level inside this li
+    // Try direct child first, then look for .subchildmenu
+    const ul = li.querySelector(':scope > ul, :scope > .subchildmenu');
+    if (!ul) return;
+
+    // If it's already wrapped in a sub-children-menu, skip
+    if (ul.parentElement && ul.parentElement.classList.contains('sub-children-menu')) return;
+
+    // If the UL itself is already sub-children-menu, skip (it's already a panel)
+    if (ul.classList.contains('sub-children-menu')) return;
+
+    // Create wrapper panel
+    const panel = document.createElement('div');
+    panel.className = 'sub-children-menu gradient transition absolute';
+    // CSS will handle hiding via transform: translateX(100%)
+
+    // Move UL into panel
+    ul.parentNode.insertBefore(panel, ul);
+    panel.appendChild(ul);
+  });
 }
 
