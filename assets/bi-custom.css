@@ -833,6 +833,7 @@ svg.edit-icon {
 
   .verticalmenu-desktop :is(menu-item > a, menu-item > a > span){
     text-decoration: none !important;
+    padding: 0 !important;
   }
 
   .verticalmenu-desktop menu-item > open-children-toggle{
