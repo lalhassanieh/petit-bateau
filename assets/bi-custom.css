@@ -802,9 +802,10 @@ svg.edit-icon {
   }
 
   .verticalmenu-desktop .verticalmenu-html{
-    position: relative;
+    position: relative !important;
     flex: 1;
-    overflow: hidden; 
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     background: #fff;
   }
 
@@ -865,41 +866,31 @@ svg.edit-icon {
 
   .verticalmenu-desktop .submenu,
   .verticalmenu-desktop .submenu-vertical-desktop,
-  .verticalmenu-desktop .sub-children-menu{
+  .verticalmenu-desktop .sub-children-menu,
+  .verticalmenu-desktop ul.sub-children-menu,
+  .verticalmenu-desktop li.menu-link.level-1 > ul.sub-children-menu {
     position: absolute !important;
-    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
     width: 100% !important;
     height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
     background: #fff !important;
     transform: translateX(100%) !important;
     transition: transform .35s ease !important;
-    z-index: 20 !important;
+    z-index: 300 !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    padding: 0 !important;
     pointer-events: none !important;
   }
 
-  .verticalmenu-desktop .submenu.visible,
-  .verticalmenu-desktop .submenu-vertical-desktop.visible,
-  .verticalmenu-desktop .sub-children-menu.visible,
-  .verticalmenu-desktop ul.sub-children-menu.visible,
-  .verticalmenu-desktop .submenu.vm-active,
-  .verticalmenu-desktop .submenu-vertical-desktop.vm-active,
-  .verticalmenu-desktop .sub-children-menu.vm-active,
-  .verticalmenu-desktop ul.sub-children-menu.vm-active,
+  .verticalmenu-desktop li.is-open > .submenu,
   .verticalmenu-desktop li.is-open > .submenu-vertical-desktop,
   .verticalmenu-desktop li.is-open > .sub-children-menu,
-  .verticalmenu-desktop li.is-open > ul.sub-children-menu,
-  .verticalmenu-desktop li.is-open > .submenu,
-  .verticalmenu-desktop li.is-open .submenu-vertical-desktop.visible,
-  .verticalmenu-desktop li.is-open .sub-children-menu.visible,
-  .verticalmenu-desktop li.is-open ul.sub-children-menu.visible,
-  .verticalmenu-desktop li.is-open .submenu-vertical-desktop.vm-active,
-  .verticalmenu-desktop li.is-open .sub-children-menu.vm-active,
-  .verticalmenu-desktop li.is-open ul.sub-children-menu.vm-active,
-  .verticalmenu-desktop .is-open + .submenu-vertical-desktop,
-  .verticalmenu-desktop .is-open + .sub-children-menu{
+  .verticalmenu-desktop li.is-open > ul.sub-children-menu {
     transform: translateX(0) !important;
     pointer-events: auto !important;
   }
@@ -957,30 +948,6 @@ svg.edit-icon {
     min-width: 0 !important;
   }
 
-  .verticalmenu-desktop .sub-children-menu,
-  .verticalmenu-desktop .sub-children-menu.static-1025 {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: #fff !important;
-    transform: translateX(100%) !important;
-    transition: transform .35s ease !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 45 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-  }
-
-  .verticalmenu-desktop .sub-children-menu.vm-active,
-  .verticalmenu-desktop li.is-open > .sub-children-menu {
-    transform: translateX(0) !important;
-  }
 
   .verticalmenu-desktop .dropdown-menu .sub-children-menu {
     left: 0 !important;
@@ -988,23 +955,13 @@ svg.edit-icon {
     width: 100% !important;
   }
 
-  .verticalmenu-desktop{
-    overflow-x: hidden !important;
-    overflow-y: auto !important;     
-    overscroll-behavior-x: none;     
+  .verticalmenu-desktop {
+    overflow: hidden !important;
+    overscroll-behavior-x: none;
   }
 
-  .verticalmenu-desktop .desktop-menu-content,
-  .verticalmenu-desktop .verticalmenu-html{
-    overflow-x: hidden !important;
-    overflow-y: auto !important; 
-  }
-
-  .verticalmenu-desktop .submenu,
-  .verticalmenu-desktop .submenu-vertical-desktop,
-  .verticalmenu-desktop .sub-children-menu{
-    overflow-x: hidden !important; 
-    overflow-y: auto !important;   
+  .verticalmenu-desktop .desktop-menu-content {
+    overflow: hidden !important;
   }
 
   .verticalmenu-desktop img,
@@ -1045,40 +1002,7 @@ svg.edit-icon {
     transition: background-color .25s ease, color .25s ease;
   }
 
-  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu,
-  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    display: block !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    transform: translateX(100%) !important;
-    pointer-events: none !important;
-    z-index: 9999 !important;
-  }
-
-  .verticalmenu-desktop .submenu-vertical-desktop li.is-open > .sub-children-menu,
-  .verticalmenu-desktop .submenu-vertical-desktop li.is-open > ul.sub-children-menu,
-  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu.visible,
-  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu.visible,
-  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu.vm-active,
-  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu.vm-active {
-    visibility: visible !important;
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-    pointer-events: auto !important;
-  }
-
-  .verticalmenu-desktop .verticalmenu-html {
-    position: relative !important;
-    overflow: hidden !important; 
-  }
-
+  /* List positioning */
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
   .verticalmenu-desktop .subchildmenu {
     position: relative !important;
@@ -1086,29 +1010,6 @@ svg.edit-icon {
 
   .verticalmenu-desktop li.menu-link.level-1 {
     position: static !important;
-  }
-
-  .verticalmenu-desktop li.menu-link.level-1 > ul.sub-children-menu {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 !important;
-    background: #fff !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    transform: translateX(100%) !important;
-    transition: transform .35s ease !important;
-    pointer-events: none !important;
-    z-index: 300 !important;
-  }
-
-  .verticalmenu-desktop li.menu-link.level-1 > ul.sub-children-menu.vm-active {
-    transform: translateX(0) !important;
-    pointer-events: auto !important;
   }
 
   .verticalmenu-desktop ul.sub-children-menu > ul.list-unstyled {
@@ -1127,39 +1028,19 @@ svg.edit-icon {
     min-height: 55px !important;
   }
 
+  .verticalmenu-desktop .verticalmenu-html,
+  .verticalmenu-desktop .verticalmenu-html .gradient,
+  .verticalmenu-desktop .submenu,
+  .verticalmenu-desktop .submenu.gradient,
+  .verticalmenu-desktop .submenu-vertical-desktop,
+  .verticalmenu-desktop .submenu-vertical-desktop.gradient,
   .verticalmenu-desktop .sub-children-menu,
-  .verticalmenu-desktop .sub-children-menu ul,
   .verticalmenu-desktop .sub-children-menu.gradient,
-  .verticalmenu-desktop .sub-children-menu ul.gradient{
+  .verticalmenu-desktop .sub-children-menu ul,
+  .verticalmenu-desktop .sub-children-menu ul.gradient {
     background-image: none !important;
     box-shadow: none !important;
     filter: none !important;
-  }
-
-  .verticalmenu-desktop .sub-children-menu::before,
-  .verticalmenu-desktop .sub-children-menu::after,
-  .verticalmenu-desktop .sub-children-menu ul::before,
-  .verticalmenu-desktop .sub-children-menu ul::after{
-    content: none !important;
-    display: none !important;
-  }
-
-  .verticalmenu-desktop .sub-children-menu,
-  .verticalmenu-desktop .sub-children-menu ul{
-    border-top: 0 !important;
-    border-bottom: 0 !important;
-  }
-
-  .verticalmenu-desktop .verticalmenu-html,
-  .verticalmenu-desktop .verticalmenu-html .gradient,
-  .verticalmenu-desktop .submenu.gradient,
-  .verticalmenu-desktop .submenu-vertical-desktop.gradient,
-  .verticalmenu-desktop .sub-children-menu.gradient,
-  .verticalmenu-desktop .submenu,
-  .verticalmenu-desktop .submenu-vertical-desktop,
-  .verticalmenu-desktop .sub-children-menu {
-    background-image: none !important;
-    box-shadow: none !important;
   }
 
   .verticalmenu-desktop .verticalmenu-html::before,
@@ -1169,19 +1050,28 @@ svg.edit-icon {
   .verticalmenu-desktop .submenu-vertical-desktop::before,
   .verticalmenu-desktop .submenu-vertical-desktop::after,
   .verticalmenu-desktop .sub-children-menu::before,
-  .verticalmenu-desktop .sub-children-menu::after {
+  .verticalmenu-desktop .sub-children-menu::after,
+  .verticalmenu-desktop .sub-children-menu ul::before,
+  .verticalmenu-desktop .sub-children-menu ul::after {
     content: none !important;
     display: none !important;
   }
 
+  .verticalmenu-desktop .sub-children-menu,
+  .verticalmenu-desktop .sub-children-menu ul {
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+  }
 
-  .verticalmenu-desktop .horizontal-list .level0 > menu-item > a::after{
+
+  .verticalmenu-desktop a::after,
+  .verticalmenu-desktop a::before {
     content: none !important;
     display: none !important;
     transform: none !important;
   }
 
-  .verticalmenu-desktop .horizontal-list .level0 > menu-item > a .reversed-links{
+  .verticalmenu-desktop a.reversed-links {
     background: none !important;
     background-size: 0 0 !important;
   }
