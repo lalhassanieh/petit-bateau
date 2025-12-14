@@ -863,6 +863,8 @@ svg.edit-icon {
     box-shadow: none !important;
   }
 
+  /* Force all submenu panels to be absolute sliding panels */
+  .verticalmenu-desktop .submenu,
   .verticalmenu-desktop .submenu-vertical-desktop,
   .verticalmenu-desktop .sub-children-menu{
     position: absolute !important;
@@ -874,16 +876,25 @@ svg.edit-icon {
     transition: transform .35s ease !important;
     z-index: 20 !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
     padding: 0 !important;
+    pointer-events: none !important;
   }
 
+  /* When opened - slide in and enable pointer events */
+  .verticalmenu-desktop .submenu.visible,
   .verticalmenu-desktop .submenu-vertical-desktop.visible,
   .verticalmenu-desktop .sub-children-menu.visible,
+  .verticalmenu-desktop .submenu.vm-active,
+  .verticalmenu-desktop .submenu-vertical-desktop.vm-active,
+  .verticalmenu-desktop .sub-children-menu.vm-active,
   .verticalmenu-desktop li.is-open > .submenu-vertical-desktop,
   .verticalmenu-desktop li.is-open > .sub-children-menu,
+  .verticalmenu-desktop li.is-open > .submenu,
   .verticalmenu-desktop .is-open + .submenu-vertical-desktop,
   .verticalmenu-desktop .is-open + .sub-children-menu{
     transform: translateX(0) !important;
+    pointer-events: auto !important;
   }
 
   .verticalmenu-desktop .submenu-vertical-desktop .hidden-1025,
@@ -990,8 +1001,16 @@ svg.edit-icon {
     overflow-y: auto !important;   
   }
 
-  .verticalmenu-desktop *{
-    max-width: 100% !important;
+  /* Limit max-width to media elements only (not navigation panels) */
+  .verticalmenu-desktop img,
+  .verticalmenu-desktop video,
+  .verticalmenu-desktop svg {
+    max-width: 100%;
+  }
+
+  /* Prevent horizontal stacking when submenu is open */
+  .verticalmenu-desktop.is-sub-open {
+    overflow-x: hidden !important;
   }
 
   /* menu header */
