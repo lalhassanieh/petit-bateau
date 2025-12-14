@@ -1010,19 +1010,16 @@ svg.edit-icon {
     overflow-y: auto !important;   
   }
 
-  /* Limit max-width to media elements only (not navigation panels) */
   .verticalmenu-desktop img,
   .verticalmenu-desktop video,
   .verticalmenu-desktop svg {
     max-width: 100%;
   }
 
-  /* Prevent horizontal stacking when submenu is open */
   .verticalmenu-desktop.is-sub-open {
     overflow-x: hidden !important;
   }
 
-  /* menu header */
   .verticalmenu-desktop:not(.is-sub-open) .title-menu-dropdown {
     background: #002e5e !important;  
     color: #fff !important;
@@ -1049,6 +1046,35 @@ svg.edit-icon {
 
   .verticalmenu-desktop .title-menu-dropdown {
     transition: background-color .25s ease, color .25s ease;
+  }
+
+  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu,
+  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    transform: translateX(100%) !important;
+    pointer-events: none !important;
+    z-index: 9999 !important;
+  }
+
+  .verticalmenu-desktop .submenu-vertical-desktop li.is-open > .sub-children-menu,
+  .verticalmenu-desktop .submenu-vertical-desktop li.is-open > ul.sub-children-menu,
+  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu.visible,
+  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu.visible,
+  .verticalmenu-desktop .submenu-vertical-desktop .sub-children-menu.vm-active,
+  .verticalmenu-desktop .submenu-vertical-desktop ul.sub-children-menu.vm-active {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
   }
 }
 
