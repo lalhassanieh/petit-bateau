@@ -992,10 +992,6 @@ svg.edit-icon {
     max-width: 100% !important;
   }
 
-  .verticalmenu-desktop :where(.heading-style) {
-    font-weight: 400 !important; 
-  }
-
   /* menu header */
   .verticalmenu-desktop:not(.is-sub-open) .title-menu-dropdown {
     background: #002e5e !important;  
