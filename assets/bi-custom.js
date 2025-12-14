@@ -415,26 +415,72 @@ function initVerticalMenuNavigator() {
 
 // Wrap 3rd-level submenu ULs into panel wrappers (desktop only)
 function wrapSubmenuPanels() {
+  console.log('[wrapSubmenuPanels] Function called');
+  
   // only desktop
-  if (window.matchMedia('(min-width: 1025px)').matches === false) return;
+  const isDesktop = window.matchMedia('(min-width: 1025px)').matches;
+  console.log('[wrapSubmenuPanels] Desktop check:', isDesktop, 'Window width:', window.innerWidth);
+  
+  if (!isDesktop) {
+    console.log('[wrapSubmenuPanels] Not desktop, exiting');
+    return;
+  }
 
   const root = document.querySelector('.verticalmenu-desktop');
-  if (!root) return;
+  console.log('[wrapSubmenuPanels] Root element found:', !!root);
+  
+  if (!root) {
+    console.log('[wrapSubmenuPanels] Root element not found, exiting');
+    return;
+  }
+
+  const allSubmenuLis = root.querySelectorAll('.submenu-vertical-desktop li');
+  console.log('[wrapSubmenuPanels] Found', allSubmenuLis.length, 'LI elements in .submenu-vertical-desktop');
 
   // For every LI inside desktop submenu that has a nested UL (grandchildren),
   // wrap that UL into <div class="sub-children-menu"> as a direct child of the LI.
-  root.querySelectorAll('.submenu-vertical-desktop li').forEach(li => {
+  let processedCount = 0;
+  let wrappedCount = 0;
+  let skippedCount = 0;
+
+  allSubmenuLis.forEach((li, index) => {
+    processedCount++;
+    console.log(`[wrapSubmenuPanels] Processing LI ${index + 1}/${allSubmenuLis.length}`);
+    
     // find a UL that represents the next level inside this li
     // Try direct child first, then look for .subchildmenu
     const ul = li.querySelector(':scope > ul, :scope > .subchildmenu');
-    if (!ul) return;
+    
+    if (!ul) {
+      console.log(`[wrapSubmenuPanels] LI ${index + 1}: No UL found (direct child or .subchildmenu)`);
+      console.log(`[wrapSubmenuPanels] LI ${index + 1} HTML:`, li.outerHTML.substring(0, 200));
+      skippedCount++;
+      return;
+    }
+
+    console.log(`[wrapSubmenuPanels] LI ${index + 1}: Found UL`, {
+      tagName: ul.tagName,
+      className: ul.className,
+      parentTagName: ul.parentElement?.tagName,
+      parentClassName: ul.parentElement?.className
+    });
 
     // If it's already wrapped in a sub-children-menu, skip
-    if (ul.parentElement && ul.parentElement.classList.contains('sub-children-menu')) return;
+    if (ul.parentElement && ul.parentElement.classList.contains('sub-children-menu')) {
+      console.log(`[wrapSubmenuPanels] LI ${index + 1}: UL already wrapped in sub-children-menu, skipping`);
+      skippedCount++;
+      return;
+    }
 
     // If the UL itself is already sub-children-menu, skip (it's already a panel)
-    if (ul.classList.contains('sub-children-menu')) return;
+    if (ul.classList.contains('sub-children-menu')) {
+      console.log(`[wrapSubmenuPanels] LI ${index + 1}: UL is already sub-children-menu, skipping`);
+      skippedCount++;
+      return;
+    }
 
+    console.log(`[wrapSubmenuPanels] LI ${index + 1}: Creating wrapper panel and wrapping UL`);
+    
     // Create wrapper panel
     const panel = document.createElement('div');
     panel.className = 'sub-children-menu gradient transition absolute';
@@ -443,6 +489,16 @@ function wrapSubmenuPanels() {
     // Move UL into panel
     ul.parentNode.insertBefore(panel, ul);
     panel.appendChild(ul);
+    
+    wrappedCount++;
+    console.log(`[wrapSubmenuPanels] LI ${index + 1}: Successfully wrapped UL in panel`);
+  });
+
+  console.log('[wrapSubmenuPanels] Summary:', {
+    total: allSubmenuLis.length,
+    processed: processedCount,
+    wrapped: wrappedCount,
+    skipped: skippedCount
   });
 }
 
