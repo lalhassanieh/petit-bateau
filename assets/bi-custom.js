@@ -339,6 +339,36 @@ function initVerticalMenuNavigator() {
     return panel;
   }
 
+  // More robust helper specifically for finding child panels (3rd level)
+  // Handles cases where level-2 items don't have direct UL children
+  function getChildPanel(li) {
+    if (!li) return null;
+
+    // 1) Direct UL child
+    let panel = li.querySelector(":scope > ul");
+    if (panel) return panel;
+
+    // 2) Common class variants inside li
+    panel = li.querySelector("ul.sub-children-menu, ul.subchildmenu, ul.submenu, .submenu");
+    if (panel) return panel;
+
+    // 3) Sometimes the submenu is the NEXT sibling (very common in themes)
+    if (li.nextElementSibling && li.nextElementSibling.tagName === 'UL') {
+      return li.nextElementSibling;
+    }
+
+    // 4) Or inside an immediate wrapper DIV next to the link
+    const wrap = li.querySelector(":scope > div");
+    if (wrap) {
+      panel = wrap.querySelector("ul");
+      if (panel) return panel;
+    }
+
+    // 5) Fallback: any UL anywhere inside the LI
+    panel = li.querySelector("ul");
+    return panel;
+  }
+
   // Helper to activate a panel with all necessary classes and styles
   function activatePanel(li, panel) {
     if (!li || !panel) return;
@@ -353,10 +383,16 @@ function initVerticalMenuNavigator() {
     panel.classList.remove("invisible-1025");
 
     // Extra safety (some themes toggle opacity/visibility/display/transform)
+    // Force transform to translateX(0) to override any matrix transforms
     panel.style.display = "block";
     panel.style.visibility = "visible";
     panel.style.opacity = "1";
     panel.style.transform = "translateX(0)";
+    // Force transform via setProperty for higher specificity
+    panel.style.setProperty("transform", "translateX(0)", "important");
+    panel.style.left = "0";
+    panel.style.top = "0";
+    panel.style.zIndex = "99999";
     panel.style.pointerEvents = "auto";
 
     // Debug: Log computed styles to identify CSS issues
@@ -391,9 +427,17 @@ function initVerticalMenuNavigator() {
   }
 
   function openPanel(li, title) {
-    const panel = getPanel(li);
+    // Try the standard getPanel first
+    let panel = getPanel(li);
+    
+    // If not found, try the more robust getChildPanel (for 3rd level panels)
+    if (!panel) {
+      panel = getChildPanel(li);
+    }
+    
     if (!panel) {
       console.warn('[initVerticalMenuNavigator] No panel found for LI:', li, 'Classes:', li.className);
+      console.warn('[initVerticalMenuNavigator] LI HTML:', li.outerHTML.substring(0, 300));
       return;
     }
     
