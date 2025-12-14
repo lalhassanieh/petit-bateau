@@ -748,7 +748,7 @@ svg.edit-icon {
     justify-content: space-between;
     gap: 12px;
     height: 56px;
-    padding: 5px 25px !important;
+    padding: 5px 20px !important;
     position: sticky;
     top: 0;
     z-index: 30;
@@ -828,7 +828,7 @@ svg.edit-icon {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 18px 25px !important;
+    padding: 18px 20px !important;
   }
 
   .verticalmenu-desktop :is(menu-item > a, menu-item > a > span){
