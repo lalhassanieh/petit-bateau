@@ -248,7 +248,7 @@ function initVerticalMenu() {
         const menuItem = e.target.closest('.verticalmenu-html > ul > li');
         if (!menuItem) return;
 
-        const hasSubmenu = menuItem.querySelector('> div');
+        const hasSubmenu = menuItem.querySelector(':scope > div');
         if (!hasSubmenu) return;
 
         // Check if click is on open-children-toggle (chevron)
@@ -413,7 +413,9 @@ function initVerticalMenuNavigator() {
   setHeader(rootTitle);
 }
 
-// Wrap 3rd-level submenu ULs into panel wrappers (desktop only)
+// Move 3rd-level submenu panels to correct parent LI (desktop only)
+// Fix: Panels are currently children of level-1 LI, but need to be children of level-2 LI
+// so that CSS selector `li.is-open > .sub-children-menu` matches correctly
 function wrapSubmenuPanels() {
   console.log('[wrapSubmenuPanels] Function called');
   
@@ -434,70 +436,88 @@ function wrapSubmenuPanels() {
     return;
   }
 
-  const allSubmenuLis = root.querySelectorAll('.submenu-vertical-desktop li');
-  console.log('[wrapSubmenuPanels] Found', allSubmenuLis.length, 'LI elements in .submenu-vertical-desktop');
+  // Find all level-2 items that should open a level-3 panel
+  const level2Items = root.querySelectorAll('.submenu-vertical-desktop li.menu-link.level-2');
+  console.log('[wrapSubmenuPanels] Found', level2Items.length, 'level-2 LI elements');
 
-  // For every LI inside desktop submenu that has a nested UL (grandchildren),
-  // wrap that UL into <div class="sub-children-menu"> as a direct child of the LI.
   let processedCount = 0;
-  let wrappedCount = 0;
+  let movedCount = 0;
   let skippedCount = 0;
 
-  allSubmenuLis.forEach((li, index) => {
+  level2Items.forEach((li2, index) => {
     processedCount++;
-    console.log(`[wrapSubmenuPanels] Processing LI ${index + 1}/${allSubmenuLis.length}`);
-    
-    // find a UL that represents the next level inside this li
-    // Try direct child first, then look for .subchildmenu
-    const ul = li.querySelector(':scope > ul, :scope > .subchildmenu');
-    
-    if (!ul) {
-      console.log(`[wrapSubmenuPanels] LI ${index + 1}: No UL found (direct child or .subchildmenu)`);
-      console.log(`[wrapSubmenuPanels] LI ${index + 1} HTML:`, li.outerHTML.substring(0, 200));
+    console.log(`[wrapSubmenuPanels] Processing level-2 LI ${index + 1}/${level2Items.length}`);
+
+    // Check if panel is already a direct child of this level-2 LI
+    const existingPanel = li2.querySelector(':scope > ul.sub-children-menu');
+    if (existingPanel) {
+      console.log(`[wrapSubmenuPanels] LI ${index + 1}: Panel already correctly placed as child of level-2`);
       skippedCount++;
       return;
     }
 
-    console.log(`[wrapSubmenuPanels] LI ${index + 1}: Found UL`, {
-      tagName: ul.tagName,
-      className: ul.className,
-      parentTagName: ul.parentElement?.tagName,
-      parentClassName: ul.parentElement?.className
-    });
+    // Try to locate the panel that belongs to this level-2 item
+    let candidate = null;
 
-    // If it's already wrapped in a sub-children-menu, skip
-    if (ul.parentElement && ul.parentElement.classList.contains('sub-children-menu')) {
-      console.log(`[wrapSubmenuPanels] LI ${index + 1}: UL already wrapped in sub-children-menu, skipping`);
-      skippedCount++;
+    // Strategy 1: Check nextElementSibling (common pattern)
+    candidate = li2.nextElementSibling;
+    if (candidate && candidate.matches('ul.sub-children-menu')) {
+      console.log(`[wrapSubmenuPanels] LI ${index + 1}: Found panel as nextElementSibling, moving to level-2 LI`);
+      li2.appendChild(candidate);
+      movedCount++;
       return;
     }
 
-    // If the UL itself is already sub-children-menu, skip (it's already a panel)
-    if (ul.classList.contains('sub-children-menu')) {
-      console.log(`[wrapSubmenuPanels] LI ${index + 1}: UL is already sub-children-menu, skipping`);
-      skippedCount++;
-      return;
+    // Strategy 2: Panel might be inside the closest level-1 LI (wrong place)
+    const li1 = li2.closest('li.menu-link.level-1');
+    if (li1) {
+      candidate = li1.querySelector(':scope > ul.sub-children-menu');
+      if (candidate) {
+        console.log(`[wrapSubmenuPanels] LI ${index + 1}: Found panel in level-1 parent, moving to level-2 LI`);
+        li2.appendChild(candidate);
+        movedCount++;
+        return;
+      }
     }
 
-    console.log(`[wrapSubmenuPanels] LI ${index + 1}: Creating wrapper panel and wrapping UL`);
-    
-    // Create wrapper panel
-    const panel = document.createElement('div');
-    panel.className = 'sub-children-menu gradient transition absolute';
-    // CSS will handle hiding via transform: translateX(100%)
+    // Strategy 3: Look for panel anywhere in the submenu structure
+    // Sometimes it's a sibling of the level-1 container
+    const submenuContainer = li2.closest('.submenu-vertical-desktop, .subchildmenu');
+    if (submenuContainer) {
+      // Look for panels that might be siblings of level-1 items
+      const allPanels = submenuContainer.querySelectorAll('ul.sub-children-menu');
+      allPanels.forEach(panel => {
+        // Check if this panel is not yet assigned to any level-2 item
+        const panelParent = panel.parentElement;
+        if (panelParent && !panelParent.classList.contains('level-2')) {
+          // Check if this panel's content matches the level-2 item's expected children
+          // Simple heuristic: if panel is near this level-2 item in DOM order
+          const li2Index = Array.from(submenuContainer.querySelectorAll('li.level-2')).indexOf(li2);
+          const panelIndex = Array.from(submenuContainer.querySelectorAll('ul.sub-children-menu')).indexOf(panel);
+          
+          // If panel comes after this level-2 item, it might belong to it
+          if (panelIndex >= li2Index && !candidate) {
+            candidate = panel;
+          }
+        }
+      });
 
-    // Move UL into panel
-    ul.parentNode.insertBefore(panel, ul);
-    panel.appendChild(ul);
-    
-    wrappedCount++;
-    console.log(`[wrapSubmenuPanels] LI ${index + 1}: Successfully wrapped UL in panel`);
+      if (candidate && candidate.parentElement) {
+        console.log(`[wrapSubmenuPanels] LI ${index + 1}: Found unassigned panel, moving to level-2 LI`);
+        li2.appendChild(candidate);
+        movedCount++;
+        return;
+      }
+    }
+
+    console.log(`[wrapSubmenuPanels] LI ${index + 1}: No panel found to move`);
+    skippedCount++;
   });
 
   console.log('[wrapSubmenuPanels] Summary:', {
-    total: allSubmenuLis.length,
+    total: level2Items.length,
     processed: processedCount,
-    wrapped: wrappedCount,
+    moved: movedCount,
     skipped: skippedCount
   });
 }
