@@ -1127,9 +1127,6 @@ svg.edit-icon {
     min-height: 55px !important;
   }
 
-  @media (min-width:1025px){
-
-  /* kill any gradient/shadow overlays inside the slide panels */
   .verticalmenu-desktop .sub-children-menu,
   .verticalmenu-desktop .sub-children-menu ul,
   .verticalmenu-desktop .sub-children-menu.gradient,
@@ -1139,7 +1136,6 @@ svg.edit-icon {
     filter: none !important;
   }
 
-  /* if the shadow is drawn via pseudo-elements */
   .verticalmenu-desktop .sub-children-menu::before,
   .verticalmenu-desktop .sub-children-menu::after,
   .verticalmenu-desktop .sub-children-menu ul::before,
@@ -1148,13 +1144,12 @@ svg.edit-icon {
     display: none !important;
   }
 
-  /* also remove any accidental borders on the UL itself */
   .verticalmenu-desktop .sub-children-menu,
   .verticalmenu-desktop .sub-children-menu ul{
     border-top: 0 !important;
     border-bottom: 0 !important;
   }
-}
+
 
 }
 
