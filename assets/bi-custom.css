@@ -836,11 +836,6 @@ svg.edit-icon {
     padding: 0 !important;
   }
 
-  .verticalmenu-desktop .verticalmenu-html > ul.horizontal-list > li.level0 > menu-item > a,
-  .verticalmenu-desktop .verticalmenu-html > ul.horizontal-list > li.level0 > menu-item > a:hover{
-    text-decoration: none !important;
-  }
-
   .verticalmenu-desktop menu-item > open-children-toggle{
     width: 30px !important;
     height: 30px !important;
@@ -1178,6 +1173,26 @@ svg.edit-icon {
     content: none !important;
     display: none !important;
   }
+
+ .verticalmenu-desktop li.level0.single menu-item > a,
+  .verticalmenu-desktop li.level0.single menu-item > a *,
+  .verticalmenu-desktop li.level0.single menu-item > a:hover,
+  .verticalmenu-desktop li.level0.single menu-item > a:hover * {
+    text-decoration: none !important;
+    border: none !important;
+    background: none !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  .verticalmenu-desktop li.level0.single menu-item > a::before,
+  .verticalmenu-desktop li.level0.single menu-item > a::after,
+  .verticalmenu-desktop li.level0.single menu-item > a *::before,
+  .verticalmenu-desktop li.level0.single menu-item > a *::after {
+    content: none !important;
+    display: none !important;
+  }
+
 }
 
 /*================*/
