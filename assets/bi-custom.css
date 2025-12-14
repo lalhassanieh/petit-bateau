@@ -1077,13 +1077,12 @@ svg.edit-icon {
     pointer-events: auto !important;
   }
 
-  /* Make the menu body a single "panel viewport" */
   .verticalmenu-desktop .verticalmenu-html {
     position: relative !important;
-    overflow: hidden !important;   /* hides the list behind the opened panel */
+    overflow: hidden !important;   
   }
 
-  /* Ensure parent ul is positioned relative for absolute children */
+  
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
   .verticalmenu-desktop .subchildmenu {
     position: relative !important;
@@ -1093,27 +1092,25 @@ svg.edit-icon {
   .verticalmenu-desktop li.menu-link.level-1.is-open,
   .verticalmenu-desktop li.menu-link.level-1:has(.sub-children-menu.vm-active) {
     position: absolute !important;
-    top: 0 !important;            /* IMPORTANT: removes the blank space */
+    top: 0 !important;       
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
     width: 100% !important;
-    height: 1000px !important;
+    height: 1250px !important;
     min-height: 100% !important;
     background: #fff !important;
-    z-index: 450 !important;      /* above the UL/content */
+    z-index: 450 !important;    
     display: flex !important;
     flex-direction: column !important;
   }
 
-  /* Hide other level-1 items behind (optional but makes it feel "one box") */
   .verticalmenu-desktop li.menu-link.level-1.is-open ~ li.menu-link.level-1,
   .verticalmenu-desktop li.menu-link.level-1:has(.sub-children-menu.vm-active) ~ li.menu-link.level-1 {
     opacity: 0 !important;
     pointer-events: none !important;
   }
 
-  /* Z-index / "one structure one box" guarantee */
   .verticalmenu-desktop .title-menu-dropdown {
     z-index: 500 !important;
   }
@@ -1122,7 +1119,6 @@ svg.edit-icon {
     z-index: 400 !important;
   }
 
-  /* Same padding/divider for links in main + sub panels */
   .verticalmenu-desktop :is(
     ul.horizontal-list > li > menu-item,
     .subchildmenu > li > menu-item,
@@ -1133,7 +1129,7 @@ svg.edit-icon {
     border-bottom: 1px solid rgba(0,0,0,.08) !important;
   }
 
-  /* If the opened level-1 has its own "header row" item, keep it consistent */
+  
   .verticalmenu-desktop li.menu-link.level-1.is-open > menu-item {
     padding: 18px 20px !important;
     border-bottom: 1px solid rgba(0,0,0,.08) !important;
