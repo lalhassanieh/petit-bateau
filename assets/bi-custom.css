@@ -836,11 +836,7 @@ svg.edit-icon {
     padding: 0 !important;
   }
 
-    .verticalmenu-desktop a:hover,
-  .verticalmenu-desktop a:focus,
-  .verticalmenu-desktop a:active {
-    text-decoration: none !important;
-  }
+  
 
   .verticalmenu-desktop menu-item > open-children-toggle{
     width: 30px !important;
