@@ -29,6 +29,7 @@ function initFixedTopbarHeader() {
 function initDesktopMenuToggle() {
   const menuToggle      = document.querySelector('.menu-toggle');
   const headerNav       = document.querySelector('.header-bottom__navigation.relative.color-default');
+  const nativeNavToggle = document.querySelector('[data-action="toggle-nav"]');
 
   const DESKTOP_MIN_WIDTH   = 1025;
   const SHOW_AFTER_SCROLL_Y = 120;
@@ -527,6 +528,7 @@ function initVerticalMenuHeaderController() {
 
   const closeBtn = menu.querySelector('.title-menu-dropdown .close-menu-header');
   if (closeBtn) {
+    const originalCloseHandler = closeBtn.onclick;
     closeBtn.addEventListener('click', () => {
       while (level2Stack.length) {
         const top = level2Stack.pop();
