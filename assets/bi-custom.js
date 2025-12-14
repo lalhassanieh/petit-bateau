@@ -8,9 +8,9 @@ document.querySelectorAll('.tooltip-content').forEach(el => {
 });
 
 function initFixedTopbarHeader() {
-  if (!topbar || !header) return;
     const topbar = document.querySelector("#topbar");
     const header = document.querySelector(".header");
+    if (!topbar || !header) return;
 
     function updateHeights() {
         const topbarHeight = topbar.offsetHeight;
