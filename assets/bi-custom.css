@@ -1174,21 +1174,12 @@ svg.edit-icon {
     display: none !important;
   }
 
- .verticalmenu-desktop li.level0.single menu-item > a,
-  .verticalmenu-desktop li.level0.single menu-item > a *,
-  .verticalmenu-desktop li.level0.single menu-item > a:hover,
-  .verticalmenu-desktop li.level0.single menu-item > a:hover * {
-  border-bottom: none !important;
+ .verticalmenu-desktop
+  ul.horizontal-list
+  > li.level0.single{
+    border-bottom: none !important;
   }
-
-  .verticalmenu-desktop li.level0.single menu-item > a::before,
-  .verticalmenu-desktop li.level0.single menu-item > a::after,
-  .verticalmenu-desktop li.level0.single menu-item > a *::before,
-  .verticalmenu-desktop li.level0.single menu-item > a *::after {
-    content: none !important;
-    display: none !important;
-  }
-
+  
 }
 
 /*================*/
