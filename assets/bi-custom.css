@@ -1077,10 +1077,10 @@ svg.edit-icon {
     pointer-events: auto !important;
   }
 
-  /* Make the menu body a single "panel viewport" */
+  /* The menu viewport must clip sliding panels */
   .verticalmenu-desktop .verticalmenu-html {
     position: relative !important;
-    overflow: hidden !important;   /* hides the list behind the opened panel */
+    overflow: hidden !important;
   }
 
   /* Ensure parent ul is positioned relative for absolute children */
@@ -1089,54 +1089,52 @@ svg.edit-icon {
     position: relative !important;
   }
 
-  /* Level-1 li expands to bottom and z-indexed above others when submenu is open */
-  .verticalmenu-desktop li.menu-link.level-1.is-open,
-  .verticalmenu-desktop li.menu-link.level-1:has(.sub-children-menu.vm-active) {
+  /* Sub menu level-2 becomes the ONLY full panel */
+  .verticalmenu-desktop .sub-children-menu {
     position: absolute !important;
-    top: 0 !important;            /* IMPORTANT: removes the blank space */
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
+    inset: 0 !important;
     width: 100% !important;
-    height: auto !important;
-    min-height: 100% !important;
+    height: 100% !important;
     background: #fff !important;
-    z-index: 450 !important;      /* above the UL/content */
-    display: flex !important;
-    flex-direction: column !important;
+    transform: translateX(100%) !important;
+    transition: transform .35s ease !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 300 !important;
+    pointer-events: none !important;
   }
 
-  /* Hide other level-1 items behind (optional but makes it feel "one box") */
-  .verticalmenu-desktop li.menu-link.level-1.is-open ~ li.menu-link.level-1,
-  .verticalmenu-desktop li.menu-link.level-1:has(.sub-children-menu.vm-active) ~ li.menu-link.level-1 {
-    opacity: 0 !important;
-    pointer-events: none !important;
+  /* When active, slide in */
+  .verticalmenu-desktop .sub-children-menu.vm-active {
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
   }
 
   /* Z-index / "one structure one box" guarantee */
   .verticalmenu-desktop .title-menu-dropdown {
     z-index: 500 !important;
   }
-  
-  .verticalmenu-desktop .sub-children-menu {
-    z-index: 400 !important;
-  }
 
-  /* Same padding/divider for links in main + sub panels */
-  .verticalmenu-desktop :is(
-    ul.horizontal-list > li > menu-item,
-    .subchildmenu > li > menu-item,
-    .sub-children-menu > li > menu-item,
-    .sub-children-menu li > menu-item
-  ) {
+  /* Make spacing + dividers identical to main menu */
+  .verticalmenu-desktop .sub-children-menu > li > menu-item,
+  .verticalmenu-desktop .sub-children-menu li > menu-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
     padding: 18px 20px !important;
     border-bottom: 1px solid rgba(0,0,0,.08) !important;
   }
 
-  /* If the opened level-1 has its own "header row" item, keep it consistent */
-  .verticalmenu-desktop li.menu-link.level-1.is-open > menu-item {
-    padding: 18px 20px !important;
-    border-bottom: 1px solid rgba(0,0,0,.08) !important;
+  /* Keep toggle same size */
+  .verticalmenu-desktop .sub-children-menu open-children-toggle {
+    width: 35px !important;
+    height: 35px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 
