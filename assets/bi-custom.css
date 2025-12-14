@@ -702,7 +702,6 @@ svg.edit-icon {
 
 
 @media (max-width: 1024px) {
-  /* Hide vertical menu desktop on mobile */
   .verticalmenu-desktop {
     display: none !important;
   }
@@ -863,7 +862,6 @@ svg.edit-icon {
     box-shadow: none !important;
   }
 
-  /* Force all submenu panels to be absolute sliding panels */
   .verticalmenu-desktop .submenu,
   .verticalmenu-desktop .submenu-vertical-desktop,
   .verticalmenu-desktop .sub-children-menu{
@@ -881,7 +879,6 @@ svg.edit-icon {
     pointer-events: none !important;
   }
 
-  /* When opened - slide in and enable pointer events */
   .verticalmenu-desktop .submenu.visible,
   .verticalmenu-desktop .submenu-vertical-desktop.visible,
   .verticalmenu-desktop .sub-children-menu.visible,
@@ -979,7 +976,6 @@ svg.edit-icon {
     bottom: 0 !important;
   }
 
-  /* When opened by JS (handles both vm-active class and is-open on parent li) */
   .verticalmenu-desktop .sub-children-menu.vm-active,
   .verticalmenu-desktop li.is-open > .sub-children-menu {
     transform: translateX(0) !important;
@@ -1077,13 +1073,11 @@ svg.edit-icon {
     pointer-events: auto !important;
   }
 
-  /* Ensure parent ul is positioned relative for absolute children */
   .verticalmenu-desktop .verticalmenu-html ul.horizontal-list,
   .verticalmenu-desktop .subchildmenu {
     position: relative !important;
   }
 
-  /* Level-1 li expands to bottom and z-indexed above others when submenu is open */
   .verticalmenu-desktop li.menu-link.level-1.is-open {
     position: absolute !important;
     left: 0 !important;
@@ -1097,7 +1091,6 @@ svg.edit-icon {
     background: #fff !important;
   }
 
-  /* Also handle when submenu has vm-active class (for :has() support) */
   .verticalmenu-desktop li.menu-link.level-1:has(.sub-children-menu.vm-active) {
     position: absolute !important;
     left: 0 !important;
