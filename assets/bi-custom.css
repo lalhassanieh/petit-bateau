@@ -836,12 +836,12 @@ svg.edit-icon {
   }
 
   .verticalmenu-desktop menu-item > open-children-toggle{
-    width: 35px !important;
-    height: 35px !important;
+    width: 30px !important;
+    height: 30px !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    flex: 0 0 35px !important;
+    flex: 0 0 30px !important;
     background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
@@ -921,9 +921,9 @@ svg.edit-icon {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 35px !important;
-    height: 35px !important;
-    flex: 0 0 35px !important;
+    width: 30px !important;
+    height: 30px !important;
+    flex: 0 0 30px !important;
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
