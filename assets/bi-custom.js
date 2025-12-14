@@ -390,6 +390,37 @@ function initVerticalMenuHeaderController() {
     }
   }
 
+  function getParentCollectionTitle(level1Li) {
+    if (!level1Li) return rootTitle;
+    
+    // Find the parent subchildmenu that contains this level-1 item
+    const subchildmenu = level1Li.closest('.subchildmenu');
+    if (!subchildmenu) return rootTitle;
+    
+    // Find the parent submenu that contains the subchildmenu
+    const parentSubmenu = subchildmenu.closest('.submenu, .submenu-vertical-desktop');
+    if (!parentSubmenu) return rootTitle;
+    
+    // Try to find the parent collection title from the submenu's back-menu or header
+    const backMenu = parentSubmenu.querySelector('back-menu');
+    if (backMenu) {
+      const backMenuText = backMenu.textContent.trim();
+      if (backMenuText) return backMenuText;
+    }
+    
+    // Try to find from the parent li that contains this submenu
+    const parentLi = parentSubmenu.closest('li');
+    if (parentLi) {
+      const parentLink = parentLi.querySelector('menu-item > a, > menu-item > a');
+      if (parentLink) {
+        const parentTitle = parentLink.textContent.trim();
+        if (parentTitle) return parentTitle;
+      }
+    }
+    
+    return rootTitle;
+  }
+
   function openLevel2Panel(panelEl, title) {
     if (!panelEl) return;
 
@@ -397,8 +428,13 @@ function initVerticalMenuHeaderController() {
     
     // Find the parent level-1 li and add class to expand it
     const level1Li = panelEl.closest('li.menu-link.level-1');
+    let parentCollectionTitle = rootTitle;
+    
     if (level1Li) {
       level1Li.classList.add('is-open');
+      
+      // Get the parent collection title
+      parentCollectionTitle = getParentCollectionTitle(level1Li);
       
       // Calculate and set the top position so it expands from its current position
       const menuContainer = menu.querySelector('.verticalmenu-html');
@@ -410,7 +446,12 @@ function initVerticalMenuHeaderController() {
       }
     }
 
-    level2Stack.push({ panel: panelEl, title: title || rootTitle, li: level1Li });
+    level2Stack.push({ 
+      panel: panelEl, 
+      title: title || rootTitle, 
+      li: level1Li,
+      parentCollectionTitle: parentCollectionTitle
+    });
 
     setHeader(title, true);
   }
@@ -433,7 +474,9 @@ function initVerticalMenuHeaderController() {
     if (prev) {
       setHeader(prev.title, true);
     } else {
-      setHeader(rootTitle, false);
+      // Show the parent collection title instead of rootTitle
+      const parentTitle = top.parentCollectionTitle || rootTitle;
+      setHeader(parentTitle, false);
     }
     return true;
   }
