@@ -1094,6 +1094,16 @@ svg.edit-icon {
     overflow-y: auto !important;
     overflow-x: hidden !important;
   }
+
+  /* Hover rule for 3rd level menu in vertical desktop menu (uses descendant selector for flexibility) */
+  .verticalmenu-desktop .level-1:hover .sub-children-menu,
+  .verticalmenu-desktop .menu-link.level-1:hover .sub-children-menu,
+  .verticalmenu-desktop .menu-link.level-1:hover ul.sub-children-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateX(0) !important;
+  }
 }
 
 /*================*/
