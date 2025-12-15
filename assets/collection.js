@@ -434,20 +434,20 @@ var eventCollectionShopify = (function () {
               .replaceWith(newSection);
           }
           document.documentElement.classList.remove('hside_opened', 'open-drawer', 'open-sidebar');
-          const sectionElement = document.querySelector(
-            '#productgridcontainer'
-          );
-          
-          if (sectionElement) {
-            const elementPosition = sectionElement.getBoundingClientRect().top;
-            const offsetPosition = window.pageYOffset;
-            const extraOffset = 100;
-            const scrollToPosition =
-              elementPosition + offsetPosition - extraOffset;
-            window.scrollTo({
-              top: scrollToPosition,
-              behavior: 'smooth',
-            });
+          const hasSubcollectionList = document.querySelector('.sec__collection-list');
+          if (!hasSubcollectionList) {
+            const sectionElement = document.querySelector('#productgridcontainer');
+            if (sectionElement) {
+              const elementPosition = sectionElement.getBoundingClientRect().top;
+              const offsetPosition = window.pageYOffset;
+              const extraOffset = 100;
+              const scrollToPosition =
+                elementPosition + offsetPosition - extraOffset;
+              window.scrollTo({
+                top: scrollToPosition,
+                behavior: 'smooth',
+              });
+            }
           }
           this.toggleLoading(document.body, false);
         })
