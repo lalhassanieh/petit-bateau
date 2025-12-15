@@ -539,7 +539,7 @@
   {% comment %} Mobile Menu {% endcomment %}
   <nav
     class="flex flex-column mobile block-1025 navigation horizontal fixed inset-0 {{ section_st.dropdowns_animation }}"
-    data-action-mobile="{% if section_st.redirect_to_link == blank %}redirect{% else %}{{ section_st.redirect_to_link }}{% endif %}"
+    data-action-mobile="{{ section_st.redirect_to_link }}"
     style="
       --hot-cl: {{ section_st.label_color_hot }};--hot-bg-cl: {{ section_st.label_background_hot }};
       --new-cl: {{ section_st.label_color_new }};--new-bg-cl: {{ section_st.label_background_new }};
@@ -562,7 +562,7 @@
     </close-menu>
     <div class="navigation__menu-content navigation__menu-content-mobile word-break">
       <div
-        class="menu-mobile-title min-h-55 min-h-1025-50 flex align-center px-30 py-5 gradient hidden-1025 gap-30"
+        class="menu-mobile-title min-h-55 min-h-1025-50 flex align-center px-30 py-5 gradient block-1025 gap-30"
         style="--color-heading: {{ section_st.menu_mobile_color }};--gradient-background: {{ section_st.menu_mobile_background }}"
       >
         <a
@@ -648,20 +648,27 @@
                 assign label = block_st.item_label
               -%}
               <menu-item class="relative static-1025 flex justify-between align-center border-bottom border-bottom-1025-0 header-color px-15">
-              <a class="no-underline py-10 relative lh-normal inline-flex min-h-55 min-h-1025-50 z-1 align-center{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}{% if uppercase_first %} uppercase{% endif %}{% if link.links.size > 0 and redirect_to_link == blank %} redirect-to-link{% endif %}" href="{{ link.url }}"{% if block_st.open-link-newtab != blank %} target="_blank"{% endif %}>
+              <a class="no-underline py-10 relative lh-normal inline-flex min-h-55 min-h-1025-50 z-1 align-center flex-1{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}{% if uppercase_first %} uppercase{% endif %}" href="{{ link.url }}"{% if block_st.open-link-newtab != blank %} target="_blank"{% endif %}>
                 <span>{{ link.title }}</span>
                 {%- if label != blank and label != 'unset' -%}
                   <span class="menu_label rounded-2 text-center heading_weight relative absolute-1025 whitespace-nowrap uppercase  {{ label }}">{{ section_st[label] }}</span>
                 {%- endif -%}
+                {%- if link.links.size > 0 -%}
+                  <open-children-toggle class="inline-flex flex-end align-center ms-5 block-1025 hidden">
+                    <svg class="icon-down" width="10" height="6">
+                      <use href="#icon-arrow-down" />
+                    </svg>
+                  </open-children-toggle>
+                {%- endif -%}
               </a>
               {%- if link.links.size > 0 -%}
-                <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} static-1025{% else %} touch-target-mb{% endif %}">
+                <open-children-toggle class="inline-flex flex-end align-center pointer ms-5 w-30 h-30 content-center hidden-1025 flex-shrink-0">
                   {% if enable_rtl %}
-                    <svg class="icon-down block hidden-1025" width="6" height="11">
+                    <svg class="icon-down" width="6" height="11">
                       <use href="#icon-back" />
                     </svg>
                   {% else %}
-                    <svg class="icon-down block hidden-1025" width="6" height="11">
+                    <svg class="icon-down" width="6" height="11">
                       <use href="#icon-next" />
                     </svg>
                   {% endif %}
@@ -940,27 +947,27 @@
             >
               <menu-item class="relative static-1025 flex justify-between align-center border-bottom border-bottom-1025-0 header-color px-15">
                 <a
-                  class="{% if link.links.size > 0 and section_st.redirect_to_link == false %}redirect-to-link {% endif %}no-underline py-10 relative lh-normal inline-flex min-h-55 min-h-1025-50 z-1 align-center{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}{% if uppercase_first %} uppercase{% endif %}"
+                  class="no-underline py-10 relative lh-normal inline-flex min-h-55 min-h-1025-50 z-1 align-center flex-1{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}{% if uppercase_first %} uppercase{% endif %}"
                   href="{{ link.url }}"
                   arial-label="{{ link.title }}"
                 >
                   <span>{{ link.title }}</span>
                   {%- if link.links.size > 0 -%}
-                    <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
-                      <svg class="icon-down hidden block-1025" width="10" height="6">
+                    <open-children-toggle class="inline-flex flex-end align-center ms-5 hidden block-1025">
+                      <svg class="icon-down" width="10" height="6">
                         <use href="#icon-arrow-down" />
                       </svg>
                     </open-children-toggle>
                   {%- endif -%}
                 </a>
                 {%- if link.links.size > 0 -%}
-                  <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
+                  <open-children-toggle class="inline-flex flex-end align-center pointer ms-5 w-30 h-30 content-center hidden-1025 flex-shrink-0">
                     {% if enable_rtl %}
-                      <svg class="icon-down block hidden-1025" width="6" height="11">
+                      <svg class="icon-down" width="6" height="11">
                         <use href="#icon-back" />
                       </svg>
                     {% else %}
-                      <svg class="icon-down block hidden-1025" width="6" height="11">
+                      <svg class="icon-down" width="6" height="11">
                         <use href="#icon-next" />
                       </svg>
                     {% endif %}
@@ -998,7 +1005,7 @@
           {% endif %}
         {%- endfor -%}
         {%- if recently_viewed -%}
-          <li class="level0 hidden-1025">
+          <li class="level0 block-1025">
             <a
               class="no-underline py-10 lh-normal flex border-bottom border-bottom-1025-0 min-h-55 min-h-1025-50 align-center{% if uppercase_first %} uppercase{% endif %}"
               href="/pages/recently-viewed-products"
@@ -1019,7 +1026,7 @@
           </li>
         {% endif %}
         {%- if wishlist -%}
-          <li class="level0 hidden-1025">
+          <li class="level0 block-1025">
             <a
               class="no-underline py-10 lh-normal flex border-bottom border-bottom-1025-0 min-h-55 min-h-1025-50 align-center{% if uppercase_first %} uppercase{% endif %}"
               href="/pages/wishlist"
@@ -1034,7 +1041,7 @@
         {% endif %}
         {%- if show_my_account -%}
           {% if customer %}
-            <li class="level0 hidden-1025">
+            <li class="level0 block-1025">
               <a
                 href="{{ routes.account_url }}"
                 class="no-underline py-10 lh-normal flex border-bottom border-bottom-1025-0 min-h-55 min-h-1025-50 align-center account-url{% if uppercase_first %} uppercase{% endif %}"
@@ -1050,7 +1057,7 @@
                 {% endif %}
               </a>
             </li>
-            <li class="level0 hidden-1025">
+            <li class="level0 block-1025">
               <a
                 href="{{ routes.account_logout_url }}"
                 class="no-underline py-10 lh-normal flex border-bottom border-bottom-1025-0 min-h-55 min-h-1025-50 align-center account-logout{% if uppercase_first %} uppercase{% endif %}"
@@ -1063,7 +1070,7 @@
               </a>
             </li>
           {% else %}
-            <li class="level0 hidden-1025">
+            <li class="level0 block-1025">
               <a
                 href="{{ routes.account_login_url }}"
                 class="no-underline py-10 lh-normal flex border-bottom border-bottom-1025-0 min-h-55 min-h-1025-50 align-center account-login{% if uppercase_first %} uppercase{% endif %}"
@@ -1082,11 +1089,10 @@
         {%- render 'categories-menu-mobile' | section_st: section_st -%}
       {% endif %}
     </div>
-    <div class="lang__currency-on-nav mt-30 flex flex-wrap  hidden-1025 border-top">
+    <div class="lang__currency-on-nav mt-30 flex flex-wrap block-1025 border-top">
       {% if show_language %} {% render 'language-switcher' %}{% endif %}
       {% render 'country-switcher' %}
     </div>
   </nav>
-
 
 {%- endif  -%}
