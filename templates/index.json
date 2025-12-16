@@ -758,7 +758,7 @@
         "carousel_pagination": "disable",
         "infinite": false,
         "autoplay": true,
-        "autorotate_speed": 5,
+        "autorotate_speed": 4,
         "reveal": false,
         "items_per_row_mobile": 1,
         "design": "default",
