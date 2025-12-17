@@ -668,38 +668,40 @@ svg.edit-icon {
     color: #fff;
 }
 
-#MainContent,
-.main-content {
-  padding-top: calc(
-    var(--topbar-height, 39px) + var(--header-height, 108px)
-  );
+
+
+@media (min-width: 990px) {
+  #MainContent,
+  .main-content {
+    padding-top: calc(
+      var(--topbar-height, 39px) + var(--header-height, 108px)
+    );
+  }
+
+  #topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .header {
+    position: fixed !important;
+    top: var(--topbar-height, 0px);
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 11 !important;
+    background: #fff;
+  }
+  
+  .header-bottom__navigation.hide-on-scroll {
+    height: 0 !important;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
-
-#topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
-
-.header {
-  position: fixed !important;
-  top: var(--topbar-height, 0px);
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 11 !important;
-  background: #fff;
-}
-
-
-.header-bottom__navigation.hide-on-scroll {
-  height: 0 !important;
-  opacity: 0;
-  pointer-events: none;
-}
-
 
 @media (max-width: 1024px) {
   .verticalmenu-desktop {
