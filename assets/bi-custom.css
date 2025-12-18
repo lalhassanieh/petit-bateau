@@ -593,6 +593,10 @@ svg.edit-icon {
 .top-search-toggle{
   color:#002e5e !important;
 }
+.top-search-toggle:hover{
+  color:#e14a5c !important;
+}
+
 
 .desktop-1025-only {
   display: none;
