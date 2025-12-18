@@ -591,6 +591,10 @@ svg.edit-icon {
        CSS For Navbar
 ===========================*/
 
+.btn-reset .top-search-toggle{
+  color:#002e5e;
+}
+
 .desktop-1025-only {
   display: none;
 }
